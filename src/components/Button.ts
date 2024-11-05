@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Button = styled.button`
   width: 140px;
@@ -10,19 +10,19 @@ const Button = styled.button`
   transition: all 0.3s;
 
   &:hover {
-      border: 1px solid #0ec3c9;
-      color: #0ec3c9;
+    border: 1px solid #0ec3c9;
+    color: #0ec3c9;
   }
 
   &:active {
-      background-color: #0ec3c9;
+    background-color: #0ec3c9;
   }
 
   /* Disabled styles */
   &:disabled {
-      cursor: not-allowed;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: rgba(255, 255, 255, 0.3);
+    cursor: not-allowed;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.3);
   }
 `;
 
