@@ -5,12 +5,14 @@ import { MainMenu } from "./scenes/MainMenu";
 import { AUTO, Game } from "phaser";
 import { Preloader } from "./scenes/Preloader";
 
+const VIEWPORT_SIZE = 40;
+
 //  Find out more information about the Game Config at:
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config: Phaser.Types.Core.GameConfig = {
   type: AUTO,
-  width: 1024,
-  height: 768,
+  width: 16 * VIEWPORT_SIZE,
+  height: 9 * VIEWPORT_SIZE,
   parent: "game-container",
   backgroundColor: "#028af8",
   scene: [Boot, Preloader, MainMenu, MainGame, GameOver],
