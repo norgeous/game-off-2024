@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { IRefPhaserGame, PhaserGame } from './game/PhaserGame';
 import { MainMenu } from './game/scenes/MainMenu';
 import Button from './components/Button';
+import Container from './components/Container';
 
 function App()
 {
@@ -84,7 +85,7 @@ function App()
     return (
         <div id="app">
             <PhaserGame ref={phaserRef} currentActiveScene={currentScene} />
-            <div>
+            <Container>
                 <div>
                     <Button onClick={changeScene}>Change Scene</Button>
                 </div>
@@ -97,7 +98,7 @@ function App()
                 <div>
                     <Button onClick={addSprite}>Add New Sprite</Button>
                 </div>
-            </div>
+            </Container>
         </div>
     )
 }
