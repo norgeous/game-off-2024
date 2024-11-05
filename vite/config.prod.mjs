@@ -1,5 +1,7 @@
+/* eslint-disable no-undef */
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { VitePWA } from 'vite-plugin-pwa'
 
 const phasermsg = () => {
   return {
@@ -8,9 +10,9 @@ const phasermsg = () => {
       process.stdout.write(`Building for production...\n`);
     },
     buildEnd() {
-      const line = "---------------------------------------------------------";
-      const msg = `❤️❤️❤️ Tell us about your game! - games@phaser.io ❤️❤️❤️`;
-      process.stdout.write(`${line}\n${msg}\n${line}\n`);
+      // const line = "---------------------------------------------------------";
+      // const msg = `❤️❤️❤️ Tell us about your game! - games@phaser.io ❤️❤️❤️`;
+      // process.stdout.write(`${line}\n${msg}\n${line}\n`);
       process.stdout.write(`✨ Done ✨\n`);
     },
   };
@@ -18,7 +20,7 @@ const phasermsg = () => {
 
 export default defineConfig({
   base: "./",
-  plugins: [react(), phasermsg()],
+  plugins: [react(), phasermsg(), VitePWA({ registerType: "autoUpdate" })],
   logLevel: "warning",
   build: {
     rollupOptions: {

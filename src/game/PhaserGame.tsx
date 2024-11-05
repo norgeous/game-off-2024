@@ -4,7 +4,7 @@ import StartGame from "./main";
 import { EventBus } from "./EventBus";
 
 const GameContainer = styled.div.attrs({
-  id: "game-container"
+  id: "game-container",
 })`
   width: 100%;
   height: 100lvmin;
