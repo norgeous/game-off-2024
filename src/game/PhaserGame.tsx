@@ -1,6 +1,22 @@
+import styled from "styled-components";
 import { forwardRef, useEffect, useLayoutEffect, useRef } from "react";
 import StartGame from "./main";
 import { EventBus } from "./EventBus";
+
+const GameContainer = styled.div.attrs({
+  id: "game-container"
+})`
+  width: 100%;
+  height: 100lvmin;
+  max-height: 100lvmin;
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    object-fit: contain;
+  }
+`;
 
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
@@ -53,6 +69,6 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(
       };
     }, [currentActiveScene, ref]);
 
-    return <div id="game-container"></div>;
+    return <GameContainer />;
   },
 );
