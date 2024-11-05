@@ -74,7 +74,7 @@ function App() {
         <Button disabled={sceneKey !== "MainMenu"} onClick={moveSprite}>
           Toggle Movement
         </Button>
-        <div className="spritePosition">
+        <div>
           Sprite Position:
           <pre>{`{\n  x: ${spritePosition.x}\n  y: ${spritePosition.y}\n}`}</pre>
         </div>
