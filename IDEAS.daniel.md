@@ -12,6 +12,7 @@ theme: SECRETS
 - zelda
   - in dungeons **secret** areas can be opened by bombing walls
   - opening chest to reveal **secret** item
+- Rick Dangerous https://www.youtube.com/watch?v=VDmJNcYLbuQ
 
 ## mechanics i want
 
