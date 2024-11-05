@@ -6,6 +6,8 @@ const Container = styled.div`
   gap: 10px;
   padding: 10px;
   border: 1px solid aquamarine;
+  background-color: darkgreen;
+  opacity: 0.5;
   position: absolute;
   top: 0;
   right: 0;
