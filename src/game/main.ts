@@ -1,9 +1,10 @@
 import { Boot } from "./scenes/Boot";
-import { GameOver } from "./scenes/GameOver";
-import { Game as MainGame } from "./scenes/Game";
-import { MainMenu } from "./scenes/MainMenu";
-import { AUTO, Game } from "phaser";
 import { Preloader } from "./scenes/Preloader";
+import { MainMenu } from "./scenes/MainMenu";
+import { Game as MainGame } from "./scenes/Game";
+import { GameOver } from "./scenes/GameOver";
+import { Win } from "./scenes/Win";
+import { AUTO, Game } from "phaser";
 
 const VIEWPORT_SIZE = 80;
 
@@ -15,7 +16,7 @@ const config: Phaser.Types.Core.GameConfig = {
   height: 9 * VIEWPORT_SIZE,
   parent: "game-container",
   backgroundColor: "#028af8",
-  scene: [Boot, Preloader, MainMenu, MainGame, GameOver],
+  scene: [Boot, Preloader, MainMenu, MainGame, GameOver, Win],
 };
 
 const StartGame = (parent: string) => {

@@ -1,24 +1,24 @@
 import { EventBus } from "../EventBus";
 import { Scene } from "phaser";
 
-export class GameOver extends Scene {
+export class Win extends Scene {
   camera: Phaser.Cameras.Scene2D.Camera;
   background: Phaser.GameObjects.Image;
-  gameOverText: Phaser.GameObjects.Text;
+  winText: Phaser.GameObjects.Text;
 
   constructor() {
-    super("GameOver");
+    super("Win");
   }
 
   create() {
     this.camera = this.cameras.main;
-    this.camera.setBackgroundColor(0xff0000);
+    this.camera.setBackgroundColor(0xff00ff);
 
     this.background = this.add.image(512, 384, "background");
     this.background.setAlpha(0.5);
 
-    this.gameOverText = this.add
-      .text(512, 384, "Game Over", {
+    this.winText = this.add
+      .text(512, 384, "Winner", {
         fontFamily: "Arial Black",
         fontSize: 64,
         color: "#ffffff",
@@ -33,6 +33,6 @@ export class GameOver extends Scene {
   }
 
   changeScene() {
-    this.scene.start("Win");
+    this.scene.start("MainMenu");
   }
 }

@@ -62,17 +62,20 @@ function App() {
   };
 
   // Event emitted from the PhaserGame component
-  const currentScene = (scene: Phaser.Scene) => {
+  const onChangeScene = (scene: Phaser.Scene) => {
     setCanMoveSprite(scene.scene.key !== "MainMenu");
   };
 
+  const sceneKey = phaserRef.current?.scene.scene.key;
+  // console.log({ sceneKey });
+
   return (
     <div id="app">
-      <PhaserGame ref={phaserRef} currentActiveScene={currentScene} />
+      <PhaserGame ref={phaserRef} onChangeScene={onChangeScene} />
       <Container>
-        <div>
-          <Button onClick={changeScene}>Change Scene</Button>
-        </div>
+        scene: {sceneKey}
+        <Button onClick={changeScene}>Change Scene</Button>
+        <Button onClick={() => phaserRef.current?.scene.scene.start("Win")}>Win</Button>
         <div>
           <Button disabled={canMoveSprite} onClick={moveSprite}>
             Toggle Movement
