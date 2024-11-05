@@ -5,11 +5,9 @@ import Button from "./components/Button";
 import Container from "./components/Container";
 
 function App() {
-  // The sprite can only be moved in the MainMenu Scene
-  const [canMoveSprite, setCanMoveSprite] = useState(true);
-
   //  References to the PhaserGame component (game and scene are exposed)
   const phaserRef = useRef<IRefPhaserGame | null>(null);
+  const [phaserScene, setPhaserScene] = useState<Phaser.Scene | null>(null);
   const [spritePosition, setSpritePosition] = useState({ x: 0, y: 0 });
 
   const changeScene = () => {
@@ -62,12 +60,9 @@ function App() {
   };
 
   // Event emitted from the PhaserGame component
-  const onChangeScene = (scene: Phaser.Scene) => {
-    setCanMoveSprite(scene.scene.key !== "MainMenu");
-  };
+  const onChangeScene = (scene: Phaser.Scene) => setPhaserScene(scene);
 
-  const sceneKey = phaserRef.current?.scene.scene.key;
-  // console.log({ sceneKey });
+  const sceneKey = phaserScene?.scene.key;
 
   return (
     <div id="app">
@@ -75,19 +70,15 @@ function App() {
       <Container>
         scene: {sceneKey}
         <Button onClick={changeScene}>Change Scene</Button>
-        <Button onClick={() => phaserRef.current?.scene.scene.start("Win")}>Win</Button>
-        <div>
-          <Button disabled={canMoveSprite} onClick={moveSprite}>
-            Toggle Movement
-          </Button>
-        </div>
+        <Button onClick={() => phaserScene?.scene.start("Win")}>Win</Button>
+        <Button disabled={sceneKey !== "MainMenu"} onClick={moveSprite}>
+          Toggle Movement
+        </Button>
         <div className="spritePosition">
           Sprite Position:
           <pre>{`{\n  x: ${spritePosition.x}\n  y: ${spritePosition.y}\n}`}</pre>
         </div>
-        <div>
-          <Button onClick={addSprite}>Add New Sprite</Button>
-        </div>
+        <Button onClick={addSprite}>Add New Sprite</Button>
       </Container>
     </div>
   );

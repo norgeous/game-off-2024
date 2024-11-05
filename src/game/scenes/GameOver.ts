@@ -33,6 +33,6 @@ export class GameOver extends Scene {
   }
 
   changeScene() {
-    this.scene.start("Win");
+    this.scene.start("MainMenu");
   }
 }
