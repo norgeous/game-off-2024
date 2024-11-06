@@ -38,3 +38,35 @@ theme: SECRETS
 - flux to generate single frame enemies, player, items, projectiles with REMBG and tiles for level / level backgrounds
 - f5 tts for story narration / character lines, if there is a story
 - stable audio https://www.youtube.com/watch?v=QdNtmrDh-aA or similar online service or traditional online SFX library
+
+## mob list
+
+- snake
+- bat
+- scarab beetle
+- scorpion
+- skeleton
+- mummy
+- pharaoe
+- anubis
+- sand monster
+
+## environmental hazzards
+
+- pitfalls
+- spikes in the floors and walls
+- arrows from holes in the wall
+- crushed by large stone
+
+## functional items
+
+- bomb
+- dynamite
+- keys
+
+## valuable items
+
+- gold coins
+- jewels
+- gold statues
+- ancient relics
