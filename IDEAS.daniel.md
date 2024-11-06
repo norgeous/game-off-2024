@@ -60,9 +60,9 @@ theme: SECRETS
 
 ## functional items
 
-- bomb
 - dynamite
 - keys
+- message fragments
 
 ## valuable items
 
@@ -70,3 +70,7 @@ theme: SECRETS
 - jewels
 - gold statues
 - ancient relics
+
+## game title ideas
+
+- Ancient Gods
