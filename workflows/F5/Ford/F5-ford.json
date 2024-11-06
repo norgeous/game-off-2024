@@ -9,10 +9,7 @@
         "0": 43,
         "1": 75
       },
-      "size": [
-        393.20434103916205,
-        538.6212663931974
-      ],
+      "size": [393.20434103916205, 538.6212663931974],
       "flags": {},
       "order": 0,
       "mode": 0,
@@ -21,9 +18,7 @@
         {
           "name": "AUDIO",
           "type": "AUDIO",
-          "links": [
-            1
-          ],
+          "links": [1],
           "slot_index": 0
         }
       ],
@@ -60,31 +55,16 @@
       "properties": {
         "Node name for S&R": "SaveAudio"
       },
-      "widgets_values": [
-        "audio/f5",
-        null
-      ]
+      "widgets_values": ["audio/f5", null]
     }
   ],
-  "links": [
-    [
-      1,
-      1,
-      0,
-      2,
-      0,
-      "AUDIO"
-    ]
-  ],
+  "links": [[1, 1, 0, 2, 0, "AUDIO"]],
   "groups": [],
   "config": {},
   "extra": {
     "ds": {
       "scale": 1.4864362802414426,
-      "offset": [
-        333.42165316368374,
-        59.80147853429258
-      ]
+      "offset": [333.42165316368374, 59.80147853429258]
     }
   },
   "version": 0.4
