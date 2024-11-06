@@ -1,0 +1,91 @@
+{
+  "last_node_id": 2,
+  "last_link_id": 1,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "F5TTSAudio",
+      "pos": {
+        "0": 43,
+        "1": 75
+      },
+      "size": [
+        393.20434103916205,
+        538.6212663931974
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "F5TTSAudio"
+      },
+      "widgets_values": [
+        "ford.wav",
+        "this is a demo of the F5 text-to-speech engine.\nThe lines are being read by AI Indiana Jones!\n\n{echo} this is an alternative voice with a bit more of an echo. Perhaps we can use this for lines said inside the dungeon?\n\n{low} this is my low voice from the 1981 interview. This might be good for internal monologue.\n\n{main} From now on i will shout.\n\n{shout} that belongs in a museum!\n\nfuck you. fuck off.\n\ndamn dammit damn it.\n\nhahahahahahaha.\n\nyahoo.\n\nIs there a way around the bridge?\nwe're all gonna die here!?\nwe're all gonna die all of us!\nWe're not gonna die!\nScottie.\nI dont wanna die!\nGet outta here!\n\n{echo}\nIs there a way around the bridge?\nwe're all gonna die here!?\nwe're all gonna die all of us!\nWe're not gonna die!\nScottie.\nI dont wanna die!\nGet outta here!\n"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "SaveAudio",
+      "pos": {
+        "0": 491,
+        "1": 72
+      },
+      "size": {
+        "0": 315,
+        "1": 100
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 1
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveAudio"
+      },
+      "widgets_values": [
+        "audio/f5",
+        null
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "AUDIO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1.4864362802414426,
+      "offset": [
+        333.42165316368374,
+        59.80147853429258
+      ]
+    }
+  },
+  "version": 0.4
+}
