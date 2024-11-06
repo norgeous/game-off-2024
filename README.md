@@ -18,7 +18,7 @@ Submission for [Game Off 2024](https://itch.io/jam/game-off-2024) "SECRETS"
 
 - Indiana Jones voice
   - https://www.101soundboards.com/boards/26425-indiana-jones-raiders-of-the-lost-ark-soundboard
-  - https://www.youtube.com/watch?v=QbIzkNNi3-U
+  - https://www.youtube.com/watch?v=QbIzkNNi3-U + https://podcast.adobe.com/
   - https://f5tts.org/
 
 ### Music
