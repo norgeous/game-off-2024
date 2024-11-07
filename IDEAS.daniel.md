@@ -47,7 +47,7 @@ theme: SECRETS
 - scorpion
 - skeleton
 - mummy
-- pharaoe
+- pharaoh
 - anubis
 - sand monster
 
