@@ -12,6 +12,10 @@ Submission for [Game Off 2024](https://itch.io/jam/game-off-2024) "SECRETS"
 
 ### Art
 
+Binding of Issac tileset:
+
+https://www.deviantart.com/wanyo/art/Binding-of-Isaac-Rebirth-Tiles-610590075
+
 -
 
 ### Sound FX
