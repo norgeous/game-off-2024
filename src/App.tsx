@@ -71,6 +71,7 @@ function App() {
         scene: {sceneKey}
         <Button onClick={changeScene}>Change Scene</Button>
         <Button onClick={() => phaserScene?.scene.start("Win")}>Win</Button>
+        <Button onClick={() => phaserScene?.scene.start("TiledMapTest")}>Tiled Test</Button>
         <Button disabled={sceneKey !== "MainMenu"} onClick={moveSprite}>
           Toggle Movement
         </Button>

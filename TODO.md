@@ -1,3 +1,5 @@
+# TODO
+
 - MAP
   - [ ] Add tiled map support
   - [ ] Create a tileset for rooms
@@ -14,5 +16,5 @@
   - [ ] Add stats to character (Hp, MaxHp, Attack rate, Defence)
   - [ ] Add character wepon
 - Music
-   - [ ] Game music
+  - [ ] Game music
 - SFX
