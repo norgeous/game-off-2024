@@ -29,3 +29,4 @@ Submission for [Game Off 2024](https://itch.io/jam/game-off-2024) "SECRETS"
 
 - https://github.com/phaserjs/template-react-ts
 - https://github.com/comfyanonymous/ComfyUI
+- https://www.mapeditor.org/
