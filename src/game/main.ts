@@ -6,8 +6,14 @@ import { GameOver } from "./scenes/GameOver";
 import { Win } from "./scenes/Win";
 import { TiledMapTest } from "./scenes/TiledMapTest";
 import { AUTO, Game } from "phaser";
+import isDev from '../helpers/isDev';
 
 const VIEWPORT_SIZE = 80;
+
+const debug = {
+  showBody: true,
+  showStaticBody: true,
+};
 
 //  Find out more information about the Game Config at:
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
@@ -17,6 +23,13 @@ const config: Phaser.Types.Core.GameConfig = {
   height: 9 * VIEWPORT_SIZE,
   parent: "game-container",
   backgroundColor: "#000000",
+  physics: {
+    default: 'matter',
+    matter: {
+      enableSleeping: true,
+      ...(isDev && { debug }),
+    },
+  },
   scene: [Boot, Preloader, MainMenu, MainGame, GameOver, Win, TiledMapTest],
 };
 

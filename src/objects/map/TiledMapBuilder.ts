@@ -134,10 +134,11 @@ class TiledMapBuilder {
       },
       {},
     );
-
+    
+    
     // set the world boundry same size as background
     const { x, y, width, height } = this.layers.tiledLayer;
-    //scene.matter.world.setBounds(x, y, width, height, 1024);
+    scene.matter.world.setBounds(x, y, width, height, 1024);
   }
 
   // update(time: number, delta: number) {}
