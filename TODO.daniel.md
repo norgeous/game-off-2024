@@ -5,8 +5,9 @@
 - [x] enemies art
 - [x] react scene selector menu
 - [ ] developer menu vs normal menu
-- [ ] main menu art (title card art)
+- [ ] simple github ci
 - [ ] fullscreener
-- [ ] pwa
+- [ ] main menu art (title card art)
 - [ ] add main character?
 - [ ] add mobs?
+- [ ] pwa
