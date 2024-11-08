@@ -6,7 +6,6 @@ import Modal from "./Modal";
 const sceneNames = ['MainMenu', 'Game', 'GameOver', 'Win', 'TiledMapTest'];
 
 const SceneSelector = ({ phaserScene, isOpen, setIsOpen }) => {
-
   return (
     <>
       {isOpen && (
