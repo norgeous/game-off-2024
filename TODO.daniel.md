@@ -8,3 +8,5 @@
 - [ ] main menu art (title card art)
 - [ ] fullscreener
 - [ ] pwa
+- [ ] add main character?
+- [ ] add mobs?
