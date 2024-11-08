@@ -17,9 +17,10 @@ const ModalContent = styled.div`
 
 const ModalInner = styled.div`
   display: flex;
-  padding: 48px;
+  padding: 38px;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
+  text-align: center;
 `;
 
 const Button = styled.button`
