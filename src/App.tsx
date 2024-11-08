@@ -3,6 +3,7 @@ import { IRefPhaserGame, PhaserGame } from "./game/PhaserGame";
 import { MainMenu } from "./game/scenes/MainMenu";
 import Button from "./components/Button";
 import Container from "./components/Container";
+import Menu from "./components/Menu";
 
 function App() {
   //  References to the PhaserGame component (game and scene are exposed)
@@ -68,6 +69,7 @@ function App() {
     <div id="app">
       <PhaserGame ref={phaserRef} onChangeScene={onChangeScene} />
       <Container>
+        <Menu />
         scene: {sceneKey}
         <Button onClick={changeScene}>Change Scene</Button>
         <Button onClick={() => phaserScene?.scene.start("Win")}>Win</Button>
