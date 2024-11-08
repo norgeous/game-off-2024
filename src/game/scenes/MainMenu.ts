@@ -1,6 +1,6 @@
-import { GameObjects, Scene } from "phaser";
+import { GameObjects, Scene } from 'phaser';
 
-import { EventBus } from "../EventBus";
+import { EventBus } from '../EventBus';
 
 export class MainMenu extends Scene {
   background: GameObjects.Image;
@@ -9,27 +9,32 @@ export class MainMenu extends Scene {
   logoTween: Phaser.Tweens.Tween | null;
 
   constructor() {
-    super("MainMenu");
+    super('MainMenu');
   }
 
   create() {
-    this.background = this.add.image(512, 384, "background");
+    this.camera = this.cameras.main;
+    this.camera.setBackgroundColor(0x00ffff);
 
-    this.logo = this.add.image(512, 300, "logo").setDepth(100);
+    const { width, height } = this.sys.game.canvas;
+    console.log(this)
+    this.background = this.add.image(width*.5, height*.5, 'background');
+
+    this.logo = this.add.image(width*.5, height*.33, 'logo').setDepth(100);
 
     this.title = this.add
-      .text(512, 460, "Main Menu", {
-        fontFamily: "Arial Black",
+      .text(width*.5, height*.66, 'Main Menu', {
+        fontFamily: 'Arial Black',
         fontSize: 38,
-        color: "#ffffff",
-        stroke: "#000000",
+        color: '#ffffff',
+        stroke: '#000000',
         strokeThickness: 8,
-        align: "center",
+        align: 'center',
       })
       .setOrigin(0.5)
       .setDepth(100);
 
-    EventBus.emit("current-scene-ready", this);
+    EventBus.emit('current-scene-ready', this);
   }
 
   changeScene() {
@@ -38,7 +43,7 @@ export class MainMenu extends Scene {
       this.logoTween = null;
     }
 
-    this.scene.start("Game");
+    this.scene.start('Game');
   }
 
   moveLogo(vueCallback: ({ x, y }: { x: number; y: number }) => void) {
@@ -51,8 +56,8 @@ export class MainMenu extends Scene {
     } else {
       this.logoTween = this.tweens.add({
         targets: this.logo,
-        x: { value: 750, duration: 3000, ease: "Back.easeInOut" },
-        y: { value: 80, duration: 1500, ease: "Sine.easeOut" },
+        x: { value: 750, duration: 3000, ease: 'Back.easeInOut' },
+        y: { value: 80, duration: 1500, ease: 'Sine.easeOut' },
         yoyo: true,
         repeat: -1,
         onUpdate: () => {
