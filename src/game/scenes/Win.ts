@@ -11,14 +11,16 @@ export class Win extends Scene {
   }
 
   create() {
+    const { width, height } = this.sys.game.canvas;
+
     this.camera = this.cameras.main;
     this.camera.setBackgroundColor(0xff00ff);
 
-    this.background = this.add.image(512, 384, "background");
+    this.background = this.add.image(width * 0.5, height * 0.5, "background");
     this.background.setAlpha(0.5);
 
     this.winText = this.add
-      .text(512, 384, "Winner", {
+      .text(width * 0.5, height * 0.5, "Winner", {
         fontFamily: "Arial Black",
         fontSize: 64,
         color: "#ffffff",

@@ -1,8 +1,8 @@
 import { GameObjects, Scene } from 'phaser';
-
 import { EventBus } from '../EventBus';
 
 export class MainMenu extends Scene {
+  camera: Phaser.Cameras.Scene2D.Camera;
   background: GameObjects.Image;
   logo: GameObjects.Image;
   title: GameObjects.Text;
@@ -13,17 +13,17 @@ export class MainMenu extends Scene {
   }
 
   create() {
+    const { width, height } = this.sys.game.canvas;
+
     this.camera = this.cameras.main;
     this.camera.setBackgroundColor(0x00ffff);
 
-    const { width, height } = this.sys.game.canvas;
-    console.log(this)
-    this.background = this.add.image(width*.5, height*.5, 'background');
+    this.background = this.add.image(width * 0.5, height * 0.5, 'background');
 
-    this.logo = this.add.image(width*.5, height*.33, 'logo').setDepth(100);
+    this.logo = this.add.image(width * 0.5, height * 0.33, 'logo').setDepth(100);
 
     this.title = this.add
-      .text(width*.5, height*.66, 'Main Menu', {
+      .text(width * 0.5, height * 0.66, 'Main Menu', {
         fontFamily: 'Arial Black',
         fontSize: 38,
         color: '#ffffff',
