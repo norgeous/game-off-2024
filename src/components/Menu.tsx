@@ -10,7 +10,8 @@ const SceneSelector = ({ phaserScene, isOpen, setIsOpen }) => {
     <>
       {isOpen && (
         <Modal onClose={() => setIsOpen(false)}>
-          {phaserScene?.scene.key}
+          <h1 style={{ margin: 0 }}>Scene Selector</h1>
+          <div>current: <b>{phaserScene?.scene.key}</b></div>
           {sceneNames.map(sceneName => (
             <button
               onClick={() => {
