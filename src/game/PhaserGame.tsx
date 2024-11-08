@@ -13,7 +13,7 @@ const GameContainer = styled.div.attrs({
     display: block;
     width: 100%;
     height: 100%;
-    image-rendering: pixelated;
+    /* image-rendering: pixelated; */
     object-fit: contain;
   }
 `;
