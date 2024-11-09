@@ -11,7 +11,7 @@ const Button = styled.button`
   border: none;
 `;
 
-const sceneNames = ['MainMenu', 'Game', 'GameOver', 'Win', 'TiledMapTest'];
+const sceneNames = ['Boot', 'Preloader', 'MainMenu', 'Game', 'GameOver', 'Win', 'TiledMapTest'];
 
 const SceneSelector = ({ phaserScene, isOpen, setIsOpen }) => {
   return (
