@@ -18,15 +18,15 @@ export class TiledMapTest extends Scene {
     constructor() {
         super("TiledMapTest");
     }
-    
-    preload() {
-        TiledMapBuilder.preload(this, levelConfig);
+
+    static preload(scene) {
+        TiledMapBuilder.preload(scene, levelConfig);
     }
-    
+
     create() {
         this.map = new TiledMapBuilder(this, levelConfig);
         EventBus.emit("current-scene-ready", this);
-    }  
+    }
 
     changeScene() {
         this.scene.start("GameOver");
