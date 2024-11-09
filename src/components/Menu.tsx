@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { FaImages } from 'react-icons/fa';
 import {
   FaGear,
   FaXmark,
+  FaImages,
   FaArrowUp,
   FaArrowDown,
   FaArrowLeft,
