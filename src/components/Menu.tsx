@@ -13,10 +13,22 @@ import MenuButton from './MenuButton';
 import { SceneSelectorModal, SceneSelectorToggleButton } from './SceneSelector';
 import isDev from '../helpers/isDev';
 import Direction from '../enums/Direction';
+import MiniMap, { MiniMapToggleButton } from './MiniMap';
+
+const myDungeon = `
+.678...
+.5.9...
+.4.A.EF
+.3.BCDG
+.2.....
+.1.....
+.S....Z
+`;
 
 const Menu = ({ phaserScene }) => {
   const [isSettingsOpen, setSettingsIsOpen] = useState(false);
   const [isSceneSelectorOpen, setIsSceneSelectorOpen] = useState(false);
+  const [isMiniMapOpen, setIsMiniMapOpen] = useState(false);
 
   const roomNavigation = (direction: Direction) => {
     phaserScene?.scene.start('Rooms', direction);
@@ -31,6 +43,7 @@ const Menu = ({ phaserScene }) => {
         {isSettingsOpen && (
           <>
             <FullscreenToggle />
+            <MiniMapToggleButton onClick={() => setIsMiniMapOpen(true)} />
             {isDev && (
               <>
                 <SceneSelectorToggleButton
@@ -58,6 +71,13 @@ const Menu = ({ phaserScene }) => {
         <SceneSelectorModal
           phaserScene={phaserScene}
           onClose={() => setIsSceneSelectorOpen(false)}
+        />
+      )}
+
+      {isMiniMapOpen && (
+        <MiniMap
+          dungeonStr={myDungeon}
+          onClose={() => setIsMiniMapOpen(false)}
         />
       )}
     </>
