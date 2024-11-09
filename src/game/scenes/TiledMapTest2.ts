@@ -8,7 +8,7 @@ const levelConfig: LevelConfigType = {
   key: 'Room',
   tilesetPng: './tiled/tileset/binding_of_isaac_tiles.jpg',
   tiledMapJson: './tiled/maps/test.json',
-  layerConfig: [{ tiledLayerName: 'tiledLayer', depth: 10 }],
+  layerConfig: [{ tiledLayerName: 'tiledLayer', depth: 0 }],
   spawnerConfig: [],
 };
 
