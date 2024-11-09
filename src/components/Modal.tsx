@@ -4,14 +4,14 @@ import { FaXmark } from 'react-icons/fa6';
 const ModalBackdrop = styled.div`
   position: absolute;
   inset: 0;
-  background-color: #000b;
+  background-color: #000c;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 const ModalContent = styled.div`
-  background-color: #f5fb;
+  background-color: #404b;
   position: relative;
   border-radius: 8px;
 `;
