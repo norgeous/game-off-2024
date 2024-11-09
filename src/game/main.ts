@@ -4,7 +4,8 @@ import { MainMenu } from './scenes/MainMenu';
 import { Game as MainGame } from './scenes/Game';
 import { GameOver } from './scenes/GameOver';
 import { Win } from './scenes/Win';
-import { Rooms } from "./scenes/Rooms";
+import { TiledMapTest2 } from './scenes/TiledMapTest2';
+import { Rooms } from './scenes/Rooms';
 import { AUTO, Game } from 'phaser';
 import isDev from '../helpers/isDev';
 
@@ -38,7 +39,8 @@ const config: Phaser.Types.Core.GameConfig = {
     MainGame,
     GameOver,
     Win,
-    Rooms
+    TiledMapTest2,
+    Rooms,
   ],
 };
 
