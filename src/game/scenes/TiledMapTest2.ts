@@ -12,7 +12,7 @@ const levelConfig: LevelConfigType = {
   spawnerConfig: [],
 };
 
-type keysType = { [keyCodes: string]: Phaser.Input.Keyboard.Key }
+type keysType = { [keyCodes: string]: Phaser.Input.Keyboard.Key };
 
 export class TiledMapTest2 extends Scene {
   public map: TiledMapBuilder | undefined;
