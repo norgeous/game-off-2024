@@ -11,14 +11,14 @@ const ModalBackdrop = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background-color: #404b;
+  background-color: #404;
   position: relative;
   border-radius: 8px;
 `;
 
 const ModalInner = styled.div`
   display: flex;
-  padding: 42px;
+  padding: 44px;
   flex-direction: column;
   gap: 16px;
   text-align: center;
