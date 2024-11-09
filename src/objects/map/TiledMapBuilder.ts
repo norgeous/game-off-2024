@@ -8,7 +8,7 @@ type LayerConfigType = {
 
 type SpawnerConfigType = {
   tiledObjectName: string;
-  // eslint-disable-next-line @typescript-eslint/ban-types
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
   classFactory: Function; // scene.add.group expects the classType to be Function
   maxSize: number;
   runChildUpdate: boolean;
