@@ -6,10 +6,7 @@ import pwaConfig from './pwaConfig';
 
 export default defineConfig({
   base: './',
-  plugins: [
-    react(),
-    VitePWA(pwaConfig),
-  ],
+  plugins: [react(), VitePWA(pwaConfig)],
   logLevel: 'warning',
   build: {
     rollupOptions: {

@@ -6,10 +6,7 @@ import pwaConfig from './pwaConfig';
 // https://vitejs.dev/config/
 export default defineConfig({
   base: './',
-  plugins: [
-    react(),
-    VitePWA(pwaConfig),
-  ],
+  plugins: [react(), VitePWA(pwaConfig)],
   server: {
     port: 8080,
   },
