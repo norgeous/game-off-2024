@@ -4,7 +4,7 @@ import screenfull from 'screenfull';
 import MenuButton from './MenuButton';
 
 const FullscreenToggle = () => {
-  const [isFull, setIsFull] = useState(false);
+  const [isFull, setIsFull] = useState(screenfull.isFullscreen);
 
   useEffect(() => {
     screenfull.on('change', () => setIsFull(screenfull.isFullscreen));
