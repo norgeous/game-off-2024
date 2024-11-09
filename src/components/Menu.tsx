@@ -19,7 +19,7 @@ const Menu = ({ phaserScene }) => {
   const [isSceneSelectorOpen, setIsSceneSelectorOpen] = useState(false);
 
   const roomNavigation = (direction: Direction) => {
-    phaserScene?.scene.start('TiledMapTest', { roomId: 1 });
+    phaserScene?.scene.start('TiledMapTest', direction);
   };
 
   return (
@@ -36,16 +36,16 @@ const Menu = ({ phaserScene }) => {
                 <SceneSelectorToggleButton
                   onClick={() => setIsSceneSelectorOpen(!isSceneSelectorOpen)}
                 />
-                <MenuButton onClick={() => roomNavigation(Navigation.UP)}>
+                <MenuButton onClick={() => roomNavigation(Direction.UP)}>
                   <FaArrowUp size={32} />
                 </MenuButton>
-                <MenuButton onClick={() => roomNavigation(Navigation.DOWN)}>
+                <MenuButton onClick={() => roomNavigation(Direction.DOWN)}>
                   <FaArrowDown size={32} />
                 </MenuButton>
-                <MenuButton onClick={() => roomNavigation(Navigation.LEFT)}>
+                <MenuButton onClick={() => roomNavigation(Direction.LEFT)}>
                   <FaArrowLeft size={32} />
                 </MenuButton>
-                <MenuButton onClick={() => roomNavigation(Navigation.RIGHT)}>
+                <MenuButton onClick={() => roomNavigation(Direction.RIGHT)}>
                   <FaArrowRight size={32} />
                 </MenuButton>
               </>

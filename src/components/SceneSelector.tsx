@@ -9,8 +9,7 @@ const sceneNames = [
   'Game',
   'GameOver',
   'Win',
-  'TiledMapTest',
-  'TiledMapTest2',
+  'Rooms',
 ];
 
 const SceneSelectorModal = ({ phaserScene, onClose }) => (
