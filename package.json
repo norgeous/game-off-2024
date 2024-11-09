@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --config vite/config.dev.mjs",
-    "lint": "eslint . --fix && prettier . --write",
+    "prelint": "prettier . --write",
+    "lint": "eslint . --fix",
     "build": "vite build --config vite/config.prod.mjs",
     "serve": "npx serve dist"
   },

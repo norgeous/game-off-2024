@@ -11,7 +11,15 @@ const Button = styled.button`
   border: none;
 `;
 
-const sceneNames = ['Boot', 'Preloader', 'MainMenu', 'Game', 'GameOver', 'Win', 'TiledMapTest'];
+const sceneNames = [
+  'Boot',
+  'Preloader',
+  'MainMenu',
+  'Game',
+  'GameOver',
+  'Win',
+  'TiledMapTest',
+];
 
 const SceneSelector = ({ phaserScene, isOpen, setIsOpen }) => {
   return (
@@ -19,8 +27,10 @@ const SceneSelector = ({ phaserScene, isOpen, setIsOpen }) => {
       {isOpen && (
         <Modal onClose={() => setIsOpen(false)}>
           <h1 style={{ margin: 0 }}>Scene Selector</h1>
-          <div>current: <b>{phaserScene?.scene.key}</b></div>
-          {sceneNames.map(sceneName => (
+          <div>
+            current: <b>{phaserScene?.scene.key}</b>
+          </div>
+          {sceneNames.map((sceneName) => (
             <button
               key={sceneName}
               onClick={() => {
@@ -45,18 +55,26 @@ const Menu = ({ phaserScene }) => {
     <>
       <Container>
         <Button onClick={() => setSettingsIsOpen(!isSettingsOpen)}>
-          {isSettingsOpen ? <FaXmark size={32} /> : <FaCog size={32} /> }
+          {isSettingsOpen ? <FaXmark size={32} /> : <FaCog size={32} />}
         </Button>
         {isSettingsOpen && (
           <>
             {/* {import.meta.env.PROD ? 'isProd' : 'isDev'} */}
-            <Button onClick={() => setIsSceneSelectorOpen(!isSceneSelectorOpen)}><FaImages size={32} /></Button>
+            <Button
+              onClick={() => setIsSceneSelectorOpen(!isSceneSelectorOpen)}
+            >
+              <FaImages size={32} />
+            </Button>
           </>
         )}
       </Container>
       {isSceneSelectorOpen && (
         <>
-          <SceneSelector phaserScene={phaserScene} isOpen={isSceneSelectorOpen} setIsOpen={setIsSceneSelectorOpen} />
+          <SceneSelector
+            phaserScene={phaserScene}
+            isOpen={isSceneSelectorOpen}
+            setIsOpen={setIsSceneSelectorOpen}
+          />
         </>
       )}
     </>

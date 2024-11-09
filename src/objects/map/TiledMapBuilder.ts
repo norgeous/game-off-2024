@@ -36,9 +36,9 @@ function createLevelConfig(config: LevelConfigType): LevelConfigType {
     ...config,
     tileWidth: config.tileWidth ?? 64,
     tileHeight: config.tileHeight ?? 64,
-    tileMargin: config.tileMargin ??  0,
+    tileMargin: config.tileMargin ?? 0,
     tileSpacing: config.tileSpacing ?? 0,
-    spawnerConfig: []
+    spawnerConfig: [],
   };
 }
 
@@ -46,10 +46,11 @@ class TiledMapBuilder {
   private level: Phaser.Tilemaps.Tilemap | undefined;
   private layers: LayersObjType = {};
   public spawners: SpawnersObjType = {};
-  
+
   static preload(scene: Phaser.Scene, levelConfig: LevelConfigType) {
-    const { key, tilesetPng, tiledMapJson, spawnerConfig } = createLevelConfig(levelConfig);
-    
+    const { key, tilesetPng, tiledMapJson, spawnerConfig } =
+      createLevelConfig(levelConfig);
+
     scene.load.image('tileSheet', tilesetPng);
     scene.load.tilemapTiledJSON(key, tiledMapJson);
     for (let i = 0; i < spawnerConfig.length; i += 1) {
@@ -69,7 +70,7 @@ class TiledMapBuilder {
       layerConfig,
       spawnerConfig,
     } = levelConfig;
-    
+
     // load tiles
     this.level = scene.make.tilemap({ key });
     this.level.addTilesetImage(
@@ -88,7 +89,7 @@ class TiledMapBuilder {
       layer.setDepth(depth);
       return { ...acc, [tiledLayerName]: layer };
     }, {});
-    
+
     // load geometry layer
     const geometry = this.level.getObjectLayer('geometry')?.objects || [];
     geometry.reduce((acc, tiledObject) => {
@@ -102,7 +103,7 @@ class TiledMapBuilder {
       if (!newGeometry) return acc;
       return [...acc, newGeometry];
     }, [] as Phaser.GameObjects.GameObject[]);
-    
+
     // for each entry in the spawnerConfig, create a group
     const spawnersT = this.level.getObjectLayer('markers')?.objects || [];
     this.spawners = spawnerConfig.reduce(
@@ -134,8 +135,7 @@ class TiledMapBuilder {
       },
       {},
     );
-    
-    
+
     // set the world boundry same size as background
     const { x, y, width, height } = this.layers.tiledLayer;
     scene.matter.world.setBounds(x, y, width, height, 1024);

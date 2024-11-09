@@ -21,7 +21,8 @@ export class Game extends Scene {
 
     this.gameText = this.add
       .text(
-        width * 0.5, height * 0.5,
+        width * 0.5,
+        height * 0.5,
         'Make something fun!\nand share it with us:\nsupport@phaser.io',
         {
           fontFamily: 'Arial Black',

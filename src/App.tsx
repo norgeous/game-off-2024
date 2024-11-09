@@ -1,6 +1,6 @@
-import { useRef, useState } from "react";
-import { IRefPhaserGame, PhaserGame } from "./game/PhaserGame";
-import Menu from "./components/Menu";
+import { useRef, useState } from 'react';
+import { IRefPhaserGame, PhaserGame } from './game/PhaserGame';
+import Menu from './components/Menu';
 
 function App() {
   const phaserRef = useRef<IRefPhaserGame | null>(null);
