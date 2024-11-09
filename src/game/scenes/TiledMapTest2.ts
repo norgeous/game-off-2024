@@ -7,12 +7,12 @@ import TiledMapBuilder, {
 const levelConfig: LevelConfigType = {
   key: 'Room',
   tilesetPng: './tiled/tileset/binding_of_isaac_tiles.jpg',
-  tiledMapJson: './tiled/maps/test.json',
+  tiledMapJson: './tiled/maps/room-1.json',
   layerConfig: [{ tiledLayerName: 'tiledLayer', depth: 0 }],
   spawnerConfig: [],
 };
 
-type keysType = { [keyCodes: string]: Phaser.Input.Keyboard.Key }
+type keysType = { [keyCodes: string]: Phaser.Input.Keyboard.Key };
 
 export class TiledMapTest2 extends Scene {
   public map: TiledMapBuilder | undefined;
