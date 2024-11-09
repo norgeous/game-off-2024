@@ -20,7 +20,15 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const sceneNames = ['MainMenu', 'Game', 'GameOver', 'Win', 'TiledMapTest'];
+const sceneNames = [
+  'Boot',
+  'Preloader',
+  'MainMenu',
+  'Game',
+  'GameOver',
+  'Win',
+  'TiledMapTest',
+];
 
 const SceneSelector = ({ phaserScene, isOpen, setIsOpen }) => {
   return (
@@ -33,6 +41,7 @@ const SceneSelector = ({ phaserScene, isOpen, setIsOpen }) => {
           </div>
           {sceneNames.map((sceneName) => (
             <button
+              key={sceneName}
               onClick={() => {
                 phaserScene?.scene.start(sceneName);
                 setIsOpen(false);
