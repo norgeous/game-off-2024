@@ -1,4 +1,4 @@
-import { PhaserMatterImage } from '@/types';
+import { PhaserMatterImage } from "@/types";
 
 type ConvertOptions = {
   x: number;
@@ -25,7 +25,7 @@ const convertTiledPolygonToGameObject = (
     body,
     false,
   ) as PhaserMatterImage;
-  gameObject.name = 'staticbody';
+  gameObject.name = "staticbody";
   gameObject.setPosition(cx + x, cy + y);
   return gameObject;
 };

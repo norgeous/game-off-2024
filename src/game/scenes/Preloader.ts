@@ -1,6 +1,9 @@
 import { Scene } from "phaser";
 import Player from "../../objects/entities/Player";
-import { loadRandomMapData, setRandomStartingRoom } from "../../objects/map/MapLocation";
+import {
+  loadRandomMapData,
+  setRandomStartingRoom,
+} from "../../objects/map/MapLocation";
 
 export class Preloader extends Scene {
   constructor() {
@@ -31,7 +34,7 @@ export class Preloader extends Scene {
     this.load.image("player", "jones.png");
     this.load.image("logo", "logo.png");
     this.load.image("star", "star.png");
-    this.load.json('mapData', 'Maps.json');
+    this.load.json("mapData", "Maps.json");
   }
 
   create() {
