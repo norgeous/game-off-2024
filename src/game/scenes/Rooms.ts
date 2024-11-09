@@ -25,7 +25,7 @@ export class Rooms extends Scene {
     public levelConfig: LevelConfigType;
 
     constructor() {
-        super("TiledMapTest");
+        super("Rooms");
     }
     
     init(direction: Direction) {

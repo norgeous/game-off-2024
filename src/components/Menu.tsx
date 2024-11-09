@@ -19,7 +19,7 @@ const Menu = ({ phaserScene }) => {
   const [isSceneSelectorOpen, setIsSceneSelectorOpen] = useState(false);
 
   const roomNavigation = (direction: Direction) => {
-    phaserScene?.scene.start('TiledMapTest', direction);
+    phaserScene?.scene.start('Rooms', direction);
   };
 
   return (
