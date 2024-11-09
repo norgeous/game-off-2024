@@ -1,4 +1,11 @@
-import { FaMapLocationDot, FaDungeon } from 'react-icons/fa6';
+import {
+  FaMapLocationDot,
+  FaDungeon,
+  FaArrowUp,
+  FaArrowDown,
+  FaArrowLeft,
+  FaArrowRight,
+} from 'react-icons/fa6';
 import styled from 'styled-components';
 import MenuButton from './MenuButton';
 import Modal from './Modal';
@@ -21,9 +28,14 @@ const Room = styled.div`
   flex-direction: column;
 `;
 
-const MiniMap = ({ dungeonStr, onClose }) => {
+const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
   const dungeonConfig = dungeonConfigParser(dungeonStr);
   const rows = to2D(dungeonConfig);
+
+  const roomNavigation = (direction) => {
+    phaserScene?.scene.start('Rooms', direction);
+  };
+
   return (
     <Modal onClose={onClose}>
       <div style={{ display: 'grid' }}>
@@ -32,25 +44,56 @@ const MiniMap = ({ dungeonStr, onClose }) => {
             {row.map((cell) => (
               <Room>
                 <div style={{ fontSize: 30 }}>{cell.roomType}</div>
-                <div style={{ position: 'absolute', fontSize: 12, top: 0, left: 0 }}>
+                <div
+                  style={{
+                    position: 'absolute',
+                    fontSize: 12,
+                    top: 0,
+                    left: 0,
+                  }}
+                >
                   ({cell.x}, {cell.y})
                 </div>
                 {cell.adjacentRooms.north && (
-                  <div style={{ position: 'absolute', fontSize: 16, top: 0 }}><FaDungeon /></div>
+                  <div style={{ position: 'absolute', fontSize: 16, top: 0 }}>
+                    <FaDungeon />
+                  </div>
                 )}
                 {cell.adjacentRooms.south && (
-                  <div style={{ position: 'absolute', fontSize: 16, bottom: 0 }}><FaDungeon /></div>
+                  <div
+                    style={{ position: 'absolute', fontSize: 16, bottom: 0 }}
+                  >
+                    <FaDungeon />
+                  </div>
                 )}
                 {cell.adjacentRooms.east && (
-                  <div style={{ position: 'absolute', fontSize: 16, right: 0 }}><FaDungeon /></div>
+                  <div style={{ position: 'absolute', fontSize: 16, right: 0 }}>
+                    <FaDungeon />
+                  </div>
                 )}
                 {cell.adjacentRooms.west && (
-                  <div style={{ position: 'absolute', fontSize: 16, left: 0 }}><FaDungeon /></div>
+                  <div style={{ position: 'absolute', fontSize: 16, left: 0 }}>
+                    <FaDungeon />
+                  </div>
                 )}
               </Room>
             ))}
           </div>
         ))}
+      </div>
+      <div style={{ display: 'flex' }}>
+        <MenuButton onClick={() => roomNavigation('!')}>
+          <FaArrowUp size={32} />
+        </MenuButton>
+        <MenuButton onClick={() => roomNavigation('!')}>
+          <FaArrowDown size={32} />
+        </MenuButton>
+        <MenuButton onClick={() => roomNavigation('!')}>
+          <FaArrowLeft size={32} />
+        </MenuButton>
+        <MenuButton onClick={() => roomNavigation('!')}>
+          <FaArrowRight size={32} />
+        </MenuButton>
       </div>
     </Modal>
   );
