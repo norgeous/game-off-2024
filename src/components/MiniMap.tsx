@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import MenuButton from './MenuButton';
 import Modal from './Modal';
 import dungeonConfigParser, { to2D } from '../helpers/dungeonConfigParser';
+import { useState } from 'react';
 
 export const MiniMapToggleButton = ({ onClick }) => (
   <MenuButton onClick={onClick}>
@@ -26,14 +27,19 @@ const Room = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background: ${({ isCurrent }) => (isCurrent ? '#044' : 'transparent')};
 `;
 
 const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
+  const [currentRoom, setCurrentRoom] = useState({ x: 0, y: 6 });
   const dungeonConfig = dungeonConfigParser(dungeonStr);
   const rows = to2D(dungeonConfig);
 
-  const roomNavigation = (direction) => {
-    phaserScene?.scene.start('Rooms', direction);
+  const changeRoom = (x, y) => {
+    setCurrentRoom({ x, y });
+    // const type = 'A';
+    // const playerEnterFrom = 'south';
+    // phaserScene?.scene.start('Rooms', { type, playerEnterFrom });
   };
 
   return (
@@ -42,7 +48,9 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
         {rows.map((row) => (
           <div style={{ display: 'flex' }}>
             {row.map((cell) => (
-              <Room>
+              <Room
+                isCurrent={cell.x === currentRoom.x && cell.y === currentRoom.y}
+              >
                 <div style={{ fontSize: 30 }}>{cell.roomType}</div>
                 <div
                   style={{
@@ -81,19 +89,45 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
           </div>
         ))}
       </div>
-      <div style={{ display: 'flex' }}>
-        <MenuButton onClick={() => roomNavigation('!')}>
+      <div>
+        click <FaDungeon /> above to teleport, or use arrows below to force
+        movement
+      </div>
+      <div
+        style={{
+          position: 'relative',
+          width: 120,
+          height: 120,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <MenuButton
+          style={{ position: 'absolute', top: 0 }}
+          onClick={() => changeRoom(currentRoom.x, currentRoom.y - 1)}
+        >
           <FaArrowUp size={32} />
         </MenuButton>
-        <MenuButton onClick={() => roomNavigation('!')}>
+        <MenuButton
+          style={{ position: 'absolute', bottom: 0 }}
+          onClick={() => changeRoom(currentRoom.x, currentRoom.y + 1)}
+        >
           <FaArrowDown size={32} />
         </MenuButton>
-        <MenuButton onClick={() => roomNavigation('!')}>
+        <MenuButton
+          style={{ position: 'absolute', left: 0 }}
+          onClick={() => changeRoom(currentRoom.x - 1, currentRoom.y)}
+        >
           <FaArrowLeft size={32} />
         </MenuButton>
-        <MenuButton onClick={() => roomNavigation('!')}>
+        <MenuButton
+          style={{ position: 'absolute', right: 0 }}
+          onClick={() => changeRoom(currentRoom.x + 1, currentRoom.y)}
+        >
           <FaArrowRight size={32} />
         </MenuButton>
+        ({currentRoom.x}, {currentRoom.y})
       </div>
     </Modal>
   );
