@@ -4,6 +4,7 @@ import Container from './Container';
 import FullscreenToggle from './FullscreenToggle';
 import MenuButton from './MenuButton';
 import { SceneSelectorModal, SceneSelectorToggleButton } from './SceneSelector';
+import isDev from '../helpers/isDev';
 
 const Menu = ({ phaserScene }) => {
   const [isSettingsOpen, setSettingsIsOpen] = useState(false);
@@ -17,11 +18,12 @@ const Menu = ({ phaserScene }) => {
         </MenuButton>
         {isSettingsOpen && (
           <>
-            {/* {import.meta.env.PROD ? 'isProd' : 'isDev'} */}
             <FullscreenToggle />
-            <SceneSelectorToggleButton
-              onClick={() => setIsSceneSelectorOpen(!isSceneSelectorOpen)}
-            />
+            {isDev && (
+              <SceneSelectorToggleButton
+                onClick={() => setIsSceneSelectorOpen(!isSceneSelectorOpen)}
+              />
+            )}
           </>
         )}
       </Container>
