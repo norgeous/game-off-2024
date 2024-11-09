@@ -22,6 +22,7 @@ const SceneSelector = ({ phaserScene, isOpen, setIsOpen }) => {
           <div>current: <b>{phaserScene?.scene.key}</b></div>
           {sceneNames.map(sceneName => (
             <button
+              key={sceneName}
               onClick={() => {
                 phaserScene?.scene.start(sceneName);
                 setIsOpen(false);
