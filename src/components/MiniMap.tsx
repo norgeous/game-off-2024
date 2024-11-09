@@ -59,53 +59,48 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
       north: {
         x: currentRoom.x,
         y: currentRoom.y - 1,
-        roomType:
-          findRoomConfigByCoordinate(
-            dungeonConfig,
-            currentRoom.x,
-            currentRoom.y - 1,
-          )?.roomType || '?',
         playerEnterFrom: 'south',
       },
       south: {
         x: currentRoom.x,
         y: currentRoom.y + 1,
-        roomType:
-          findRoomConfigByCoordinate(
-            dungeonConfig,
-            currentRoom.x,
-            currentRoom.y + 1,
-          )?.roomType || '?',
         playerEnterFrom: 'north',
       },
       east: {
         x: currentRoom.x + 1,
         y: currentRoom.y,
-        roomType:
-          findRoomConfigByCoordinate(
-            dungeonConfig,
-            currentRoom.x + 1,
-            currentRoom.y,
-          )?.roomType || '?',
         playerEnterFrom: 'west',
       },
       west: {
         x: currentRoom.x - 1,
         y: currentRoom.y,
-        roomType:
-          findRoomConfigByCoordinate(
-            dungeonConfig,
-            currentRoom.x - 1,
-            currentRoom.y,
-          )?.roomType || '?',
         playerEnterFrom: 'east',
       },
     }[direction];
 
-    if (nextRoom) {
-      setCurrentRoom(nextRoom);
-      console.log(nextRoom);
-      phaserScene?.scene.start('Rooms', nextRoom);
+    if (!nextRoom) return;
+
+    const nextRoomConfig = findRoomConfigByCoordinate(
+      dungeonConfig,
+      nextRoom.x,
+      nextRoom.y,
+    );
+
+    if (!nextRoomConfig) return;
+
+    const next = {
+      ...nextRoom,
+      roomType: nextRoomConfig?.roomType || '?',
+    };
+
+    if (next) {
+      setCurrentRoom(next);
+      const dataForScene = {
+        adjacentRooms: nextRoomConfig.adjacentRooms,
+        playerEnterFrom: nextRoom.playerEnterFrom,
+      };
+      console.log(dataForScene);
+      phaserScene?.scene.start('Rooms', dataForScene);
     }
   };
 
