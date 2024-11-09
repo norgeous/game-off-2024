@@ -96,10 +96,10 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
     if (next) {
       setCurrentRoom(next);
       const dataForScene = {
+        roomType: next.roomType,
         adjacentRooms: nextRoomConfig.adjacentRooms,
         playerEnterFrom: nextRoom.playerEnterFrom,
       };
-      console.log(dataForScene);
       phaserScene?.scene.start('Rooms', dataForScene);
     }
   };

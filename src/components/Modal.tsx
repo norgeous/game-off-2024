@@ -11,7 +11,7 @@ const ModalBackdrop = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background-color: #404;
+  background-color: #404c;
   position: relative;
   border-radius: 8px;
 `;

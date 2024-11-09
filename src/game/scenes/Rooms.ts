@@ -9,7 +9,6 @@ import {
   setNextRoomId,
   CurrentRoomId,
 } from '../../objects/map/Map';
-import Direction from '../../enums/Direction';
 
 const levelConfig: LevelConfigType = {
   key: 'room',
@@ -32,14 +31,15 @@ export class Rooms extends Scene {
     super('Rooms');
   }
 
-  init(direction: Direction) {
-    console.log('Rooms scene got', direction);
-    if (direction) {
-      setNextRoomId(direction);
+  init(data) {
+    console.log('Rooms scene got', data);
+    if (data.roomType) {
+      setNextRoomId(data.roomType);
     }
   }
 
   preload() {
+    console.log('rooms preload');
     levelConfig.key = 'room-' + CurrentRoomId;
     levelConfig.tiledMapJson = buildRoomJsonPath();
     TiledMapBuilder.preload(this, levelConfig);
