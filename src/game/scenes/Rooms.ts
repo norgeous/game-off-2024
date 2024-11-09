@@ -1,12 +1,12 @@
 import { EventBus } from '../EventBus';
-import Player from '../../objects/entities/Player';
+// import Player from '../../objects/entities/Player';
 import { Scene } from 'phaser';
 import TiledMapBuilder, {
   LevelConfigType,
 } from '../../objects/map/TiledMapBuilder';
 import {
   buildRoomJsonPath,
-  getNextRoomId,
+  setNextRoomId,
   CurrentRoomId,
 } from '../../objects/map/Map';
 import Direction from '../../enums/Direction';
@@ -22,7 +22,7 @@ const levelConfig: LevelConfigType = {
 export class Rooms extends Scene {
   public map: TiledMapBuilder | undefined;
 
-  public player: Player;
+  // public player: Player;
 
   public sprite: Phaser.GameObjects.Sprite;
 
@@ -33,8 +33,9 @@ export class Rooms extends Scene {
   }
 
   init(direction: Direction) {
+    console.log('Rooms scene got', direction);
     if (direction) {
-      getNextRoomId(direction);
+      setNextRoomId(direction);
     }
   }
 

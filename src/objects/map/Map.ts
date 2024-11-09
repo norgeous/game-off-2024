@@ -9,7 +9,7 @@ export let CurrentRoomIndex: number;
 export let MapData: Array<number>;
 export let StartingRoomData: Array<number>;
 
-export const getNextRoomId = (direction: Direction) => {
+export const setNextRoomId = (direction: Direction) => {
   const NewRoomIndex = CurrentRoomIndex + direction;
   if (NewRoomIndex >= 0 && NewRoomIndex < MapData.length) {
     CurrentRoomIndex = NewRoomIndex;

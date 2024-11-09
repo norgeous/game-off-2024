@@ -167,11 +167,6 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
           </div>
         ))}
       </div>
-      <div>
-        click <FaDungeon /> above in flashing room to use door
-        <br />
-        or use arrows below to force movement
-      </div>
       <div
         style={{
           position: 'relative',
