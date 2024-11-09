@@ -30,7 +30,7 @@ export class Preloader extends Scene {
     this.load.image('logo', 'logo.png');
     this.load.image('star', 'star.png');
 
-    TiledMapTest.preload(this);
+    TiledMapTest.externalPreload(this);
   }
 
   create() {
