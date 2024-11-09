@@ -14,7 +14,7 @@
 - Character
   - [ ] Create base character with movement
   - [ ] Add stats to character (Hp, MaxHp, Attack rate, Defence)
-  - [ ] Add character wepon
+  - [ ] Add character weapons
 - Music
   - [ ] Game music
 - SFX

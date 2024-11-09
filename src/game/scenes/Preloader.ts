@@ -16,7 +16,7 @@ export class Preloader extends Scene {
 
     //  This is the progress bar itself. It will increase in size from the left based on the % of progress.
     const bar = this.add.rectangle(512 - 230, 384, 4, 28, 0xffffff);
-    
+
     //  Use the 'progress' event emitted by the LoaderPlugin to update the loading bar
     this.load.on("progress", (progress: number) => {
       //  Update the progress bar (our bar is 464px wide, so 100% = 464px)
@@ -40,8 +40,8 @@ export class Preloader extends Scene {
 
     loadRandomMapData(this);
     setRandomStartingRoom(this);
-    
+
     //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
-    this.scene.start("TiledMapTest");
+    this.scene.start("MainMenu");
   }
 }
