@@ -1,39 +1,9 @@
 import { useState } from 'react';
-import { FaGear, FaXmark, FaImages } from 'react-icons/fa6';
+import { FaGear, FaXmark } from 'react-icons/fa6';
 import Container from './Container';
-import Modal from './Modal';
 import FullscreenToggle from './FullscreenToggle';
 import MenuButton from './MenuButton';
-
-const sceneNames = [
-  'Boot',
-  'Preloader',
-  'MainMenu',
-  'Game',
-  'GameOver',
-  'Win',
-  'TiledMapTest',
-];
-
-const SceneSelectorModal = ({ phaserScene, setIsOpen }) => (
-  <Modal onClose={() => setIsOpen(false)}>
-    <h1 style={{ margin: 0 }}>Scene Selector</h1>
-    <div>
-      current: <b>{phaserScene?.scene.key}</b>
-    </div>
-    {sceneNames.map((sceneName) => (
-      <button
-        key={sceneName}
-        onClick={() => {
-          phaserScene?.scene.start(sceneName);
-          setIsOpen(false);
-        }}
-      >
-        {sceneName}
-      </button>
-    ))}
-  </Modal>
-);
+import { SceneSelectorModal, SceneSelectorToggleButton } from './SceneSelector';
 
 const Menu = ({ phaserScene }) => {
   const [isSettingsOpen, setSettingsIsOpen] = useState(false);
@@ -49,11 +19,9 @@ const Menu = ({ phaserScene }) => {
           <>
             {/* {import.meta.env.PROD ? 'isProd' : 'isDev'} */}
             <FullscreenToggle />
-            <MenuButton
+            <SceneSelectorToggleButton
               onClick={() => setIsSceneSelectorOpen(!isSceneSelectorOpen)}
-            >
-              <FaImages size={32} />
-            </MenuButton>
+            />
           </>
         )}
       </Container>
@@ -61,7 +29,7 @@ const Menu = ({ phaserScene }) => {
       {isSceneSelectorOpen && (
         <SceneSelectorModal
           phaserScene={phaserScene}
-          setIsOpen={setIsSceneSelectorOpen}
+          onClose={() => setIsSceneSelectorOpen(false)}
         />
       )}
     </>
