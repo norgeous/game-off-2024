@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   FaMapLocationDot,
   FaDungeon,
@@ -6,11 +7,17 @@ import {
   FaArrowLeft,
   FaArrowRight,
 } from 'react-icons/fa6';
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import MenuButton from './MenuButton';
 import Modal from './Modal';
-import dungeonConfigParser, { to2D } from '../helpers/dungeonConfigParser';
-import { useState } from 'react';
+import dungeonConfigParser, {
+  findRoomConfigByCoordinate,
+  to2D,
+} from '../helpers/dungeonConfigParser';
+
+const breatheAnimation = keyframes`
+ 100% { opacity: 0.6; }
+`;
 
 export const MiniMapToggleButton = ({ onClick }) => (
   <MenuButton onClick={onClick}>
@@ -28,18 +35,81 @@ const Room = styled.div`
   align-items: center;
   flex-direction: column;
   background: ${({ isCurrent }) => (isCurrent ? '#044' : 'transparent')};
+  /* transition: all 1s linear; */
+  /* animation: .5s linear 1s infinite alternate slidein; */
+
+  ${({ isCurrent }) =>
+    isCurrent &&
+    css`
+      animation-name: ${breatheAnimation};
+      animation-duration: 0.5s;
+      animation-iteration-count: infinite;
+    `}
 `;
 
 const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
-  const [currentRoom, setCurrentRoom] = useState({ x: 0, y: 6 });
+  const [currentRoom, setCurrentRoom] = useState({
+    x: 0,
+    y: 6,
+    roomType: '0',
+    playerEnterFrom: 'unknown',
+  });
   const dungeonConfig = dungeonConfigParser(dungeonStr);
   const rows = to2D(dungeonConfig);
 
-  const changeRoom = (x, y) => {
-    setCurrentRoom({ x, y });
-    // const type = 'A';
-    // const playerEnterFrom = 'south';
-    // phaserScene?.scene.start('Rooms', { type, playerEnterFrom });
+  const go = (direction: string) => {
+    const nextRoom = {
+      north: {
+        x: currentRoom.x,
+        y: currentRoom.y - 1,
+        roomType:
+          findRoomConfigByCoordinate(
+            dungeonConfig,
+            currentRoom.x,
+            currentRoom.y - 1,
+          )?.roomType || '?',
+        playerEnterFrom: 'south',
+      },
+      south: {
+        x: currentRoom.x,
+        y: currentRoom.y + 1,
+        roomType:
+          findRoomConfigByCoordinate(
+            dungeonConfig,
+            currentRoom.x,
+            currentRoom.y + 1,
+          )?.roomType || '?',
+        playerEnterFrom: 'north',
+      },
+      east: {
+        x: currentRoom.x + 1,
+        y: currentRoom.y,
+        roomType:
+          findRoomConfigByCoordinate(
+            dungeonConfig,
+            currentRoom.x + 1,
+            currentRoom.y,
+          )?.roomType || '?',
+        playerEnterFrom: 'west',
+      },
+      west: {
+        x: currentRoom.x - 1,
+        y: currentRoom.y,
+        roomType:
+          findRoomConfigByCoordinate(
+            dungeonConfig,
+            currentRoom.x - 1,
+            currentRoom.y,
+          )?.roomType || '?',
+        playerEnterFrom: 'east',
+      },
+    }[direction];
+
+    if (nextRoom) {
+      setCurrentRoom(nextRoom);
+      console.log(nextRoom);
+      phaserScene?.scene.start('Rooms', nextRoom);
+    }
   };
 
   return (
@@ -47,57 +117,73 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
       <div style={{ display: 'grid' }}>
         {rows.map((row) => (
           <div style={{ display: 'flex' }}>
-            {row.map((cell) => (
-              <Room
-                isCurrent={cell.x === currentRoom.x && cell.y === currentRoom.y}
-              >
-                <div style={{ fontSize: 30 }}>{cell.roomType}</div>
-                <div
-                  style={{
-                    position: 'absolute',
-                    fontSize: 12,
-                    top: 0,
-                    left: 0,
-                  }}
-                >
-                  ({cell.x}, {cell.y})
-                </div>
-                {cell.adjacentRooms.north && (
-                  <div style={{ position: 'absolute', fontSize: 16, top: 0 }}>
-                    <FaDungeon />
-                  </div>
-                )}
-                {cell.adjacentRooms.south && (
+            {row.map((cell) => {
+              const isCurrent =
+                cell.x === currentRoom.x && cell.y === currentRoom.y;
+              return (
+                <Room isCurrent={isCurrent}>
+                  <div style={{ fontSize: 30 }}>{cell.roomType}</div>
                   <div
-                    style={{ position: 'absolute', fontSize: 16, bottom: 0 }}
+                    style={{
+                      position: 'absolute',
+                      fontSize: 12,
+                      top: 0,
+                      left: 0,
+                    }}
                   >
-                    <FaDungeon />
+                    ({cell.x}, {cell.y})
                   </div>
-                )}
-                {cell.adjacentRooms.east && (
-                  <div style={{ position: 'absolute', fontSize: 16, right: 0 }}>
-                    <FaDungeon />
-                  </div>
-                )}
-                {cell.adjacentRooms.west && (
-                  <div style={{ position: 'absolute', fontSize: 16, left: 0 }}>
-                    <FaDungeon />
-                  </div>
-                )}
-              </Room>
-            ))}
+                  {cell.adjacentRooms.north && (
+                    <MenuButton
+                      style={{ position: 'absolute', fontSize: 16, top: 0 }}
+                      onClick={() => go('north')}
+                      disabled={!isCurrent}
+                    >
+                      <FaDungeon />
+                    </MenuButton>
+                  )}
+                  {cell.adjacentRooms.south && (
+                    <MenuButton
+                      style={{ position: 'absolute', fontSize: 16, bottom: 0 }}
+                      onClick={() => go('south')}
+                      disabled={!isCurrent}
+                    >
+                      <FaDungeon />
+                    </MenuButton>
+                  )}
+                  {cell.adjacentRooms.east && (
+                    <MenuButton
+                      style={{ position: 'absolute', fontSize: 16, right: 0 }}
+                      onClick={() => go('east')}
+                      disabled={!isCurrent}
+                    >
+                      <FaDungeon />
+                    </MenuButton>
+                  )}
+                  {cell.adjacentRooms.west && (
+                    <MenuButton
+                      style={{ position: 'absolute', fontSize: 16, left: 0 }}
+                      onClick={() => go('west')}
+                      disabled={!isCurrent}
+                    >
+                      <FaDungeon />
+                    </MenuButton>
+                  )}
+                </Room>
+              );
+            })}
           </div>
         ))}
       </div>
       <div>
-        click <FaDungeon /> above to teleport, or use arrows below to force
-        movement
+        click <FaDungeon /> above in flashing room to use door, or use arrows
+        below to force movement
       </div>
       <div
         style={{
           position: 'relative',
-          width: 120,
-          height: 120,
+          width: 150,
+          height: 150,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -105,29 +191,33 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
       >
         <MenuButton
           style={{ position: 'absolute', top: 0 }}
-          onClick={() => changeRoom(currentRoom.x, currentRoom.y - 1)}
+          onClick={() => go('north')}
         >
           <FaArrowUp size={32} />
         </MenuButton>
         <MenuButton
           style={{ position: 'absolute', bottom: 0 }}
-          onClick={() => changeRoom(currentRoom.x, currentRoom.y + 1)}
+          onClick={() => go('south')}
         >
           <FaArrowDown size={32} />
         </MenuButton>
         <MenuButton
           style={{ position: 'absolute', left: 0 }}
-          onClick={() => changeRoom(currentRoom.x - 1, currentRoom.y)}
+          onClick={() => go('west')}
         >
           <FaArrowLeft size={32} />
         </MenuButton>
         <MenuButton
           style={{ position: 'absolute', right: 0 }}
-          onClick={() => changeRoom(currentRoom.x + 1, currentRoom.y)}
+          onClick={() => go('east')}
         >
           <FaArrowRight size={32} />
         </MenuButton>
         ({currentRoom.x}, {currentRoom.y})
+        <br />
+        type: {currentRoom.roomType}
+        <br />
+        from: {currentRoom.playerEnterFrom}
       </div>
     </Modal>
   );
