@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { FaXmark } from "react-icons/fa6";
+import styled from 'styled-components';
+import { FaXmark } from 'react-icons/fa6';
 
 const ModalBackdrop = styled.div`
   position: absolute;

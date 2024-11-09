@@ -1,11 +1,11 @@
 /* eslint-disable no-undef */
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import { VitePWA } from "vite-plugin-pwa";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { VitePWA } from 'vite-plugin-pwa';
 
 const phasermsg = () => {
   return {
-    name: "phasermsg",
+    name: 'phasermsg',
     buildStart() {
       process.stdout.write(`Building for production...\n`);
     },
@@ -19,18 +19,18 @@ const phasermsg = () => {
 };
 
 export default defineConfig({
-  base: "./",
-  plugins: [react(), phasermsg(), VitePWA({ registerType: "autoUpdate" })],
-  logLevel: "warning",
+  base: './',
+  plugins: [react(), phasermsg(), VitePWA({ registerType: 'autoUpdate' })],
+  logLevel: 'warning',
   build: {
     rollupOptions: {
       output: {
         manualChunks: {
-          phaser: ["phaser"],
+          phaser: ['phaser'],
         },
       },
     },
-    minify: "terser",
+    minify: 'terser',
     terserOptions: {
       compress: {
         passes: 2,

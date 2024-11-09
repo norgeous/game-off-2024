@@ -1,21 +1,21 @@
-import { EventBus } from "../EventBus";
-import Player from "../../objects/entities/Player";
-import { Scene } from "phaser";
+import { EventBus } from '../EventBus';
+import Player from '../../objects/entities/Player';
+import { Scene } from 'phaser';
 import TiledMapBuilder, {
   LevelConfigType,
-} from "../../objects/map/TiledMapBuilder";
+} from '../../objects/map/TiledMapBuilder';
 import {
   CurrentRoomId,
   CurrentMapConfig,
   getNextRoomId,
-} from "../../objects/map/MapLocation";
-import mapJson from "../../objects/map/Maps.json";
+} from '../../objects/map/MapLocation';
+import mapJson from '../../objects/map/Maps.json';
 
 const levelConfig: LevelConfigType = {
-  key: "tiles",
-  tilesetPng: "./tiled/tileset/tilesSheet.jpg",
-  tiledMapJson: "./tiled/maps/testing-level.json",
-  layerConfig: [{ tiledLayerName: "tiledLayer", depth: 10 }],
+  key: 'tiles',
+  tilesetPng: './tiled/tileset/tilesSheet.jpg',
+  tiledMapJson: './tiled/maps/testing-level.json',
+  layerConfig: [{ tiledLayerName: 'tiledLayer', depth: 10 }],
   spawnerConfig: [],
 };
 
@@ -27,7 +27,7 @@ export class TiledMapTest extends Scene {
   public sprite: Phaser.GameObjects.Sprite;
 
   constructor() {
-    super("TiledMapTest");
+    super('TiledMapTest');
   }
 
   preload() {
@@ -40,11 +40,11 @@ export class TiledMapTest extends Scene {
     this.map = new TiledMapBuilder(this, levelConfig);
 
     // spawn player
-    this.sprite = this.add.sprite(150, 200, "player");
+    this.sprite = this.add.sprite(150, 200, 'player');
     this.sprite.scale = 0.3;
     this.sprite.setDepth(100);
 
-    EventBus.emit("current-scene-ready", this);
+    EventBus.emit('current-scene-ready', this);
   }
 
   update() {
@@ -52,7 +52,7 @@ export class TiledMapTest extends Scene {
   }
 
   tempCharMove() {
-    const keys = this.input?.keyboard?.addKeys("W,A,S,D");
+    const keys = this.input?.keyboard?.addKeys('W,A,S,D');
 
     let x = this.sprite.x;
     let y = this.sprite.y;
@@ -74,6 +74,6 @@ export class TiledMapTest extends Scene {
   }
 
   changeScene() {
-    this.scene.start("GameOver");
+    this.scene.start('GameOver');
   }
 }

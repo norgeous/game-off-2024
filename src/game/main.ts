@@ -1,12 +1,12 @@
-import { Boot } from "./scenes/Boot";
-import { Preloader } from "./scenes/Preloader";
-import { MainMenu } from "./scenes/MainMenu";
-import { Game as MainGame } from "./scenes/Game";
-import { GameOver } from "./scenes/GameOver";
-import { Win } from "./scenes/Win";
-import { TiledMapTest } from "./scenes/TiledMapTest";
-import { AUTO, Game } from "phaser";
-import isDev from "../helpers/isDev";
+import { Boot } from './scenes/Boot';
+import { Preloader } from './scenes/Preloader';
+import { MainMenu } from './scenes/MainMenu';
+import { Game as MainGame } from './scenes/Game';
+import { GameOver } from './scenes/GameOver';
+import { Win } from './scenes/Win';
+import { TiledMapTest } from './scenes/TiledMapTest';
+import { AUTO, Game } from 'phaser';
+import isDev from '../helpers/isDev';
 
 const VIEWPORT_SIZE = 80;
 
@@ -21,10 +21,10 @@ const config: Phaser.Types.Core.GameConfig = {
   type: AUTO,
   width: 16 * VIEWPORT_SIZE,
   height: 9 * VIEWPORT_SIZE,
-  parent: "game-container",
-  backgroundColor: "#000000",
+  parent: 'game-container',
+  backgroundColor: '#000000',
   physics: {
-    default: "matter",
+    default: 'matter',
     matter: {
       enableSleeping: true,
       ...(isDev && { debug }),

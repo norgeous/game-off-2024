@@ -1,5 +1,5 @@
-import { Scene } from "phaser";
-import { EventBus } from "../EventBus";
+import { Scene } from 'phaser';
+import { EventBus } from '../EventBus';
 
 export class Win extends Scene {
   camera: Phaser.Cameras.Scene2D.Camera;
@@ -7,7 +7,7 @@ export class Win extends Scene {
   winText: Phaser.GameObjects.Text;
 
   constructor() {
-    super("Win");
+    super('Win');
   }
 
   create() {
@@ -16,25 +16,25 @@ export class Win extends Scene {
     this.camera = this.cameras.main;
     this.camera.setBackgroundColor(0xff00ff);
 
-    this.background = this.add.image(width * 0.5, height * 0.5, "background");
+    this.background = this.add.image(width * 0.5, height * 0.5, 'background');
     this.background.setAlpha(0.5);
 
     this.winText = this.add
-      .text(width * 0.5, height * 0.5, "Winner", {
-        fontFamily: "Arial Black",
+      .text(width * 0.5, height * 0.5, 'Winner', {
+        fontFamily: 'Arial Black',
         fontSize: 64,
-        color: "#ffffff",
-        stroke: "#000000",
+        color: '#ffffff',
+        stroke: '#000000',
         strokeThickness: 8,
-        align: "center",
+        align: 'center',
       })
       .setOrigin(0.5)
       .setDepth(100);
 
-    EventBus.emit("current-scene-ready", this);
+    EventBus.emit('current-scene-ready', this);
   }
 
   changeScene() {
-    this.scene.start("MainMenu");
+    this.scene.start('MainMenu');
   }
 }

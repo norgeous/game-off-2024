@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { FaImages } from "react-icons/fa";
+import { useState } from 'react';
+import { FaImages } from 'react-icons/fa';
 import {
   FaGear,
   FaXmark,
@@ -7,11 +7,11 @@ import {
   FaArrowDown,
   FaArrowLeft,
   FaArrowRight,
-} from "react-icons/fa6";
-import styled from "styled-components";
-import Container from "./Container";
-import Modal from "./Modal";
-import Navigation from "../enums/Navigation";
+} from 'react-icons/fa6';
+import styled from 'styled-components';
+import Container from './Container';
+import Modal from './Modal';
+import Navigation from '../enums/Navigation';
 
 const Button = styled.button`
   background: none;
@@ -20,7 +20,7 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const sceneNames = ["MainMenu", "Game", "GameOver", "Win", "TiledMapTest"];
+const sceneNames = ['MainMenu', 'Game', 'GameOver', 'Win', 'TiledMapTest'];
 
 const SceneSelector = ({ phaserScene, isOpen, setIsOpen }) => {
   return (
@@ -52,7 +52,7 @@ const Menu = ({ phaserScene }) => {
   const [isSceneSelectorOpen, setIsSceneSelectorOpen] = useState(false);
 
   const roomNavigation = (direction: Navigation) => {
-    phaserScene?.scene.start("TiledMapTest", { roomId: 1 });
+    phaserScene?.scene.start('TiledMapTest', { roomId: 1 });
   };
 
   return (
