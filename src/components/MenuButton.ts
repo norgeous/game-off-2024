@@ -5,6 +5,10 @@ const MenuButton = styled.button`
   color: inherit;
   border: none;
   cursor: pointer;
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.25;
+  }
 `;
 
 export default MenuButton;
