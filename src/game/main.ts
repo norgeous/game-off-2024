@@ -4,7 +4,7 @@ import { MainMenu } from "./scenes/MainMenu";
 import { Game as MainGame } from "./scenes/Game";
 import { GameOver } from "./scenes/GameOver";
 import { Win } from "./scenes/Win";
-import { TiledMapTest } from "./scenes/TiledMapTest";
+import { Rooms } from "./scenes/Rooms";
 import { AUTO, Game } from "phaser";
 import isDev from '../helpers/isDev';
 
@@ -30,7 +30,7 @@ const config: Phaser.Types.Core.GameConfig = {
       ...(isDev && { debug }),
     },
   },
-  scene: [Boot, Preloader, MainMenu, MainGame, GameOver, Win, TiledMapTest],
+  scene: [Boot, Preloader, MainMenu, MainGame, GameOver, Win, Rooms],
 };
 
 const StartGame = (parent: string) => {
