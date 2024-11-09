@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { FaCog, FaImages } from 'react-icons/fa';
-import { FaXmark } from 'react-icons/fa6';
+import { FaGear, FaXmark, FaImages } from 'react-icons/fa6';
 import styled from 'styled-components';
 import Container from './Container';
 import Modal from './Modal';
@@ -55,7 +54,7 @@ const Menu = ({ phaserScene }) => {
     <>
       <Container>
         <Button onClick={() => setSettingsIsOpen(!isSettingsOpen)}>
-          {isSettingsOpen ? <FaXmark size={32} /> : <FaCog size={32} />}
+          {isSettingsOpen ? <FaXmark size={32} /> : <FaGear size={32} />}
         </Button>
         {isSettingsOpen && (
           <>
