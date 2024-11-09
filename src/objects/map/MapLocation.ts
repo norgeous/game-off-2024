@@ -10,7 +10,7 @@ export const getNextRoomId = () => {
 }
 
 export const loadRandomMapData = (scene: Scene) => {
-    var data = scene.cache.json.get('mapData');
+    const data = scene.cache.json.get('mapData');
     const randomId = Phaser.Math.Between(0, (NUMBER_OF_MAPS - 1));
     CurrentMapConfig = data.maps[randomId].mapData;
 }

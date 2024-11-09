@@ -48,7 +48,7 @@ export class TiledMapTest extends Scene {
     }
 
     tempCharMove() {
-        let keys = this.input?.keyboard?.addKeys("W,A,S,D");
+        const keys = this.input?.keyboard?.addKeys("W,A,S,D");
 
         let x =  this.sprite.x;
         let y =  this.sprite.y;
