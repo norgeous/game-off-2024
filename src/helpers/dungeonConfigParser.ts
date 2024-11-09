@@ -3,9 +3,7 @@ const dungeonConfigTo2D = (dungeonConfig: string) =>
     .trim()
     .split('\n')
     .map((row: string, y: number) =>
-      row
-        .split('')
-        .map((roomType: string, x: number) => ({ x, y, roomType })),
+      row.split('').map((roomType: string, x: number) => ({ x, y, roomType })),
     )
     .flat();
 
@@ -30,14 +28,17 @@ const dungeonConfigParser = (dungeonStr: string) => {
 
   const withDoors = flatted.map((roomConfig) => {
     const { x, y } = roomConfig;
+
+    const adjacentRooms = {
+      north: findRoomConfigByCoordinate(flatted, x, y - 1),
+      south: findRoomConfigByCoordinate(flatted, x, y + 1),
+      east: findRoomConfigByCoordinate(flatted, x + 1, y),
+      west: findRoomConfigByCoordinate(flatted, x - 1, y),
+    };
+
     return {
       ...roomConfig,
-      adjacentRooms: {
-        north: findRoomConfigByCoordinate(flatted, x, y - 1),
-        south: findRoomConfigByCoordinate(flatted, x, y + 1),
-        east: findRoomConfigByCoordinate(flatted, x + 1, y),
-        west: findRoomConfigByCoordinate(flatted, x - 1, y),
-      },
+      adjacentRooms: roomConfig.roomType !== '.' ? adjacentRooms : {},
     };
   });
 

@@ -1,4 +1,5 @@
 import { FaDungeon } from 'react-icons/fa6';
+import styled from 'styled-components';
 import MenuButton from './MenuButton';
 import Modal from './Modal';
 import dungeonConfigParser, { to2D } from '../helpers/dungeonConfigParser';
@@ -9,20 +10,44 @@ export const MiniMapToggleButton = ({ onClick }) => (
   </MenuButton>
 );
 
+const Room = styled.div`
+  border: 1px solid aqua;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
 const MiniMap = ({ dungeonStr, onClose }) => {
   const dungeonConfig = dungeonConfigParser(dungeonStr);
   const rows = to2D(dungeonConfig);
-  // console.log(dungeonConfig, rows);
   return (
     <Modal onClose={onClose}>
       <div style={{ display: 'grid' }}>
         {rows.map((row) => (
           <div style={{ display: 'flex' }}>
             {row.map((cell) => (
-              // <pre>{JSON.stringify(cell,null,2)}</pre>
-              <pre style={{ margin: 0 }} title={JSON.stringify(cell, null, 2)}>
-                {cell.roomType}
-              </pre>
+              <Room>
+                <div style={{ fontSize: 30 }}>{cell.roomType}</div>
+                <div style={{ position: 'absolute', fontSize: 12, top: 0, left: 0 }}>
+                  ({cell.x}, {cell.y})
+                </div>
+                {cell.adjacentRooms.north && (
+                  <div style={{ position: 'absolute', fontSize: 12, top: 0 }}>✅</div>
+                )}
+                {cell.adjacentRooms.south && (
+                  <div style={{ position: 'absolute', fontSize: 12, bottom: 0 }}>✅</div>
+                )}
+                {cell.adjacentRooms.east && (
+                  <div style={{ position: 'absolute', fontSize: 12, right: 0 }}>✅</div>
+                )}
+                {cell.adjacentRooms.west && (
+                  <div style={{ position: 'absolute', fontSize: 12, left: 0 }}>✅</div>
+                )}
+              </Room>
             ))}
           </div>
         ))}
