@@ -1,4 +1,4 @@
-import { FaDungeon } from 'react-icons/fa6';
+import { FaMapLocationDot, FaDungeon } from 'react-icons/fa6';
 import styled from 'styled-components';
 import MenuButton from './MenuButton';
 import Modal from './Modal';
@@ -6,7 +6,7 @@ import dungeonConfigParser, { to2D } from '../helpers/dungeonConfigParser';
 
 export const MiniMapToggleButton = ({ onClick }) => (
   <MenuButton onClick={onClick}>
-    <FaDungeon size={32} />
+    <FaMapLocationDot size={32} />
   </MenuButton>
 );
 
@@ -36,16 +36,16 @@ const MiniMap = ({ dungeonStr, onClose }) => {
                   ({cell.x}, {cell.y})
                 </div>
                 {cell.adjacentRooms.north && (
-                  <div style={{ position: 'absolute', fontSize: 12, top: 0 }}>✅</div>
+                  <div style={{ position: 'absolute', fontSize: 16, top: 0 }}><FaDungeon /></div>
                 )}
                 {cell.adjacentRooms.south && (
-                  <div style={{ position: 'absolute', fontSize: 12, bottom: 0 }}>✅</div>
+                  <div style={{ position: 'absolute', fontSize: 16, bottom: 0 }}><FaDungeon /></div>
                 )}
                 {cell.adjacentRooms.east && (
-                  <div style={{ position: 'absolute', fontSize: 12, right: 0 }}>✅</div>
+                  <div style={{ position: 'absolute', fontSize: 16, right: 0 }}><FaDungeon /></div>
                 )}
                 {cell.adjacentRooms.west && (
-                  <div style={{ position: 'absolute', fontSize: 12, left: 0 }}>✅</div>
+                  <div style={{ position: 'absolute', fontSize: 16, left: 0 }}><FaDungeon /></div>
                 )}
               </Room>
             ))}
