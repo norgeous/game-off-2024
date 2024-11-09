@@ -1,73 +1,64 @@
 import { useState } from 'react';
-import { FaImages } from 'react-icons/fa';
-import { FaGear, FaXmark, FaArrowUp, FaArrowDown, FaArrowLeft, FaArrowRight } from 'react-icons/fa6';
-import styled from 'styled-components';
+import {
+  FaGear,
+  FaXmark,
+  FaArrowUp,
+  FaArrowDown,
+  FaArrowLeft,
+  FaArrowRight,
+} from 'react-icons/fa6';
 import Container from './Container';
-import Modal from './Modal';
-import Navigation from "../enums/Direction";
-
-const Button = styled.button`
-  background: none;
-  color: inherit;
-  border: none;
-  cursor: pointer;
-`;
-
-const sceneNames = ['MainMenu', 'Game', 'GameOver', 'Win', 'TiledMapTest'];
-
-const SceneSelector = ({ phaserScene, isOpen, setIsOpen }) => {
-  return (
-    <>
-      {isOpen && (
-        <Modal onClose={() => setIsOpen(false)}>
-          <h1 style={{ margin: 0 }}>Scene Selector</h1>
-          <div>current: <b>{phaserScene?.scene.key}</b></div>
-          {sceneNames.map(sceneName => (
-            <button
-              onClick={() => {
-                phaserScene?.scene.start(sceneName);
-                setIsOpen(false);
-              }}
-            >
-              {sceneName}
-            </button>
-          ))}
-        </Modal>
-      )}
-    </>
-  );
-};
-
+import FullscreenToggle from './FullscreenToggle';
+import MenuButton from './MenuButton';
+import { SceneSelectorModal, SceneSelectorToggleButton } from './SceneSelector';
+import isDev from '../helpers/isDev';
+import Direction from '../enums/Direction';
 
 const Menu = ({ phaserScene }) => {
   const [isSettingsOpen, setSettingsIsOpen] = useState(false);
   const [isSceneSelectorOpen, setIsSceneSelectorOpen] = useState(false);
 
-  const roomNavigation = (direction: Navigation) => {
-    phaserScene?.scene.start('TiledMapTest', direction);
+  const roomNavigation = (direction: Direction) => {
+    phaserScene?.scene.start('TiledMapTest', { roomId: 1 });
   };
 
   return (
     <>
       <Container>
-        <Button onClick={() => setSettingsIsOpen(!isSettingsOpen)}>
-          {isSettingsOpen ? <FaXmark size={32} /> : <FaGear size={32} /> }
-        </Button>
+        <MenuButton onClick={() => setSettingsIsOpen(!isSettingsOpen)}>
+          {isSettingsOpen ? <FaXmark size={32} /> : <FaGear size={32} />}
+        </MenuButton>
         {isSettingsOpen && (
           <>
-            {/* {import.meta.env.PROD ? 'isProd' : 'isDev'} */}
-            <Button onClick={() => setIsSceneSelectorOpen(!isSceneSelectorOpen)}><FaImages size={32} /></Button>
-            <Button onClick={() => roomNavigation(Navigation.UP)}><FaArrowUp size={32} /></Button>
-            <Button onClick={() => roomNavigation(Navigation.DOWN)}><FaArrowDown size={32} /></Button>
-            <Button onClick={() => roomNavigation(Navigation.LEFT)}><FaArrowLeft size={32} /></Button>
-            <Button onClick={() => roomNavigation(Navigation.RIGHT)}><FaArrowRight size={32} /></Button>
+            <FullscreenToggle />
+            {isDev && (
+              <>
+                <SceneSelectorToggleButton
+                  onClick={() => setIsSceneSelectorOpen(!isSceneSelectorOpen)}
+                />
+                <MenuButton onClick={() => roomNavigation(Navigation.UP)}>
+                  <FaArrowUp size={32} />
+                </MenuButton>
+                <MenuButton onClick={() => roomNavigation(Navigation.DOWN)}>
+                  <FaArrowDown size={32} />
+                </MenuButton>
+                <MenuButton onClick={() => roomNavigation(Navigation.LEFT)}>
+                  <FaArrowLeft size={32} />
+                </MenuButton>
+                <MenuButton onClick={() => roomNavigation(Navigation.RIGHT)}>
+                  <FaArrowRight size={32} />
+                </MenuButton>
+              </>
+            )}
           </>
         )}
       </Container>
+
       {isSceneSelectorOpen && (
-        <>
-          <SceneSelector phaserScene={phaserScene} isOpen={isSceneSelectorOpen} setIsOpen={setIsSceneSelectorOpen} />
-        </>
+        <SceneSelectorModal
+          phaserScene={phaserScene}
+          onClose={() => setIsSceneSelectorOpen(false)}
+        />
       )}
     </>
   );

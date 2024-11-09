@@ -2,7 +2,7 @@
     "maps": [
             {
                 "startingRoomIds": [
-                    5
+                    5,2,1
                 ],
                 "mapData": [
                     1,2,3,4,

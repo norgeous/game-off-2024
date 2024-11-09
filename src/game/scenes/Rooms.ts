@@ -42,7 +42,6 @@ export class Rooms extends Scene {
     
     create() {
         this.map = new TiledMapBuilder(this, levelConfig);
-
         EventBus.emit("current-scene-ready", this);
     }  
 

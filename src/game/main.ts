@@ -1,11 +1,11 @@
-import { Boot } from "./scenes/Boot";
-import { Preloader } from "./scenes/Preloader";
-import { MainMenu } from "./scenes/MainMenu";
-import { Game as MainGame } from "./scenes/Game";
-import { GameOver } from "./scenes/GameOver";
-import { Win } from "./scenes/Win";
+import { Boot } from './scenes/Boot';
+import { Preloader } from './scenes/Preloader';
+import { MainMenu } from './scenes/MainMenu';
+import { Game as MainGame } from './scenes/Game';
+import { GameOver } from './scenes/GameOver';
+import { Win } from './scenes/Win';
 import { Rooms } from "./scenes/Rooms";
-import { AUTO, Game } from "phaser";
+import { AUTO, Game } from 'phaser';
 import isDev from '../helpers/isDev';
 
 const VIEWPORT_SIZE = 80;
@@ -21,16 +21,25 @@ const config: Phaser.Types.Core.GameConfig = {
   type: AUTO,
   width: 16 * VIEWPORT_SIZE,
   height: 9 * VIEWPORT_SIZE,
-  parent: "game-container",
-  backgroundColor: "#000000",
+  parent: 'game-container',
+  backgroundColor: '#000000',
   physics: {
     default: 'matter',
     matter: {
       enableSleeping: true,
       ...(isDev && { debug }),
+      gravity: { x: 0, y: 0 },
     },
   },
-  scene: [Boot, Preloader, MainMenu, MainGame, GameOver, Win, Rooms],
+  scene: [
+    Boot,
+    Preloader,
+    MainMenu,
+    MainGame,
+    GameOver,
+    Win,
+    Rooms
+  ],
 };
 
 const StartGame = (parent: string) => {

@@ -3,12 +3,12 @@ import { loadRandomMapData } from "../../objects/map/Map";
 
 export class Preloader extends Scene {
   constructor() {
-    super("Preloader");
+    super('Preloader');
   }
 
   init() {
     //  We loaded this image in our Boot Scene, so we can display it here
-    this.add.image(512, 384, "background");
+    this.add.image(512, 384, 'background');
 
     //  A simple progress bar. This is the outline of the bar.
     this.add.rectangle(512, 384, 468, 32).setStrokeStyle(1, 0xffffff);
@@ -17,7 +17,7 @@ export class Preloader extends Scene {
     const bar = this.add.rectangle(512 - 230, 384, 4, 28, 0xffffff);
 
     //  Use the 'progress' event emitted by the LoaderPlugin to update the loading bar
-    this.load.on("progress", (progress: number) => {
+    this.load.on('progress', (progress: number) => {
       //  Update the progress bar (our bar is 464px wide, so 100% = 464px)
       bar.width = 4 + 460 * progress;
     });
@@ -25,7 +25,7 @@ export class Preloader extends Scene {
 
   preload() {
     //  Load the assets for the game - Replace with your own assets
-    this.load.setPath("assets");
+    this.load.setPath('assets');
 
     this.load.image("player", "jones.png");
     this.load.image("logo", "logo.png");
@@ -38,5 +38,7 @@ export class Preloader extends Scene {
     //  For example, you can define global animations here, so we can use them in other scenes.
     loadRandomMapData(this);
     this.scene.start("TiledMapTest");
+    //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
+    this.scene.start('MainMenu');
   }
 }
