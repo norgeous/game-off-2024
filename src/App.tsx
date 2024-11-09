@@ -3,6 +3,7 @@ import { IRefPhaserGame, PhaserGame } from "./game/PhaserGame";
 import { MainMenu } from "./game/scenes/MainMenu";
 import Button from "./components/Button";
 import Container from "./components/Container";
+import Navigation from "./enums/Navigation";
 
 function App() {
   //  References to the PhaserGame component (game and scene are exposed)
@@ -59,6 +60,9 @@ function App() {
     }
   };
 
+  const roomNavigation = (direction: Navigation) => {
+    phaserScene?.scene.start("TiledMapTest", {roomId: 1});
+  }
   // Event emitted from the PhaserGame component
   const onChangeScene = (scene: Phaser.Scene) => setPhaserScene(scene);
 
@@ -80,6 +84,11 @@ function App() {
           <pre>{`{\n  x: ${spritePosition.x}\n  y: ${spritePosition.y}\n}`}</pre>
         </div>
         <Button onClick={addSprite}>Add New Sprite</Button>
+          Debug Map Navigation
+          <Button onClick={() => roomNavigation(Navigation.UP)}>Room Up</Button>
+          <Button onClick={() => roomNavigation(Navigation.DOWN)}>Room Down</Button>
+          <Button onClick={() => roomNavigation(Navigation.LEFT)}>Room Left</Button>
+          <Button onClick={() => roomNavigation(Navigation.RIGHT)}>Room Right</Button>
       </Container>
     </div>
   );
