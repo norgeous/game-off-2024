@@ -1,7 +1,15 @@
 import { useState } from 'react';
 import { FaCog, FaImages } from 'react-icons/fa';
-import Container from "./Container";
-import Modal from "./Modal";
+import { FaXmark } from 'react-icons/fa6';
+import styled from 'styled-components';
+import Container from './Container';
+import Modal from './Modal';
+
+const Button = styled.button`
+  background: none;
+  color: inherit;
+  border: none;
+`;
 
 const sceneNames = ['MainMenu', 'Game', 'GameOver', 'Win', 'TiledMapTest'];
 
@@ -35,11 +43,13 @@ const Menu = ({ phaserScene }) => {
   return (
     <>
       <Container>
-        <button onClick={() => setSettingsIsOpen(!isSettingsOpen)}><FaCog /></button>
+        <Button onClick={() => setSettingsIsOpen(!isSettingsOpen)}>
+          {isSettingsOpen ? <FaXmark size={32} /> : <FaCog size={32} /> }
+        </Button>
         {isSettingsOpen && (
           <>
             {/* {import.meta.env.PROD ? 'isProd' : 'isDev'} */}
-            <button onClick={() => setIsSceneSelectorOpen(!isSceneSelectorOpen)}><FaImages /></button>
+            <Button onClick={() => setIsSceneSelectorOpen(!isSceneSelectorOpen)}><FaImages size={32} /></Button>
           </>
         )}
       </Container>

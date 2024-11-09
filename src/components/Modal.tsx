@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaWindowClose } from 'react-icons/fa';
+import { FaXmark } from 'react-icons/fa6';
 
 const ModalBackdrop = styled.div`
   position: absolute;
@@ -28,7 +28,7 @@ const Button = styled.button`
   border: none;
   color: inherit;
   cursor: pointer;
-  padding: 4px;
+  padding: 8px;
   position: absolute;
   right: 0;
 `;
@@ -38,7 +38,7 @@ const Modal = ({ children, onClose }) => {
     <ModalBackdrop onClick={onClose}>
       <ModalContent onClick={event => event.stopPropagation()}>
         <Button onClick={onClose}>
-          <FaWindowClose size={32}/>
+          <FaXmark size={32}/>
         </Button>
         <ModalInner>
           {children}
