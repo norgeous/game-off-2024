@@ -1,20 +1,9 @@
 import { useState } from 'react';
-import {
-  FaGear,
-  FaXmark,
-  FaExpand,
-  FaCompress,
-  FaImages,
-} from 'react-icons/fa6';
-import styled from 'styled-components';
+import { FaGear, FaXmark, FaImages } from 'react-icons/fa6';
 import Container from './Container';
 import Modal from './Modal';
-
-const Button = styled.button`
-  background: none;
-  color: inherit;
-  border: none;
-`;
+import FullscreenToggle from './FullscreenToggle';
+import MenuButton from './MenuButton';
 
 const sceneNames = [
   'Boot',
@@ -46,15 +35,6 @@ const SceneSelectorModal = ({ phaserScene, setIsOpen }) => (
   </Modal>
 );
 
-const FullscreenToggle = () => {
-  const isFullscreen = false;
-  return (
-    <Button onClick={() => alert('!')}>
-      {isFullscreen ? <FaExpand size={32} /> : <FaCompress size={32} />}
-    </Button>
-  );
-};
-
 const Menu = ({ phaserScene }) => {
   const [isSettingsOpen, setSettingsIsOpen] = useState(false);
   const [isSceneSelectorOpen, setIsSceneSelectorOpen] = useState(false);
@@ -62,28 +42,27 @@ const Menu = ({ phaserScene }) => {
   return (
     <>
       <Container>
-        <Button onClick={() => setSettingsIsOpen(!isSettingsOpen)}>
+        <MenuButton onClick={() => setSettingsIsOpen(!isSettingsOpen)}>
           {isSettingsOpen ? <FaXmark size={32} /> : <FaGear size={32} />}
-        </Button>
+        </MenuButton>
         {isSettingsOpen && (
           <>
             {/* {import.meta.env.PROD ? 'isProd' : 'isDev'} */}
             <FullscreenToggle />
-            <Button
+            <MenuButton
               onClick={() => setIsSceneSelectorOpen(!isSceneSelectorOpen)}
             >
               <FaImages size={32} />
-            </Button>
+            </MenuButton>
           </>
         )}
       </Container>
+
       {isSceneSelectorOpen && (
-        <>
-          <SceneSelectorModal
-            phaserScene={phaserScene}
-            setIsOpen={setIsSceneSelectorOpen}
-          />
-        </>
+        <SceneSelectorModal
+          phaserScene={phaserScene}
+          setIsOpen={setIsSceneSelectorOpen}
+        />
       )}
     </>
   );
