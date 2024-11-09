@@ -35,9 +35,6 @@ const Room = styled.div`
   align-items: center;
   flex-direction: column;
   background: ${({ isCurrent }) => (isCurrent ? '#044' : 'transparent')};
-  /* transition: all 1s linear; */
-  /* animation: .5s linear 1s infinite alternate slidein; */
-
   ${({ isCurrent }) =>
     isCurrent &&
     css`
