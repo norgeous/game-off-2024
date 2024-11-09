@@ -1,5 +1,11 @@
 import { useState } from 'react';
-import { FaGear, FaXmark, FaImages } from 'react-icons/fa6';
+import {
+  FaGear,
+  FaXmark,
+  FaExpand,
+  FaCompress,
+  FaImages,
+} from 'react-icons/fa6';
 import styled from 'styled-components';
 import Container from './Container';
 import Modal from './Modal';
@@ -20,29 +26,32 @@ const sceneNames = [
   'TiledMapTest',
 ];
 
-const SceneSelector = ({ phaserScene, isOpen, setIsOpen }) => {
+const SceneSelectorModal = ({ phaserScene, setIsOpen }) => (
+  <Modal onClose={() => setIsOpen(false)}>
+    <h1 style={{ margin: 0 }}>Scene Selector</h1>
+    <div>
+      current: <b>{phaserScene?.scene.key}</b>
+    </div>
+    {sceneNames.map((sceneName) => (
+      <button
+        key={sceneName}
+        onClick={() => {
+          phaserScene?.scene.start(sceneName);
+          setIsOpen(false);
+        }}
+      >
+        {sceneName}
+      </button>
+    ))}
+  </Modal>
+);
+
+const FullscreenToggle = () => {
+  const isFullscreen = false;
   return (
-    <>
-      {isOpen && (
-        <Modal onClose={() => setIsOpen(false)}>
-          <h1 style={{ margin: 0 }}>Scene Selector</h1>
-          <div>
-            current: <b>{phaserScene?.scene.key}</b>
-          </div>
-          {sceneNames.map((sceneName) => (
-            <button
-              key={sceneName}
-              onClick={() => {
-                phaserScene?.scene.start(sceneName);
-                setIsOpen(false);
-              }}
-            >
-              {sceneName}
-            </button>
-          ))}
-        </Modal>
-      )}
-    </>
+    <Button onClick={() => alert('!')}>
+      {isFullscreen ? <FaExpand size={32} /> : <FaCompress size={32} />}
+    </Button>
   );
 };
 
@@ -59,6 +68,7 @@ const Menu = ({ phaserScene }) => {
         {isSettingsOpen && (
           <>
             {/* {import.meta.env.PROD ? 'isProd' : 'isDev'} */}
+            <FullscreenToggle />
             <Button
               onClick={() => setIsSceneSelectorOpen(!isSceneSelectorOpen)}
             >
@@ -69,9 +79,8 @@ const Menu = ({ phaserScene }) => {
       </Container>
       {isSceneSelectorOpen && (
         <>
-          <SceneSelector
+          <SceneSelectorModal
             phaserScene={phaserScene}
-            isOpen={isSceneSelectorOpen}
             setIsOpen={setIsSceneSelectorOpen}
           />
         </>
