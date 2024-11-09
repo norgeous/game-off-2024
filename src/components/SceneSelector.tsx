@@ -9,6 +9,7 @@ const sceneNames = [
   'Game',
   'GameOver',
   'Win',
+  'TiledMapTest2',
   'Rooms',
 ];
 
