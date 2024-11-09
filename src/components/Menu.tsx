@@ -4,7 +4,7 @@ import { FaGear, FaXmark, FaArrowUp, FaArrowDown, FaArrowLeft, FaArrowRight } fr
 import styled from 'styled-components';
 import Container from './Container';
 import Modal from './Modal';
-import Navigation from "../enums/Navigation";
+import Navigation from "../enums/Direction";
 
 const Button = styled.button`
   background: none;
@@ -44,7 +44,7 @@ const Menu = ({ phaserScene }) => {
   const [isSceneSelectorOpen, setIsSceneSelectorOpen] = useState(false);
 
   const roomNavigation = (direction: Navigation) => {
-    phaserScene?.scene.start('TiledMapTest', { roomId: 1 });
+    phaserScene?.scene.start('TiledMapTest', direction);
   };
 
   return (
