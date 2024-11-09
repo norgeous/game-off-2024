@@ -43,7 +43,6 @@ const Menu = ({ phaserScene }) => {
         {isSettingsOpen && (
           <>
             <FullscreenToggle />
-            <MiniMapToggleButton onClick={() => setIsMiniMapOpen(true)} />
             {isDev && (
               <>
                 <SceneSelectorToggleButton
@@ -61,6 +60,7 @@ const Menu = ({ phaserScene }) => {
                 <MenuButton onClick={() => roomNavigation(Direction.RIGHT)}>
                   <FaArrowRight size={32} />
                 </MenuButton>
+                <MiniMapToggleButton onClick={() => setIsMiniMapOpen(true)} />
               </>
             )}
           </>
