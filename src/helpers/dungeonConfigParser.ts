@@ -49,3 +49,11 @@ export default dungeonConfigParser;
 
 export const to2D = (dungeonConfig: RoomConfig[]) =>
   Object.values(Object.groupBy(dungeonConfig, ({ y }: { y: number }) => y));
+
+type Direction = 'north' | 'south' | 'east' | 'west';
+
+export type DataForSceneType = {
+  roomType: string;
+  adjacentRooms: { [direction in Direction]: string };
+  playerEnterFrom: Direction;
+};

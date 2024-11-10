@@ -1,6 +1,7 @@
+import { Scene } from 'phaser';
 import { EventBus } from '../EventBus';
 // import Player from '../../objects/entities/Player';
-import { Scene } from 'phaser';
+import { DataForSceneType } from '../../helpers/dungeonConfigParser';
 import TiledMapBuilder, {
   LevelConfigType,
 } from '../../objects/map/TiledMapBuilder';
@@ -31,10 +32,8 @@ export class Rooms extends Scene {
     super('Rooms');
   }
 
-  init(data) {
-    if (data.roomType) {
-      setCurrentRoomId(data.roomType);
-    }
+  init(dataForScene: DataForSceneType) {
+    setCurrentRoomId(dataForScene.roomType);
   }
 
   preload() {
