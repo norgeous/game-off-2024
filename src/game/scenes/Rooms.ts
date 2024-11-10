@@ -6,8 +6,8 @@ import TiledMapBuilder, {
 } from '../../objects/map/TiledMapBuilder';
 import {
   buildRoomJsonPath,
-  setNextRoomId,
-  CurrentRoomId,
+  currentRoomId,
+  setCurrentRoomId,
 } from '../../objects/map/Map';
 
 const levelConfig: LevelConfigType = {
@@ -32,15 +32,13 @@ export class Rooms extends Scene {
   }
 
   init(data) {
-    console.log('Rooms scene got', data);
     if (data.roomType) {
-      setNextRoomId(data.roomType);
+      setCurrentRoomId(data.roomType);
     }
   }
 
   preload() {
-    console.log('rooms preload');
-    levelConfig.key = 'room-' + CurrentRoomId;
+    levelConfig.key = 'room-' + currentRoomId;
     levelConfig.tiledMapJson = buildRoomJsonPath();
     TiledMapBuilder.preload(this, levelConfig);
   }
