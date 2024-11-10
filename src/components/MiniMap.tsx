@@ -101,7 +101,7 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
           margin: '0 auto',
         }}
       >
-        {!['?','.'].includes(current.adjacentRooms.north) && (
+        {!['?', '.'].includes(current.adjacentRooms.north) && (
           <MenuButton
             style={{ position: 'absolute', top: 0 }}
             onClick={() => go(phaserScene, 'north')}
@@ -109,7 +109,7 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
             <FaArrowUp size={32} />
           </MenuButton>
         )}
-        {!['?','.'].includes(current.adjacentRooms.south) && (
+        {!['?', '.'].includes(current.adjacentRooms.south) && (
           <MenuButton
             style={{ position: 'absolute', bottom: 0 }}
             onClick={() => go(phaserScene, 'south')}
@@ -117,7 +117,7 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
             <FaArrowDown size={32} />
           </MenuButton>
         )}
-        {!['?','.'].includes(current.adjacentRooms.west) && (
+        {!['?', '.'].includes(current.adjacentRooms.west) && (
           <MenuButton
             style={{ position: 'absolute', left: 0 }}
             onClick={() => go(phaserScene, 'west')}
@@ -125,7 +125,7 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
             <FaArrowLeft size={32} />
           </MenuButton>
         )}
-        {!['?','.'].includes(current.adjacentRooms.east) && (
+        {!['?', '.'].includes(current.adjacentRooms.east) && (
           <MenuButton
             style={{ position: 'absolute', right: 0 }}
             onClick={() => go(phaserScene, 'east')}
