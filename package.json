@@ -5,6 +5,7 @@
     "dev": "vite --config vite/config.dev.mjs",
     "prelint": "prettier . --write",
     "lint": "eslint . --fix",
+    "postlint": "tsc",
     "build": "vite build --config vite/config.prod.mjs",
     "serve": "npx serve dist"
   },
