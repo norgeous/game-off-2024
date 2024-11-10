@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import DungeonStateContext from './DungeonStateContext';
 import dungeonConfigParser, {
   Direction,
@@ -29,12 +29,13 @@ const useDungeonState = () => {
     setDungeon1D(dungeonConfigParser());
   }, []);
 
-  const go = (scene: Phaser.Scene, direction: Direction) => {
+  const go = useCallback((scene: Phaser.Scene, direction: Direction) => {
     // scene.scene.destroy?.();
     const nextRoom = getNextRoom(dungeon1D, current.x, current.y, direction);
+    console.log({scene,direction,dungeon1D})
     setCurrent(nextRoom);
     scene?.scene.start('Rooms', nextRoom);
-  };
+  }, [current.x, current.y, dungeon1D]);
 
   // when a door is touched, update current
   useEffect(() => {
@@ -42,7 +43,7 @@ const useDungeonState = () => {
     return () => {
       EventBus.removeListener('use-door');
     };
-  }, []);
+  }, [go]);
 
   return {
     dungeon1D,
