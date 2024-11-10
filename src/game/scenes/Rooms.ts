@@ -1,15 +1,15 @@
-import { EventBus } from '../EventBus';
-import Player from '../../objects/entities/Player';
 import { Scene } from 'phaser';
+import { EventBus } from '../EventBus';
+// import Player from '../../objects/entities/Player';
+import { DataForSceneType } from '../../helpers/dungeonConfigParser';
 import TiledMapBuilder, {
   LevelConfigType,
 } from '../../objects/map/TiledMapBuilder';
 import {
   buildRoomJsonPath,
-  getNextRoomId,
-  CurrentRoomId,
+  currentRoomId,
+  setCurrentRoomId,
 } from '../../objects/map/Map';
-import Direction from '../../enums/Direction';
 
 const levelConfig: LevelConfigType = {
   key: 'room',
@@ -22,7 +22,7 @@ const levelConfig: LevelConfigType = {
 export class Rooms extends Scene {
   public map: TiledMapBuilder | undefined;
 
-  public player: Player;
+  // public player: Player;
 
   public sprite: Phaser.GameObjects.Sprite;
 
@@ -32,14 +32,13 @@ export class Rooms extends Scene {
     super('Rooms');
   }
 
-  init(direction: Direction) {
-    if (direction) {
-      getNextRoomId(direction);
-    }
+  init(dataForScene: DataForSceneType) {
+    console.log('rooms scene got', dataForScene);
+    setCurrentRoomId(dataForScene.roomType);
   }
 
   preload() {
-    levelConfig.key = 'room-' + CurrentRoomId;
+    levelConfig.key = 'room-' + currentRoomId;
     levelConfig.tiledMapJson = buildRoomJsonPath();
     TiledMapBuilder.preload(this, levelConfig);
   }

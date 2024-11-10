@@ -1,18 +1,11 @@
 import { useState } from 'react';
-import {
-  FaGear,
-  FaXmark,
-  FaArrowUp,
-  FaArrowDown,
-  FaArrowLeft,
-  FaArrowRight,
-} from 'react-icons/fa6';
+import { FaGear, FaXmark } from 'react-icons/fa6';
 import Container from './Container';
 import FullscreenToggle from './FullscreenToggle';
 import MenuButton from './MenuButton';
 import { SceneSelectorModal, SceneSelectorToggleButton } from './SceneSelector';
 import isDev from '../helpers/isDev';
-import Direction from '../enums/Direction';
+import MiniMap, { MiniMapToggleButton } from './MiniMap';
 
 interface IMenu {
   phaserScene: Phaser.Scene;
@@ -21,10 +14,7 @@ interface IMenu {
 const Menu = ({ phaserScene }: IMenu) => {
   const [isSettingsOpen, setSettingsIsOpen] = useState(false);
   const [isSceneSelectorOpen, setIsSceneSelectorOpen] = useState(false);
-
-  const roomNavigation = (direction: Direction) => {
-    phaserScene?.scene.start('Rooms', direction);
-  };
+  const [isMiniMapOpen, setIsMiniMapOpen] = useState(false);
 
   return (
     <>
@@ -40,18 +30,7 @@ const Menu = ({ phaserScene }: IMenu) => {
                 <SceneSelectorToggleButton
                   onClick={() => setIsSceneSelectorOpen(!isSceneSelectorOpen)}
                 />
-                <MenuButton onClick={() => roomNavigation(Direction.UP)}>
-                  <FaArrowUp size={32} />
-                </MenuButton>
-                <MenuButton onClick={() => roomNavigation(Direction.DOWN)}>
-                  <FaArrowDown size={32} />
-                </MenuButton>
-                <MenuButton onClick={() => roomNavigation(Direction.LEFT)}>
-                  <FaArrowLeft size={32} />
-                </MenuButton>
-                <MenuButton onClick={() => roomNavigation(Direction.RIGHT)}>
-                  <FaArrowRight size={32} />
-                </MenuButton>
+                <MiniMapToggleButton onClick={() => setIsMiniMapOpen(true)} />
               </>
             )}
           </>
@@ -62,6 +41,13 @@ const Menu = ({ phaserScene }: IMenu) => {
         <SceneSelectorModal
           phaserScene={phaserScene}
           onClose={() => setIsSceneSelectorOpen(false)}
+        />
+      )}
+
+      {isMiniMapOpen && (
+        <MiniMap
+          phaserScene={phaserScene}
+          onClose={() => setIsMiniMapOpen(false)}
         />
       )}
     </>
