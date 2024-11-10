@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
   FaMapLocationDot,
   FaArrowUp,
@@ -13,6 +13,7 @@ import dungeonConfigParser, {
   findRoomConfigByCoordinate,
   to2D,
 } from '../helpers/dungeonConfigParser';
+import DungeonStateContext from '../contexts/DungeonStateContext';
 
 const breatheAnimation = keyframes`
   100% { opacity: 0.6; }
@@ -60,71 +61,76 @@ interface IMiniMap {
 }
 
 const MiniMap = ({ phaserScene, dungeonStr, onClose }: IMiniMap) => {
-  const [currentRoom, setCurrentRoom] = useState({
-    x: 0,
-    y: 6,
-    roomType: '0',
-    playerEnterFrom: 'unknown',
-    adjacentRooms: {
-      north: '1',
-      south: undefined,
-      west: undefined,
-      east: undefined,
-    },
-  });
-  const dungeonConfig = dungeonConfigParser(dungeonStr);
-  const rows = to2D(dungeonConfig);
+  // const [currentRoom, setCurrentRoom] = useState({
+  //   x: 0,
+  //   y: 6,
+  //   roomType: '0',
+  //   playerEnterFrom: 'unknown',
+  //   adjacentRooms: {
+  //     north: '1',
+  //     south: undefined,
+  //     west: undefined,
+  //     east: undefined,
+  //   },
+  // });
+  // const dungeonConfig = dungeonConfigParser(dungeonStr);
+  // const rows = to2D(dungeonConfig);
 
-  const go = (direction: string) => {
-    const nextRoom = {
-      north: {
-        x: currentRoom.x,
-        y: currentRoom.y - 1,
-        playerEnterFrom: 'south',
-      },
-      south: {
-        x: currentRoom.x,
-        y: currentRoom.y + 1,
-        playerEnterFrom: 'north',
-      },
-      east: {
-        x: currentRoom.x + 1,
-        y: currentRoom.y,
-        playerEnterFrom: 'west',
-      },
-      west: {
-        x: currentRoom.x - 1,
-        y: currentRoom.y,
-        playerEnterFrom: 'east',
-      },
-    }[direction];
+  // const go = (direction: string) => {
+  //   const nextRoom = {
+  //     north: {
+  //       x: currentRoom.x,
+  //       y: currentRoom.y - 1,
+  //       playerEnterFrom: 'south',
+  //     },
+  //     south: {
+  //       x: currentRoom.x,
+  //       y: currentRoom.y + 1,
+  //       playerEnterFrom: 'north',
+  //     },
+  //     east: {
+  //       x: currentRoom.x + 1,
+  //       y: currentRoom.y,
+  //       playerEnterFrom: 'west',
+  //     },
+  //     west: {
+  //       x: currentRoom.x - 1,
+  //       y: currentRoom.y,
+  //       playerEnterFrom: 'east',
+  //     },
+  //   }[direction];
 
-    if (!nextRoom) return;
+  //   if (!nextRoom) return;
 
-    const nextRoomConfig = findRoomConfigByCoordinate(
-      dungeonConfig,
-      nextRoom.x,
-      nextRoom.y,
-    );
+  //   const nextRoomConfig = findRoomConfigByCoordinate(
+  //     dungeonConfig,
+  //     nextRoom.x,
+  //     nextRoom.y,
+  //   );
 
-    if (!nextRoomConfig) return;
+  //   if (!nextRoomConfig) return;
 
-    const next = {
-      ...nextRoom,
-      roomType: nextRoomConfig?.roomType || '?',
-      adjacentRooms: nextRoomConfig.adjacentRooms,
-    };
+  //   const next = {
+  //     ...nextRoom,
+  //     roomType: nextRoomConfig?.roomType || '?',
+  //     adjacentRooms: nextRoomConfig.adjacentRooms,
+  //   };
 
-    if (next) {
-      setCurrentRoom(next);
-      const dataForScene = {
-        roomType: next.roomType,
-        adjacentRooms: next.adjacentRooms,
-        playerEnterFrom: nextRoom.playerEnterFrom,
-      };
-      phaserScene?.scene.start('Rooms', dataForScene);
-    }
-  };
+  //   if (next) {
+  //     setCurrentRoom(next);
+  //     const dataForScene = {
+  //       roomType: next.roomType,
+  //       adjacentRooms: next.adjacentRooms,
+  //       playerEnterFrom: nextRoom.playerEnterFrom,
+  //     };
+  //     phaserScene?.scene.start('Rooms', dataForScene);
+  //   }
+  // };
+  const test = useContext(DungeonStateContext);
+
+  console.log({ test });
+
+  return null;
 
   return (
     <Modal onClose={onClose}>
