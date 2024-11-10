@@ -30,10 +30,10 @@ const dungeonConfigParser = (dungeonStr: string) => {
     const { x, y } = roomConfig;
 
     const adjacentRooms = {
-      north: findRoomConfigByCoordinate(flatted, x, y - 1),
-      south: findRoomConfigByCoordinate(flatted, x, y + 1),
-      east: findRoomConfigByCoordinate(flatted, x + 1, y),
-      west: findRoomConfigByCoordinate(flatted, x - 1, y),
+      north: findRoomConfigByCoordinate(flatted, x, y - 1)?.roomType,
+      south: findRoomConfigByCoordinate(flatted, x, y + 1)?.roomType,
+      east: findRoomConfigByCoordinate(flatted, x + 1, y)?.roomType,
+      west: findRoomConfigByCoordinate(flatted, x - 1, y)?.roomType,
     };
 
     return {
