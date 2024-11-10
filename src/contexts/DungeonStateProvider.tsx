@@ -29,13 +29,15 @@ const useDungeonState = () => {
     setDungeon1D(dungeonConfigParser());
   }, []);
 
-  const go = useCallback((scene: Phaser.Scene, direction: Direction) => {
-    // scene.scene.destroy?.();
-    const nextRoom = getNextRoom(dungeon1D, current.x, current.y, direction);
-    console.log({scene,direction,dungeon1D})
-    setCurrent(nextRoom);
-    scene?.scene.start('Rooms', nextRoom);
-  }, [current.x, current.y, dungeon1D]);
+  const go = useCallback(
+    (scene: Phaser.Scene, direction: Direction) => {
+      // scene.scene.destroy?.();
+      const nextRoom = getNextRoom(dungeon1D, current.x, current.y, direction);
+      setCurrent(nextRoom);
+      scene?.scene.start('Rooms', nextRoom);
+    },
+    [current.x, current.y, dungeon1D],
+  );
 
   // when a door is touched, update current
   useEffect(() => {

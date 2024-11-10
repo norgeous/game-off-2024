@@ -14,8 +14,8 @@ const levelConfig: LevelConfigType = {
 
 type keysType = { [keyCodes: string]: Phaser.Input.Keyboard.Key };
 
-const keysToVector = (keys: keysType, power:number) => {
-  const vector = { x: 0, y:0 };
+const keysToVector = (keys: keysType, power: number) => {
+  const vector = { x: 0, y: 0 };
 
   if (keys?.A.isDown) vector.x += -power;
   if (keys?.D.isDown) vector.x += power;
