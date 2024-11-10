@@ -13,7 +13,22 @@ const sceneNames = [
   'Rooms',
 ];
 
-const SceneSelectorModal = ({ phaserScene, onClose }) => (
+interface ISceneSelectorToggleButton {
+  onClick: () => void;
+}
+
+const SceneSelectorToggleButton = ({ onClick }: ISceneSelectorToggleButton) => (
+  <MenuButton onClick={onClick}>
+    <FaImages size={32} />
+  </MenuButton>
+);
+
+interface ISceneSelectorModal {
+  phaserScene: Phaser.Scene;
+  onClose: () => void;
+}
+
+const SceneSelectorModal = ({ phaserScene, onClose }: ISceneSelectorModal) => (
   <Modal onClose={onClose}>
     <h1 style={{ margin: 0 }}>Scene Selector</h1>
     <div>
@@ -23,6 +38,7 @@ const SceneSelectorModal = ({ phaserScene, onClose }) => (
       <button
         key={sceneName}
         onClick={() => {
+          phaserScene?.scene.scene.destroy?.(); // call scene.destroy() if it exists
           phaserScene?.scene.start(sceneName);
           onClose();
         }}
@@ -31,12 +47,6 @@ const SceneSelectorModal = ({ phaserScene, onClose }) => (
       </button>
     ))}
   </Modal>
-);
-
-const SceneSelectorToggleButton = ({ onClick }) => (
-  <MenuButton onClick={onClick}>
-    <FaImages size={32} />
-  </MenuButton>
 );
 
 export { SceneSelectorToggleButton, SceneSelectorModal };

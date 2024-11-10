@@ -54,6 +54,10 @@ export class TiledMapTest2 extends Scene {
     }
   }
 
+  destroy() {
+    this.input.keyboard?.removeAllKeys();
+  }
+
   changeScene() {
     this.scene.start('GameOver');
   }
