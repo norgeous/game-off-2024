@@ -14,6 +14,19 @@ const levelConfig: LevelConfigType = {
 
 type keysType = { [keyCodes: string]: Phaser.Input.Keyboard.Key };
 
+const keysToVector = (keys: keysType, power:number) => {
+  const vector = { x: 0, y:0 };
+
+  if (keys?.A.isDown) vector.x += -power;
+  if (keys?.D.isDown) vector.x += power;
+  if (keys?.W.isDown) vector.y += -power;
+  if (keys?.S.isDown) vector.y += power;
+
+  const forceVector = new Phaser.Math.Vector2(vector);
+
+  return forceVector;
+};
+
 export class TiledMapTest2 extends Scene {
   public map: TiledMapBuilder | undefined;
   private player: Phaser.Physics.Matter.Sprite;
@@ -34,6 +47,7 @@ export class TiledMapTest2 extends Scene {
     this.player = this.matter.add.sprite(500, 500, 'star');
     this.door = this.matter.add.sprite(500, 100, 'star');
     this.cameras.main.startFollow(this.player);
+
     this.keys = this.input.keyboard?.addKeys('W,A,S,D') as keysType;
 
     this.matter.world.on('collisionstart', () => {
@@ -46,21 +60,10 @@ export class TiledMapTest2 extends Scene {
   update() {
     // this.player.setVelocity(0);
 
-    if (this.keys?.A.isDown) {
-      this.player.setVelocityX(-3);
-    } else if (this.keys?.D.isDown) {
-      this.player.setVelocityX(3);
+    if (this.keys) {
+      const forceVector = keysToVector(this.keys, 0.005);
+      this.player.applyForce(forceVector);
     }
-
-    if (this.keys?.W.isDown) {
-      this.player.setVelocityY(-3);
-    } else if (this.keys?.S.isDown) {
-      this.player.setVelocityY(3);
-    }
-  }
-
-  destroy() {
-    this.input.keyboard?.removeAllKeys();
   }
 
   changeScene() {
