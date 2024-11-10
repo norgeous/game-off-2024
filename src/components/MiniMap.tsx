@@ -26,8 +26,7 @@ export const MiniMapToggleButton = ({ onClick }) => (
 );
 
 const Room = styled.div`
-  border: 1px solid #606;
-  margin: 2px;
+  margin: 1px;
   width: 80px;
   height: 80px;
   position: relative;
@@ -35,10 +34,11 @@ const Room = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: ${({ isCurrent }) => (isCurrent ? '#044' : 'transparent')};
+  background: ${({ roomType }) => (roomType === '.' ? '#111' : '#440')};
   ${({ isCurrent }) =>
     isCurrent &&
     css`
+      background: #044;
       animation-name: ${breatheAnimation};
       animation-duration: 0.5s;
       animation-iteration-count: infinite;
@@ -114,7 +114,7 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
               const isCurrent =
                 cell.x === currentRoom.x && cell.y === currentRoom.y;
               return (
-                <Room isCurrent={isCurrent}>
+                <Room isCurrent={isCurrent} roomType={cell.roomType}>
                   <div style={{ fontSize: 30 }}>{cell.roomType}</div>
                   <div
                     style={{
@@ -124,9 +124,9 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
                       left: 0,
                     }}
                   >
-                    ({cell.x}, {cell.y})
+                    ({cell.x}, {cell.y}) {cell.roomType}
                   </div>
-                  {cell.adjacentRooms.north && (
+                  {/* {cell.adjacentRooms.north && (
                     <MenuButton
                       style={{ position: 'absolute', fontSize: 16, top: 0 }}
                       onClick={() => go('north')}
@@ -161,7 +161,7 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
                     >
                       <FaDungeon />
                     </MenuButton>
-                  )}
+                  )} */}
                 </Room>
               );
             })}
