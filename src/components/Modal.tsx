@@ -33,7 +33,12 @@ const Button = styled.button`
   right: 0;
 `;
 
-const Modal = ({ children, onClose }) => {
+interface IModal {
+  children: React.ReactNode;
+  onClose: () => void;
+}
+
+const Modal = ({ children, onClose }: IModal) => {
   return (
     <ModalBackdrop onClick={onClose}>
       <ModalContent onClick={(event) => event.stopPropagation()}>
