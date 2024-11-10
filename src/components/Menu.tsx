@@ -17,7 +17,11 @@ const myDungeon = `
 0.zyx89ab
 `;
 
-const Menu = ({ phaserScene }) => {
+interface IMenu {
+  phaserScene: Phaser.Scene;
+}
+
+const Menu = ({ phaserScene }: IMenu) => {
   const [isSettingsOpen, setSettingsIsOpen] = useState(false);
   const [isSceneSelectorOpen, setIsSceneSelectorOpen] = useState(false);
   const [isMiniMapOpen, setIsMiniMapOpen] = useState(false);

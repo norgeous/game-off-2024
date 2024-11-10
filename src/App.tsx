@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div id="app">
-      <Menu phaserScene={phaserScene} />
+      {phaserScene && <Menu phaserScene={phaserScene} />}
       <PhaserGame ref={phaserRef} onChangeScene={onChangeScene} />
     </div>
   );
