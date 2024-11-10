@@ -116,25 +116,24 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
       <div style={{ display: 'grid' }}>
         {rows.map((row) => (
           <div style={{ display: 'flex' }}>
-            {row.map((cell) => {
-              const isCurrent =
-                cell.x === currentRoom.x && cell.y === currentRoom.y;
-              return (
-                <Room isCurrent={isCurrent} roomType={cell.roomType}>
-                  <div style={{ fontSize: 30 }}>{cell.roomType}</div>
-                  <div
-                    style={{
-                      position: 'absolute',
-                      fontSize: 12,
-                      top: 0,
-                      left: 0,
-                    }}
-                  >
-                    ({cell.x}, {cell.y})
-                  </div>
-                </Room>
-              );
-            })}
+            {row.map((cell) => (
+              <Room
+                isCurrent={cell.x === currentRoom.x && cell.y === currentRoom.y}
+                roomType={cell.roomType}
+              >
+                <div style={{ fontSize: 30 }}>{cell.roomType}</div>
+                <div
+                  style={{
+                    position: 'absolute',
+                    fontSize: 12,
+                    top: 0,
+                    left: 0,
+                  }}
+                >
+                  ({cell.x}, {cell.y})
+                </div>
+              </Room>
+            ))}
           </div>
         ))}
       </div>
