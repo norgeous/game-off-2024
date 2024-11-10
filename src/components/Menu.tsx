@@ -14,7 +14,11 @@ import { SceneSelectorModal, SceneSelectorToggleButton } from './SceneSelector';
 import isDev from '../helpers/isDev';
 import Direction from '../enums/Direction';
 
-const Menu = ({ phaserScene }) => {
+interface IMenu {
+  phaserScene: Phaser.Scene;
+}
+
+const Menu = ({ phaserScene }: IMenu) => {
   const [isSettingsOpen, setSettingsIsOpen] = useState(false);
   const [isSceneSelectorOpen, setIsSceneSelectorOpen] = useState(false);
 
