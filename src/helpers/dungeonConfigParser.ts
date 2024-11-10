@@ -6,11 +6,21 @@ export type DataForSceneType = {
   playerEnterFrom: Direction;
 };
 
-type RoomConfig1D = {
+export type RoomConfig1D = {
   x: number;
   y: number;
   roomType: string;
 };
+
+const myDungeon1 = `
+678.nmlkj
+5.9.o...i
+4.1....gh
+3.2345.f.
+2....6.ed
+1s...7..c
+0.zyx89ab
+`;
 
 // Find the object in array by x and y keys
 // always returns a value, even when not found
@@ -47,7 +57,7 @@ const dungeonConfigTo1D = (dungeonConfig: string) =>
     .flat();
 
 // main function to convert dungeonStr to array of RoomConfig
-const dungeonConfigParser = (dungeonStr: string) => {
+const dungeonConfigParser = (dungeonStr: string = myDungeon1) => {
   const dungeon1D = dungeonConfigTo1D(dungeonStr);
   return dungeon1D;
 };

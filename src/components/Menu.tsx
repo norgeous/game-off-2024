@@ -7,16 +7,6 @@ import { SceneSelectorModal, SceneSelectorToggleButton } from './SceneSelector';
 import isDev from '../helpers/isDev';
 import MiniMap, { MiniMapToggleButton } from './MiniMap';
 
-const myDungeon = `
-678.nmlkj
-5.9.o...i
-4.1....gh
-3.2345.f.
-2....6.ed
-1s...7..c
-0.zyx89ab
-`;
-
 interface IMenu {
   phaserScene: Phaser.Scene;
 }
@@ -57,7 +47,6 @@ const Menu = ({ phaserScene }: IMenu) => {
       {isMiniMapOpen && (
         <MiniMap
           phaserScene={phaserScene}
-          dungeonStr={myDungeon}
           onClose={() => setIsMiniMapOpen(false)}
         />
       )}

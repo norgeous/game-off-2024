@@ -56,11 +56,10 @@ const Room = styled.div<IRoom>`
 
 interface IMiniMap {
   phaserScene: Phaser.Scene;
-  dungeonStr: string;
   onClose: () => void;
 }
 
-const MiniMap = ({ phaserScene, dungeonStr, onClose }: IMiniMap) => {
+const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
   // const [currentRoom, setCurrentRoom] = useState({
   //   x: 0,
   //   y: 6,

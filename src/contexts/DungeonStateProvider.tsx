@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react';
 import DungeonStateContext from './DungeonStateContext';
-// import createDungeonState from '../helpers/dungeonState';
+import dungeonConfigParser, {
+  RoomConfig1D,
+} from '../helpers/dungeonConfigParser';
 import { EventBus } from '../game/EventBus';
 
 const useDungeonState = () => {
-  const [reactDungeonState, setReactDungeonState] = useState();
+  const [dungeonState, setDungeonState] = useState<RoomConfig1D[]>([]);
 
+  // on mount, generate the dungeonState
   useEffect(() => {
-    // const dungeonState = createDungeonState(setReactDungeonState); // create singleton
+    setDungeonState(dungeonConfigParser());
+  }, []);
 
+  //
+  useEffect(() => {
     EventBus.on('current-scene-ready', (scene: Phaser.Scene) => {
       console.log('current-scene-ready', scene);
     });
@@ -17,12 +23,7 @@ const useDungeonState = () => {
     };
   }, []);
 
-  return {
-    'i am context': 'hello',
-    reactDungeonState,
-    setReactDungeonState,
-    // dungeonState,
-  };
+  return dungeonState;
 };
 
 interface IDungeonStateProvider {
