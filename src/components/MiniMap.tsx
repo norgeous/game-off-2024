@@ -26,9 +26,10 @@ export const MiniMapToggleButton = ({ onClick }) => (
 );
 
 const Room = styled.div`
-  border: 1px solid aqua;
-  width: 100px;
-  height: 100px;
+  border: 1px solid #606;
+  margin: 2px;
+  width: 80px;
+  height: 80px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -170,7 +171,7 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
       <div
         style={{
           position: 'relative',
-          width: 150,
+          width: 300,
           height: 150,
           display: 'flex',
           justifyContent: 'center',
@@ -204,9 +205,9 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
         </MenuButton>
         ({currentRoom.x}, {currentRoom.y})
         <br />
-        type: {currentRoom.roomType}
+        roomType: "{currentRoom.roomType}"
         <br />
-        from: {currentRoom.playerEnterFrom}
+        playerEnterFrom: "{currentRoom.playerEnterFrom}"
       </div>
     </Modal>
   );
