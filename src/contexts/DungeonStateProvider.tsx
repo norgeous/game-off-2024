@@ -9,14 +9,14 @@ import { EventBus } from '../game/EventBus';
 
 const defaultCurrent = {
   x: 0,
-  y: 0,
+  y: 6,
   roomType: '0',
   playerEnterFrom: 'start',
   adjacentRooms: {
-    north: undefined,
-    south: '5',
-    west: undefined,
-    east: '7',
+    north: '1',
+    south: '?',
+    west: '?',
+    east: '.',
   },
 };
 
