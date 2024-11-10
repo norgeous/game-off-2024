@@ -60,83 +60,9 @@ interface IMiniMap {
 }
 
 const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
-  // const [currentRoom, setCurrentRoom] = useState({
-  //   x: 0,
-  //   y: 6,
-  //   roomType: '0',
-  //   playerEnterFrom: 'unknown',
-  //   adjacentRooms: {
-  //     north: '1',
-  //     south: undefined,
-  //     west: undefined,
-  //     east: undefined,
-  //   },
-  // });
-  // const dungeonConfig = dungeonConfigParser(dungeonStr);
-  // const rows = to2D(dungeonConfig);
-
-  // const go = (direction: string) => {
-  //   const nextRoom = {
-  //     north: {
-  //       x: currentRoom.x,
-  //       y: currentRoom.y - 1,
-  //       playerEnterFrom: 'south',
-  //     },
-  //     south: {
-  //       x: currentRoom.x,
-  //       y: currentRoom.y + 1,
-  //       playerEnterFrom: 'north',
-  //     },
-  //     east: {
-  //       x: currentRoom.x + 1,
-  //       y: currentRoom.y,
-  //       playerEnterFrom: 'west',
-  //     },
-  //     west: {
-  //       x: currentRoom.x - 1,
-  //       y: currentRoom.y,
-  //       playerEnterFrom: 'east',
-  //     },
-  //   }[direction];
-
-  //   if (!nextRoom) return;
-
-  //   const nextRoomConfig = findRoomConfigByCoordinate(
-  //     dungeonConfig,
-  //     nextRoom.x,
-  //     nextRoom.y,
-  //   );
-
-  //   if (!nextRoomConfig) return;
-
-  //   const next = {
-  //     ...nextRoom,
-  //     roomType: nextRoomConfig?.roomType || '?',
-  //     adjacentRooms: nextRoomConfig.adjacentRooms,
-  //   };
-
-  //   if (next) {
-  //     setCurrentRoom(next);
-  //     const dataForScene = {
-  //       roomType: next.roomType,
-  //       adjacentRooms: next.adjacentRooms,
-  //       playerEnterFrom: nextRoom.playerEnterFrom,
-  //     };
-  //     phaserScene?.scene.start('Rooms', dataForScene);
-  //   }
-  // };
-  const {dungeon1D, current} = useContext(DungeonStateContext);
+  const { dungeon1D, current, go } = useContext(DungeonStateContext);
 
   const rows = to2D(dungeon1D);
-
-  const go = () =>{};
-
-  // const test = {dungeon1D,current,rows}
-
-  // console.log({ test });
-
-  // return <Modal onClose={onClose}><pre>{JSON.stringify(test,null,2)}</pre></Modal>;
-
   return (
     <Modal onClose={onClose}>
       <div style={{ display: 'grid' }}>
@@ -146,9 +72,7 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
               <Room
                 key={x}
                 $roomType={cell.roomType}
-                $isCurrent={
-                  cell.x === current.x && cell.y === current.y
-                }
+                $isCurrent={cell.x === current.x && cell.y === current.y}
               >
                 <div style={{ fontSize: 30 }}>{cell.roomType}</div>
                 <div
@@ -177,34 +101,34 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
           margin: '0 auto',
         }}
       >
-        {current.adjacentRooms.north && (
+        {!['?','.'].includes(current.adjacentRooms.north) && (
           <MenuButton
             style={{ position: 'absolute', top: 0 }}
-            onClick={() => go('north')}
+            onClick={() => go(phaserScene, 'north')}
           >
             <FaArrowUp size={32} />
           </MenuButton>
         )}
-        {current.adjacentRooms.south && (
+        {!['?','.'].includes(current.adjacentRooms.south) && (
           <MenuButton
             style={{ position: 'absolute', bottom: 0 }}
-            onClick={() => go('south')}
+            onClick={() => go(phaserScene, 'south')}
           >
             <FaArrowDown size={32} />
           </MenuButton>
         )}
-        {current.adjacentRooms.west && (
+        {!['?','.'].includes(current.adjacentRooms.west) && (
           <MenuButton
             style={{ position: 'absolute', left: 0 }}
-            onClick={() => go('west')}
+            onClick={() => go(phaserScene, 'west')}
           >
             <FaArrowLeft size={32} />
           </MenuButton>
         )}
-        {current.adjacentRooms.east && (
+        {!['?','.'].includes(current.adjacentRooms.east) && (
           <MenuButton
             style={{ position: 'absolute', right: 0 }}
-            onClick={() => go('east')}
+            onClick={() => go(phaserScene, 'east')}
           >
             <FaArrowRight size={32} />
           </MenuButton>
