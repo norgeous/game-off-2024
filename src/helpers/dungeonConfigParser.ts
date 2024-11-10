@@ -1,4 +1,4 @@
-type Direction = 'north' | 'south' | 'east' | 'west';
+export type Direction = 'north' | 'south' | 'east' | 'west';
 
 export type DataForSceneType = {
   roomType: string;

@@ -1,29 +1,51 @@
 import { useEffect, useState } from 'react';
 import DungeonStateContext from './DungeonStateContext';
 import dungeonConfigParser, {
+  Direction,
+  getNextRoom,
   RoomConfig1D,
 } from '../helpers/dungeonConfigParser';
 import { EventBus } from '../game/EventBus';
 
-const useDungeonState = () => {
-  const [dungeonState, setDungeonState] = useState<RoomConfig1D[]>([]);
+const defaultCurrent = {
+  x: 0,
+  y: 0,
+  roomType: '0',
+  playerEnterFrom: 'start',
+  adjacentRooms: {
+    north: undefined,
+    south: '5',
+    west: undefined,
+    east: '7',
+  },
+};
 
-  // on mount, generate the dungeonState
+const useDungeonState = () => {
+  const [dungeon1D, setDungeon1D] = useState<RoomConfig1D[]>([]);
+  const [current, setCurrent] = useState(defaultCurrent);
+
+  // on mount, generate the dungeon1D and save to react state
   useEffect(() => {
-    setDungeonState(dungeonConfigParser());
+    setDungeon1D(dungeonConfigParser());
   }, []);
 
-  //
+  // when a door is touched, update current
   useEffect(() => {
-    EventBus.on('current-scene-ready', (scene: Phaser.Scene) => {
-      console.log('current-scene-ready', scene);
+    EventBus.on('use-door', (scene: Phaser.Scene, direction: Direction) => {
+      scene.scene.destroy?.();
+      const nextRoom = getNextRoom(dungeon1D, current.x, current.y, direction);
+      setCurrent(nextRoom);
+      console.log('use-door', scene, nextRoom);
     });
     return () => {
-      EventBus.removeListener('current-scene-ready');
+      EventBus.removeListener('use-door');
     };
   }, []);
 
-  return dungeonState;
+  return {
+    dungeon1D,
+    current,
+  };
 };
 
 interface IDungeonStateProvider {

@@ -125,11 +125,17 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
   //     phaserScene?.scene.start('Rooms', dataForScene);
   //   }
   // };
-  const test = useContext(DungeonStateContext);
+  const {dungeon1D, current} = useContext(DungeonStateContext);
 
-  console.log({ test });
+  const rows = to2D(dungeon1D);
 
-  return null;
+  const go = () =>{};
+
+  // const test = {dungeon1D,current,rows}
+
+  // console.log({ test });
+
+  // return <Modal onClose={onClose}><pre>{JSON.stringify(test,null,2)}</pre></Modal>;
 
   return (
     <Modal onClose={onClose}>
@@ -141,7 +147,7 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
                 key={x}
                 $roomType={cell.roomType}
                 $isCurrent={
-                  cell.x === currentRoom.x && cell.y === currentRoom.y
+                  cell.x === current.x && cell.y === current.y
                 }
               >
                 <div style={{ fontSize: 30 }}>{cell.roomType}</div>
@@ -171,7 +177,7 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
           margin: '0 auto',
         }}
       >
-        {currentRoom.adjacentRooms.north && (
+        {current.adjacentRooms.north && (
           <MenuButton
             style={{ position: 'absolute', top: 0 }}
             onClick={() => go('north')}
@@ -179,7 +185,7 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
             <FaArrowUp size={32} />
           </MenuButton>
         )}
-        {currentRoom.adjacentRooms.south && (
+        {current.adjacentRooms.south && (
           <MenuButton
             style={{ position: 'absolute', bottom: 0 }}
             onClick={() => go('south')}
@@ -187,7 +193,7 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
             <FaArrowDown size={32} />
           </MenuButton>
         )}
-        {currentRoom.adjacentRooms.west && (
+        {current.adjacentRooms.west && (
           <MenuButton
             style={{ position: 'absolute', left: 0 }}
             onClick={() => go('west')}
@@ -195,7 +201,7 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
             <FaArrowLeft size={32} />
           </MenuButton>
         )}
-        {currentRoom.adjacentRooms.east && (
+        {current.adjacentRooms.east && (
           <MenuButton
             style={{ position: 'absolute', right: 0 }}
             onClick={() => go('east')}
@@ -205,7 +211,7 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
         )}
       </div>
       <pre style={{ textAlign: 'left' }}>
-        {JSON.stringify(currentRoom, null, 2)}
+        {JSON.stringify(current, null, 2)}
       </pre>
     </Modal>
   );
