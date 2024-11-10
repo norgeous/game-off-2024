@@ -14,7 +14,7 @@ const myDungeon = `
 3.2345.f.
 2....6.ed
 1s...7..c
-0....89ab
+0.zyx89ab
 `;
 
 const Menu = ({ phaserScene }) => {
