@@ -15,7 +15,7 @@ import dungeonConfigParser, {
 } from '../helpers/dungeonConfigParser';
 
 const breatheAnimation = keyframes`
- 100% { opacity: 0.6; }
+  100% { opacity: 0.6; }
 `;
 
 interface IMiniMapToggleButton {
