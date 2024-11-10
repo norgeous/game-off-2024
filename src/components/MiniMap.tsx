@@ -51,7 +51,7 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
     roomType: '0',
     playerEnterFrom: 'unknown',
     adjacentRooms: {
-      north: {},
+      north: '1',
       south: undefined,
       west: undefined,
       east: undefined,
@@ -130,7 +130,7 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
                       left: 0,
                     }}
                   >
-                    ({cell.x}, {cell.y}) {cell.roomType}
+                    ({cell.x}, {cell.y})
                   </div>
                 </Room>
               );
