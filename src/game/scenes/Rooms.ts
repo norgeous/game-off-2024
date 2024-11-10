@@ -33,6 +33,7 @@ export class Rooms extends Scene {
   }
 
   init(dataForScene: DataForSceneType) {
+    console.log('rooms scene got', dataForScene);
     setCurrentRoomId(dataForScene.roomType);
   }
 
