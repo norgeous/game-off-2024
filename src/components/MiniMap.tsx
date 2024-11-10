@@ -18,13 +18,22 @@ const breatheAnimation = keyframes`
  100% { opacity: 0.6; }
 `;
 
-export const MiniMapToggleButton = ({ onClick }) => (
+interface IMiniMapToggleButton {
+  onClick: () => void;
+}
+
+export const MiniMapToggleButton = ({ onClick }: IMiniMapToggleButton) => (
   <MenuButton onClick={onClick}>
     <FaMapLocationDot size={32} />
   </MenuButton>
 );
 
-const Room = styled.div`
+interface IRoom {
+  $roomType: string;
+  $isCurrent: boolean;
+}
+
+const Room = styled.div<IRoom>`
   margin: 1px;
   width: 80px;
   height: 80px;
@@ -33,9 +42,9 @@ const Room = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: ${({ roomType }) => (roomType === '.' ? '#111' : '#440')};
-  ${({ isCurrent }) =>
-    isCurrent &&
+  background: ${({ $roomType }) => ($roomType === '.' ? '#111' : '#440')};
+  ${({ $isCurrent }) =>
+    $isCurrent &&
     css`
       background: #044;
       animation-name: ${breatheAnimation};
@@ -44,7 +53,13 @@ const Room = styled.div`
     `}
 `;
 
-const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
+interface IMiniMap {
+  phaserScene: Phaser.Scene;
+  dungeonStr: string;
+  onClose: () => void;
+}
+
+const MiniMap = ({ phaserScene, dungeonStr, onClose }: IMiniMap) => {
   const [currentRoom, setCurrentRoom] = useState({
     x: 0,
     y: 6,
@@ -114,12 +129,15 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
   return (
     <Modal onClose={onClose}>
       <div style={{ display: 'grid' }}>
-        {rows.map((row) => (
-          <div style={{ display: 'flex' }}>
-            {row.map((cell) => (
+        {rows.map((row, y) => (
+          <div key={y} style={{ display: 'flex' }}>
+            {row.map((cell, x) => (
               <Room
-                isCurrent={cell.x === currentRoom.x && cell.y === currentRoom.y}
-                roomType={cell.roomType}
+                key={x}
+                $roomType={cell.roomType}
+                $isCurrent={
+                  cell.x === currentRoom.x && cell.y === currentRoom.y
+                }
               >
                 <div style={{ fontSize: 30 }}>{cell.roomType}</div>
                 <div
