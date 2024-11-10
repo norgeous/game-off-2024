@@ -29,14 +29,16 @@ const useDungeonState = () => {
     setDungeon1D(dungeonConfigParser());
   }, []);
 
+  const go = (scene: Phaser.Scene, direction: Direction) => {
+    // scene.scene.destroy?.();
+    const nextRoom = getNextRoom(dungeon1D, current.x, current.y, direction);
+    setCurrent(nextRoom);
+    scene?.scene.start('Rooms', nextRoom);
+  };
+
   // when a door is touched, update current
   useEffect(() => {
-    EventBus.on('use-door', (scene: Phaser.Scene, direction: Direction) => {
-      scene.scene.destroy?.();
-      const nextRoom = getNextRoom(dungeon1D, current.x, current.y, direction);
-      setCurrent(nextRoom);
-      console.log('use-door', scene, nextRoom);
-    });
+    EventBus.on('use-door', go);
     return () => {
       EventBus.removeListener('use-door');
     };
@@ -45,6 +47,7 @@ const useDungeonState = () => {
   return {
     dungeon1D,
     current,
+    go,
   };
 };
 
