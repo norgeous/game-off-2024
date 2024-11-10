@@ -135,7 +135,7 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
         )}
       </div>
       <pre style={{ textAlign: 'left' }}>
-        {JSON.stringify(current, null, 2)}
+        current: {JSON.stringify(current, null, 2)}
       </pre>
     </Modal>
   );
