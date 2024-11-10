@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import {
   FaMapLocationDot,
-  FaDungeon,
   FaArrowUp,
   FaArrowDown,
   FaArrowLeft,
@@ -51,6 +50,12 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
     y: 6,
     roomType: '0',
     playerEnterFrom: 'unknown',
+    adjacentRooms: {
+      north: {},
+      south: undefined,
+      west: undefined,
+      east: undefined,
+    },
   });
   const dungeonConfig = dungeonConfigParser(dungeonStr);
   const rows = to2D(dungeonConfig);
@@ -92,13 +97,14 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
     const next = {
       ...nextRoom,
       roomType: nextRoomConfig?.roomType || '?',
+      adjacentRooms: nextRoomConfig.adjacentRooms,
     };
 
     if (next) {
       setCurrentRoom(next);
       const dataForScene = {
         roomType: next.roomType,
-        adjacentRooms: nextRoomConfig.adjacentRooms,
+        adjacentRooms: next.adjacentRooms,
         playerEnterFrom: nextRoom.playerEnterFrom,
       };
       phaserScene?.scene.start('Rooms', dataForScene);
@@ -126,42 +132,6 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
                   >
                     ({cell.x}, {cell.y}) {cell.roomType}
                   </div>
-                  {/* {cell.adjacentRooms.north && (
-                    <MenuButton
-                      style={{ position: 'absolute', fontSize: 16, top: 0 }}
-                      onClick={() => go('north')}
-                      disabled={!isCurrent}
-                    >
-                      <FaDungeon />
-                    </MenuButton>
-                  )}
-                  {cell.adjacentRooms.south && (
-                    <MenuButton
-                      style={{ position: 'absolute', fontSize: 16, bottom: 0 }}
-                      onClick={() => go('south')}
-                      disabled={!isCurrent}
-                    >
-                      <FaDungeon />
-                    </MenuButton>
-                  )}
-                  {cell.adjacentRooms.east && (
-                    <MenuButton
-                      style={{ position: 'absolute', fontSize: 16, right: 0 }}
-                      onClick={() => go('east')}
-                      disabled={!isCurrent}
-                    >
-                      <FaDungeon />
-                    </MenuButton>
-                  )}
-                  {cell.adjacentRooms.west && (
-                    <MenuButton
-                      style={{ position: 'absolute', fontSize: 16, left: 0 }}
-                      onClick={() => go('west')}
-                      disabled={!isCurrent}
-                    >
-                      <FaDungeon />
-                    </MenuButton>
-                  )} */}
                 </Room>
               );
             })}
@@ -171,44 +141,50 @@ const MiniMap = ({ phaserScene, dungeonStr, onClose }) => {
       <div
         style={{
           position: 'relative',
-          width: 300,
-          height: 150,
+          width: 80,
+          height: 80,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           margin: '0 auto',
         }}
       >
-        <MenuButton
-          style={{ position: 'absolute', top: 0 }}
-          onClick={() => go('north')}
-        >
-          <FaArrowUp size={32} />
-        </MenuButton>
-        <MenuButton
-          style={{ position: 'absolute', bottom: 0 }}
-          onClick={() => go('south')}
-        >
-          <FaArrowDown size={32} />
-        </MenuButton>
-        <MenuButton
-          style={{ position: 'absolute', left: 0 }}
-          onClick={() => go('west')}
-        >
-          <FaArrowLeft size={32} />
-        </MenuButton>
-        <MenuButton
-          style={{ position: 'absolute', right: 0 }}
-          onClick={() => go('east')}
-        >
-          <FaArrowRight size={32} />
-        </MenuButton>
-        ({currentRoom.x}, {currentRoom.y})
-        <br />
-        roomType: "{currentRoom.roomType}"
-        <br />
-        playerEnterFrom: "{currentRoom.playerEnterFrom}"
+        {currentRoom.adjacentRooms.north && (
+          <MenuButton
+            style={{ position: 'absolute', top: 0 }}
+            onClick={() => go('north')}
+          >
+            <FaArrowUp size={32} />
+          </MenuButton>
+        )}
+        {currentRoom.adjacentRooms.south && (
+          <MenuButton
+            style={{ position: 'absolute', bottom: 0 }}
+            onClick={() => go('south')}
+          >
+            <FaArrowDown size={32} />
+          </MenuButton>
+        )}
+        {currentRoom.adjacentRooms.west && (
+          <MenuButton
+            style={{ position: 'absolute', left: 0 }}
+            onClick={() => go('west')}
+          >
+            <FaArrowLeft size={32} />
+          </MenuButton>
+        )}
+        {currentRoom.adjacentRooms.east && (
+          <MenuButton
+            style={{ position: 'absolute', right: 0 }}
+            onClick={() => go('east')}
+          >
+            <FaArrowRight size={32} />
+          </MenuButton>
+        )}
       </div>
+      <pre style={{ textAlign: 'left' }}>
+        {JSON.stringify(currentRoom, null, 2)}
+      </pre>
     </Modal>
   );
 };
