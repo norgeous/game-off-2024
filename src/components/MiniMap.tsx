@@ -29,6 +29,7 @@ export const MiniMapToggleButton = ({ onClick }: IMiniMapToggleButton) => (
 interface IRoom {
   $roomType: string;
   $isCurrent: boolean;
+  $isVisited: boolean;
 }
 
 const Room = styled.div<IRoom>`
@@ -40,7 +41,10 @@ const Room = styled.div<IRoom>`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: ${({ $roomType }) => ($roomType === '.' ? '#111' : '#440')};
+  background: ${({ $roomType, $isVisited }) => {
+    if ($isVisited) return '#660';
+    return $roomType === '.' ? '#050505' : '#220';
+  }};
   ${({ $isCurrent }) =>
     $isCurrent &&
     css`
@@ -76,6 +80,9 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
                 key={x}
                 $roomType={cell.roomType}
                 $isCurrent={cell.x === current.x && cell.y === current.y}
+                $isVisited={roomHistory.some(
+                  ({ x, y }) => cell.x === x && cell.y === y,
+                )}
               >
                 <div style={{ fontSize: 20 }}>{cell.roomType}</div>
                 <div
@@ -88,9 +95,6 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
                 >
                   ({cell.x}, {cell.y})
                 </div>
-                {roomHistory.some(({ x, y }) => cell.x === x && cell.y === y)
-                  ? 'yes'
-                  : 'no'}
               </Room>
             ))}
           </div>
