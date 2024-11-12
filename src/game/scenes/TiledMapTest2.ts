@@ -3,13 +3,22 @@ import { Scene } from 'phaser';
 import TiledMapBuilder, {
   LevelConfigType,
 } from '../../objects/map/TiledMapBuilder';
+import { getRandomEnemy } from '../../helpers/getRandomEnemy';
 
 const levelConfig: LevelConfigType = {
   key: 'Room',
   tilesetPng: './tiled/tileset/binding_of_isaac_tiles.jpg',
   tiledMapJson: './tiled/maps/room-0.json',
   layerConfig: [{ tiledLayerName: 'tiledLayer', depth: 0 }],
-  spawnerConfig: [],
+  spawnerConfig: [
+    {
+      tiledObjectName: 'enemy',
+      classFactory: getRandomEnemy(),
+      maxSize: 10,
+      runChildUpdate: true,
+      autoSpawn: true,
+    }
+  ],
 };
 
 type keysType = { [keyCodes: string]: Phaser.Input.Keyboard.Key };
@@ -35,12 +44,11 @@ export class TiledMapTest2 extends Scene {
   constructor() {
     super('TiledMapTest2');
   }
-
+  
   preload() {
     TiledMapBuilder.preload(this, levelConfig);
-    this.load.image('star', 'assets/star.png');
   }
-
+  
   create() {
     this.map = new TiledMapBuilder(this, levelConfig);
     this.player = this.matter.add.sprite(500, 500, 'star');
