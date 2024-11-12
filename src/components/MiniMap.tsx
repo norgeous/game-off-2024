@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import {
   FaMapLocationDot,
   FaArrowUp,
@@ -9,10 +9,7 @@ import {
 import styled, { css, keyframes } from 'styled-components';
 import MenuButton from './MenuButton';
 import Modal from './Modal';
-import dungeonConfigParser, {
-  findRoomConfigByCoordinate,
-  to2D,
-} from '../helpers/dungeonConfigParser';
+import { to2D } from '../helpers/dungeonConfigParser';
 import DungeonStateContext from '../contexts/DungeonStateContext';
 
 const breatheAnimation = keyframes`
