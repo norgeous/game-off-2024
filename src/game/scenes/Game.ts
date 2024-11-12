@@ -1,5 +1,5 @@
 import { Scene } from 'phaser';
-import { EventBus } from '../EventBus';
+import { EventBus, EventNames } from '../EventBus';
 
 export class Game extends Scene {
   camera: Phaser.Cameras.Scene2D.Camera;
@@ -36,7 +36,7 @@ export class Game extends Scene {
       .setOrigin(0.5)
       .setDepth(100);
 
-    EventBus.emit('current-scene-ready', this);
+    EventBus.emit(EventNames.READY, this);
   }
 
   changeScene() {

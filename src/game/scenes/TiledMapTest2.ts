@@ -1,9 +1,11 @@
-import { EventBus } from '../EventBus';
+import { EventBus, EventNames } from '../EventBus';
 import { Scene } from 'phaser';
+import { SceneInitParamsType } from '../../helpers/dungeonConfigParser';
 import TiledMapBuilder, {
   LevelConfigType,
 } from '../../objects/map/TiledMapBuilder';
 import { getRandomEnemy } from '../../helpers/getRandomEnemy';
+import { createControls, keysToVector, keysType } from '../../helpers/controls';
 
 const levelConfig: LevelConfigType = {
   key: 'Room',
@@ -21,22 +23,8 @@ const levelConfig: LevelConfigType = {
   ],
 };
 
-type keysType = { [keyCodes: string]: Phaser.Input.Keyboard.Key };
-
-const keysToVector = (keys: keysType, power: number) => {
-  const vector = { x: 0, y: 0 };
-
-  if (keys?.A.isDown) vector.x += -power;
-  if (keys?.D.isDown) vector.x += power;
-  if (keys?.W.isDown) vector.y += -power;
-  if (keys?.S.isDown) vector.y += power;
-
-  const forceVector = new Phaser.Math.Vector2(vector);
-
-  return forceVector;
-};
-
 export class TiledMapTest2 extends Scene {
+  private sceneInitParams: SceneInitParamsType;
   public map: TiledMapBuilder | undefined;
   private player: Phaser.Physics.Matter.Sprite;
   private keys: keysType | undefined;
@@ -48,24 +36,52 @@ export class TiledMapTest2 extends Scene {
   preload() {
     TiledMapBuilder.preload(this, levelConfig);
   }
-  
+
+  init(sceneInitParams: SceneInitParamsType) {
+    this.sceneInitParams = sceneInitParams;
+  }
+
   create() {
+    console.log('TiledMapTest2 scene got', this.sceneInitParams);
+
     this.map = new TiledMapBuilder(this, levelConfig);
     this.player = this.matter.add.sprite(500, 500, 'star');
-    this.door = this.matter.add.sprite(500, 100, 'star');
     this.cameras.main.startFollow(this.player);
-    this.keys = this.input.keyboard?.addKeys('W,A,S,D') as keysType;
 
-    this.matter.world.on('collisionstart', () => {
-      EventBus.emit('use-door', this, 'north');
-    });
+    if (!['?', '.'].includes(this.sceneInitParams?.adjacentRooms?.north)) {
+      const doorNorth = this.matter.add.sprite(500, 100, 'star');
+      this.player.setOnCollideWith(doorNorth, () =>
+        EventBus.emit(EventNames.USE_DOOR, this, 'north'),
+      );
+    }
 
-    EventBus.emit('current-scene-ready', this);
+    if (!['?', '.'].includes(this.sceneInitParams?.adjacentRooms?.south)) {
+      const doorSouth = this.matter.add.sprite(500, 800, 'star');
+      this.player.setOnCollideWith(doorSouth, () =>
+        EventBus.emit(EventNames.USE_DOOR, this, 'south'),
+      );
+    }
+
+    if (!['?', '.'].includes(this.sceneInitParams?.adjacentRooms?.east)) {
+      const doorEast = this.matter.add.sprite(800, 500, 'star');
+      this.player.setOnCollideWith(doorEast, () =>
+        EventBus.emit(EventNames.USE_DOOR, this, 'east'),
+      );
+    }
+
+    if (!['?', '.'].includes(this.sceneInitParams?.adjacentRooms?.west)) {
+      const doorWest = this.matter.add.sprite(100, 500, 'star');
+      this.player.setOnCollideWith(doorWest, () =>
+        EventBus.emit(EventNames.USE_DOOR, this, 'west'),
+      );
+    }
+
+    this.keys = createControls(this);
+
+    EventBus.emit(EventNames.READY, this);
   }
 
   update() {
-    // this.player.setVelocity(0);
-
     if (this.keys) {
       const forceVector = keysToVector(this.keys, 0.005);
       this.player.applyForce(forceVector);
