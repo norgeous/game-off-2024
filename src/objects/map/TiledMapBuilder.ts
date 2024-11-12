@@ -38,7 +38,7 @@ function createLevelConfig(config: LevelConfigType): LevelConfigType {
     tileHeight: config.tileHeight ?? 64,
     tileMargin: config.tileMargin ?? 0,
     tileSpacing: config.tileSpacing ?? 0,
-    spawnerConfig: [],
+    spawnerConfig: config.spawnerConfig ?? [],
   };
 }
 

@@ -12,15 +12,7 @@ const levelConfig: LevelConfigType = {
   tilesetPng: './tiled/tileset/binding_of_isaac_tiles.jpg',
   tiledMapJson: './tiled/maps/room-0.json',
   layerConfig: [{ tiledLayerName: 'tiledLayer', depth: 0 }],
-  spawnerConfig: [
-    {
-      tiledObjectName: 'enemy',
-      classFactory: getRandomEnemy(),
-      maxSize: 10,
-      runChildUpdate: true,
-      autoSpawn: true,
-    }
-  ],
+  spawnerConfig: []
 };
 
 export class TiledMapTest2 extends Scene {
@@ -34,9 +26,18 @@ export class TiledMapTest2 extends Scene {
   }
   
   preload() {
+    levelConfig.spawnerConfig = [
+      {
+        tiledObjectName: 'enemy',
+        classFactory: getRandomEnemy(),
+        maxSize: 10,
+        runChildUpdate: true,
+        autoSpawn: true,
+      }
+    ];
     TiledMapBuilder.preload(this, levelConfig);
   }
-
+  
   init(sceneInitParams: SceneInitParamsType) {
     this.sceneInitParams = sceneInitParams;
   }
@@ -47,7 +48,7 @@ export class TiledMapTest2 extends Scene {
     this.map = new TiledMapBuilder(this, levelConfig);
     this.player = this.matter.add.sprite(500, 500, 'star');
     this.cameras.main.startFollow(this.player);
-
+    
     if (!['?', '.'].includes(this.sceneInitParams?.adjacentRooms?.north)) {
       const doorNorth = this.matter.add.sprite(500, 100, 'star');
       this.player.setOnCollideWith(doorNorth, () =>
