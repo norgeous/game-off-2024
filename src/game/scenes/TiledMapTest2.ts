@@ -30,21 +30,29 @@ export class TiledMapTest2 extends Scene {
   create() {
     this.map = new TiledMapBuilder(this, levelConfig);
     this.player = this.matter.add.sprite(500, 500, 'star');
+    this.cameras.main.startFollow(this.player);
 
-    this.doors = {
+    const doors = {
       north: this.matter.add.sprite(500, 100, 'star'),
       south: this.matter.add.sprite(500, 800, 'star'),
       east: this.matter.add.sprite(100, 500, 'star'),
       west: this.matter.add.sprite(800, 500, 'star'),
     };
 
-    this.cameras.main.startFollow(this.player);
-    this.keys = createControls(this);
+    this.player.setOnCollideWith(doors.north, () =>
+      EventBus.emit('use-door', this, 'north'),
+    );
+    this.player.setOnCollideWith(doors.south, () =>
+      EventBus.emit('use-door', this, 'south'),
+    );
+    this.player.setOnCollideWith(doors.east, () =>
+      EventBus.emit('use-door', this, 'east'),
+    );
+    this.player.setOnCollideWith(doors.west, () =>
+      EventBus.emit('use-door', this, 'west'),
+    );
 
-    this.matter.world.on('collisionstart', (data) => {
-      console.log(data);
-      EventBus.emit('use-door', this, 'north');
-    });
+    this.keys = createControls(this);
 
     EventBus.emit('current-scene-ready', this);
   }
