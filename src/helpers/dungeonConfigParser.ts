@@ -36,6 +36,16 @@ const getAdjacentRooms = (dungeon1D: RoomConfig1D[], x: number, y: number) => ({
   west: getRoomType(dungeon1D, x - 1, y),
 });
 
+export const getRoomInfo = (
+  dungeon1D: RoomConfig1D[],
+  x: number,
+  y: number,
+) => {
+  const roomType = getRoomType(dungeon1D, x, y);
+  const adjacentRooms = getAdjacentRooms(dungeon1D, x, y);
+  return { roomType, adjacentRooms };
+};
+
 // Convert the multiline dungeon string into a 1 dimensional array of RoomConfig1D objects
 const dungeonConfigTo1D = (dungeonConfig: string) =>
   dungeonConfig
@@ -84,8 +94,7 @@ export const getNextRoom = (
     },
   }[direction];
 
-  const roomType = getRoomType(dungeon1D, x, y);
-  const adjacentRooms = getAdjacentRooms(dungeon1D, x, y);
+  const { roomType, adjacentRooms } = getRoomInfo(dungeon1D, x, y);
 
   return {
     x,
