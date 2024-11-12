@@ -23,7 +23,7 @@ const Room = styled.div<IRoom>`
   flex-direction: column;
   border: 1px solid #222;
   background: ${({ $roomType, $isVisited }) => {
-    if ($roomType === '.' && $isVisited) return '#222'
+    if ($roomType === '.' && $isVisited) return '#222';
     return $isVisited ? '#660' : '#050505';
   }};
   ${({ $isCurrent }) =>
