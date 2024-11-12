@@ -12,7 +12,7 @@ const levelConfig: LevelConfigType = {
   tilesetPng: './tiled/tileset/binding_of_isaac_tiles.jpg',
   tiledMapJson: './tiled/maps/room-0.json',
   layerConfig: [{ tiledLayerName: 'tiledLayer', depth: 0 }],
-  spawnerConfig: []
+  spawnerConfig: [],
 };
 
 export class TiledMapTest2 extends Scene {
@@ -24,7 +24,7 @@ export class TiledMapTest2 extends Scene {
   constructor() {
     super('TiledMapTest2');
   }
-  
+
   preload() {
     levelConfig.spawnerConfig = [
       {
@@ -33,11 +33,13 @@ export class TiledMapTest2 extends Scene {
         maxSize: 10,
         runChildUpdate: true,
         autoSpawn: true,
-      }
+      },
     ];
     TiledMapBuilder.preload(this, levelConfig);
+    this.load.image('door', 'assets/issac-door.png');
+    this.load.image('star', 'assets/star.png');
   }
-  
+
   init(sceneInitParams: SceneInitParamsType) {
     this.sceneInitParams = sceneInitParams;
   }
@@ -48,30 +50,33 @@ export class TiledMapTest2 extends Scene {
     this.map = new TiledMapBuilder(this, levelConfig);
     this.player = this.matter.add.sprite(500, 500, 'star');
     this.cameras.main.startFollow(this.player);
-    
+
     if (!['?', '.'].includes(this.sceneInitParams?.adjacentRooms?.north)) {
-      const doorNorth = this.matter.add.sprite(500, 100, 'star');
+      const doorNorth = this.matter.add.sprite(500, 100, 'door');
       this.player.setOnCollideWith(doorNorth, () =>
         EventBus.emit(EventNames.USE_DOOR, this, 'north'),
       );
     }
 
     if (!['?', '.'].includes(this.sceneInitParams?.adjacentRooms?.south)) {
-      const doorSouth = this.matter.add.sprite(500, 800, 'star');
+      const doorSouth = this.matter.add.sprite(500, 800, 'door');
+      doorSouth.setAngle(180);
       this.player.setOnCollideWith(doorSouth, () =>
         EventBus.emit(EventNames.USE_DOOR, this, 'south'),
       );
     }
 
     if (!['?', '.'].includes(this.sceneInitParams?.adjacentRooms?.east)) {
-      const doorEast = this.matter.add.sprite(800, 500, 'star');
+      const doorEast = this.matter.add.sprite(800, 500, 'door');
+      doorEast.setAngle(90);
       this.player.setOnCollideWith(doorEast, () =>
         EventBus.emit(EventNames.USE_DOOR, this, 'east'),
       );
     }
 
     if (!['?', '.'].includes(this.sceneInitParams?.adjacentRooms?.west)) {
-      const doorWest = this.matter.add.sprite(100, 500, 'star');
+      const doorWest = this.matter.add.sprite(100, 500, 'door');
+      doorWest.setAngle(270);
       this.player.setOnCollideWith(doorWest, () =>
         EventBus.emit(EventNames.USE_DOOR, this, 'west'),
       );

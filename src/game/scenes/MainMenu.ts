@@ -36,7 +36,7 @@ export class MainMenu extends Scene {
       .setOrigin(0.5)
       .setDepth(100);
 
-      EventBus.emit(EventNames.READY, this);
+    EventBus.emit(EventNames.READY, this);
   }
 
   changeScene() {
