@@ -38,7 +38,6 @@ const SceneSelectorModal = ({ phaserScene, onClose }: ISceneSelectorModal) => (
       <button
         key={sceneName}
         onClick={() => {
-          phaserScene?.scene.scene.destroy?.(); // call scene.destroy() if it exists
           phaserScene?.scene.start(sceneName);
           onClose();
         }}
