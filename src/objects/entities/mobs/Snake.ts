@@ -11,7 +11,7 @@ const entityConfig: EntityConfigType = {
   collisionMask: CM.enemy,
   spriteSheetKey: KEY,
   facing: -1,
-  scale: 0.6,
+  scale: 0.5,
   craftpixOffset: {
     x: 0,
     y: 0,
