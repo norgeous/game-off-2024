@@ -1,30 +1,11 @@
 import { useContext } from 'react';
-import {
-  FaMapLocationDot,
-  FaArrowUp,
-  FaArrowDown,
-  FaArrowLeft,
-  FaArrowRight,
-} from 'react-icons/fa6';
 import styled, { css, keyframes } from 'styled-components';
-import MenuButton from './MenuButton';
-import Modal from './Modal';
 import { to2D } from '../helpers/dungeonConfigParser';
 import DungeonStateContext from '../contexts/DungeonStateContext';
 
 const breatheAnimation = keyframes`
   100% { opacity: 0.6; }
 `;
-
-interface IMiniMapToggleButton {
-  onClick: () => void;
-}
-
-export const MiniMapToggleButton = ({ onClick }: IMiniMapToggleButton) => (
-  <MenuButton onClick={onClick}>
-    <FaMapLocationDot size={32} />
-  </MenuButton>
-);
 
 interface IRoom {
   $roomType: string;
@@ -33,9 +14,8 @@ interface IRoom {
 }
 
 const Room = styled.div<IRoom>`
-  margin: 1px;
-  width: 60px;
-  height: 60px;
+  width: 20px;
+  height: 20px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -43,7 +23,7 @@ const Room = styled.div<IRoom>`
   flex-direction: column;
   background: ${({ $roomType, $isVisited }) => {
     if ($isVisited) return '#660';
-    return $roomType === '.' ? '#050505' : '#220';
+    return $roomType === '.' ? '#050505' : '#050505';
   }};
   ${({ $isCurrent }) =>
     $isCurrent &&
@@ -55,101 +35,28 @@ const Room = styled.div<IRoom>`
     `}
 `;
 
-interface IMiniMap {
-  phaserScene: Phaser.Scene;
-  onClose: () => void;
-}
-
-const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
-  const { dungeon1D, current, go, roomHistory } =
-    useContext(DungeonStateContext);
-
-  const visitedRoomCount = [
-    ...new Set(roomHistory.map(({ x, y }) => `${x}:${y}`)),
-  ].length;
+const MiniMap = () => {
+  const { dungeon1D, current, roomHistory } = useContext(DungeonStateContext);
 
   const rows = to2D(dungeon1D);
 
   return (
-    <Modal onClose={onClose}>
-      <div style={{ display: 'grid' }}>
-        {rows.map((row, y) => (
-          <div key={y} style={{ display: 'flex' }}>
-            {row?.map((cell, x) => (
-              <Room
-                key={x}
-                $roomType={cell.roomType}
-                $isCurrent={cell.x === current.x && cell.y === current.y}
-                $isVisited={roomHistory.some(
-                  ({ x, y }) => cell.x === x && cell.y === y,
-                )}
-              >
-                <div style={{ fontSize: 20 }}>{cell.roomType}</div>
-                <div
-                  style={{
-                    position: 'absolute',
-                    fontSize: 10,
-                    top: 0,
-                    left: 0,
-                  }}
-                >
-                  ({cell.x}, {cell.y})
-                </div>
-              </Room>
-            ))}
-          </div>
-        ))}
-      </div>
-      <div
-        style={{
-          position: 'relative',
-          width: 80,
-          height: 80,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          margin: '0 auto',
-        }}
-      >
-        {!['?', '.'].includes(current.adjacentRooms.north) && (
-          <MenuButton
-            style={{ position: 'absolute', top: 0 }}
-            onClick={() => go(phaserScene, 'north')}
-          >
-            <FaArrowUp size={32} />
-          </MenuButton>
-        )}
-        {!['?', '.'].includes(current.adjacentRooms.south) && (
-          <MenuButton
-            style={{ position: 'absolute', bottom: 0 }}
-            onClick={() => go(phaserScene, 'south')}
-          >
-            <FaArrowDown size={32} />
-          </MenuButton>
-        )}
-        {!['?', '.'].includes(current.adjacentRooms.west) && (
-          <MenuButton
-            style={{ position: 'absolute', left: 0 }}
-            onClick={() => go(phaserScene, 'west')}
-          >
-            <FaArrowLeft size={32} />
-          </MenuButton>
-        )}
-        {!['?', '.'].includes(current.adjacentRooms.east) && (
-          <MenuButton
-            style={{ position: 'absolute', right: 0 }}
-            onClick={() => go(phaserScene, 'east')}
-          >
-            <FaArrowRight size={32} />
-          </MenuButton>
-        )}
-      </div>
-      <div>roomHistory length: {roomHistory.length}</div>
-      <div>visited room count: {visitedRoomCount}</div>
-      <pre style={{ textAlign: 'left' }}>
-        current: {JSON.stringify(current, null, 2)}
-      </pre>
-    </Modal>
+    <div style={{ display: 'grid' }}>
+      {rows.map((row, y) => (
+        <div key={y} style={{ display: 'flex' }}>
+          {row?.map((cell, x) => (
+            <Room
+              key={x}
+              $roomType={cell.roomType}
+              $isCurrent={cell.x === current.x && cell.y === current.y}
+              $isVisited={roomHistory.some(
+                ({ x, y }) => cell.x === x && cell.y === y,
+              )}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
   );
 };
 

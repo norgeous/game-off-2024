@@ -5,7 +5,10 @@ import FullscreenToggle from './FullscreenToggle';
 import MenuButton from './MenuButton';
 import { SceneSelectorModal, SceneSelectorToggleButton } from './SceneSelector';
 import isDev from '../helpers/isDev';
-import MiniMap, { MiniMapToggleButton } from './MiniMap';
+import MiniMap from './MiniMap';
+import DungeonStateDebug, {
+  DungeonStateDebugToggleButton,
+} from './DungeonStateDebug';
 
 interface IMenu {
   phaserScene: Phaser.Scene;
@@ -30,11 +33,18 @@ const Menu = ({ phaserScene }: IMenu) => {
                 <SceneSelectorToggleButton
                   onClick={() => setIsSceneSelectorOpen(!isSceneSelectorOpen)}
                 />
-                <MiniMapToggleButton onClick={() => setIsMiniMapOpen(true)} />
+                <DungeonStateDebugToggleButton
+                  onClick={() => setIsMiniMapOpen(true)}
+                />
               </>
             )}
           </>
         )}
+      </Container>
+
+      <Container style={{top:'auto',bottom:0}}>
+
+      <MiniMap />
       </Container>
 
       {isSceneSelectorOpen && (
@@ -45,7 +55,7 @@ const Menu = ({ phaserScene }: IMenu) => {
       )}
 
       {isMiniMapOpen && (
-        <MiniMap
+        <DungeonStateDebug
           phaserScene={phaserScene}
           onClose={() => setIsMiniMapOpen(false)}
         />
