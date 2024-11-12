@@ -21,10 +21,7 @@ const Room = styled.div<IRoom>`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: ${({ $roomType, $isVisited }) => {
-    if ($isVisited) return '#660';
-    return $roomType === '.' ? '#050505' : '#050505';
-  }};
+  background: ${({ $isVisited }) => $isVisited ? '#660' : '#050505'};
   ${({ $isCurrent }) =>
     $isCurrent &&
     css`
