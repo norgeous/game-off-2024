@@ -5,6 +5,7 @@ import DungeonStateContext, {
 import dungeonConfigParser, {
   Direction,
   getNextRoom,
+  getRoomInfo,
   RoomConfig1D,
 } from '../helpers/dungeonConfigParser';
 import { EventBus, EventNames } from '../game/EventBus';
@@ -18,8 +19,23 @@ const useDungeonState = () => {
 
   // on mount, generate the dungeon1D and save to react state
   useEffect(() => {
-    setDungeon1D(dungeonConfigParser(dungeon1));
-  }, []);
+    const newDungeon1D = dungeonConfigParser(dungeon1);
+
+    // find the first roomType of 0
+    const startRoom = dungeon1D.find(({ roomType }) => roomType === '0');
+    if (!startRoom) return;
+
+    const startRoomInfo = getRoomInfo(dungeon1D, startRoom.x, startRoom.y);
+
+    const startState = {
+      ...startRoom,
+      playerEnterFrom: 'start',
+      ...startRoomInfo,
+    };
+    setCurrent(startState);
+
+    setDungeon1D(newDungeon1D);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const go = useCallback(
     (scene: Phaser.Scene, direction: Direction) => {

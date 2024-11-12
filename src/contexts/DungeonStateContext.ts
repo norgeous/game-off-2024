@@ -1,7 +1,8 @@
 import { createContext } from 'react';
+import { Direction, RoomConfig1D } from '../helpers/dungeonConfigParser';
 
 export const defaultDungeonState = {
-  dungeon1D: [],
+  dungeon1D: [] as RoomConfig1D[],
   current: {
     x: 0,
     y: 0,
@@ -15,7 +16,7 @@ export const defaultDungeonState = {
     },
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  go: (scene, direction) => {},
+  go: (_scene:Phaser.Scene, _direction: Direction) => {},
 };
 
 const DungeonStateContext = createContext(defaultDungeonState);
