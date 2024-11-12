@@ -65,7 +65,7 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
       <div style={{ display: 'grid' }}>
         {rows.map((row, y) => (
           <div key={y} style={{ display: 'flex' }}>
-            {row.map((cell, x) => (
+            {row?.map((cell, x) => (
               <Room
                 key={x}
                 $roomType={cell.roomType}

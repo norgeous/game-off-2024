@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import DungeonStateContext from './DungeonStateContext';
+import DungeonStateContext, {
+  defaultDungeonState,
+} from './DungeonStateContext';
 import dungeonConfigParser, {
   Direction,
   getNextRoom,
@@ -9,22 +11,10 @@ import { EventBus, EventNames } from '../game/EventBus';
 
 import dungeon1 from '../dungeons/1';
 
-const defaultCurrent = {
-  x: 0,
-  y: 6,
-  roomType: '0',
-  playerEnterFrom: 'start',
-  adjacentRooms: {
-    north: '1',
-    south: '?',
-    west: '?',
-    east: '.',
-  },
-};
-
 const useDungeonState = () => {
   const [dungeon1D, setDungeon1D] = useState<RoomConfig1D[]>([]);
-  const [current, setCurrent] = useState(defaultCurrent);
+  // const [roomHistory, setRoomHistory] = useState();
+  const [current, setCurrent] = useState(defaultDungeonState.current);
 
   // on mount, generate the dungeon1D and save to react state
   useEffect(() => {
