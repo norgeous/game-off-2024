@@ -1,6 +1,6 @@
 export type Direction = 'north' | 'south' | 'east' | 'west';
 
-export type DataForSceneType = {
+export type SceneInitParamsType = {
   roomType: string;
   adjacentRooms: { [direction in Direction]: string };
   playerEnterFrom: Direction;

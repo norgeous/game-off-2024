@@ -1,6 +1,6 @@
 import { EventBus, EventNames } from '../EventBus';
 import { Scene } from 'phaser';
-import { DataForSceneType } from '../../helpers/dungeonConfigParser';
+import { SceneInitParamsType } from '../../helpers/dungeonConfigParser';
 import TiledMapBuilder, {
   LevelConfigType,
 } from '../../objects/map/TiledMapBuilder';
@@ -15,7 +15,7 @@ const levelConfig: LevelConfigType = {
 };
 
 export class TiledMapTest2 extends Scene {
-  private sceneInitParams: DataForSceneType;
+  private sceneInitParams: SceneInitParamsType;
   public map: TiledMapBuilder | undefined;
   private player: Phaser.Physics.Matter.Sprite;
   private keys: keysType | undefined;
@@ -29,8 +29,8 @@ export class TiledMapTest2 extends Scene {
     this.load.image('star', 'assets/star.png');
   }
 
-  init(dataForScene: DataForSceneType) {
-    this.sceneInitParams = dataForScene;
+  init(sceneInitParams: SceneInitParamsType) {
+    this.sceneInitParams = sceneInitParams;
   }
 
   create() {
