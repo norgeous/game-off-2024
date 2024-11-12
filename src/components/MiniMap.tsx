@@ -64,8 +64,8 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
     ...new Set(roomHistory.map(({ x, y }) => `${x}:${y}`)),
   ].length;
 
-
   const rows = to2D(dungeon1D);
+
   return (
     <Modal onClose={onClose}>
       <div style={{ display: 'grid' }}>
