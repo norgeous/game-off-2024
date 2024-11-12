@@ -33,8 +33,8 @@ interface IRoom {
 
 const Room = styled.div<IRoom>`
   margin: 1px;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -71,11 +71,11 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
                 $roomType={cell.roomType}
                 $isCurrent={cell.x === current.x && cell.y === current.y}
               >
-                <div style={{ fontSize: 30 }}>{cell.roomType}</div>
+                <div style={{ fontSize: 20 }}>{cell.roomType}</div>
                 <div
                   style={{
                     position: 'absolute',
-                    fontSize: 12,
+                    fontSize: 10,
                     top: 0,
                     left: 0,
                   }}
