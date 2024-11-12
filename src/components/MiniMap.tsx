@@ -4,7 +4,7 @@ import { to2D } from '../helpers/dungeonConfigParser';
 import DungeonStateContext from '../contexts/DungeonStateContext';
 
 const breatheAnimation = keyframes`
-  100% { opacity: 0.6; }
+  100% { background: #ff0; }
 `;
 
 interface IRoom {
@@ -14,18 +14,22 @@ interface IRoom {
 }
 
 const Room = styled.div<IRoom>`
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 9px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: ${({ $isVisited }) => $isVisited ? '#660' : '#050505'};
+  border: 1px solid #222;
+  background: ${({ $roomType, $isVisited }) => {
+    if ($roomType === '.' && $isVisited) return '#222'
+    return $isVisited ? '#660' : '#050505';
+  }};
   ${({ $isCurrent }) =>
     $isCurrent &&
     css`
-      background: #044;
+      background: #660;
       animation-name: ${breatheAnimation};
       animation-duration: 0.5s;
       animation-iteration-count: infinite;
