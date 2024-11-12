@@ -16,7 +16,7 @@ export const defaultDungeonState = {
     },
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  go: (_scene:Phaser.Scene, _direction: Direction) => {},
+  go: (_scene: Phaser.Scene, _direction: Direction) => {},
 };
 
 const DungeonStateContext = createContext(defaultDungeonState);

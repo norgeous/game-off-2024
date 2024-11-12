@@ -57,7 +57,8 @@ interface IMiniMap {
 }
 
 const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
-  const { dungeon1D, current, go } = useContext(DungeonStateContext);
+  const { dungeon1D, current, go, roomHistory } =
+    useContext(DungeonStateContext);
 
   const rows = to2D(dungeon1D);
   return (
@@ -131,6 +132,7 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
           </MenuButton>
         )}
       </div>
+      roomHistory length: {roomHistory.length}
       <pre style={{ textAlign: 'left' }}>
         current: {JSON.stringify(current, null, 2)}
       </pre>
