@@ -22,10 +22,10 @@ const useDungeonState = () => {
     const newDungeon1D = dungeonConfigParser(dungeon1);
 
     // find the first roomType of 0
-    const startRoom = dungeon1D.find(({ roomType }) => roomType === '0');
+    const startRoom = newDungeon1D.find(({ roomType }) => roomType === '0');
     if (!startRoom) return;
 
-    const startRoomInfo = getRoomInfo(dungeon1D, startRoom.x, startRoom.y);
+    const startRoomInfo = getRoomInfo(newDungeon1D, startRoom.x, startRoom.y);
 
     const startState = {
       ...startRoom,
