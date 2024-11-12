@@ -3,6 +3,7 @@ import { Scene } from 'phaser';
 import TiledMapBuilder, {
   LevelConfigType,
 } from '../../objects/map/TiledMapBuilder';
+import { createControls, keysToVector, keysType } from '../../helpers/controls';
 
 const levelConfig: LevelConfigType = {
   key: 'Room',
@@ -10,21 +11,6 @@ const levelConfig: LevelConfigType = {
   tiledMapJson: './tiled/maps/room-0.json',
   layerConfig: [{ tiledLayerName: 'tiledLayer', depth: 0 }],
   spawnerConfig: [],
-};
-
-type keysType = { [keyCodes: string]: Phaser.Input.Keyboard.Key };
-
-const keysToVector = (keys: keysType, power: number) => {
-  const vector = { x: 0, y: 0 };
-
-  if (keys?.A.isDown) vector.x += -power;
-  if (keys?.D.isDown) vector.x += power;
-  if (keys?.W.isDown) vector.y += -power;
-  if (keys?.S.isDown) vector.y += power;
-
-  const forceVector = new Phaser.Math.Vector2(vector);
-
-  return forceVector;
 };
 
 export class TiledMapTest2 extends Scene {
@@ -46,7 +32,7 @@ export class TiledMapTest2 extends Scene {
     this.player = this.matter.add.sprite(500, 500, 'star');
     this.door = this.matter.add.sprite(500, 100, 'star');
     this.cameras.main.startFollow(this.player);
-    this.keys = this.input.keyboard?.addKeys('W,A,S,D') as keysType;
+    this.keys = createControls(this);
 
     this.matter.world.on('collisionstart', () => {
       EventBus.emit('use-door', this, 'north');
