@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import {
-  FaCircleInfo,
+  FaMapLocationDot,
   FaArrowUp,
   FaArrowDown,
   FaArrowLeft,
@@ -9,6 +9,7 @@ import {
 import MenuButton from './MenuButton';
 import Modal from './Modal';
 import DungeonStateContext from '../contexts/DungeonStateContext';
+import MiniMap from './MiniMap';
 
 interface IDungeonStateDebugToggleButton {
   onClick: () => void;
@@ -18,7 +19,7 @@ export const DungeonStateDebugToggleButton = ({
   onClick,
 }: IDungeonStateDebugToggleButton) => (
   <MenuButton onClick={onClick}>
-    <FaCircleInfo size={32} />
+    <FaMapLocationDot size={32} />
   </MenuButton>
 );
 
@@ -36,17 +37,21 @@ const DungeonStateDebug = ({ phaserScene, onClose }: IDungeonStateDebug) => {
 
   return (
     <Modal onClose={onClose}>
+      <pre style={{ textAlign: 'left' }}>
+        current: {JSON.stringify(current, null, 2)}
+      </pre>
       <div
         style={{
           position: 'relative',
-          width: 120,
-          height: 120,
+          width: 240,
+          height: 160,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           margin: '0 auto',
         }}
       >
+        <MiniMap />
         <MenuButton
           style={{ position: 'absolute', top: 0 }}
           onClick={() => go(phaserScene, 'north')}
@@ -74,9 +79,6 @@ const DungeonStateDebug = ({ phaserScene, onClose }: IDungeonStateDebug) => {
       </div>
       <div>roomHistory length: {roomHistory.length}</div>
       <div>visited room count: {visitedRoomCount}</div>
-      <pre style={{ textAlign: 'left' }}>
-        current: {JSON.stringify(current, null, 2)}
-      </pre>
     </Modal>
   );
 };
