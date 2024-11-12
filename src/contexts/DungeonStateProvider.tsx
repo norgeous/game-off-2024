@@ -5,7 +5,7 @@ import dungeonConfigParser, {
   getNextRoom,
   RoomConfig1D,
 } from '../helpers/dungeonConfigParser';
-import { EventBus } from '../game/EventBus';
+import { EventBus, EventNames } from '../game/EventBus';
 
 const defaultCurrent = {
   x: 0,
@@ -31,19 +31,18 @@ const useDungeonState = () => {
 
   const go = useCallback(
     (scene: Phaser.Scene, direction: Direction) => {
-      // scene.scene.destroy?.();
       const nextRoom = getNextRoom(dungeon1D, current.x, current.y, direction);
       setCurrent(nextRoom);
-      scene?.scene.start('Rooms', nextRoom);
+      scene?.scene.start('TiledMapTest2', nextRoom);
     },
     [current.x, current.y, dungeon1D],
   );
 
-  // when a door is touched, update current
+  // when a door is touched, exec go function
   useEffect(() => {
-    EventBus.on('use-door', go);
+    EventBus.on(EventNames.USE_DOOR, go);
     return () => {
-      EventBus.removeListener('use-door');
+      EventBus.removeListener(EventNames.USE_DOOR);
     };
   }, [go]);
 
