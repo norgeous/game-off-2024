@@ -3,9 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --config vite/config.dev.mjs",
-    "prelint": "prettier . --write",
+    "prelint": "prettier . --write && tsc",
     "lint": "eslint . --fix",
-    "postlint": "tsc",
     "build": "vite build --config vite/config.prod.mjs",
     "serve": "npx serve dist"
   },

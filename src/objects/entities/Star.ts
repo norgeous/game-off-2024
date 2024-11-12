@@ -31,6 +31,7 @@ class Star extends Entity {
     scene: GameScene,
     x: number,
     y: number,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     customProperties: Record<string, any>,
   ) {
     super(scene, x, y, entityConfig, customProperties);

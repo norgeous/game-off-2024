@@ -14,6 +14,7 @@ export const defaultDungeonState = {
       east: '?',
     },
   },
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   go: (scene, direction) => {},
 };
 
