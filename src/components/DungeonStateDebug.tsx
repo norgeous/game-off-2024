@@ -47,38 +47,30 @@ const DungeonStateDebug = ({ phaserScene, onClose }: IDungeonStateDebug) => {
           margin: '0 auto',
         }}
       >
-        {!['?', '.'].includes(current.adjacentRooms.north) && (
           <MenuButton
             style={{ position: 'absolute', top: 0 }}
             onClick={() => go(phaserScene, 'north')}
           >
             <FaArrowUp size={32} />
           </MenuButton>
-        )}
-        {!['?', '.'].includes(current.adjacentRooms.south) && (
           <MenuButton
             style={{ position: 'absolute', bottom: 0 }}
             onClick={() => go(phaserScene, 'south')}
           >
             <FaArrowDown size={32} />
           </MenuButton>
-        )}
-        {!['?', '.'].includes(current.adjacentRooms.west) && (
           <MenuButton
             style={{ position: 'absolute', left: 0 }}
             onClick={() => go(phaserScene, 'west')}
           >
             <FaArrowLeft size={32} />
           </MenuButton>
-        )}
-        {!['?', '.'].includes(current.adjacentRooms.east) && (
           <MenuButton
             style={{ position: 'absolute', right: 0 }}
             onClick={() => go(phaserScene, 'east')}
           >
             <FaArrowRight size={32} />
           </MenuButton>
-        )}
       </div>
       <div>roomHistory length: {roomHistory.length}</div>
       <div>visited room count: {visitedRoomCount}</div>
