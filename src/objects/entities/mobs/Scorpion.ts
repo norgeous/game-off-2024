@@ -30,7 +30,6 @@ class Scorpion extends Entity {
   }
   constructor(scene: GameScene, x: number, y: number) {
     super(scene, x, y, entityConfig);
-    this.setScale(0.3);
   }
 }
 

@@ -30,9 +30,6 @@ class Snake extends Entity {
   }
   constructor(scene: GameScene, x: number, y: number) {
     super(scene, x, y, entityConfig);
-    this.sprite.setDepth(100);
-    
-    this.setScale(0.3);
   }
 }
 
