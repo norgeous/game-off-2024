@@ -7,6 +7,8 @@ import dungeonConfigParser, {
 } from '../helpers/dungeonConfigParser';
 import { EventBus, EventNames } from '../game/EventBus';
 
+import dungeon1 from '../dungeons/1';
+
 const defaultCurrent = {
   x: 0,
   y: 6,
@@ -26,7 +28,7 @@ const useDungeonState = () => {
 
   // on mount, generate the dungeon1D and save to react state
   useEffect(() => {
-    setDungeon1D(dungeonConfigParser());
+    setDungeon1D(dungeonConfigParser(dungeon1));
   }, []);
 
   const go = useCallback(
