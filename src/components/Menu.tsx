@@ -42,9 +42,8 @@ const Menu = ({ phaserScene }: IMenu) => {
         )}
       </Container>
 
-      <Container style={{top:'auto',bottom:0}}>
-
-      <MiniMap />
+      <Container style={{ top: 'auto', bottom: 0 }}>
+        <MiniMap />
       </Container>
 
       {isSceneSelectorOpen && (
