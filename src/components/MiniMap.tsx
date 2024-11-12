@@ -60,6 +60,11 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
   const { dungeon1D, current, go, roomHistory } =
     useContext(DungeonStateContext);
 
+  const visitedRoomCount = [
+    ...new Set(roomHistory.map(({ x, y }) => `${x}:${y}`)),
+  ].length;
+
+
   const rows = to2D(dungeon1D);
   return (
     <Modal onClose={onClose}>
@@ -83,6 +88,9 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
                 >
                   ({cell.x}, {cell.y})
                 </div>
+                {roomHistory.some(({ x, y }) => cell.x === x && cell.y === y)
+                  ? 'yes'
+                  : 'no'}
               </Room>
             ))}
           </div>
@@ -132,7 +140,8 @@ const MiniMap = ({ phaserScene, onClose }: IMiniMap) => {
           </MenuButton>
         )}
       </div>
-      roomHistory length: {roomHistory.length}
+      <div>roomHistory length: {roomHistory.length}</div>
+      <div>visited room count: {visitedRoomCount}</div>
       <pre style={{ textAlign: 'left' }}>
         current: {JSON.stringify(current, null, 2)}
       </pre>
