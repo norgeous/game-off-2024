@@ -20,24 +20,26 @@ const entityConfig: EntityConfigType = {
     width: 49,
     height: 41,
   },
-  animations: [
-  ],
+  animations: [],
 };
 
 class Star extends Entity {
   static preload(scene: Phaser.Scene) {
     scene.load.image('star', 'assets/star.png');
   }
-  constructor(scene: GameScene, x: number, y: number, customProperties: Record<string, any>) {
+  constructor(
+    scene: GameScene,
+    x: number,
+    y: number,
+    customProperties: Record<string, any>,
+  ) {
     super(scene, x, y, entityConfig, customProperties);
     this.sprite.setDepth(100);
     //this.scene = scene;
     //this.playAnimation('idle');
   }
 
-  update() {
-   
-  }
+  update() {}
 }
 
 export default Star;

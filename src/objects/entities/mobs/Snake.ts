@@ -20,8 +20,7 @@ const entityConfig: EntityConfigType = {
     width: 100,
     height: 100,
   },
-  animations: [
-  ],
+  animations: [],
 };
 
 class Snake extends Entity {

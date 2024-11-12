@@ -95,7 +95,7 @@ class Entity extends Phaser.GameObjects.Container {
     this.sensorData = {
       bottom: new Set(),
     };
-    
+
     // sprite
     this.sprite = this.scene.add
       .sprite(this.craftpixOffset.x, this.craftpixOffset.y, this.name)
@@ -166,7 +166,7 @@ class Entity extends Phaser.GameObjects.Container {
   playAnimation(key: string, ignoreIfPlaying = true) {
     return this.sprite.play(this.getKey(key), ignoreIfPlaying);
   }
-  
+
   flipXSprite(shouldFlip: boolean) {
     this.sprite.flipX = shouldFlip;
     if (shouldFlip) {
