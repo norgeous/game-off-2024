@@ -42,8 +42,6 @@ export class TiledMapTest2 extends Scene {
   }
 
   update() {
-    // this.player.setVelocity(0);
-
     if (this.keys) {
       const forceVector = keysToVector(this.keys, 0.005);
       this.player.applyForce(forceVector);
