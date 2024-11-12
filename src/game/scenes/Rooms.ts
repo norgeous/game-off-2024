@@ -1,5 +1,5 @@
 import { Scene } from 'phaser';
-import { EventBus } from '../EventBus';
+import { EventBus, EventNames } from '../EventBus';
 // import Player from '../../objects/entities/Player';
 import { SceneInitParamsType } from '../../helpers/dungeonConfigParser';
 import TiledMapBuilder, {
@@ -45,7 +45,7 @@ export class Rooms extends Scene {
 
   create() {
     this.map = new TiledMapBuilder(this, levelConfig);
-    EventBus.emit('current-scene-ready', this);
+    EventBus.emit(EventNames.READY, this);
   }
 
   update() {}
