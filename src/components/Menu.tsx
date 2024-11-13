@@ -25,12 +25,16 @@ const Menu = ({ phaserScene }: IMenu) => {
         <MenuButton onClick={() => setSettingsIsOpen(!isSettingsOpen)}>
           {isSettingsOpen ? <FaXmark size={32} /> : <FaGear size={32} />}
         </MenuButton>
-        <MenuButton as="a" href="https://github.com/norgeous/game-off-2024">
-        <FaGithub size={32}/>
-        </MenuButton>
         {isSettingsOpen && (
           <>
             <FullscreenToggle />
+            <MenuButton
+              as="a"
+              href="https://github.com/norgeous/game-off-2024"
+              target="_blank"
+            >
+              <FaGithub size={32} />
+            </MenuButton>
             {isDev && (
               <>
                 <SceneSelectorToggleButton
