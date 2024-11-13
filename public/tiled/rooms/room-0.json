@@ -524,7 +524,7 @@
     {
       "columns": 80,
       "firstgid": 1,
-      "image": "../../tileset/ai-egypt-1.png",
+      "image": "../tileset/ai-egypt-1.png",
       "imageheight": 720,
       "imagewidth": 1280,
       "margin": 0,
