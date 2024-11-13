@@ -31,7 +31,11 @@ export class TiledMapTest2 extends Scene {
   }
 
   preload() {
+    this.load.image('door', 'assets/issac-door.png');
+    this.load.image('star', 'assets/star.png');
+
     const { roomType } = this.sceneInitParams;
+
     levelConfig.spawnerConfig = [
       {
         tiledObjectName: 'enemy',
@@ -43,9 +47,8 @@ export class TiledMapTest2 extends Scene {
     ];
     levelConfig.key = `room-${roomType}`;
     levelConfig.tiledMapJson = `./tiled/maps/room-${roomType}.json`;
+
     TiledMapBuilder.preload(this, levelConfig);
-    this.load.image('door', 'assets/issac-door.png');
-    this.load.image('star', 'assets/star.png');
   }
 
   create() {
