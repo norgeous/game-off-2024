@@ -20,17 +20,19 @@ const levelConfig: LevelConfigType = {
   spawnerConfig: [],
 };
 
-const getPlayerStartPosition = (scene:Phaser.Scene, playerEnterFrom: Direction) =>{
-
+const getPlayerStartPosition = (
+  scene: Phaser.Scene,
+  playerEnterFrom: Direction,
+) => {
   const { width, height } = scene.map.layers.tiledLayer.defaultPipeline;
-  return ({
-    start: { px: width*.5, py: height*.5 },
-    north: { px: width*.5, py: height*.28 },
-    south: { px: width*.5, py: height*.72 },
-    east: { px: width*.85, py: height*.5 },
-    west: { px: width*.15, py: height*.5 },
-  })[playerEnterFrom];
-}
+  return {
+    start: { px: width * 0.5, py: height * 0.5 },
+    north: { px: width * 0.5, py: height * 0.28 },
+    south: { px: width * 0.5, py: height * 0.72 },
+    east: { px: width * 0.85, py: height * 0.5 },
+    west: { px: width * 0.15, py: height * 0.5 },
+  }[playerEnterFrom];
+};
 
 export class TiledMapTest2 extends Scene {
   public sceneInitParams: SceneInitParamsType;
