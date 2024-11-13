@@ -9,7 +9,7 @@ export const createControls = (scene: Phaser.Scene) => {
     S: { isDown: false },
     D: { isDown: false },
   };
-  scene.input.on('pointerup', (d) => {
+  scene.input.on('pointerup', () => {
     mouseKeys.W.isDown = false;
     mouseKeys.A.isDown = false;
     mouseKeys.S.isDown = false;
