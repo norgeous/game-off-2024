@@ -10,6 +10,7 @@
 - [x] level art
 - [x] add doors
 - [x] add main character
+- [x] mini map
 - [ ] carry velocity between room scenes
 - [ ] add isRoomCleared flag to scene data
 - [ ] simple github ci
