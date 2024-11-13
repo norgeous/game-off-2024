@@ -49,6 +49,16 @@ const useDungeonState = () => {
     [current.x, current.y, dungeon1D, roomHistory],
   );
 
+  // when START event received, start dungeon with current room config (the config of start room zero)
+  useEffect(() => {
+    EventBus.on(EventNames.START, (scene: Phaser.Scene) =>
+      scene?.scene.start('TiledMapTest2', current),
+    );
+    return () => {
+      EventBus.removeListener(EventNames.START);
+    };
+  }, [current]);
+
   // when a door is touched, exec go function
   useEffect(() => {
     EventBus.on(EventNames.USE_DOOR, go);
@@ -61,6 +71,7 @@ const useDungeonState = () => {
     dungeon1D,
     current,
     go,
+
     roomHistory,
   };
 };

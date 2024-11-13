@@ -2,6 +2,7 @@ import { Events } from 'phaser';
 
 export enum EventNames {
   READY = 'current-scene-ready',
+  START = 'start-dungeon',
   USE_DOOR = 'use-door',
 }
 

@@ -15,8 +15,7 @@ export const defaultDungeonState = {
       east: '?',
     },
   },
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  go: (_scene: Phaser.Scene, _direction: Direction) => {},
+  go: (_scene: Phaser.Scene, _direction: Direction) => {}, // eslint-disable-line @typescript-eslint/no-unused-vars
   roomHistory: [] as RoomConfig1D[],
 };
 

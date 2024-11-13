@@ -21,6 +21,7 @@ const levelConfig: LevelConfigType = {
 
 const getPlayerStartPosition = (playerEnterFrom: Direction) =>
   ({
+    start: { px: 500, py: 500 },
     north: { px: 500, py: 200 },
     south: { px: 500, py: 700 },
     east: { px: 700, py: 500 },
