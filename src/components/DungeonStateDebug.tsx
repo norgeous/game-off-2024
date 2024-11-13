@@ -6,10 +6,21 @@ import {
   FaArrowLeft,
   FaArrowRight,
 } from 'react-icons/fa6';
+import styled from 'styled-components';
 import MenuButton from './MenuButton';
 import Modal from './Modal';
 import DungeonStateContext from '../contexts/DungeonStateContext';
 import MiniMap from './MiniMap';
+
+const ArrowsContainer = styled.div`
+  position: relative;
+  width: 240px;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+`;
 
 interface IDungeonStateDebugToggleButton {
   onClick: () => void;
@@ -40,17 +51,7 @@ const DungeonStateDebug = ({ phaserScene, onClose }: IDungeonStateDebug) => {
       <pre style={{ textAlign: 'left' }}>
         current: {JSON.stringify(current, null, 2)}
       </pre>
-      <div
-        style={{
-          position: 'relative',
-          width: 240,
-          height: 160,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          margin: '0 auto',
-        }}
-      >
+      <ArrowsContainer style={{}}>
         <MiniMap />
         <MenuButton
           style={{ position: 'absolute', top: 0 }}
@@ -76,7 +77,7 @@ const DungeonStateDebug = ({ phaserScene, onClose }: IDungeonStateDebug) => {
         >
           <FaArrowRight size={32} />
         </MenuButton>
-      </div>
+      </ArrowsContainer>
       <div>roomHistory length: {roomHistory.length}</div>
       <div>visited room count: {visitedRoomCount}</div>
     </Modal>
