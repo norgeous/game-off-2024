@@ -83,7 +83,7 @@ export class TiledMapTest2 extends Scene {
 
   update() {
     if (this.keys) {
-      const forceVector = keysToVector(this.keys, 0.0025);
+      const forceVector = keysToVector(this.keys, 0.001);
       this.player.applyForce(forceVector);
     }
   }
