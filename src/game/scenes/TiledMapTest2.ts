@@ -15,51 +15,10 @@ const levelConfig: LevelConfigType = {
   spawnerConfig: [],
 };
 
-const createDoors = (scene: TiledMapTest2) => {
-  if (!['?', '.'].includes(scene.sceneInitParams?.adjacentRooms?.north)) {
-    const doorNorth = scene.matter.add.sprite(500, 100, 'door', '0', {
-      isStatic: true,
-    });
-    scene.player.setOnCollideWith(doorNorth, () =>
-      EventBus.emit(EventNames.USE_DOOR, this, 'north'),
-    );
-  }
-
-  if (!['?', '.'].includes(scene.sceneInitParams?.adjacentRooms?.south)) {
-    const doorSouth = scene.matter.add.sprite(500, 800, 'door', '0', {
-      isStatic: true,
-    });
-    doorSouth.setAngle(180);
-    scene.player.setOnCollideWith(doorSouth, () =>
-      EventBus.emit(EventNames.USE_DOOR, this, 'south'),
-    );
-  }
-
-  if (!['?', '.'].includes(scene.sceneInitParams?.adjacentRooms?.east)) {
-    const doorEast = scene.matter.add.sprite(800, 500, 'door', '0', {
-      isStatic: true,
-    });
-    doorEast.setAngle(90);
-    scene.player.setOnCollideWith(doorEast, () =>
-      EventBus.emit(EventNames.USE_DOOR, this, 'east'),
-    );
-  }
-
-  if (!['?', '.'].includes(scene.sceneInitParams?.adjacentRooms?.west)) {
-    const doorWest = scene.matter.add.sprite(100, 500, 'door', '0', {
-      isStatic: true,
-    });
-    doorWest.setAngle(270);
-    scene.player.setOnCollideWith(doorWest, () =>
-      EventBus.emit(EventNames.USE_DOOR, this, 'west'),
-    );
-  }
-};
-
 export class TiledMapTest2 extends Scene {
-  public sceneInitParams: SceneInitParamsType;
+  private sceneInitParams: SceneInitParamsType;
   public map: TiledMapBuilder | undefined;
-  public player: Phaser.Physics.Matter.Sprite;
+  private player: Phaser.Physics.Matter.Sprite;
   private keys: keysType | undefined;
 
   constructor() {
@@ -91,8 +50,47 @@ export class TiledMapTest2 extends Scene {
     this.map = new TiledMapBuilder(this, levelConfig);
     this.player = this.matter.add.sprite(500, 500, 'star');
     this.cameras.main.startFollow(this.player);
-    createDoors(this); // must be called after player is created
-    this.keys = createControls(this); // must be called after player is created
+
+    if (!['?', '.'].includes(this.sceneInitParams?.adjacentRooms?.north)) {
+      const doorNorth = this.matter.add.sprite(500, 100, 'door', '0', {
+        isStatic: true,
+      });
+      this.player.setOnCollideWith(doorNorth, () =>
+        EventBus.emit(EventNames.USE_DOOR, this, 'north'),
+      );
+    }
+
+    if (!['?', '.'].includes(this.sceneInitParams?.adjacentRooms?.south)) {
+      const doorSouth = this.matter.add.sprite(500, 800, 'door', '0', {
+        isStatic: true,
+      });
+      doorSouth.setAngle(180);
+      this.player.setOnCollideWith(doorSouth, () =>
+        EventBus.emit(EventNames.USE_DOOR, this, 'south'),
+      );
+    }
+
+    if (!['?', '.'].includes(this.sceneInitParams?.adjacentRooms?.east)) {
+      const doorEast = this.matter.add.sprite(800, 500, 'door', '0', {
+        isStatic: true,
+      });
+      doorEast.setAngle(90);
+      this.player.setOnCollideWith(doorEast, () =>
+        EventBus.emit(EventNames.USE_DOOR, this, 'east'),
+      );
+    }
+
+    if (!['?', '.'].includes(this.sceneInitParams?.adjacentRooms?.west)) {
+      const doorWest = this.matter.add.sprite(100, 500, 'door', '0', {
+        isStatic: true,
+      });
+      doorWest.setAngle(270);
+      this.player.setOnCollideWith(doorWest, () =>
+        EventBus.emit(EventNames.USE_DOOR, this, 'west'),
+      );
+    }
+
+    this.keys = createControls(this);
 
     EventBus.emit(EventNames.READY, this);
   }
