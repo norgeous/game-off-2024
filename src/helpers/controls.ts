@@ -31,7 +31,8 @@ export const createControls = (scene: Phaser.Scene) => {
     }
   });
 
-  if(scene.sys.game.device.os.desktop) return scene.input.keyboard?.addKeys('W,A,S,D') as keysType;
+  if (scene.sys.game.device.os.desktop)
+    return scene.input.keyboard?.addKeys('W,A,S,D') as keysType;
   else return mouseKeys;
 };
 
