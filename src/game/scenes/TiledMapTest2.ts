@@ -64,8 +64,4 @@ export class TiledMapTest2 extends Scene {
       this.player.applyForce(forceVector);
     }
   }
-
-  changeScene() {
-    this.scene.start('GameOver');
-  }
 }
