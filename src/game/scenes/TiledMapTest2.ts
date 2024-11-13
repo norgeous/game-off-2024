@@ -13,8 +13,9 @@ import createDoors from '../../helpers/doors';
 
 const levelConfig: LevelConfigType = {
   key: 'Room',
-  tilesetPng: './tiled/tileset/binding_of_isaac_tiles.jpg',
-  tiledMapJson: './tiled/maps/room-0.json',
+  // tilesetPng: './tiled/tileset/binding_of_isaac_tiles.jpg',
+  tilesetPng: './tiled/tileset/ai-egypt-1.png',
+  tiledMapJson: './tiled/maps/rooms/room-0.json',
   layerConfig: [{ tiledLayerName: 'tiledLayer', depth: 0 }],
   spawnerConfig: [],
 };
@@ -46,7 +47,8 @@ export class TiledMapTest2 extends Scene {
     this.load.image('door', 'assets/isaac-door.png');
     this.load.image('jones', 'assets/jones.png');
 
-    const { roomType } = this.sceneInitParams;
+    // const { roomType } = this.sceneInitParams;
+    const roomType = 0;
 
     levelConfig.spawnerConfig = [
       {
@@ -58,7 +60,7 @@ export class TiledMapTest2 extends Scene {
       },
     ];
     levelConfig.key = `room-${roomType}`;
-    levelConfig.tiledMapJson = `./tiled/maps/room-${roomType}.json`;
+    levelConfig.tiledMapJson = `./tiled/rooms/room-${roomType}.json`;
 
     TiledMapBuilder.preload(this, levelConfig);
   }
@@ -73,7 +75,7 @@ export class TiledMapTest2 extends Scene {
     const { px, py } = getPlayerStartPosition(playerEnterFrom);
 
     this.player = this.matter.add.sprite(px, py, 'jones');
-    this.cameras.main.startFollow(this.player);
+    // this.cameras.main.startFollow(this.player);
 
     createDoors(this); // must be called after player is created
     this.keys = createControls(this); // must be called after player is created
