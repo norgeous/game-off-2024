@@ -24,7 +24,7 @@ const getPlayerStartPosition = (
   scene: Phaser.Scene,
   playerEnterFrom: Direction,
 ) => {
-  const { width, height } = scene.map.layers.tiledLayer.defaultPipeline;
+  const { width, height } = scene.map.layers.tiledLayer;
   return {
     start: { px: width * 0.5, py: height * 0.5 },
     north: { px: width * 0.5, py: height * 0.25 },
@@ -53,7 +53,7 @@ export class TiledMapTest2 extends Scene {
     this.load.image('jones', 'assets/jones.png');
 
     // const { roomType } = this.sceneInitParams;
-    const roomType = 0;
+    const roomType = Math.random()>.5?'0':'g';
 
     levelConfig.spawnerConfig = [
       {
@@ -72,25 +72,25 @@ export class TiledMapTest2 extends Scene {
 
   create() {
     console.log('TiledMapTest2 scene got', this.sceneInitParams);
-
     const { playerEnterFrom } = this.sceneInitParams;
-
     this.map = new TiledMapBuilder(this, levelConfig);
-
+    const { width, height } = this.map.layers.tiledLayer;
     const { px, py } = getPlayerStartPosition(this, playerEnterFrom);
-
     this.player = this.matter.add.sprite(px, py, 'jones');
-    // this.cameras.main.startFollow(this.player);
 
+    console.log(this.map, {width,height}, this.map.layers.tiledLayer.width);
+    if (width > 1280 || height > 768) {
+      this.cameras.main.setBounds(0, 0, width, height);
+      this.cameras.main.startFollow(this.player);
+    }
     createDoors(this); // must be called after player is created
     this.keys = createControls(this); // must be called after player is created
-
     EventBus.emit(EventNames.READY, this);
   }
 
   update() {
     if (this.keys) {
-      const forceVector = keysToVector(this.keys, 0.001);
+      const forceVector = keysToVector(this.keys, 0.0015);
       this.player.applyForce(forceVector);
     }
   }

@@ -2,9 +2,7 @@ import { EventBus, EventNames } from '../game/EventBus';
 import { TiledMapTest2 } from '../game/scenes/TiledMapTest2';
 
 const createDoors = (scene: TiledMapTest2) => {
-  // console.log(scene);
-  const { width, height } = scene.map.layers.tiledLayer.defaultPipeline;
-  console.log({ width, height });
+  const { width, height } = scene.map.layers.tiledLayer;
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.north)) {
     const doorNorth = scene.matter.add.sprite(
