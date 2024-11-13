@@ -27,10 +27,10 @@ const getPlayerStartPosition = (
   const { width, height } = scene.map.layers.tiledLayer.defaultPipeline;
   return {
     start: { px: width * 0.5, py: height * 0.5 },
-    north: { px: width * 0.5, py: height * 0.28 },
-    south: { px: width * 0.5, py: height * 0.72 },
-    east: { px: width * 0.85, py: height * 0.5 },
-    west: { px: width * 0.15, py: height * 0.5 },
+    north: { px: width * 0.5, py: height * 0.25 },
+    south: { px: width * 0.5, py: height * 0.75 },
+    east: { px: width * 0.88, py: height * 0.5 },
+    west: { px: width * 0.12, py: height * 0.5 },
   }[playerEnterFrom];
 };
 
