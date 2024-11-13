@@ -20,14 +20,17 @@ const levelConfig: LevelConfigType = {
   spawnerConfig: [],
 };
 
-const getPlayerStartPosition = (playerEnterFrom: Direction) =>
-  ({
-    start: { px: 500, py: 500 },
-    north: { px: 500, py: 200 },
-    south: { px: 500, py: 700 },
-    east: { px: 700, py: 500 },
-    west: { px: 200, py: 500 },
+const getPlayerStartPosition = (scene:Phaser.Scene, playerEnterFrom: Direction) =>{
+
+  const { width, height } = scene.map.layers.tiledLayer.defaultPipeline;
+  return ({
+    start: { px: width*.5, py: height*.5 },
+    north: { px: width*.5, py: height*.28 },
+    south: { px: width*.5, py: height*.72 },
+    east: { px: width*.85, py: height*.5 },
+    west: { px: width*.15, py: height*.5 },
   })[playerEnterFrom];
+}
 
 export class TiledMapTest2 extends Scene {
   public sceneInitParams: SceneInitParamsType;
@@ -72,7 +75,7 @@ export class TiledMapTest2 extends Scene {
 
     this.map = new TiledMapBuilder(this, levelConfig);
 
-    const { px, py } = getPlayerStartPosition(playerEnterFrom);
+    const { px, py } = getPlayerStartPosition(this, playerEnterFrom);
 
     this.player = this.matter.add.sprite(px, py, 'jones');
     // this.cameras.main.startFollow(this.player);
