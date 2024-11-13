@@ -6,6 +6,8 @@ Submission for [Game Off 2024](https://itch.io/jam/game-off-2024) "SECRETS"
 
 [insert screenshot of game title card or gif here]
 
+https://norgeous.github.io/game-off-2024/
+
 ---
 
 ## Sources
