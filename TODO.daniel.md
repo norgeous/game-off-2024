@@ -9,7 +9,7 @@
 - [x] pwa
 - [x] level art
 - [x] add doors
-- [ ] add main character?
+- [x] add main character
 - [ ] carry velocity between room scenes
 - [ ] add isRoomCleared flag to scene data
 - [ ] simple github ci

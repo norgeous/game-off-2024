@@ -44,7 +44,7 @@ export class TiledMapTest2 extends Scene {
 
   preload() {
     this.load.image('door', 'assets/issac-door.png');
-    this.load.image('star', 'assets/star.png');
+    this.load.image('jones', 'assets/jones.png');
 
     const { roomType } = this.sceneInitParams;
 
@@ -72,7 +72,7 @@ export class TiledMapTest2 extends Scene {
 
     const { px, py } = getPlayerStartPosition(playerEnterFrom);
 
-    this.player = this.matter.add.sprite(px, py, 'star');
+    this.player = this.matter.add.sprite(px, py, 'jones');
     this.cameras.main.startFollow(this.player);
 
     createDoors(this); // must be called after player is created
