@@ -52,14 +52,18 @@ export class TiledMapTest2 extends Scene {
     this.cameras.main.startFollow(this.player);
 
     if (!['?', '.'].includes(this.sceneInitParams?.adjacentRooms?.north)) {
-      const doorNorth = this.matter.add.sprite(500, 100, 'door');
+      const doorNorth = this.matter.add.sprite(500, 100, 'door', '0', {
+        isStatic: true,
+      });
       this.player.setOnCollideWith(doorNorth, () =>
         EventBus.emit(EventNames.USE_DOOR, this, 'north'),
       );
     }
 
     if (!['?', '.'].includes(this.sceneInitParams?.adjacentRooms?.south)) {
-      const doorSouth = this.matter.add.sprite(500, 800, 'door');
+      const doorSouth = this.matter.add.sprite(500, 800, 'door', '0', {
+        isStatic: true,
+      });
       doorSouth.setAngle(180);
       this.player.setOnCollideWith(doorSouth, () =>
         EventBus.emit(EventNames.USE_DOOR, this, 'south'),
@@ -67,7 +71,9 @@ export class TiledMapTest2 extends Scene {
     }
 
     if (!['?', '.'].includes(this.sceneInitParams?.adjacentRooms?.east)) {
-      const doorEast = this.matter.add.sprite(800, 500, 'door');
+      const doorEast = this.matter.add.sprite(800, 500, 'door', '0', {
+        isStatic: true,
+      });
       doorEast.setAngle(90);
       this.player.setOnCollideWith(doorEast, () =>
         EventBus.emit(EventNames.USE_DOOR, this, 'east'),
@@ -75,7 +81,9 @@ export class TiledMapTest2 extends Scene {
     }
 
     if (!['?', '.'].includes(this.sceneInitParams?.adjacentRooms?.west)) {
-      const doorWest = this.matter.add.sprite(100, 500, 'door');
+      const doorWest = this.matter.add.sprite(100, 500, 'door', '0', {
+        isStatic: true,
+      });
       doorWest.setAngle(270);
       this.player.setOnCollideWith(doorWest, () =>
         EventBus.emit(EventNames.USE_DOOR, this, 'west'),
