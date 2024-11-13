@@ -3,12 +3,12 @@ import { Scene } from 'phaser';
 const BASE_MAP_PATH = './tiled/maps/room-';
 
 export let mapIndex: number;
-export let currentRoomId: string = '0';
+export let currentRoomId: number = 0;
 export let currentRoomIndex: number;
 export let mapData: Array<number>;
 export let startingRoomData: Array<number>;
 
-export const setCurrentRoomId = (id: string) => {
+export const setCurrentRoomId = (id: number) => {
   currentRoomId = id;
 };
 
