@@ -43,7 +43,7 @@ export class TiledMapTest2 extends Scene {
   }
 
   preload() {
-    this.load.image('door', 'assets/issac-door.png');
+    this.load.image('door', 'assets/isaac-door.png');
     this.load.image('jones', 'assets/jones.png');
 
     const { roomType } = this.sceneInitParams;

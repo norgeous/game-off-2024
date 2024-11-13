@@ -7,7 +7,7 @@ theme: SECRETS
 - vampire survivors
   - levelling up weapons
   - simple 2 frame animation style, but not pixel art?
-- binding of issac
+- binding of isaac
   - dungeon crawler, room based
 - zelda
   - in dungeons **secret** areas can be opened by bombing walls
@@ -26,7 +26,7 @@ theme: SECRETS
 
 ## game storyline ideas
 
-- quest for **secret** item, Indiana Jones style quest for holy grale / crystal skull type item, perhaps issac type dungeon game with egyptian theme level, mobs and weapons. the **secret** inside the pyramid or osiris shaft? https://www.youtube.com/shorts/8tTSVZvXAfE
+- quest for **secret** item, Indiana Jones style quest for holy grale / crystal skull type item, perhaps isaac type dungeon game with egyptian theme level, mobs and weapons. the **secret** inside the pyramid or osiris shaft? https://www.youtube.com/shorts/8tTSVZvXAfE
 - collecting fragments of **secret** message / audio message (credits Sam via chatgpt)
 - original (?) cat game idea: you're playing as cat who sees "missing cat" posters and starts investigating the dissapearances (this is not necessarily the dungeon crawler idea) - Abe's Odyssey type horror mystery storyline ("they" are secretly using the cat meat as cat food?) soilent green
 
