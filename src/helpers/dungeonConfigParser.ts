@@ -99,8 +99,8 @@ export const getNextRoom = (
   return {
     x,
     y,
-    playerEnterFrom,
     roomType,
+    playerEnterFrom,
     adjacentRooms,
   };
 };

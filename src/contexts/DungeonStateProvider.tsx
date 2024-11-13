@@ -24,11 +24,11 @@ const useDungeonState = () => {
     // find the first roomType of 0
     const startRoom = newDungeon1D.find(({ roomType }) => roomType === '0');
     if (!startRoom) return;
-    const startRoomInfo = getRoomInfo(newDungeon1D, startRoom.x, startRoom.y);
+    const { adjacentRooms } = getRoomInfo(newDungeon1D, startRoom.x, startRoom.y);
     const startState = {
       ...startRoom,
       playerEnterFrom: 'start',
-      ...startRoomInfo,
+      adjacentRooms,
     };
     setCurrent(startState);
     setRoomHistory([...roomHistory, startRoom]);
