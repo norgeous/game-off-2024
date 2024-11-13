@@ -12,7 +12,8 @@
 - [x] add main character
 - [x] mini map
 - [x] mobile controls
-- [ ] simple github ci for github pages
+- [ ] github pages
+- [ ] simple github ci
 - [ ] add isRoomCleared flag to scene data
 - [ ] carry velocity between room scenes
 - [ ] enemy sfx
