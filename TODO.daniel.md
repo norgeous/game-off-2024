@@ -11,9 +11,9 @@
 - [x] add doors
 - [x] add main character
 - [x] mini map
-- [ ] carry velocity between room scenes
-- [ ] add isRoomCleared flag to scene data
-- [ ] simple github ci
-- [ ] main menu art (title card art)
-- [ ] enemy sfx
 - [ ] mobile controls
+- [ ] simple github ci for github pages
+- [ ] add isRoomCleared flag to scene data
+- [ ] carry velocity between room scenes
+- [ ] enemy sfx
+- [ ] main menu art (title card art)
