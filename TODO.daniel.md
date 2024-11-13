@@ -10,4 +10,3 @@
 - [ ] add main character?
 - [ ] simple github ci
 - [ ] main menu art (title card art)
-- [ ] add mobs?
