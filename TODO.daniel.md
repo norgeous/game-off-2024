@@ -11,5 +11,6 @@
 - [x] add doors
 - [ ] add main character?
 - [ ] carry velocity between room scenes
+- [ ] add isRoomCleared flag to scene data
 - [ ] simple github ci
 - [ ] main menu art (title card art)
