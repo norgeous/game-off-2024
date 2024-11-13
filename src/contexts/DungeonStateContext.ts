@@ -6,13 +6,13 @@ export const defaultDungeonState = {
   current: {
     x: 0,
     y: 0,
-    roomType: '?',
+    roomType: '%',
     playerEnterFrom: 'start',
     adjacentRooms: {
-      north: '?',
-      south: '?',
-      west: '?',
-      east: '?',
+      north: '%',
+      south: '%',
+      west: '%',
+      east: '%',
     },
   },
   go: (_scene: Phaser.Scene, _direction: Direction) => {}, // eslint-disable-line @typescript-eslint/no-unused-vars

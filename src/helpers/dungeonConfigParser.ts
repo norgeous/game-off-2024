@@ -20,7 +20,7 @@ export const findRoomConfigByCoordinate = (
   py: number,
 ) => {
   const roomConfig = dungeon1D.find(({ x, y }) => x === px && y === py); // or undefined
-  if (!roomConfig) return { x: 0, y: 0, roomType: '?' };
+  if (!roomConfig) return { x: 0, y: 0, roomType: '%' };
   else return roomConfig;
 };
 
