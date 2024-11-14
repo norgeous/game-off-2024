@@ -64,8 +64,7 @@ export class TiledMapTest2 extends Scene {
     this.load.image('door', 'assets/isaac-door.png');
     this.load.image('jones', 'assets/jones.png');
 
-    // const { roomType } = this.sceneInitParams;
-    const roomType = Math.random() > 0.5 ? '0' : 'g';
+    const { roomType } = this.sceneInitParams;
 
     levelConfig.spawnerConfig = [
       {
