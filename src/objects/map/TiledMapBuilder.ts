@@ -43,7 +43,7 @@ function createLevelConfig(config: LevelConfigType): LevelConfigType {
 }
 
 class TiledMapBuilder {
-  private level: Phaser.Tilemaps.Tilemap | undefined;
+  public level: Phaser.Tilemaps.Tilemap | undefined;
   public layers: LayersObjType = {};
   public spawners: SpawnersObjType = {};
 

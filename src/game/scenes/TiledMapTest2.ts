@@ -34,6 +34,16 @@ const getPlayerStartPosition = (
   }[playerEnterFrom];
 };
 
+const getTiledDimensions = (map: TiledMapBuilder) => {
+  const { bottom, right } = map.level?.layers[0].data
+    .flat()
+    .findLast(({ index }) => index !== -1) || { bottom: 0, right: 0 };
+  return {
+    actualWidthInPixels: right,
+    actualHeightInPixels: bottom,
+  };
+};
+
 export class TiledMapTest2 extends Scene {
   public sceneInitParams: SceneInitParamsType;
   public map: TiledMapBuilder | undefined;
@@ -53,7 +63,7 @@ export class TiledMapTest2 extends Scene {
     this.load.image('jones', 'assets/jones.png');
 
     // const { roomType } = this.sceneInitParams;
-    const roomType = Math.random()>.5?'0':'g';
+    const roomType = Math.random() > 0.5 ? '0' : 'g';
 
     levelConfig.spawnerConfig = [
       {
@@ -74,15 +84,23 @@ export class TiledMapTest2 extends Scene {
     console.log('TiledMapTest2 scene got', this.sceneInitParams);
     const { playerEnterFrom } = this.sceneInitParams;
     this.map = new TiledMapBuilder(this, levelConfig);
-    const { width, height } = this.map.layers.tiledLayer;
     const { px, py } = getPlayerStartPosition(this, playerEnterFrom);
     this.player = this.matter.add.sprite(px, py, 'jones');
 
-    console.log(this.map, {width,height}, this.map.layers.tiledLayer.width);
-    if (width > 1280 || height > 768) {
-      this.cameras.main.setBounds(0, 0, width, height);
+    const { actualWidthInPixels, actualHeightInPixels } = getTiledDimensions(
+      this.map,
+    );
+
+    if (actualWidthInPixels > 1280 || actualHeightInPixels > 768) {
+      this.cameras.main.setBounds(
+        0,
+        0,
+        actualWidthInPixels,
+        actualHeightInPixels,
+      );
       this.cameras.main.startFollow(this.player);
     }
+
     createDoors(this); // must be called after player is created
     this.keys = createControls(this); // must be called after player is created
     EventBus.emit(EventNames.READY, this);
