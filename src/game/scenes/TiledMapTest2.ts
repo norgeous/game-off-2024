@@ -20,21 +20,7 @@ const levelConfig: LevelConfigType = {
   spawnerConfig: [],
 };
 
-const getPlayerStartPosition = (
-  scene: Phaser.Scene,
-  playerEnterFrom: Direction,
-) => {
-  const { width, height } = scene.map.layers.tiledLayer;
-  return {
-    start: { px: width * 0.5, py: height * 0.5 },
-    north: { px: width * 0.5, py: height * 0.25 },
-    south: { px: width * 0.5, py: height * 0.75 },
-    east: { px: width * 0.88, py: height * 0.5 },
-    west: { px: width * 0.12, py: height * 0.5 },
-  }[playerEnterFrom];
-};
-
-const getTiledDimensions = (map: TiledMapBuilder) => {
+export const getTiledDimensions = (map: TiledMapBuilder) => {
   const { bottom, right } = map.level?.layers[0].data
     .flat()
     .findLast(({ index }) => index !== -1) || { bottom: 0, right: 0 };
@@ -42,6 +28,22 @@ const getTiledDimensions = (map: TiledMapBuilder) => {
     actualWidthInPixels: right,
     actualHeightInPixels: bottom,
   };
+};
+
+const getPlayerStartPosition = (
+  scene: Phaser.Scene,
+  playerEnterFrom: Direction,
+) => {
+  const { actualWidthInPixels, actualHeightInPixels } = getTiledDimensions(
+    scene.map,
+  );
+  return {
+    start: { px: actualWidthInPixels * 0.5, py: actualHeightInPixels * 0.5 },
+    north: { px: actualWidthInPixels * 0.5, py: actualHeightInPixels * 0.25 },
+    south: { px: actualWidthInPixels * 0.5, py: actualHeightInPixels * 0.75 },
+    east: { px: actualWidthInPixels * 0.88, py: actualHeightInPixels * 0.5 },
+    west: { px: actualWidthInPixels * 0.12, py: actualHeightInPixels * 0.5 },
+  }[playerEnterFrom];
 };
 
 export class TiledMapTest2 extends Scene {
