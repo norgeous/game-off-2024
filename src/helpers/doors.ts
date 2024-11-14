@@ -1,13 +1,18 @@
 import { EventBus, EventNames } from '../game/EventBus';
-import { TiledMapTest2 } from '../game/scenes/TiledMapTest2';
+import {
+  getTiledDimensions,
+  TiledMapTest2,
+} from '../game/scenes/TiledMapTest2';
 
 const createDoors = (scene: TiledMapTest2) => {
-  const { width, height } = scene.map.layers.tiledLayer;
+  const { actualWidthInPixels, actualHeightInPixels } = getTiledDimensions(
+    scene.map,
+  );
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.north)) {
     const doorNorth = scene.matter.add.sprite(
-      width * 0.5,
-      height * 0.1,
+      actualWidthInPixels * 0.5,
+      actualHeightInPixels * 0.1,
       'door',
       '0',
       {
@@ -21,8 +26,8 @@ const createDoors = (scene: TiledMapTest2) => {
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.south)) {
     const doorSouth = scene.matter.add.sprite(
-      width * 0.5,
-      height * 0.9,
+      actualWidthInPixels * 0.5,
+      actualHeightInPixels * 0.9,
       'door',
       '0',
       {
@@ -37,8 +42,8 @@ const createDoors = (scene: TiledMapTest2) => {
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.east)) {
     const doorEast = scene.matter.add.sprite(
-      width * 0.935,
-      height * 0.5,
+      actualWidthInPixels - 80,
+      actualHeightInPixels * 0.5,
       'door',
       '0',
       {
@@ -53,8 +58,8 @@ const createDoors = (scene: TiledMapTest2) => {
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.west)) {
     const doorWest = scene.matter.add.sprite(
-      width * 0.065,
-      height * 0.5,
+      80,
+      actualHeightInPixels * 0.5,
       'door',
       '0',
       {
