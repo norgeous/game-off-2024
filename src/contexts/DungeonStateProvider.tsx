@@ -24,7 +24,11 @@ const useDungeonState = () => {
     // find the first roomType of 0
     const startRoom = newDungeon1D.find(({ roomType }) => roomType === '0');
     if (!startRoom) return;
-    const { adjacentRooms } = getRoomInfo(newDungeon1D, startRoom.x, startRoom.y);
+    const { adjacentRooms } = getRoomInfo(
+      newDungeon1D,
+      startRoom.x,
+      startRoom.y,
+    );
     const startState = {
       ...startRoom,
       playerEnterFrom: 'start',

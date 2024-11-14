@@ -34,8 +34,8 @@ type SpawnersObjType = Record<string, Phaser.GameObjects.Group>;
 function createLevelConfig(config: LevelConfigType): LevelConfigType {
   return {
     ...config,
-    tileWidth: config.tileWidth ?? 64,
-    tileHeight: config.tileHeight ?? 64,
+    tileWidth: config.tileWidth ?? 16,
+    tileHeight: config.tileHeight ?? 16,
     tileMargin: config.tileMargin ?? 0,
     tileSpacing: config.tileSpacing ?? 0,
     spawnerConfig: config.spawnerConfig ?? [],
@@ -43,8 +43,8 @@ function createLevelConfig(config: LevelConfigType): LevelConfigType {
 }
 
 class TiledMapBuilder {
-  private level: Phaser.Tilemaps.Tilemap | undefined;
-  private layers: LayersObjType = {};
+  public level: Phaser.Tilemaps.Tilemap | undefined;
+  public layers: LayersObjType = {};
   public spawners: SpawnersObjType = {};
 
   static preload(scene: Phaser.Scene, levelConfig: LevelConfigType) {

@@ -13,20 +13,38 @@ import createDoors from '../../helpers/doors';
 
 const levelConfig: LevelConfigType = {
   key: 'Room',
-  tilesetPng: './tiled/tileset/binding_of_isaac_tiles.jpg',
-  tiledMapJson: './tiled/maps/room-0.json',
+  // tilesetPng: './tiled/tileset/binding_of_isaac_tiles.jpg',
+  tilesetPng: './tiled/tileset/ai-egypt-1.png',
+  tiledMapJson: './tiled/maps/rooms/room-0.json',
   layerConfig: [{ tiledLayerName: 'tiledLayer', depth: 0 }],
   spawnerConfig: [],
 };
 
-const getPlayerStartPosition = (playerEnterFrom: Direction) =>
-  ({
-    start: { px: 500, py: 500 },
-    north: { px: 500, py: 200 },
-    south: { px: 500, py: 700 },
-    east: { px: 700, py: 500 },
-    west: { px: 200, py: 500 },
-  })[playerEnterFrom];
+export const getTiledDimensions = (map: TiledMapBuilder) => {
+  const { bottom, right } = map.level?.layers[0].data
+    .flat()
+    .findLast(({ index }) => index !== -1) || { bottom: 0, right: 0 };
+  return {
+    actualWidthInPixels: right,
+    actualHeightInPixels: bottom,
+  };
+};
+
+const getPlayerStartPosition = (
+  scene: Phaser.Scene,
+  playerEnterFrom: Direction,
+) => {
+  const { actualWidthInPixels, actualHeightInPixels } = getTiledDimensions(
+    scene.map,
+  );
+  return {
+    start: { px: actualWidthInPixels * 0.5, py: actualHeightInPixels * 0.5 },
+    north: { px: actualWidthInPixels * 0.5, py: actualHeightInPixels * 0.25 },
+    south: { px: actualWidthInPixels * 0.5, py: actualHeightInPixels * 0.75 },
+    east: { px: actualWidthInPixels * 0.88, py: actualHeightInPixels * 0.5 },
+    west: { px: actualWidthInPixels * 0.12, py: actualHeightInPixels * 0.5 },
+  }[playerEnterFrom];
+};
 
 export class TiledMapTest2 extends Scene {
   public sceneInitParams: SceneInitParamsType;
@@ -58,32 +76,40 @@ export class TiledMapTest2 extends Scene {
       },
     ];
     levelConfig.key = `room-${roomType}`;
-    levelConfig.tiledMapJson = `./tiled/maps/room-${roomType}.json`;
+    levelConfig.tiledMapJson = `./tiled/rooms/room-${roomType}.json`;
 
     TiledMapBuilder.preload(this, levelConfig);
   }
 
   create() {
     console.log('TiledMapTest2 scene got', this.sceneInitParams);
-
     const { playerEnterFrom } = this.sceneInitParams;
-
     this.map = new TiledMapBuilder(this, levelConfig);
-
-    const { px, py } = getPlayerStartPosition(playerEnterFrom);
-
+    const { px, py } = getPlayerStartPosition(this, playerEnterFrom);
     this.player = this.matter.add.sprite(px, py, 'jones');
-    this.cameras.main.startFollow(this.player);
+
+    const { actualWidthInPixels, actualHeightInPixels } = getTiledDimensions(
+      this.map,
+    );
+
+    if (actualWidthInPixels > 1280 || actualHeightInPixels > 768) {
+      this.cameras.main.setBounds(
+        0,
+        0,
+        actualWidthInPixels,
+        actualHeightInPixels,
+      );
+      this.cameras.main.startFollow(this.player);
+    }
 
     createDoors(this); // must be called after player is created
     this.keys = createControls(this); // must be called after player is created
-
     EventBus.emit(EventNames.READY, this);
   }
 
   update() {
     if (this.keys) {
-      const forceVector = keysToVector(this.keys, 0.001);
+      const forceVector = keysToVector(this.keys, 0.0015);
       this.player.applyForce(forceVector);
     }
   }

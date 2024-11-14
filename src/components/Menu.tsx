@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaGear, FaXmark } from 'react-icons/fa6';
+import { FaGear, FaGithub, FaXmark } from 'react-icons/fa6';
 import Container from './Container';
 import FullscreenToggle from './FullscreenToggle';
 import MenuButton from './MenuButton';
@@ -28,6 +28,13 @@ const Menu = ({ phaserScene }: IMenu) => {
         {isSettingsOpen && (
           <>
             <FullscreenToggle />
+            <MenuButton
+              as="a"
+              href="https://github.com/norgeous/game-off-2024"
+              target="_blank"
+            >
+              <FaGithub size={32} />
+            </MenuButton>
             {isDev && (
               <>
                 <SceneSelectorToggleButton

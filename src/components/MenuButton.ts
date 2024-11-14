@@ -5,6 +5,7 @@ const MenuButton = styled.button`
   color: inherit;
   border: none;
   cursor: pointer;
+  padding: 0;
   &:disabled {
     cursor: not-allowed;
     opacity: 0.25;
