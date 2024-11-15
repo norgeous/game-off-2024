@@ -10,8 +10,9 @@ export default {
   manifest: {
     name: '[SECRETS]',
     short_name: '[SECRETS]',
-    description: 'game off 2024',
+    description: 'Game Off 2024',
     theme_color: '#000000',
+    display: 'fullscreen',
     orientation: 'landscape',
   },
 
