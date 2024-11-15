@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FaGear, FaGithub, FaXmark } from 'react-icons/fa6';
-import Container from './Container';
+import CornerMenu, { Corner } from './CornerMenu';
 import FullscreenToggle from './FullscreenToggle';
 import MenuButton from './MenuButton';
 import { SceneSelectorModal, SceneSelectorToggleButton } from './SceneSelector';
@@ -10,6 +10,7 @@ import DungeonStateDebug, {
   DungeonStateDebugToggleButton,
 } from './DungeonStateDebug';
 import Health from './Health';
+import Coins from './Coins';
 
 interface IMenu {
   phaserScene: Phaser.Scene;
@@ -22,7 +23,11 @@ const Menu = ({ phaserScene }: IMenu) => {
 
   return (
     <>
-      <Container>
+      <CornerMenu $corner={Corner.TL}>
+        <Health />
+      </CornerMenu>
+
+      <CornerMenu $corner={Corner.TR}>
         <MenuButton onClick={() => setSettingsIsOpen(!isSettingsOpen)}>
           {isSettingsOpen ? <FaXmark size={32} /> : <FaGear size={32} />}
         </MenuButton>
@@ -48,15 +53,15 @@ const Menu = ({ phaserScene }: IMenu) => {
             )}
           </>
         )}
-      </Container>
+      </CornerMenu>
 
-      <Container style={{ top: 'auto', bottom: 0 }}>
+      <CornerMenu $corner={Corner.BL}>
+        <Coins />
+      </CornerMenu>
+
+      <CornerMenu $corner={Corner.BR}>
         <MiniMap />
-      </Container>
-
-      <Container style={{ left: 0, right: 'auto' }}>
-        <Health />
-      </Container>
+      </CornerMenu>
 
       {isSceneSelectorOpen && (
         <SceneSelectorModal
