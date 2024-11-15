@@ -9,6 +9,7 @@ import MiniMap from './MiniMap';
 import DungeonStateDebug, {
   DungeonStateDebugToggleButton,
 } from './DungeonStateDebug';
+import Health from './Health';
 
 interface IMenu {
   phaserScene: Phaser.Scene;
@@ -51,6 +52,10 @@ const Menu = ({ phaserScene }: IMenu) => {
 
       <Container style={{ top: 'auto', bottom: 0 }}>
         <MiniMap />
+      </Container>
+
+      <Container style={{ left: 0, right: 'auto' }}>
+        <Health />
       </Container>
 
       {isSceneSelectorOpen && (
