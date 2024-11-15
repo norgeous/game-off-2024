@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { FaCoins } from 'react-icons/fa6';
 import styled from 'styled-components';
 
@@ -6,8 +7,6 @@ const Container = styled.div`
   gap: 8px;
   align-items: center;
   font-size: 32px;
-  user-select: none;
-  pointer-events: none;
 `;
 
 const CoinCount = styled.div`
@@ -15,12 +14,23 @@ const CoinCount = styled.div`
   text-shadow: 2px 2px #000;
 `;
 
-const Coins = () => (
-  <Container>
-    <FaCoins size={32} style={{ color: 'gold' }} />
-    <CoinCount>1,000,000</CoinCount>
-    <div style={{ fontSize: 32 }}>𓀀</div>
-  </Container>
-);
+const Coins = () => {
+  const [count, setCount] = useState(1_000_000);
+  const display = new Intl.NumberFormat().format(count);
+  return (
+    <>
+      <Container>
+        <button onClick={() => setCount(0)}>0</button>
+        <button onClick={() => setCount(count - 1)}>-1</button>
+        <button onClick={() => setCount(count + 1)}>+1</button>
+        <button onClick={() => setCount(count + 1_000_000)}>+1M</button>
+      </Container>
+      <Container>
+        <FaCoins size={32} style={{ color: 'gold' }} />
+        <CoinCount>{display}</CoinCount>
+      </Container>
+    </>
+  );
+};
 
 export default Coins;
