@@ -12,6 +12,7 @@ export default {
     short_name: '[SECRETS]',
     description: 'game off 2024',
     theme_color: '#000000',
+    orientation: 'landscape',
   },
 
   workbox: {
