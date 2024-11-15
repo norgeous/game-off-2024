@@ -25,6 +25,7 @@ const Menu = ({ phaserScene }: IMenu) => {
     <>
       <CornerMenu $corner={Corner.TL}>
         <Health />
+        <Coins />
       </CornerMenu>
 
       <CornerMenu $corner={Corner.TR}>
@@ -55,9 +56,7 @@ const Menu = ({ phaserScene }: IMenu) => {
         )}
       </CornerMenu>
 
-      <CornerMenu $corner={Corner.BL}>
-        <Coins />
-      </CornerMenu>
+      <CornerMenu $corner={Corner.BL}>Crushing slugs...</CornerMenu>
 
       <CornerMenu $corner={Corner.BR}>
         <MiniMap />
