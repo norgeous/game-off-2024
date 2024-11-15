@@ -13,9 +13,9 @@
 - [x] mini map
 - [x] mobile controls
 - [x] simple github ci for github pages
+- [x] react health bar top left
+- [x] coin count top left
 - [ ] player weapon
-- [ ] react health bar top left
-- [ ] coin count top left
 - [ ] we want doors to lock until all enemy killed in room
 - [ ] add isRoomCleared flag to scene data
 - [ ] carry velocity between room scenes
