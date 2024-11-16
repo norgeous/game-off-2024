@@ -114,6 +114,10 @@ export class TiledMapTest2 extends Scene {
     if (this.keys) {
       const forceVector = keysToVector(this.keys, 0.0015);
       this.player.applyForce(forceVector);
+
+      if (this.keys.SPACE.isDown) {
+        this.matter.add.sprite(this.player.x, this.player.y, 'star');
+      }
     }
   }
 }
