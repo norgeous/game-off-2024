@@ -61,7 +61,7 @@ class Entity extends Phaser.GameObjects.Container {
   public sprite: Phaser.GameObjects.Sprite;
   public gameObject: PhaserMatterImage;
   protected hitbox;
-  protected movementStratagy: MovementStrategy;
+  protected movementStrategy: MovementStrategy;
   public stats: EntityStatsType;
   protected keepUpright: boolean;
 
@@ -191,7 +191,7 @@ class Entity extends Phaser.GameObjects.Container {
   }
 
   update(time?: number, delta?: number) {
-    this.movementStratagy.move(this, time, delta);
+    this.movementStrategy.move(this, time, delta);
     super.update(time, delta);
     this.flipXSprite(this.facing === -1);
     this.keepUpRight();

@@ -35,7 +35,7 @@ class Scorpion extends Entity {
   }
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, entityConfig);
-    this.movementStratagy = new RandomLinearMovement();
+    this.movementStrategy = new RandomLinearMovement();
   }
 }
 

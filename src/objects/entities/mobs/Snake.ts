@@ -36,7 +36,7 @@ class Snake extends Entity {
   }
   constructor(scene: TiledMapTest2, x: number, y: number) {
     super(scene, x, y, entityConfig);
-    this.movementStratagy = new CircularMoveTowardPlayer(scene);
+    this.movementStrategy = new CircularMoveTowardPlayer(scene);
   }
 }
 

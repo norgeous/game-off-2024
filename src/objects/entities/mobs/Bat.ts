@@ -36,7 +36,7 @@ class Bat extends Entity {
   }
   constructor(scene: TiledMapTest2, x: number, y: number) {
     super(scene, x, y, entityConfig);
-    this.movementStratagy = new OscillatingMovement(0.2, 1, scene);
+    this.movementStrategy = new OscillatingMovement(0.2, 1, scene);
   }
 }
 
