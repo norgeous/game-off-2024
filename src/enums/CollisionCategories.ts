@@ -13,6 +13,8 @@ export enum CC {
 
   door = 0b00000000000000000000000001000000, // 64
 
+  sensor = 0b00000000000000000000000010000000, // 128
+
   layer32 = 0b10000000000000000000000000000000, // 2147483648 (32 max layer, max 32 types of things in the game)
 }
 
@@ -36,6 +38,9 @@ export enum CM {
   door = CC.player, // doors can only collide with the player
 
   groundsensor = CC.default, // only collide with ground staticbody (or anything in default category)
+
+  playerDetector = CC.player,
+  enemyDetector = CC.enemy,
 }
 
 export const bodyToCC = (body: MatterJS.BodyType) =>
