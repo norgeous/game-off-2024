@@ -107,6 +107,7 @@ export class TiledMapTest2 extends Scene {
 
     createDoors(this); // must be called after player is created
     this.keys = createControls(this); // must be called after player is created
+
     EventBus.emit(EventNames.READY, this);
   }
 
