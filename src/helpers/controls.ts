@@ -18,7 +18,7 @@ export const createControls = (scene: Phaser.Scene) => {
   };
 
   scene.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
-    // console.log(pointer.manager.pointers.map(({ buttons }) => buttons));
+    // if the primary button on the second pointer is down
     if (pointer.manager.pointers[2].buttons === 1) {
       mouseKeys.SPACE.isDown = true;
     }
