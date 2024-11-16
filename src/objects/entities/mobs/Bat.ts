@@ -2,6 +2,8 @@ import * as Phaser from 'phaser';
 import Entity, { EntityConfigType } from '../Entity';
 import GameScene from '@/scenes/GameScene';
 import { CC, CM } from '../../../enums/CollisionCategories';
+import { TiledMapTest2 } from '../../../game/scenes/TiledMapTest2';
+import { OscillatingMovement } from '../../../helpers/movement/OscillatingMovement';
 
 const KEY = 'bat';
 
@@ -21,6 +23,12 @@ const entityConfig: EntityConfigType = {
     height: 100,
   },
   animations: [],
+  stats: {
+    hp: 1,
+    maxHp: 10,
+    speed: 0.1,
+    attackRate: 1,
+  },
 };
 
 class Bat extends Entity {
@@ -29,6 +37,11 @@ class Bat extends Entity {
   }
   constructor(scene: GameScene, x: number, y: number) {
     super(scene, x, y, entityConfig);
+    this.movementStratagy = new OscillatingMovement(
+      0.2,
+      1,
+      scene as TiledMapTest2,
+    );
   }
 }
 
