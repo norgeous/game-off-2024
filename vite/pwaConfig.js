@@ -12,6 +12,7 @@ export default {
     short_name: '[SECRETS]',
     description: 'Game Off 2024',
     theme_color: '#000000',
+    background_color: '#000000',
     display: 'fullscreen',
     orientation: 'landscape',
   },
