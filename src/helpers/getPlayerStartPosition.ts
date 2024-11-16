@@ -12,10 +12,10 @@ const getPlayerStartPosition = (
 
   const positions = {
     start: { px: w * 0.5, py: h * 0.5 },
-    north: { px: w * 0.5, py: h * 0.25 },
-    south: { px: w * 0.5, py: h * 0.75 },
-    east: { px: w * 0.88, py: h * 0.5 },
-    west: { px: w * 0.12, py: h * 0.5 },
+    north: { px: w * 0.5, py: 175 },
+    south: { px: w * 0.5, py: h - 175 },
+    east: { px: w - 150, py: h * 0.5 },
+    west: { px: 150, py: h * 0.5 },
   };
 
   return positions[playerEnterFrom];
