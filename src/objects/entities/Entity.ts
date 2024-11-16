@@ -50,8 +50,8 @@ const defaultConfig = {
     x: 0,
     y: 0,
   },
-  collisionCategory: CC.default,
-  collisionMask: CM.everything,
+  collisionCategory: CC.sensor,
+  collisionMask: CM.playerDetector,
   sensorConfig: [{ label: 'inner', shape: 'circle', radius: 100 }],
 };
 
@@ -59,6 +59,7 @@ class Entity extends Phaser.GameObjects.Container {
   public scene: Phaser.Scene;
   public sensorData: Record<string, Set<number>>;
   public facing: number;
+  public debugText: Phaser.GameObjects.Text;
   public sprite: Phaser.GameObjects.Sprite;
   public gameObject: PhaserMatterImage;
   protected hitbox;
@@ -104,6 +105,16 @@ class Entity extends Phaser.GameObjects.Container {
     this.stats = stats;
     this.keepUpright = true;
 
+    // debug text
+    this.debugText = this.scene.add
+      .text(0, 0 - 40, 'XXX', {
+        font: '32px Arial',
+        align: 'center',
+        color: 'white',
+      })
+      .setOrigin(0.5);
+    this.add(this.debugText);
+
     // sprite
     this.sprite = this.scene.add
       .sprite(this.craftpixOffset.x, this.craftpixOffset.y, this.name)
@@ -139,8 +150,8 @@ class Entity extends Phaser.GameObjects.Container {
       label: 'inner',
       shape: 'circle',
       radius: 200,
-      collisionCategory: CC.default,
-      collisionMask: CM.groundsensor,
+      collisionCategory: CC.sensor,
+      collisionMask: CM.playerDetector,
     });
     this.sensorData.inner = sensorData;
     const compoundBody = Body.create({
@@ -186,7 +197,7 @@ class Entity extends Phaser.GameObjects.Container {
   }
 
   update(time?: number, delta?: number) {
-    console.log(this.hitbox.id, this.sensorData.inner);
+    this.debugText.text = String(this.sensorData.inner.size);
     this.movementStrategy.move(this, time, delta);
     super.update(time, delta);
     this.flipXSprite(this.facing === -1);
