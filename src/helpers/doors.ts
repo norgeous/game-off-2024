@@ -14,7 +14,7 @@ const createDoors = (scene: TiledMapTest2) => {
       actualWidthInPixels * 0.5,
       actualHeightInPixels * 0.1,
       'door',
-      '0',
+      undefined,
       {
         isStatic: true,
       },
@@ -29,7 +29,7 @@ const createDoors = (scene: TiledMapTest2) => {
       actualWidthInPixels * 0.5,
       actualHeightInPixels * 0.9,
       'door',
-      '0',
+      undefined,
       {
         isStatic: true,
       },
@@ -45,7 +45,7 @@ const createDoors = (scene: TiledMapTest2) => {
       actualWidthInPixels - 80,
       actualHeightInPixels * 0.5,
       'door',
-      '0',
+      undefined,
       {
         isStatic: true,
       },
@@ -61,7 +61,7 @@ const createDoors = (scene: TiledMapTest2) => {
       80,
       actualHeightInPixels * 0.5,
       'door',
-      '0',
+      undefined,
       {
         isStatic: true,
       },
