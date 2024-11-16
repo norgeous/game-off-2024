@@ -1,72 +1,48 @@
+import { CC, CM } from '../enums/CollisionCategories';
 import { EventBus, EventNames } from '../game/EventBus';
 import {
   getTiledDimensions,
   TiledMapTest2,
 } from '../game/scenes/TiledMapTest2';
 
+const createDoor = (scene: Phaser.Scene, x: number, y: number, a = 0) =>
+  scene.matter.add
+    .sprite(x, y, 'door', undefined, {
+      isStatic: true,
+      collisionFilter: {
+        category: CC.door,
+        mask: CM.door,
+      },
+    })
+    .setAngle(a);
+
 const createDoors = (scene: TiledMapTest2) => {
-  const { actualWidthInPixels, actualHeightInPixels } = getTiledDimensions(
-    scene.map,
-  );
+  const { actualWidthInPixels: w, actualHeightInPixels: h } =
+    getTiledDimensions(scene.map);
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.north)) {
-    const doorNorth = scene.matter.add.sprite(
-      actualWidthInPixels * 0.5,
-      actualHeightInPixels * 0.1,
-      'door',
-      undefined,
-      {
-        isStatic: true,
-      },
-    );
+    const doorNorth = createDoor(scene, w * 0.5, 70, 0);
     scene.player.setOnCollideWith(doorNorth, () =>
       EventBus.emit(EventNames.USE_DOOR, scene, 'north'),
     );
   }
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.south)) {
-    const doorSouth = scene.matter.add.sprite(
-      actualWidthInPixels * 0.5,
-      actualHeightInPixels * 0.9,
-      'door',
-      undefined,
-      {
-        isStatic: true,
-      },
-    );
-    doorSouth.setAngle(180);
+    const doorSouth = createDoor(scene, w * 0.5, h - 70, 180);
     scene.player.setOnCollideWith(doorSouth, () =>
       EventBus.emit(EventNames.USE_DOOR, scene, 'south'),
     );
   }
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.east)) {
-    const doorEast = scene.matter.add.sprite(
-      actualWidthInPixels - 80,
-      actualHeightInPixels * 0.5,
-      'door',
-      undefined,
-      {
-        isStatic: true,
-      },
-    );
-    doorEast.setAngle(90);
+    const doorEast = createDoor(scene, w - 80, h * 0.5, 90);
     scene.player.setOnCollideWith(doorEast, () =>
       EventBus.emit(EventNames.USE_DOOR, scene, 'east'),
     );
   }
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.west)) {
-    const doorWest = scene.matter.add.sprite(
-      80,
-      actualHeightInPixels * 0.5,
-      'door',
-      undefined,
-      {
-        isStatic: true,
-      },
-    );
-    doorWest.setAngle(270);
+    const doorWest = createDoor(scene, 80, h * 0.5, 270);
     scene.player.setOnCollideWith(doorWest, () =>
       EventBus.emit(EventNames.USE_DOOR, scene, 'west'),
     );
