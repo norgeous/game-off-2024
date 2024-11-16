@@ -1,7 +1,8 @@
 import { createContext } from 'react';
 
 export const defaultPlayer = {
-  health: 100,
+  health: 3,
+  adjustHealth: (_: number) => {}, // eslint-disable-line @typescript-eslint/no-unused-vars
   inventory: [],
 };
 
