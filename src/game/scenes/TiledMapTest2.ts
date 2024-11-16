@@ -92,7 +92,10 @@ export class TiledMapTest2 extends Scene {
       this.map,
     );
 
-    if (actualWidthInPixels > 1280 || actualHeightInPixels > 768) {
+    if (
+      actualWidthInPixels > this.sys.canvas.width ||
+      actualHeightInPixels > this.sys.canvas.height
+    ) {
       this.cameras.main.setBounds(
         0,
         0,
