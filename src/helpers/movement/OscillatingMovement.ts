@@ -1,6 +1,6 @@
 import Entity from '../../objects/entities/Entity';
 import { MovementStrategy } from './MovementStrategy';
-import { TiledMapTest2 } from '../../game/scenes/TiledMapTest2';
+import { TiledMapTest2 } from '../../scenes/TiledMapTest2';
 
 export class OscillatingMovement implements MovementStrategy {
   private frequency: number;

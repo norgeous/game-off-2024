@@ -2,7 +2,7 @@ import * as Phaser from 'phaser';
 import Entity, { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
 import { CircularMoveTowardPlayer } from '../../../helpers/movement/CircularMoveTowardPlayer';
-import { TiledMapTest2 } from '../../../game/scenes/TiledMapTest2';
+import { TiledMapTest2 } from '../../../scenes/TiledMapTest2';
 
 const KEY = 'snake';
 

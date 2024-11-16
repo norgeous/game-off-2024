@@ -1,4 +1,4 @@
-import { TiledMapTest2 } from '../../game/scenes/TiledMapTest2';
+import { TiledMapTest2 } from '../../scenes/TiledMapTest2';
 import Entity from '../../objects/entities/Entity';
 import { MovementStrategy } from './MovementStrategy';
 

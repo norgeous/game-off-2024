@@ -1,7 +1,7 @@
 import * as Phaser from 'phaser';
 import Entity, { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
-import { TiledMapTest2 } from '../../../game/scenes/TiledMapTest2';
+import { TiledMapTest2 } from '../../../scenes/TiledMapTest2';
 import { OscillatingMovement } from '../../../helpers/movement/OscillatingMovement';
 
 const KEY = 'bat';
