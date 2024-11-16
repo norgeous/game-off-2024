@@ -11,6 +11,7 @@ import DungeonStateDebug, {
 } from './DungeonStateDebug';
 import Health from './Health';
 import Coins from './Coins';
+import PlayerDebug, { PlayerDebugToggleButton } from './PlayerDebug';
 
 interface IMenu {
   phaserScene: Phaser.Scene;
@@ -20,6 +21,7 @@ const Menu = ({ phaserScene }: IMenu) => {
   const [isSettingsOpen, setSettingsIsOpen] = useState(false);
   const [isSceneSelectorOpen, setIsSceneSelectorOpen] = useState(false);
   const [isMiniMapOpen, setIsMiniMapOpen] = useState(false);
+  const [isPlayerDebugOpen, setIsPlayerDebugOpen] = useState(false);
 
   return (
     <>
@@ -50,6 +52,9 @@ const Menu = ({ phaserScene }: IMenu) => {
                 <DungeonStateDebugToggleButton
                   onClick={() => setIsMiniMapOpen(true)}
                 />
+                <PlayerDebugToggleButton
+                  onClick={() => setIsPlayerDebugOpen(true)}
+                />
               </>
             )}
           </>
@@ -73,6 +78,13 @@ const Menu = ({ phaserScene }: IMenu) => {
         <DungeonStateDebug
           phaserScene={phaserScene}
           onClose={() => setIsMiniMapOpen(false)}
+        />
+      )}
+
+      {isPlayerDebugOpen && (
+        <PlayerDebug
+          phaserScene={phaserScene}
+          onClose={() => setIsPlayerDebugOpen(false)}
         />
       )}
     </>
