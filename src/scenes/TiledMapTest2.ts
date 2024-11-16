@@ -1,4 +1,4 @@
-import { EventBus, EventNames } from '../EventBus';
+import { EventBus, EventNames } from '../helpers/EventBus';
 import { Scene } from 'phaser';
 import { Direction, SceneInitParamsType } from '../helpers/dungeonConfigParser';
 import TiledMapBuilder, {

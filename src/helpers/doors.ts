@@ -1,5 +1,5 @@
 import { CC, CM } from '../enums/CollisionCategories';
-import { EventBus, EventNames } from '../EventBus';
+import { EventBus, EventNames } from './EventBus';
 import { getTiledDimensions, TiledMapTest2 } from '../scenes/TiledMapTest2';
 
 const createDoor = (scene: Phaser.Scene, x: number, y: number, a = 0) =>

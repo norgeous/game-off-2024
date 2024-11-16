@@ -1,5 +1,5 @@
 import { Scene } from 'phaser';
-import { EventBus, EventNames } from '../EventBus';
+import { EventBus, EventNames } from '../helpers/EventBus';
 // import Player from '../objects/entities/Player';
 import { SceneInitParamsType } from '../helpers/dungeonConfigParser';
 import TiledMapBuilder, {

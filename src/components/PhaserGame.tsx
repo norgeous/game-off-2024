@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { forwardRef, useEffect, useLayoutEffect, useRef } from 'react';
-import startGame from './phaserConfig';
-import { EventBus } from './EventBus';
+import startGame from '../phaserConfig';
+import { EventBus } from '../helpers/EventBus';
 
 const HTML_CANVAS_ID = 'game-container';
 

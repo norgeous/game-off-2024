@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import PlayerContext from './PlayerContext';
-import { EventBus, EventNames } from '../EventBus';
+import { EventBus, EventNames } from '../helpers/EventBus';
 
 const usePlayer = () => {
   const [health, setHealth] = useState(3);
