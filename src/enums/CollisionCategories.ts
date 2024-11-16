@@ -10,6 +10,7 @@ export enum CC {
   enemyBullet = 0b00000000000000000000000000010000, // 16
 
   item = 0b00000000000000000000000000100000, // 32
+
   door = 0b00000000000000000000000001000000, // 64
 
   layer32 = 0b10000000000000000000000000000000, // 2147483648 (32 max layer, max 32 types of things in the game)
@@ -26,9 +27,12 @@ export enum CM {
 
   player = CC.default | CC.player | CC.enemy | CC.item | CC.door,
   playerBullet = CC.default | CC.enemy | CC.enemyBullet, // player bullets can only hit walls and enemies
+
   enemy = CC.default | CC.player | CC.playerBullet, // enemies collide with ground, player and player bullets, but not each other or items
   enemyBullet = CC.default | CC.player | CC.playerBullet, // enemy bullets collide with ground, player and player bullets, but not each other or items
+
   item = CC.default | CC.player | CC.item, // items collide with ground, player and other items, but not enemies
+
   door = CC.player, // doors can only collide with the player
 
   groundsensor = CC.default, // only collide with ground staticbody (or anything in default category)
