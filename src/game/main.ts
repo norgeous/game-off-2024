@@ -33,7 +33,7 @@ const config: Phaser.Types.Core.GameConfig = {
     },
   },
   input: {
-    activePointers: 3,
+    activePointers: 2,
   },
   scene: [
     Boot,
