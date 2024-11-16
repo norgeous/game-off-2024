@@ -19,7 +19,7 @@ interface ISceneSelectorToggleButton {
 
 const SceneSelectorToggleButton = ({ onClick }: ISceneSelectorToggleButton) => (
   <MenuButton onClick={onClick}>
-    <FaImages size={32} />
+    <FaImages size={30} />
   </MenuButton>
 );
 

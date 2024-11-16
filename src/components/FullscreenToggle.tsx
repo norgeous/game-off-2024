@@ -22,7 +22,7 @@ const FullscreenToggle = () => {
 
   return (
     <MenuButton onClick={toggle}>
-      {isFull ? <FaCompress size={32} /> : <FaExpand size={32} />}
+      {isFull ? <FaCompress size={30} /> : <FaExpand size={30} />}
     </MenuButton>
   );
 };

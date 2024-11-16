@@ -12,7 +12,7 @@ export const PlayerDebugToggleButton = ({
   onClick,
 }: IDungeonStateDebugToggleButton) => (
   <MenuButton onClick={onClick}>
-    <FaUser size={32} />
+    <FaUser size={30} />
   </MenuButton>
 );
 

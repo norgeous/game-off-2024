@@ -32,7 +32,7 @@ const Menu = ({ phaserScene }: IMenu) => {
 
       <CornerMenu $corner={Corner.TR}>
         <MenuButton onClick={() => setSettingsIsOpen(!isSettingsOpen)}>
-          {isSettingsOpen ? <FaXmark size={32} /> : <FaGear size={32} />}
+          {isSettingsOpen ? <FaXmark size={30} /> : <FaGear size={30} />}
         </MenuButton>
         {isSettingsOpen && (
           <>
@@ -42,7 +42,7 @@ const Menu = ({ phaserScene }: IMenu) => {
               href="https://github.com/norgeous/game-off-2024"
               target="_blank"
             >
-              <FaGithub size={32} />
+              <FaGithub size={30} />
             </MenuButton>
             {isDev && (
               <>

@@ -7,7 +7,7 @@ const Container = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
-  font-size: 32px;
+  font-size: 30px;
 `;
 
 const CoinCount = styled.div`
@@ -20,7 +20,7 @@ const Coins = () => {
   return (
     <>
       <Container>
-        <FaCoins size={32} style={{ color: 'gold' }} />
+        <FaCoins size={30} style={{ color: 'gold' }} />
         <CoinCount>{new Intl.NumberFormat().format(coins)}</CoinCount>
       </Container>
     </>

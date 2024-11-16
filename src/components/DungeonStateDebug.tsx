@@ -30,7 +30,7 @@ export const DungeonStateDebugToggleButton = ({
   onClick,
 }: IDungeonStateDebugToggleButton) => (
   <MenuButton onClick={onClick}>
-    <FaDungeon size={32} />
+    <FaDungeon size={30} />
   </MenuButton>
 );
 
@@ -57,25 +57,25 @@ const DungeonStateDebug = ({ phaserScene, onClose }: IDungeonStateDebug) => {
           style={{ position: 'absolute', top: 0 }}
           onClick={() => go(phaserScene, 'north')}
         >
-          <FaArrowUp size={32} />
+          <FaArrowUp size={30} />
         </MenuButton>
         <MenuButton
           style={{ position: 'absolute', bottom: 0 }}
           onClick={() => go(phaserScene, 'south')}
         >
-          <FaArrowDown size={32} />
+          <FaArrowDown size={30} />
         </MenuButton>
         <MenuButton
           style={{ position: 'absolute', left: 0 }}
           onClick={() => go(phaserScene, 'west')}
         >
-          <FaArrowLeft size={32} />
+          <FaArrowLeft size={30} />
         </MenuButton>
         <MenuButton
           style={{ position: 'absolute', right: 0 }}
           onClick={() => go(phaserScene, 'east')}
         >
-          <FaArrowRight size={32} />
+          <FaArrowRight size={30} />
         </MenuButton>
       </ArrowsContainer>
       <div>roomHistory length: {roomHistory.length}</div>

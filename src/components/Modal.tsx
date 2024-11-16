@@ -44,7 +44,7 @@ const Modal = ({ children, onClose }: IModal) => {
     <ModalBackdrop onClick={onClose}>
       <ModalContent onClick={(event) => event.stopPropagation()}>
         <Button onClick={onClose}>
-          <FaXmark size={32} />
+          <FaXmark size={30} />
         </Button>
         <ModalInner>{children}</ModalInner>
       </ModalContent>

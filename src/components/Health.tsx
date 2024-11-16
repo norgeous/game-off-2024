@@ -7,7 +7,7 @@ const Health = () => {
   return (
     <div style={{ display: 'flex', gap: 8, color: 'firebrick' }}>
       {Array.from({ length: health }, (_, i) => (
-        <FaHeart key={i} size={32} />
+        <FaHeart key={i} size={30} />
       ))}
     </div>
   );
