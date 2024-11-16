@@ -10,6 +10,7 @@ import TiledMapBuilder, {
 import { getRandomEnemy } from '../../helpers/getRandomEnemy';
 import { createControls, keysToVector, keysType } from '../../helpers/controls';
 import createDoors from '../../helpers/doors';
+import { CC, CM } from '../../enums/CollisionCategories';
 
 const levelConfig: LevelConfigType = {
   key: 'Room',
@@ -86,7 +87,12 @@ export class TiledMapTest2 extends Scene {
     const { playerEnterFrom } = this.sceneInitParams;
     this.map = new TiledMapBuilder(this, levelConfig);
     const { px, py } = getPlayerStartPosition(this, playerEnterFrom);
-    this.player = this.matter.add.sprite(px, py, 'jones');
+    this.player = this.matter.add.sprite(px, py, 'jones', undefined, {
+      collisionFilter: {
+        category: CC.player,
+        mask: CM.player,
+      },
+    });
 
     const { actualWidthInPixels, actualHeightInPixels } = getTiledDimensions(
       this.map,
@@ -117,7 +123,14 @@ export class TiledMapTest2 extends Scene {
       this.player.applyForce(forceVector);
 
       if (this.keys.SPACE.isDown) {
-        this.matter.add.sprite(this.player.x, this.player.y, 'star');
+        this.matter.add
+          .sprite(this.player.x, this.player.y, 'star', undefined, {
+            collisionFilter: {
+              category: CC.playerBullet,
+              mask: CM.playerBullet,
+            },
+          })
+          .setAngularVelocity(100);
       }
     }
   }

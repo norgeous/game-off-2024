@@ -7,6 +7,8 @@ export enum CC {
   enemy = 0b00000000000000000000000000000100, // 4
   item = 0b00000000000000000000000000001000, // 8
   door = 0b00000000000000000000000000010000, // 16
+  playerBullet = 0b00000000000000000000000000100000, // 32
+
   layer32 = 0b10000000000000000000000000000000, // 2147483648 (32 max layer, max 32 types of things in the game)
 }
 
@@ -19,14 +21,13 @@ export enum CM {
   everything = -1, // collides with everything (default)
   nothing = 0,
 
-  player = CC.default | CC.player | CC.enemy | CC.item,
-  enemy = CC.default | CC.player, // enemies collide with ground and player, but not each other or items
+  player = CC.default | CC.player | CC.enemy | CC.item | CC.door,
+  playerBullet = CC.default | CC.enemy, // player bullets can only hit walls and enemies
+  enemy = CC.default | CC.player | CC.playerBullet, // enemies collide with ground, player and player bullets, but not each other or items
   item = CC.default | CC.player | CC.item, // items collide with ground, player and other items, but not enemies
 
   groundsensor = CC.default, // only collide with ground staticbody (or anything in default category)
 }
 
-// [!] at time of writing CM is not used anywhere (yet)
-
 export const bodyToCC = (body: MatterJS.BodyType) =>
-  CC[body.gameObject?.body?.collisionFilter?.category];
+  CC[(body.gameObject?.body as MatterJS.BodyType)?.collisionFilter?.category];
