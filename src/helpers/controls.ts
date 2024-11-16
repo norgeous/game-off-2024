@@ -1,4 +1,6 @@
-export type keysType = { [keyCodes: string]: Phaser.Input.Keyboard.Key };
+export type keysType = {
+  [keyCodes: string]: Phaser.Input.Keyboard.Key | { isDown: boolean };
+};
 
 const DEADZONE = 30;
 
@@ -8,13 +10,26 @@ export const createControls = (scene: Phaser.Scene) => {
     A: { isDown: false },
     S: { isDown: false },
     D: { isDown: false },
+    UP: { isDown: false },
+    DOWN: { isDown: false },
+    LEFT: { isDown: false },
+    RIGHT: { isDown: false },
+    SPACE: { isDown: false },
   };
+
+  scene.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
+    // console.log(pointer.manager.pointers.map(({ buttons }) => buttons));
+    if (pointer.manager.pointers[2].buttons === 1) {
+      mouseKeys.SPACE.isDown = true;
+    }
+  });
 
   scene.input.on('pointerup', () => {
     mouseKeys.W.isDown = false;
     mouseKeys.A.isDown = false;
     mouseKeys.S.isDown = false;
     mouseKeys.D.isDown = false;
+    mouseKeys.SPACE.isDown = false;
   });
 
   scene.input.on('pointermove', (pointer: Phaser.Input.Pointer) => {

@@ -32,6 +32,9 @@ const config: Phaser.Types.Core.GameConfig = {
       gravity: { x: 0, y: 0 },
     },
   },
+  input: {
+    activePointers: 3,
+  },
   scene: [
     Boot,
     Preloader,
