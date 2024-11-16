@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import { FaCoins } from 'react-icons/fa6';
 import styled from 'styled-components';
+import PlayerContext from '../contexts/PlayerContext';
 
 const Container = styled.div`
   display: flex;
@@ -15,19 +16,12 @@ const CoinCount = styled.div`
 `;
 
 const Coins = () => {
-  const [count, setCount] = useState(1_000_000);
-  const display = new Intl.NumberFormat().format(count);
+  const { coins } = useContext(PlayerContext);
   return (
     <>
       <Container>
         <FaCoins size={32} style={{ color: 'gold' }} />
-        <CoinCount>{display}</CoinCount>
-      </Container>
-      <Container>
-        <button onClick={() => setCount(0)}>0</button>
-        <button onClick={() => setCount(count - 1)}>-1</button>
-        <button onClick={() => setCount(count + 1)}>+1</button>
-        <button onClick={() => setCount(count + 1_000_000)}>+1M</button>
+        <CoinCount>{new Intl.NumberFormat().format(coins)}</CoinCount>
       </Container>
     </>
   );

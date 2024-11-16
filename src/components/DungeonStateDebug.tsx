@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import {
-  FaMapLocationDot,
+  FaDungeon,
   FaArrowUp,
   FaArrowDown,
   FaArrowLeft,
@@ -30,7 +30,7 @@ export const DungeonStateDebugToggleButton = ({
   onClick,
 }: IDungeonStateDebugToggleButton) => (
   <MenuButton onClick={onClick}>
-    <FaMapLocationDot size={32} />
+    <FaDungeon size={32} />
   </MenuButton>
 );
 

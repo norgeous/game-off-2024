@@ -4,6 +4,8 @@ export enum EventNames {
   READY = 'current-scene-ready',
   START = 'start-dungeon',
   USE_DOOR = 'use-door',
+  ADJUST_PLAYER_HEALTH = 'adjust-player-health',
+  COLLECT_ITEM = 'collect-item',
 }
 
 // Used to emit events between React components and Phaser scenes
