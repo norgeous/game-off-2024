@@ -41,6 +41,7 @@ const createSensor = (
   };
 
   const body = bodies[shape]();
+  console.log(body);
 
   return {
     body,
