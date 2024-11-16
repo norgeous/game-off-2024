@@ -3,6 +3,7 @@ import { PhaserMatterImage } from '@/types';
 import GameScene from '@/scenes/GameScene';
 //import findOtherBody from '@/helpers/findOtherBody';
 import { CC, CM } from '../../enums/CollisionCategories';
+import { MovementStrategy } from '../../helpers/movement/MovementStrategy';
 
 type AnimationsConfigType = {
   animationKey: string;
@@ -30,6 +31,14 @@ export type EntityConfigType = {
     x: number;
     y: number;
   };
+  stats: EntityStatsType;
+};
+
+export type EntityStatsType = {
+  hp: number;
+  maxHp: number;
+  speed: number;
+  attackRate: number;
 };
 
 const defaultConfig = {
@@ -48,18 +57,14 @@ const defaultConfig = {
 
 class Entity extends Phaser.GameObjects.Container {
   public scene: GameScene;
-
   public sensorData: Record<string, Set<number>>;
-
   public facing: number;
-
-  protected sprite: Phaser.GameObjects.Sprite;
-
+  public sprite: Phaser.GameObjects.Sprite;
   public gameObject: PhaserMatterImage;
-
   protected hitbox;
-
-  protected target: Phaser.GameObjects.Container | undefined;
+  protected movementStratagy: MovementStrategy;
+  public stats: EntityStatsType;
+  protected keepUpright: boolean;
 
   protected craftpixOffset: {
     x: number;
@@ -85,6 +90,7 @@ class Entity extends Phaser.GameObjects.Container {
       collisionMask,
       collideCallback,
       craftpixOffset,
+      stats,
     } = { ...defaultConfig, ...config };
 
     this.scene = scene;
@@ -95,6 +101,8 @@ class Entity extends Phaser.GameObjects.Container {
     this.sensorData = {
       bottom: new Set(),
     };
+    this.stats = stats;
+    this.keepUpright = true;
 
     // sprite
     this.sprite = this.scene.add
@@ -140,7 +148,6 @@ class Entity extends Phaser.GameObjects.Container {
     // bottom.onCollideEndCallback = (
     //   data: Phaser.Types.Physics.Matter.MatterCollisionData,
     // ) => this.sensorData.bottom.delete(findOtherBody(bottom.id, data)?.id || 0);
-
     const compoundBody = Body.create({
       parts: [this.hitbox, bottom],
     });
@@ -151,12 +158,14 @@ class Entity extends Phaser.GameObjects.Container {
       collideCallback?.(data, this);
     };
     this.gameObject.setExistingBody(compoundBody);
-
     this.gameObject.setCollisionCategory(collisionCategory);
-    // console.log(`set the CC to ${collisionCategory} in ${name}`);
-    this.gameObject.setCollidesWith(collisionMask); // set the mask
+    this.gameObject.setCollidesWith(collisionMask);
     this.gameObject.setPosition(x, y);
     this.sprite.setScale(this.scale);
+  }
+
+  updateStats(newStats: Partial<EntityStatsType>) {
+    this.stats = { ...this.stats, ...newStats };
   }
 
   getKey(key: string) {
@@ -176,9 +185,17 @@ class Entity extends Phaser.GameObjects.Container {
     }
   }
 
+  keepUpRight() {
+    if (this.keepUpright) {
+      this.rotation = 0;
+    }
+  }
+
   update(time?: number, delta?: number) {
+    this.movementStratagy.move(this, time, delta);
     super.update(time, delta);
     this.flipXSprite(this.facing === -1);
+    this.keepUpRight();
   }
 }
 

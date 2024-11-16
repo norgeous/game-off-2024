@@ -2,6 +2,7 @@ import * as Phaser from 'phaser';
 import Entity, { EntityConfigType } from '../Entity';
 import GameScene from '@/scenes/GameScene';
 import { CC, CM } from '../../../enums/CollisionCategories';
+import { RandomLinearMovement } from '../../../helpers/movement/RandomLinearMovement';
 
 const KEY = 'scorpion';
 
@@ -21,6 +22,12 @@ const entityConfig: EntityConfigType = {
     height: 100,
   },
   animations: [],
+  stats: {
+    hp: 10,
+    maxHp: 10,
+    speed: 0.1,
+    attackRate: 1,
+  },
 };
 
 class Scorpion extends Entity {
@@ -29,6 +36,7 @@ class Scorpion extends Entity {
   }
   constructor(scene: GameScene, x: number, y: number) {
     super(scene, x, y, entityConfig);
+    this.movementStratagy = new RandomLinearMovement();
   }
 }
 
