@@ -22,11 +22,17 @@ interface IDungeonStateDebug {
 }
 
 const PlayerDebug = ({ onClose }: IDungeonStateDebug) => {
-  const data = useContext(PlayerContext);
+  const { health, adjustHealth, inventory } = useContext(PlayerContext);
 
   return (
     <Modal onClose={onClose}>
-      <pre style={{ textAlign: 'left' }}>{JSON.stringify(data, null, 2)}</pre>
+      <pre style={{ textAlign: 'left' }}>
+        {JSON.stringify({ health, inventory }, null, 2)}
+      </pre>
+      <div>
+        <button onClick={() => adjustHealth(+1)}>add heart</button>
+        <button onClick={() => adjustHealth(-1)}>remove heart</button>
+      </div>
     </Modal>
   );
 };
