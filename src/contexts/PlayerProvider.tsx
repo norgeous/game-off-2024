@@ -9,6 +9,11 @@ const usePlayer = () => {
     [health],
   );
 
+  const [coins, setCoins] = useState(0);
+  const adjustCoins = useCallback(
+    (amount: number) => setCoins(coins + amount),
+    [coins],
+  );
   const [inventory, setInventory] = useState([]);
 
   // when the player takes damage
@@ -22,6 +27,10 @@ const usePlayer = () => {
   return {
     health,
     adjustHealth,
+
+    coins,
+    adjustCoins,
+
     inventory,
     setInventory,
   };
