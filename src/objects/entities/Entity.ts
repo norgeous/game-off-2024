@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
 import { PhaserMatterImage } from '../../types';
-//import findOtherBody from '@/helpers/findOtherBody';
 import { CC, CM } from '../../enums/CollisionCategories';
 import { MovementStrategy } from '../../helpers/movement/MovementStrategy';
+import createSensor from '../../helpers/createSensor';
 
 type AnimationsConfigType = {
   animationKey: string;
@@ -52,6 +52,7 @@ const defaultConfig = {
   },
   collisionCategory: CC.default,
   collisionMask: CM.everything,
+  sensorConfig: [{ label: 'inner', shape: 'circle', radius: 100 }],
 };
 
 class Entity extends Phaser.GameObjects.Container {
@@ -98,7 +99,7 @@ class Entity extends Phaser.GameObjects.Container {
     this.craftpixOffset = craftpixOffset;
     this.facing = facing;
     this.sensorData = {
-      bottom: new Set(),
+      inner: new Set(),
     };
     this.stats = stats;
     this.keepUpright = true;
@@ -134,23 +135,17 @@ class Entity extends Phaser.GameObjects.Container {
     this.hitbox = Bodies.rectangle(0, 0, width, height, otherPhysics);
 
     // sensors
-    const bottom = Bodies.rectangle(0, height / 2, width - 2, 15, {
-      isSensor: true,
-      label: 'bottom',
+    const { body: inner, sensorData } = createSensor(this.scene, {
+      label: 'inner',
+      shape: 'circle',
+      radius: 200,
+      collisionCategory: CC.default,
+      collisionMask: CM.groundsensor,
     });
-    // sensor can only collide with ground staticbodies / bodies in default category
-    bottom.collisionFilter.mask = CM.groundsensor;
-
-    // bottom.onCollideCallback = (
-    //   data: Phaser.Types.Physics.Matter.MatterCollisionData,
-    // ) => this.sensorData.bottom.add(findOtherBody(bottom.id, data)?.id || 0);
-    // bottom.onCollideEndCallback = (
-    //   data: Phaser.Types.Physics.Matter.MatterCollisionData,
-    // ) => this.sensorData.bottom.delete(findOtherBody(bottom.id, data)?.id || 0);
+    this.sensorData.inner = sensorData;
     const compoundBody = Body.create({
-      parts: [this.hitbox, bottom],
+      parts: [this.hitbox, inner],
     });
-
     this.hitbox.onCollideCallback = (
       data: Phaser.Types.Physics.Matter.MatterCollisionData,
     ) => {
@@ -191,6 +186,7 @@ class Entity extends Phaser.GameObjects.Container {
   }
 
   update(time?: number, delta?: number) {
+    console.log(this.hitbox.id, this.sensorData.inner);
     this.movementStrategy.move(this, time, delta);
     super.update(time, delta);
     this.flipXSprite(this.facing === -1);
