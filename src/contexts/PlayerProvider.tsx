@@ -1,23 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import PlayerContext from './PlayerContext';
 import { EventBus, EventNames } from '../game/EventBus';
 
 const usePlayer = () => {
-  const [health, setHealth] = useState(100);
+  const [health, setHealth] = useState(3);
+  const adjustHealth = useCallback(
+    (amount: number) => setHealth(health + amount),
+    [health],
+  );
+
   const [inventory, setInventory] = useState([]);
 
   // when the player takes damage
   useEffect(() => {
-    EventBus.on(EventNames.ADJUST_PLAYER_HEALTH, (amount: number) => {
-      setHealth(health + amount);
-    });
+    EventBus.on(EventNames.ADJUST_PLAYER_HEALTH, adjustHealth);
     return () => {
       EventBus.removeListener(EventNames.ADJUST_PLAYER_HEALTH);
     };
-  }, [health]);
+  }, [adjustHealth]);
 
   return {
     health,
+    adjustHealth,
     inventory,
     setInventory,
   };
