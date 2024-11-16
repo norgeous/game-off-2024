@@ -21,7 +21,7 @@ export class RandomLinearMovement implements MovementStrategy {
       Math.random() * (changeDirectionTimeMax - changeDirectionTimeMin) +
       changeDirectionTimeMin;
   }
-  move(entity: Entity, time: number, delta: number): void {
+  move(entity: Entity, _time: number, delta: number): void {
     this.lastDirectionChange += delta;
 
     if (this.lastDirectionChange >= this.changeDirectionTime) {

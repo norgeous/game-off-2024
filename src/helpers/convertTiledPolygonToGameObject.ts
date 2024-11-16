@@ -1,4 +1,4 @@
-import { PhaserMatterImage } from '@/types';
+import { PhaserMatterImage } from '../types';
 
 type ConvertOptions = {
   x: number;
