@@ -15,13 +15,13 @@ export const createControls = (scene: Phaser.Scene) => {
     mouseKeys.S.isDown = false;
     mouseKeys.D.isDown = false;
   });
-  scene.input.on('pointermove', (d) => {
-    if (d.buttons === 1) {
+  scene.input.on('pointermove', (pointer: Phaser.Input.Pointer) => {
+    if (pointer.buttons === 1) {
       const {
         downX,
         downY,
         position: { x, y },
-      } = d;
+      } = pointer;
       const dx = x - downX;
       const dy = y - downY;
       mouseKeys.W.isDown = dy < -DEADZONE;
