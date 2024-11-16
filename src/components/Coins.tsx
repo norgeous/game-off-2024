@@ -15,7 +15,7 @@ const CoinCount = styled.div`
 `;
 
 const Coins = () => {
-  const [count, setCount] = useState(1_000_000);
+  const [count, setCount] = useState(100);
   const display = new Intl.NumberFormat().format(count);
   return (
     <>
