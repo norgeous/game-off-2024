@@ -20,6 +20,12 @@ const entityConfig: EntityConfigType = {
     height: 41,
   },
   animations: [],
+  stats: {
+    hp: 0,
+    maxHp: 0,
+    speed: 0,
+    attackRate: 0,
+  },
 };
 
 class Star extends Entity {
