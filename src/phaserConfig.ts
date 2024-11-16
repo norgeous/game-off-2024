@@ -1,12 +1,12 @@
 import { AUTO, Game } from 'phaser';
-import { Boot } from './game/scenes/Boot';
-import { Preloader } from './game/scenes/Preloader';
-import { MainMenu } from './game/scenes/MainMenu';
-import { Game as MainGame } from './game/scenes/Game';
-import { GameOver } from './game/scenes/GameOver';
-import { Win } from './game/scenes/Win';
-import { TiledMapTest2 } from './game/scenes/TiledMapTest2';
-import { Rooms } from './game/scenes/Rooms';
+import { Boot } from './scenes/Boot';
+import { Preloader } from './scenes/Preloader';
+import { MainMenu } from './scenes/MainMenu';
+import { Game as MainGame } from './scenes/Game';
+import { GameOver } from './scenes/GameOver';
+import { Win } from './scenes/Win';
+import { TiledMapTest2 } from './scenes/TiledMapTest2';
+import { Rooms } from './scenes/Rooms';
 import isDev from './helpers/isDev';
 
 const VIEWPORT_SIZE = 80;

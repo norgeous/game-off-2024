@@ -1,5 +1,5 @@
 import { Scene } from 'phaser';
-import { loadRandomMapData } from '../../objects/map/Map';
+import { loadRandomMapData } from '../objects/map/Map';
 
 export class Preloader extends Scene {
   constructor() {

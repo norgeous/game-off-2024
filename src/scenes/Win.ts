@@ -1,26 +1,26 @@
 import { Scene } from 'phaser';
-import { EventBus, EventNames } from '../../EventBus';
+import { EventBus, EventNames } from '../EventBus';
 
-export class GameOver extends Scene {
+export class Win extends Scene {
   camera: Phaser.Cameras.Scene2D.Camera;
   background: Phaser.GameObjects.Image;
-  gameOverText: Phaser.GameObjects.Text;
+  winText: Phaser.GameObjects.Text;
 
   constructor() {
-    super('GameOver');
+    super('Win');
   }
 
   create() {
     const { width, height } = this.sys.game.canvas;
 
     this.camera = this.cameras.main;
-    this.camera.setBackgroundColor(0xff0000);
+    this.camera.setBackgroundColor(0xff00ff);
 
     this.background = this.add.image(width * 0.5, height * 0.5, 'background');
     this.background.setAlpha(0.5);
 
-    this.gameOverText = this.add
-      .text(width * 0.5, height * 0.5, 'Game Over', {
+    this.winText = this.add
+      .text(width * 0.5, height * 0.5, 'Winner', {
         fontFamily: 'Arial Black',
         fontSize: 64,
         color: '#ffffff',

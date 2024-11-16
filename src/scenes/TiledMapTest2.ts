@@ -1,16 +1,13 @@
-import { EventBus, EventNames } from '../../EventBus';
+import { EventBus, EventNames } from '../EventBus';
 import { Scene } from 'phaser';
-import {
-  Direction,
-  SceneInitParamsType,
-} from '../../helpers/dungeonConfigParser';
+import { Direction, SceneInitParamsType } from '../helpers/dungeonConfigParser';
 import TiledMapBuilder, {
   LevelConfigType,
-} from '../../objects/map/TiledMapBuilder';
-import { getRandomEnemy } from '../../helpers/getRandomEnemy';
-import { createControls, keysToVector, keysType } from '../../helpers/controls';
-import createDoors from '../../helpers/doors';
-import { CC, CM } from '../../enums/CollisionCategories';
+} from '../objects/map/TiledMapBuilder';
+import { getRandomEnemy } from '../helpers/getRandomEnemy';
+import { createControls, keysToVector, keysType } from '../helpers/controls';
+import createDoors from '../helpers/doors';
+import { CC, CM } from '../enums/CollisionCategories';
 
 const levelConfig: LevelConfigType = {
   key: 'Room',
@@ -35,15 +32,15 @@ const getPlayerStartPosition = (
   scene: Phaser.Scene,
   playerEnterFrom: Direction,
 ) => {
-  const { actualWidthInPixels, actualHeightInPixels } = getTiledDimensions(
-    scene.map,
-  );
+  const { actualWidthInPixels: w, actualHeightInPixels: h } =
+    getTiledDimensions(scene.map);
+
   return {
-    start: { px: actualWidthInPixels * 0.5, py: actualHeightInPixels * 0.5 },
-    north: { px: actualWidthInPixels * 0.5, py: actualHeightInPixels * 0.25 },
-    south: { px: actualWidthInPixels * 0.5, py: actualHeightInPixels * 0.75 },
-    east: { px: actualWidthInPixels * 0.88, py: actualHeightInPixels * 0.5 },
-    west: { px: actualWidthInPixels * 0.12, py: actualHeightInPixels * 0.5 },
+    start: { px: w * 0.5, py: h * 0.5 },
+    north: { px: w * 0.5, py: h * 0.25 },
+    south: { px: w * 0.5, py: h * 0.75 },
+    east: { px: w * 0.88, py: h * 0.5 },
+    west: { px: w * 0.12, py: h * 0.5 },
   }[playerEnterFrom];
 };
 

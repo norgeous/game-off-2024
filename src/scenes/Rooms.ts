@@ -1,15 +1,11 @@
 import { Scene } from 'phaser';
-import { EventBus, EventNames } from '../../EventBus';
-// import Player from '../../objects/entities/Player';
-import { SceneInitParamsType } from '../../helpers/dungeonConfigParser';
+import { EventBus, EventNames } from '../EventBus';
+// import Player from '../objects/entities/Player';
+import { SceneInitParamsType } from '../helpers/dungeonConfigParser';
 import TiledMapBuilder, {
   LevelConfigType,
-} from '../../objects/map/TiledMapBuilder';
-import {
-  buildRoomJsonPath,
-  currentRoomId,
-  setCurrentRoomId,
-} from '../../objects/map/Map';
+} from '../objects/map/TiledMapBuilder';
+import { buildRoomJsonPath, currentRoomId } from '../objects/map/Map';
 
 const levelConfig: LevelConfigType = {
   key: 'room',
@@ -34,7 +30,7 @@ export class Rooms extends Scene {
 
   init(dataForScene: SceneInitParamsType) {
     console.log('rooms scene got', dataForScene);
-    setCurrentRoomId(dataForScene.roomType);
+    // setCurrentRoomId(dataForScene.roomType);
   }
 
   preload() {
