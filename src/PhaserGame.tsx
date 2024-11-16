@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { forwardRef, useEffect, useLayoutEffect, useRef } from 'react';
-import StartGame from './main';
-import { EventBus } from './EventBus';
+import StartGame from './game/main';
+import { EventBus } from './game/EventBus';
 
 const GameContainer = styled.div.attrs({
   id: 'game-container',
