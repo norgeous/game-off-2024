@@ -1,6 +1,6 @@
 import { EventBus, EventNames } from '../helpers/EventBus';
 import { Scene } from 'phaser';
-import { Direction, SceneInitParamsType } from '../helpers/dungeonConfigParser';
+import { SceneInitParamsType } from '../helpers/dungeonConfigParser';
 import TiledMapBuilder, {
   LevelConfigType,
 } from '../objects/map/TiledMapBuilder';
@@ -8,6 +8,7 @@ import { getRandomEnemy } from '../helpers/getRandomEnemy';
 import { createControls, keysToVector, keysType } from '../helpers/controls';
 import createDoors from '../helpers/doors';
 import { CC, CM } from '../enums/CollisionCategories';
+import getPlayerStartPosition from '../helpers/getPlayerStartPosition';
 
 const levelConfig: LevelConfigType = {
   key: 'Room',
@@ -26,24 +27,6 @@ export const getTiledDimensions = (map: TiledMapBuilder) => {
     actualWidthInPixels: right,
     actualHeightInPixels: bottom,
   };
-};
-
-const getPlayerStartPosition = (
-  scene: TiledMapTest2,
-  playerEnterFrom: Direction,
-) => {
-  if (!scene.map) return;
-
-  const { actualWidthInPixels: w, actualHeightInPixels: h } =
-    getTiledDimensions(scene.map);
-
-  return {
-    start: { px: w * 0.5, py: h * 0.5 },
-    north: { px: w * 0.5, py: h * 0.25 },
-    south: { px: w * 0.5, py: h * 0.75 },
-    east: { px: w * 0.88, py: h * 0.5 },
-    west: { px: w * 0.12, py: h * 0.5 },
-  }[playerEnterFrom];
 };
 
 export class TiledMapTest2 extends Scene {
