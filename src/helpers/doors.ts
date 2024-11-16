@@ -14,6 +14,8 @@ const createDoor = (scene: Phaser.Scene, x: number, y: number, a = 0) =>
     .setAngle(a);
 
 const createDoors = (scene: TiledMapTest2) => {
+  if (!scene.map) return;
+
   const { actualWidthInPixels: w, actualHeightInPixels: h } =
     getTiledDimensions(scene.map);
 

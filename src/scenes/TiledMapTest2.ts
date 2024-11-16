@@ -29,9 +29,11 @@ export const getTiledDimensions = (map: TiledMapBuilder) => {
 };
 
 const getPlayerStartPosition = (
-  scene: Phaser.Scene,
+  scene: TiledMapTest2,
   playerEnterFrom: Direction,
 ) => {
+  if (!scene.map) return;
+
   const { actualWidthInPixels: w, actualHeightInPixels: h } =
     getTiledDimensions(scene.map);
 
