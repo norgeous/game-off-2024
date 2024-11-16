@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import { forwardRef, useEffect, useLayoutEffect, useRef } from 'react';
-import StartGame from './game/main';
+import startGame from './phaserConfig';
 import { EventBus } from './EventBus';
 
+const HTML_CANVAS_ID = 'game-container';
+
 const GameContainer = styled.div.attrs({
-  id: 'game-container',
+  id: HTML_CANVAS_ID,
 })`
   width: 100%;
   height: 100lvmin;
@@ -33,7 +35,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(
 
     useLayoutEffect(() => {
       if (game.current === null) {
-        game.current = StartGame('game-container');
+        game.current = startGame(HTML_CANVAS_ID);
 
         if (typeof ref === 'function') {
           ref({ game: game.current, scene: null });
