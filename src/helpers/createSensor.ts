@@ -1,4 +1,4 @@
-import { CC, CM } from '../enums/CollisionCategories';
+import { CM } from '../enums/CollisionCategories';
 import findOtherBody from './findOtherBody';
 
 interface ISensorOptions {
@@ -7,13 +7,12 @@ interface ISensorOptions {
   radius: number;
   width?: number;
   height?: number;
-  collisionCategory: CC;
-  collisionMask: CM;
+  collisionSubMask: CM;
 }
 
 const createSensor = (
   scene: Phaser.Scene,
-  { label, shape, radius, collisionCategory, collisionMask }: ISensorOptions,
+  { label, shape, radius, collisionSubMask }: ISensorOptions,
 ) => {
   const sensorData = new Set<number>();
 
@@ -22,14 +21,18 @@ const createSensor = (
   const options: MatterJS.IBodyDefinition = {
     isSensor: true,
     label,
-    collisionFilter: {
-      category: collisionCategory,
-      mask: collisionMask,
-      group: 0,
-    },
     onCollideCallback: (
       data: Phaser.Types.Physics.Matter.MatterCollisionData,
-    ) => sensorData.add(findOtherBody(body.id, data)?.id || 0),
+    ) => {
+      const other = findOtherBody(body.id, data);
+      if (!other) return;
+      if (
+        (other?.collisionFilter.category & collisionSubMask) ===
+        other?.collisionFilter.category
+      ) {
+        sensorData.add(other.id);
+      }
+    },
     onCollideEndCallback: (
       data: Phaser.Types.Physics.Matter.MatterCollisionData,
     ) => sensorData.delete(findOtherBody(body.id, data)?.id || 0),
@@ -41,7 +44,6 @@ const createSensor = (
   };
 
   const body = bodies[shape]();
-  console.log(body);
 
   return {
     body,

@@ -107,7 +107,7 @@ class Entity extends Phaser.GameObjects.Container {
 
     // debug text
     this.debugText = this.scene.add
-      .text(0, 0 - 40, 'XXX', {
+      .text(0, 0 - 120, '', {
         font: '32px Arial',
         align: 'center',
         color: 'white',
@@ -150,10 +150,11 @@ class Entity extends Phaser.GameObjects.Container {
       label: 'inner',
       shape: 'circle',
       radius: 200,
-      collisionCategory: CC.sensor,
-      collisionMask: CM.playerDetector,
+      collisionSubMask: CM.playerDetector,
     });
     this.sensorData.inner = sensorData;
+
+    // compound body
     const compoundBody = Body.create({
       parts: [this.hitbox, inner],
     });
