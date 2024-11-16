@@ -25,16 +25,10 @@ https://norgeous.github.io/game-off-2024/
 
 ### Music
 
--Brazilian streett fight 
-https://www.chosic.com/download-audio/25861/
--Arrab and Muslim 
-https://pixabay.com/music/world-arab-and-muslim-190765/
--folk-gypsy-animated-music
-https://pixabay.com/music/folk-gypsy-animated-music-252548/
--music/rock-the-queen-of-dunes
-https://pixabay.com/music/rock-the-queen-of-dunes-169012/
-
--
+- Brazilian streett fight: https://www.chosic.com/download-audio/25861/
+- Arrab and Muslim: https://pixabay.com/music/world-arab-and-muslim-190765/
+- folk-gypsy-animated-music: https://pixabay.com/music/folk-gypsy-animated-music-252548/
+- music/rock-the-queen-of-dunes: https://pixabay.com/music/rock-the-queen-of-dunes-169012/
 
 ### Tech
 
