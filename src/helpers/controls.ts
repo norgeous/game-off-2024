@@ -9,12 +9,14 @@ export const createControls = (scene: Phaser.Scene) => {
     S: { isDown: false },
     D: { isDown: false },
   };
+
   scene.input.on('pointerup', () => {
     mouseKeys.W.isDown = false;
     mouseKeys.A.isDown = false;
     mouseKeys.S.isDown = false;
     mouseKeys.D.isDown = false;
   });
+
   scene.input.on('pointermove', (pointer: Phaser.Input.Pointer) => {
     if (pointer.buttons === 1) {
       const {
@@ -32,17 +34,19 @@ export const createControls = (scene: Phaser.Scene) => {
   });
 
   if (scene.sys.game.device.os.desktop)
-    return scene.input.keyboard?.addKeys('W,A,S,D') as keysType;
+    return scene.input.keyboard?.addKeys(
+      'W,A,S,D,UP,DOWN,LEFT,RIGHT',
+    ) as keysType;
   else return mouseKeys;
 };
 
 export const keysToVector = (keys: keysType | undefined, power: number) => {
   const vector = { x: 0, y: 0 };
 
-  if (keys?.A.isDown) vector.x += -power;
-  if (keys?.D.isDown) vector.x += power;
-  if (keys?.W.isDown) vector.y += -power;
-  if (keys?.S.isDown) vector.y += power;
+  if (keys?.A.isDown || keys?.LEFT.isDown) vector.x += -power;
+  if (keys?.D.isDown || keys?.RIGHT.isDown) vector.x += power;
+  if (keys?.W.isDown || keys?.UP.isDown) vector.y += -power;
+  if (keys?.S.isDown || keys?.DOWN.isDown) vector.y += power;
 
   const forceVector = new Phaser.Math.Vector2(vector);
 
