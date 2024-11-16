@@ -1,6 +1,5 @@
 import * as Phaser from 'phaser';
 import Entity, { EntityConfigType } from '../Entity';
-import GameScene from '@/scenes/GameScene';
 import { CC, CM } from '../../../enums/CollisionCategories';
 import { TiledMapTest2 } from '../../../game/scenes/TiledMapTest2';
 import { OscillatingMovement } from '../../../helpers/movement/OscillatingMovement';
@@ -35,13 +34,9 @@ class Bat extends Entity {
   static preload(scene: Phaser.Scene) {
     scene.load.image(KEY, 'assets/mobs/bat.png');
   }
-  constructor(scene: GameScene, x: number, y: number) {
+  constructor(scene: TiledMapTest2, x: number, y: number) {
     super(scene, x, y, entityConfig);
-    this.movementStratagy = new OscillatingMovement(
-      0.2,
-      1,
-      scene as TiledMapTest2,
-    );
+    this.movementStratagy = new OscillatingMovement(0.2, 1, scene);
   }
 }
 

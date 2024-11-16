@@ -1,4 +1,4 @@
-import Entity from '@/objects/entities/Entity';
+import Entity from '../../objects/entities/Entity';
 import { MovementStrategy } from './MovementStrategy';
 import { TiledMapTest2 } from '../../game/scenes/TiledMapTest2';
 

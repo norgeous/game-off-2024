@@ -28,7 +28,7 @@ export class CircularMoveTowardPlayer implements MovementStrategy {
       circleDurationMin;
   }
 
-  move(entity: Entity, time: number, delta: number): void {
+  move(entity: Entity, _time: number, delta: number): void {
     if (this.moveTowards) {
       const dx = this.targetX - entity.x;
       const dy = this.targetY - entity.y;

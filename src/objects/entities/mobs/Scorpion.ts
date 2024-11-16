@@ -1,6 +1,5 @@
 import * as Phaser from 'phaser';
 import Entity, { EntityConfigType } from '../Entity';
-import GameScene from '@/scenes/GameScene';
 import { CC, CM } from '../../../enums/CollisionCategories';
 import { RandomLinearMovement } from '../../../helpers/movement/RandomLinearMovement';
 
@@ -34,7 +33,7 @@ class Scorpion extends Entity {
   static preload(scene: Phaser.Scene) {
     scene.load.image(KEY, 'assets/mobs/scorpion.png');
   }
-  constructor(scene: GameScene, x: number, y: number) {
+  constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, entityConfig);
     this.movementStratagy = new RandomLinearMovement();
   }

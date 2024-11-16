@@ -29,7 +29,11 @@ export class DiagonalBounceMovement implements MovementStrategy {
     ];
   }
 
-  move(enemy: Phaser.GameObjects.Container, time: number, delta: number): void {
+  move(
+    enemy: Phaser.GameObjects.Container,
+    _time: number,
+    delta: number,
+  ): void {
     // Update enemy position based on the current random velocity
     enemy.x += this.currentVelocity.x * delta;
     enemy.y += this.currentVelocity.y * delta;
