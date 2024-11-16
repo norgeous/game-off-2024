@@ -1,14 +1,13 @@
-import { getTiledDimensions, TiledMapTest2 } from '../scenes/TiledMapTest2';
+import { TiledMapTest2 } from '../scenes/TiledMapTest2';
 import { Direction } from './dungeonConfigParser';
 
 const getPlayerStartPosition = (
   scene: TiledMapTest2,
   playerEnterFrom: Direction,
 ) => {
-  // if (!scene.map) return;
+  if (!scene.map) return { px: 0, py: 0 };
 
-  const { actualWidthInPixels: w, actualHeightInPixels: h } =
-    getTiledDimensions(scene.map);
+  const { width: w, height: h } = scene.map;
 
   const positions = {
     start: { px: w * 0.5, py: h * 0.5 },

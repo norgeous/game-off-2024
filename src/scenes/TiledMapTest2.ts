@@ -19,16 +19,6 @@ const levelConfig: LevelConfigType = {
   spawnerConfig: [],
 };
 
-export const getTiledDimensions = (map: TiledMapBuilder) => {
-  const { bottom, right } = map.level?.layers[0].data
-    .flat()
-    .findLast(({ index }) => index !== -1) || { bottom: 0, right: 0 };
-  return {
-    actualWidthInPixels: right,
-    actualHeightInPixels: bottom,
-  };
-};
-
 export class TiledMapTest2 extends Scene {
   public sceneInitParams: SceneInitParamsType;
   public map: TiledMapBuilder | undefined;
@@ -76,20 +66,11 @@ export class TiledMapTest2 extends Scene {
       },
     });
 
-    const { actualWidthInPixels, actualHeightInPixels } = getTiledDimensions(
-      this.map,
-    );
-
     if (
-      actualWidthInPixels > this.sys.canvas.width ||
-      actualHeightInPixels > this.sys.canvas.height
+      this.map.width > this.sys.canvas.width ||
+      this.map.height > this.sys.canvas.height
     ) {
-      this.cameras.main.setBounds(
-        0,
-        0,
-        actualWidthInPixels,
-        actualHeightInPixels,
-      );
+      this.cameras.main.setBounds(0, 0, this.map.width, this.map.height);
       this.cameras.main.startFollow(this.player);
     }
 
@@ -101,7 +82,7 @@ export class TiledMapTest2 extends Scene {
 
   update() {
     if (this.keys) {
-      const forceVector = keysToVector(this.keys, 0.0015);
+      const forceVector = keysToVector(this.keys, 0.001);
       this.player.applyForce(forceVector);
 
       if (this.keys.SPACE.isDown) {

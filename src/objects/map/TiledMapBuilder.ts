@@ -1,5 +1,6 @@
-import convertTiledPolygonToGameObject from '../../helpers/convertTiledPolygonToGameObject';
 import Phaser from 'phaser';
+import getActualTiledDimensions from '../../helpers/getActualTiledDimensions';
+import convertTiledPolygonToGameObject from '../../helpers/convertTiledPolygonToGameObject';
 
 type LayerConfigType = {
   tiledLayerName: string;
@@ -43,6 +44,8 @@ function createLevelConfig(config: LevelConfigType): LevelConfigType {
 }
 
 class TiledMapBuilder {
+  public width = 0;
+  public height = 0;
   public level: Phaser.Tilemaps.Tilemap | undefined;
   public layers: LayersObjType = {};
   public spawners: SpawnersObjType = {};
@@ -81,6 +84,11 @@ class TiledMapBuilder {
       tileMargin,
       tileSpacing,
     );
+
+    // set width and height
+    const { width, height } = getActualTiledDimensions(this.level);
+    this.width = width;
+    this.height = height;
 
     // load image layers
     this.layers = layerConfig.reduce((acc, { tiledLayerName, depth }) => {
@@ -136,9 +144,8 @@ class TiledMapBuilder {
       {},
     );
 
-    // set the world boundry same size as background
-    const { x, y, width, height } = this.layers.tiledLayer;
-    scene.matter.world.setBounds(x, y, width, height, 2 ** 10);
+    // set the world boundry same size as Tiled map
+    scene.matter.world.setBounds(0, 0, width, height, 2 ** 10);
   }
 
   // update(time: number, delta: number) {}

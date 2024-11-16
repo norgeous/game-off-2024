@@ -1,6 +1,6 @@
 import { CC, CM } from '../enums/CollisionCategories';
 import { EventBus, EventNames } from './EventBus';
-import { getTiledDimensions, TiledMapTest2 } from '../scenes/TiledMapTest2';
+import { TiledMapTest2 } from '../scenes/TiledMapTest2';
 
 const createDoor = (scene: Phaser.Scene, x: number, y: number, a = 0) =>
   scene.matter.add
@@ -16,8 +16,7 @@ const createDoor = (scene: Phaser.Scene, x: number, y: number, a = 0) =>
 const createDoors = (scene: TiledMapTest2) => {
   if (!scene.map) return;
 
-  const { actualWidthInPixels: w, actualHeightInPixels: h } =
-    getTiledDimensions(scene.map);
+  const { width: w, height: h } = scene.map;
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.north)) {
     const doorNorth = createDoor(scene, w * 0.5, 70, 0);

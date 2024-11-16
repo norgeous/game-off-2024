@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
 import { PhaserMatterImage } from '../../types';
-//import findOtherBody from '@/helpers/findOtherBody';
 import { CC, CM } from '../../enums/CollisionCategories';
 import { MovementStrategy } from '../../helpers/movement/MovementStrategy';
+import createSensor from '../../helpers/createSensor';
 
 type AnimationsConfigType = {
   animationKey: string;
@@ -50,14 +50,16 @@ const defaultConfig = {
     x: 0,
     y: 0,
   },
-  collisionCategory: CC.default,
-  collisionMask: CM.everything,
+  collisionCategory: CC.sensor,
+  collisionMask: CM.playerDetector,
+  sensorConfig: [{ label: 'inner', shape: 'circle', radius: 100 }],
 };
 
 class Entity extends Phaser.GameObjects.Container {
   public scene: Phaser.Scene;
   public sensorData: Record<string, Set<number>>;
   public facing: number;
+  public debugText: Phaser.GameObjects.Text;
   public sprite: Phaser.GameObjects.Sprite;
   public gameObject: PhaserMatterImage;
   protected hitbox;
@@ -98,10 +100,20 @@ class Entity extends Phaser.GameObjects.Container {
     this.craftpixOffset = craftpixOffset;
     this.facing = facing;
     this.sensorData = {
-      bottom: new Set(),
+      inner: new Set(),
     };
     this.stats = stats;
     this.keepUpright = true;
+
+    // debug text
+    this.debugText = this.scene.add
+      .text(0, 0 - 120, '', {
+        font: '32px Arial',
+        align: 'center',
+        color: 'white',
+      })
+      .setOrigin(0.5);
+    this.add(this.debugText);
 
     // sprite
     this.sprite = this.scene.add
@@ -134,23 +146,18 @@ class Entity extends Phaser.GameObjects.Container {
     this.hitbox = Bodies.rectangle(0, 0, width, height, otherPhysics);
 
     // sensors
-    const bottom = Bodies.rectangle(0, height / 2, width - 2, 15, {
-      isSensor: true,
-      label: 'bottom',
+    const { body: inner, sensorData } = createSensor(this.scene, {
+      label: 'inner',
+      shape: 'circle',
+      radius: 200,
+      collisionSubMask: CM.playerDetector,
     });
-    // sensor can only collide with ground staticbodies / bodies in default category
-    bottom.collisionFilter.mask = CM.groundsensor;
+    this.sensorData.inner = sensorData;
 
-    // bottom.onCollideCallback = (
-    //   data: Phaser.Types.Physics.Matter.MatterCollisionData,
-    // ) => this.sensorData.bottom.add(findOtherBody(bottom.id, data)?.id || 0);
-    // bottom.onCollideEndCallback = (
-    //   data: Phaser.Types.Physics.Matter.MatterCollisionData,
-    // ) => this.sensorData.bottom.delete(findOtherBody(bottom.id, data)?.id || 0);
+    // compound body
     const compoundBody = Body.create({
-      parts: [this.hitbox, bottom],
+      parts: [this.hitbox, inner],
     });
-
     this.hitbox.onCollideCallback = (
       data: Phaser.Types.Physics.Matter.MatterCollisionData,
     ) => {
@@ -191,6 +198,7 @@ class Entity extends Phaser.GameObjects.Container {
   }
 
   update(time?: number, delta?: number) {
+    this.debugText.text = [...this.sensorData.inner].join(',');
     this.movementStrategy.move(this, time, delta);
     super.update(time, delta);
     this.flipXSprite(this.facing === -1);
