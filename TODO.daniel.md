@@ -15,6 +15,7 @@
 - [x] simple github ci for github pages
 - [x] react health bar top left
 - [x] coin count top left
+- [x] setup "player" react context with eventbus
 - [ ] player weapon
 - [ ] we want doors to lock until all enemy killed in room
 - [ ] add isRoomCleared flag to scene data
