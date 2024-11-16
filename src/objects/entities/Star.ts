@@ -1,6 +1,5 @@
 import * as Phaser from 'phaser';
 import Entity, { EntityConfigType } from './Entity';
-import GameScene from '@/scenes/GameScene';
 import { CC, CM } from '../../enums/CollisionCategories';
 
 const KEY = 'star';
@@ -27,17 +26,9 @@ class Star extends Entity {
   static preload(scene: Phaser.Scene) {
     scene.load.image('star', 'assets/star.png');
   }
-  constructor(
-    scene: GameScene,
-    x: number,
-    y: number,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    customProperties: Record<string, any>,
-  ) {
-    super(scene, x, y, entityConfig, customProperties);
+  constructor(scene: Phaser.Scene, x: number, y: number) {
+    super(scene, x, y, entityConfig);
     this.sprite.setDepth(100);
-    //this.scene = scene;
-    //this.playAnimation('idle');
   }
 
   update() {}

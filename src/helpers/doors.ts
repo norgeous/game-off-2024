@@ -1,5 +1,5 @@
 import { CC, CM } from '../enums/CollisionCategories';
-import { EventBus, EventNames } from '../game/EventBus';
+import { EventBus, EventNames } from '../EventBus';
 import {
   getTiledDimensions,
   TiledMapTest2,

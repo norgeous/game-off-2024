@@ -1,5 +1,5 @@
 import { Scene } from 'phaser';
-import { EventBus, EventNames } from '../EventBus';
+import { EventBus, EventNames } from '../../EventBus';
 
 export class Game extends Scene {
   camera: Phaser.Cameras.Scene2D.Camera;

@@ -1,6 +1,5 @@
 import Phaser from 'phaser';
-import { PhaserMatterImage } from '@/types';
-import GameScene from '@/scenes/GameScene';
+import { PhaserMatterImage } from '../../types';
 //import findOtherBody from '@/helpers/findOtherBody';
 import { CC, CM } from '../../enums/CollisionCategories';
 import { MovementStrategy } from '../../helpers/movement/MovementStrategy';
@@ -56,7 +55,7 @@ const defaultConfig = {
 };
 
 class Entity extends Phaser.GameObjects.Container {
-  public scene: GameScene;
+  public scene: Phaser.Scene;
   public sensorData: Record<string, Set<number>>;
   public facing: number;
   public sprite: Phaser.GameObjects.Sprite;
@@ -72,7 +71,7 @@ class Entity extends Phaser.GameObjects.Container {
   };
 
   constructor(
-    scene: GameScene,
+    scene: Phaser.Scene,
     x: number,
     y: number,
     config: EntityConfigType,

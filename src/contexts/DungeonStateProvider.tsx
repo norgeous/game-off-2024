@@ -8,7 +8,7 @@ import dungeonConfigParser, {
   getRoomInfo,
   RoomConfig1D,
 } from '../helpers/dungeonConfigParser';
-import { EventBus, EventNames } from '../game/EventBus';
+import { EventBus, EventNames } from '../EventBus';
 
 import dungeon1 from '../dungeons/1';
 
