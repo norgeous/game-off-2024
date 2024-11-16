@@ -4,7 +4,7 @@ export enum EventNames {
   READY = 'current-scene-ready',
   START = 'start-dungeon',
   USE_DOOR = 'use-door',
-  DAMAGE_PLAYER = 'damage-player',
+  ADJUST_PLAYER_HEALTH = 'adjust-player-health',
   COLLECT_ITEM = 'collect-item',
 }
 
