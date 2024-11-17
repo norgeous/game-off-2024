@@ -24,7 +24,8 @@ export type EntityConfigType = {
   scale: number;
   collideCallback?: (
     scene: Phaser.Scene,
-    pair: Phaser.Types.Physics.Matter.MatterCollisionData,
+    otherBodyName: string,
+    data: Phaser.Types.Physics.Matter.MatterCollisionData,
   ) => void;
   collisionCategory: CC;
   collisionMask: CM;
@@ -179,7 +180,12 @@ class Entity extends Phaser.GameObjects.Container {
     this.hitbox.onCollideCallback = (
       data: Phaser.Types.Physics.Matter.MatterCollisionData,
     ) => {
-      collideCallback?.(this.scene, data);
+      const names = [
+        data.bodyA.gameObject?.name || data.bodyA.label,
+        data.bodyB.gameObject?.name || data.bodyB.label,
+      ];
+      const otherBodyName = names.filter((name) => name !== this.name)[0];
+      collideCallback?.(this.scene, otherBodyName, data);
     };
     this.gameObject.setExistingBody(compoundBody);
     this.gameObject.setCollisionCategory(collisionCategory);
