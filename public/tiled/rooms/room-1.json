@@ -474,18 +474,6 @@
       "objects": [
         {
           "height": 0,
-          "id": 5,
-          "name": "enemy",
-          "point": true,
-          "rotation": 0,
-          "type": "",
-          "visible": true,
-          "width": 0,
-          "x": 1090.41287074188,
-          "y": 556.025647077335
-        },
-        {
-          "height": 0,
           "id": 9,
           "name": "enemy",
           "point": true,
