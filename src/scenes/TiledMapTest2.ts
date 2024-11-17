@@ -10,7 +10,6 @@ import Player from '../objects/entities/Player';
 
 const levelConfig: LevelConfigType = {
   key: 'Room',
-  // tilesetPng: './tiled/tileset/binding_of_isaac_tiles.jpg',
   tilesetPng: './tiled/tileset/ai-egypt-1.png',
   tiledMapJson: './tiled/maps/rooms/room-0.json',
   layerConfig: [{ tiledLayerName: 'tiledLayer', depth: 0 }],

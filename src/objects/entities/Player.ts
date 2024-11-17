@@ -43,7 +43,7 @@ const entityConfig: EntityConfigType = {
     },
   ],
   collideCallback: (scene, otherBodyName) => {
-    console.log('Player collided with', otherBodyName);
+    console.log('Player collided with', otherBodyName, performance.now());
 
     if (otherBodyName === 'door-north') {
       EventBus.emit(EventNames.USE_DOOR, scene, 'north');

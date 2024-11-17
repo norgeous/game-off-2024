@@ -33,15 +33,7 @@ const createSensor = (
     ) => {
       const other = findOtherBody(body.id, data);
       if (!other) return;
-      console.log(
-        'sensor',
-        label,
-        other.label,
-        other.collisionFilter,
-        collisionSubMask,
-        other?.collisionFilter.category & collisionSubMask,
-        other,
-      );
+
       if (
         (other?.collisionFilter.category & collisionSubMask) ===
         other?.collisionFilter.category
