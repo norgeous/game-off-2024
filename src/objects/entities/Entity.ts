@@ -22,15 +22,22 @@ export type EntityConfigType = {
   };
   facing: number;
   scale: number;
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-  collideCallback?: Function;
-  collisionCategory?: CC;
-  collisionMask?: CM;
+  collideCallback?: (
+    scene: Phaser.Scene,
+    pair: Phaser.Types.Physics.Matter.MatterCollisionData,
+  ) => void;
+  collisionCategory: CC;
+  collisionMask: CM;
   craftpixOffset: {
     x: number;
     y: number;
   };
   stats: EntityStatsType;
+  sensorConfig?: {
+    label: 'inner';
+    shape: 'circle';
+    radius: number;
+  }[];
 };
 
 export type EntityStatsType = {
@@ -40,7 +47,7 @@ export type EntityStatsType = {
   attackRate: number;
 };
 
-const defaultConfig = {
+const defaultConfig: EntityConfigType = {
   name: 'entity',
   spriteSheetKey: 'player',
   animations: [],
@@ -52,7 +59,17 @@ const defaultConfig = {
   },
   collisionCategory: CC.sensor,
   collisionMask: CM.playerDetector,
+  physicsConfig: {
+    width: 100,
+    height: 100,
+  },
   sensorConfig: [{ label: 'inner', shape: 'circle', radius: 100 }],
+  stats: {
+    hp: 0,
+    maxHp: 0,
+    speed: 0,
+    attackRate: 0,
+  },
 };
 
 class Entity extends Phaser.GameObjects.Container {
@@ -62,7 +79,7 @@ class Entity extends Phaser.GameObjects.Container {
   public debugText: Phaser.GameObjects.Text;
   public sprite: Phaser.GameObjects.Sprite;
   public gameObject: PhaserMatterImage;
-  protected hitbox;
+  public hitbox;
   protected movementStrategy: MovementStrategy;
   public stats: EntityStatsType;
   protected keepUpright: boolean;
@@ -161,7 +178,7 @@ class Entity extends Phaser.GameObjects.Container {
     this.hitbox.onCollideCallback = (
       data: Phaser.Types.Physics.Matter.MatterCollisionData,
     ) => {
-      collideCallback?.(data, this);
+      collideCallback?.(this.scene, data);
     };
     this.gameObject.setExistingBody(compoundBody);
     this.gameObject.setCollisionCategory(collisionCategory);

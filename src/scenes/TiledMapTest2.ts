@@ -6,7 +6,6 @@ import TiledMapBuilder, {
 } from '../objects/map/TiledMapBuilder';
 import { getRandomEnemy } from '../helpers/getRandomEnemy';
 import createDoors from '../helpers/doors';
-import { CC, CM } from '../enums/CollisionCategories';
 import Player from '../objects/entities/Player';
 
 const levelConfig: LevelConfigType = {
@@ -56,12 +55,10 @@ export class TiledMapTest2 extends Scene {
     console.log('TiledMapTest2 scene got', this.sceneInitParams);
     const { playerEnterFrom } = this.sceneInitParams;
     this.map = new TiledMapBuilder(this, levelConfig);
-
     this.player = new Player(this, playerEnterFrom);
-
-    // camera
-    this.cameras.main.setBounds(0, 0, this.map.width, this.map.height);
-    this.cameras.main.startFollow(this.player);
+    this.cameras.main
+      .setBounds(0, 0, this.map.width, this.map.height)
+      .startFollow(this.player);
 
     createDoors(this); // must be called after player is created
 
@@ -70,15 +67,5 @@ export class TiledMapTest2 extends Scene {
 
   update(time: number, delta: number) {
     this.player.update(time, delta);
-    if (this.player.keys?.SPACE.isDown) {
-      this.matter.add
-        .sprite(this.player.x, this.player.y, 'star', undefined, {
-          collisionFilter: {
-            category: CC.playerBullet,
-            mask: CM.playerBullet,
-          },
-        })
-        .setAngularVelocity(100);
-    }
   }
 }

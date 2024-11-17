@@ -5,6 +5,7 @@ import { TiledMapTest2 } from '../../scenes/TiledMapTest2';
 import getPlayerStartPosition from '../../helpers/getPlayerStartPosition';
 import { Direction } from '../../helpers/dungeonConfigParser';
 import { createControls, keysToVector, keysType } from '../../helpers/controls';
+import { EventBus, EventNames } from '../../helpers/EventBus';
 
 const KEY = 'player';
 
@@ -31,6 +32,28 @@ const entityConfig: EntityConfigType = {
     speed: 0.1,
     attackRate: 1,
   },
+  sensorConfig: [{ label: 'inner', shape: 'circle', radius: 50 }],
+  collideCallback: (scene, data) => {
+    const names = [data.bodyA.gameObject?.name, data.bodyB.gameObject?.name];
+    const otherBodyName = names.filter((name) => name !== 'player')[0];
+    console.log('COLLIDE', names, otherBodyName);
+
+    if (otherBodyName === 'door-north') {
+      EventBus.emit(EventNames.USE_DOOR, scene, 'north');
+    }
+
+    if (otherBodyName === 'door-south') {
+      EventBus.emit(EventNames.USE_DOOR, scene, 'south');
+    }
+
+    if (otherBodyName === 'door-east') {
+      EventBus.emit(EventNames.USE_DOOR, scene, 'east');
+    }
+
+    if (otherBodyName === 'door-west') {
+      EventBus.emit(EventNames.USE_DOOR, scene, 'west');
+    }
+  },
 };
 
 class Player extends Entity {
@@ -48,8 +71,19 @@ class Player extends Entity {
   update(time: number, delta: number) {
     super.update(time, delta);
     if (this.keys) {
-      const forceVector = keysToVector(this.keys, 0.001 * delta);
+      const forceVector = keysToVector(this.keys, 0.002 * delta);
       this.gameObject.applyForce(forceVector);
+    }
+
+    if (this.keys?.SPACE.isDown) {
+      this.scene.matter.add
+        .sprite(this.x, this.y, 'star', undefined, {
+          collisionFilter: {
+            category: CC.playerBullet,
+            mask: CM.playerBullet,
+          },
+        })
+        .setAngularVelocity(100);
     }
   }
 }
