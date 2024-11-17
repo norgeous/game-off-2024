@@ -60,8 +60,8 @@ const defaultConfig: EntityConfigType = {
     x: 0,
     y: 0,
   },
-  collisionCategory: CC.enemySensor,
-  collisionMask: CM.playerDetector,
+  collisionCategory: CC.enemy,
+  collisionMask: CM.enemy,
   physicsConfig: {
     width: 100,
     height: 100,
@@ -71,7 +71,7 @@ const defaultConfig: EntityConfigType = {
       label: 'inner',
       shape: 'circle',
       radius: 100,
-      collisionCategory: CC.enemy,
+      collisionCategory: CC.enemySensor,
       collisionSubMask: CM.playerDetector,
     },
   ],
@@ -172,7 +172,14 @@ class Entity extends Phaser.GameObjects.Container {
 
     const { bodies: Bodies, body: Body } = scene.matter;
     const { width, height, ...otherPhysics } = physicsConfig;
-    this.hitbox = Bodies.rectangle(0, 0, width, height, otherPhysics);
+    this.hitbox = Bodies.rectangle(0, 0, width, height, {
+      ...otherPhysics,
+      collisionFilter: {
+        category: collisionCategory,
+        mask: collisionMask,
+        group: 0,
+      },
+    });
 
     // sensors
     const { body: inner, sensorData } = createSensor(this.scene, {

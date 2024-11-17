@@ -25,11 +25,6 @@ const entityConfig: EntityConfigType = {
     height: 100,
     chamfer: { radius: 15 },
     label: KEY,
-    collisionFilter: {
-      category: CC.player,
-      mask: CM.player,
-      group: 0,
-    },
   },
   animations: [],
   stats: {

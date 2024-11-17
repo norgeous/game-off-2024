@@ -61,8 +61,6 @@ const createSensor = (
 
   const body = bodies[shape]();
 
-  // body.setCollison;
-
   return {
     body,
     sensorData,
