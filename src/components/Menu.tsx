@@ -12,6 +12,8 @@ import DungeonStateDebug, {
 import Health from './Health';
 import Coins from './Coins';
 import PlayerDebug, { PlayerDebugToggleButton } from './PlayerDebug';
+import MuteMusicToggle from './MuteMusicToggle';
+import { MuteProvider } from '../contexts/MuteMusicContext';
 
 interface IMenu {
   phaserScene: Phaser.Scene;
@@ -37,6 +39,10 @@ const Menu = ({ phaserScene }: IMenu) => {
         {isSettingsOpen && (
           <>
             <FullscreenToggle />
+            <MuteProvider>
+                <MuteMusicToggle />
+            </MuteProvider>
+
             <MenuButton
               as="a"
               href="https://github.com/norgeous/game-off-2024"
@@ -66,7 +72,7 @@ const Menu = ({ phaserScene }: IMenu) => {
       <CornerMenu $corner={Corner.BR}>
         <MiniMap />
       </CornerMenu>
-
+        
       {isSceneSelectorOpen && (
         <SceneSelectorModal
           phaserScene={phaserScene}
