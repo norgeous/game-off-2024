@@ -21,6 +21,7 @@ const createSensor = (
   const options: MatterJS.IBodyDefinition = {
     isSensor: true,
     label,
+    density: 0,
     onCollideCallback: (
       data: Phaser.Types.Physics.Matter.MatterCollisionData,
     ) => {

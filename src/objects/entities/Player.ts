@@ -32,11 +32,12 @@ const entityConfig: EntityConfigType = {
     speed: 0.1,
     attackRate: 1,
   },
-  sensorConfig: [{ label: 'inner', shape: 'circle', radius: 50 }],
+  sensorConfig: [{ label: 'inner', shape: 'circle', radius: 150 * 2 }],
   collideCallback: (scene, data) => {
     const names = [data.bodyA.gameObject?.name, data.bodyB.gameObject?.name];
     const otherBodyName = names.filter((name) => name !== 'player')[0];
-    console.log('COLLIDE', names, otherBodyName);
+
+    console.log('COLLIDE', names);
 
     if (otherBodyName === 'door-north') {
       EventBus.emit(EventNames.USE_DOOR, scene, 'north');
@@ -71,7 +72,7 @@ class Player extends Entity {
   update(time: number, delta: number) {
     super.update(time, delta);
     if (this.keys) {
-      const forceVector = keysToVector(this.keys, 0.005 * delta);
+      const forceVector = keysToVector(this.keys, 0.0001 * delta);
       this.gameObject.applyForce(forceVector);
     }
 

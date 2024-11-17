@@ -107,6 +107,7 @@ class Entity extends Phaser.GameObjects.Container {
       collisionCategory,
       collisionMask,
       collideCallback,
+      sensorConfig,
       craftpixOffset,
       stats,
     } = { ...defaultConfig, ...config };
@@ -166,7 +167,7 @@ class Entity extends Phaser.GameObjects.Container {
     const { body: inner, sensorData } = createSensor(this.scene, {
       label: 'inner',
       shape: 'circle',
-      radius: 200,
+      radius: sensorConfig?.[0].radius || 100,
       collisionSubMask: CM.playerDetector,
     });
     this.sensorData.inner = sensorData;
