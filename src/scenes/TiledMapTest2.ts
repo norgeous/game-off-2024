@@ -8,7 +8,6 @@ import { getRandomEnemy } from '../helpers/getRandomEnemy';
 import { createControls, keysToVector, keysType } from '../helpers/controls';
 import createDoors from '../helpers/doors';
 import { CC, CM } from '../enums/CollisionCategories';
-import getPlayerStartPosition from '../helpers/getPlayerStartPosition';
 import Player from '../objects/entities/Player';
 
 const levelConfig: LevelConfigType = {
@@ -23,7 +22,7 @@ const levelConfig: LevelConfigType = {
 export class TiledMapTest2 extends Scene {
   public sceneInitParams: SceneInitParamsType;
   public map: TiledMapBuilder | undefined;
-  public player: Phaser.Physics.Matter.Sprite;
+  public player: Player;
   public keys: keysType | undefined;
 
   constructor() {
@@ -59,15 +58,8 @@ export class TiledMapTest2 extends Scene {
     console.log('TiledMapTest2 scene got', this.sceneInitParams);
     const { playerEnterFrom } = this.sceneInitParams;
     this.map = new TiledMapBuilder(this, levelConfig);
-    const { px, py } = getPlayerStartPosition(this, playerEnterFrom);
-    this.player = this.matter.add.sprite(px, py, 'player', undefined, {
-      collisionFilter: {
-        category: CC.player,
-        mask: CM.player,
-      },
-    });
 
-    const playerNEW = new Player(this, px, py);
+    this.player = new Player(this, playerEnterFrom);
 
     // camera
     this.cameras.main.setBounds(0, 0, this.map.width, this.map.height);
@@ -79,10 +71,10 @@ export class TiledMapTest2 extends Scene {
     EventBus.emit(EventNames.READY, this);
   }
 
-  update() {
+  update(_time: number, delta: number) {
     if (this.keys) {
-      const forceVector = keysToVector(this.keys, 0.001);
-      this.player.applyForce(forceVector);
+      const forceVector = keysToVector(this.keys, 0.001 * delta);
+      this.player.gameObject.applyForce(forceVector);
 
       if (this.keys.SPACE.isDown) {
         this.matter.add

@@ -3,6 +3,8 @@ import Entity, { EntityConfigType } from './Entity';
 import { CC, CM } from '../../enums/CollisionCategories';
 import { TiledMapTest2 } from '../../scenes/TiledMapTest2';
 import { OscillatingMovement } from '../../helpers/movement/OscillatingMovement';
+import getPlayerStartPosition from '../../helpers/getPlayerStartPosition';
+import { Direction } from '../../helpers/dungeonConfigParser';
 
 const KEY = 'player';
 
@@ -35,8 +37,9 @@ class Player extends Entity {
   static preload(scene: Phaser.Scene) {
     scene.load.image('player', 'assets/jones.png');
   }
-  constructor(scene: TiledMapTest2, x: number, y: number) {
-    super(scene, x, y, entityConfig);
+  constructor(scene: TiledMapTest2, playerEnterFrom: Direction) {
+    const { px, py } = getPlayerStartPosition(scene, playerEnterFrom);
+    super(scene, px, py, entityConfig);
     this.movementStrategy = new OscillatingMovement(0.2, 1, scene);
   }
 }

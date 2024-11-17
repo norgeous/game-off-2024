@@ -20,28 +20,28 @@ const createDoors = (scene: TiledMapTest2) => {
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.north)) {
     const doorNorth = createDoor(scene, w * 0.5, 70, 0);
-    scene.player.setOnCollideWith(doorNorth, () =>
+    scene.player.gameObject.setOnCollideWith(doorNorth, () =>
       EventBus.emit(EventNames.USE_DOOR, scene, 'north'),
     );
   }
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.south)) {
     const doorSouth = createDoor(scene, w * 0.5, h - 70, 180);
-    scene.player.setOnCollideWith(doorSouth, () =>
+    scene.player.gameObject.setOnCollideWith(doorSouth, () =>
       EventBus.emit(EventNames.USE_DOOR, scene, 'south'),
     );
   }
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.east)) {
     const doorEast = createDoor(scene, w - 80, h * 0.5, 90);
-    scene.player.setOnCollideWith(doorEast, () =>
+    scene.player.gameObject.setOnCollideWith(doorEast, () =>
       EventBus.emit(EventNames.USE_DOOR, scene, 'east'),
     );
   }
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.west)) {
     const doorWest = createDoor(scene, 80, h * 0.5, 270);
-    scene.player.setOnCollideWith(doorWest, () =>
+    scene.player.gameObject.setOnCollideWith(doorWest, () =>
       EventBus.emit(EventNames.USE_DOOR, scene, 'west'),
     );
   }
