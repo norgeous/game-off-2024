@@ -9,6 +9,7 @@ import { createControls, keysToVector, keysType } from '../helpers/controls';
 import createDoors from '../helpers/doors';
 import { CC, CM } from '../enums/CollisionCategories';
 import getPlayerStartPosition from '../helpers/getPlayerStartPosition';
+import Player from '../objects/entities/Player';
 
 const levelConfig: LevelConfigType = {
   key: 'Room',
@@ -35,7 +36,6 @@ export class TiledMapTest2 extends Scene {
 
   preload() {
     this.load.image('door', 'assets/isaac-door.png');
-    this.load.image('jones', 'assets/jones.png');
 
     const { roomType } = this.sceneInitParams;
 
@@ -52,6 +52,7 @@ export class TiledMapTest2 extends Scene {
     levelConfig.tiledMapJson = `./tiled/rooms/room-${roomType}.json`;
 
     TiledMapBuilder.preload(this, levelConfig);
+    Player.preload(this);
   }
 
   create() {
@@ -59,20 +60,18 @@ export class TiledMapTest2 extends Scene {
     const { playerEnterFrom } = this.sceneInitParams;
     this.map = new TiledMapBuilder(this, levelConfig);
     const { px, py } = getPlayerStartPosition(this, playerEnterFrom);
-    this.player = this.matter.add.sprite(px, py, 'jones', undefined, {
+    this.player = this.matter.add.sprite(px, py, 'player', undefined, {
       collisionFilter: {
         category: CC.player,
         mask: CM.player,
       },
     });
 
-    if (
-      this.map.width > this.sys.canvas.width ||
-      this.map.height > this.sys.canvas.height
-    ) {
-      this.cameras.main.setBounds(0, 0, this.map.width, this.map.height);
-      this.cameras.main.startFollow(this.player);
-    }
+    const playerNEW = new Player(this, px, py);
+
+    // camera
+    this.cameras.main.setBounds(0, 0, this.map.width, this.map.height);
+    this.cameras.main.startFollow(this.player);
 
     createDoors(this); // must be called after player is created
     this.keys = createControls(this); // must be called after player is created

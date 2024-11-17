@@ -17,7 +17,7 @@
 - [x] coin count top left
 - [x] setup "player" react context with eventbus
 - [ ] player whip weapon
-- [ ] we want doors to lock until all enemy killed in room
+- [ ] doors to lock until all enemy killed in room
 - [ ] add isRoomCleared flag to scene data
 - [ ] carry velocity between room scenes
 - [ ] enemy sfx
