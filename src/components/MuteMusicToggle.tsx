@@ -1,12 +1,22 @@
+import { useState } from 'react';
 import { FaMusic } from 'react-icons/fa6';
 import { FaVolumeMute } from 'react-icons/fa';
-import { MuteMusicContext } from '../contexts/MuteMusicContext';
 
-const MuteMusicToggle = () => {
-  const { isMute, toggleMute } = MuteMusicContext(); 
+interface IMuteMusicToggle {
+  phaserScene: Phaser.Scene;
+}
+
+const MuteMusicToggle = ({ phaserScene }: IMuteMusicToggle) => {
+  const [isMute, setIsMute] = useState(false);
 
   return (
-    <div onClick={toggleMute} style={{ cursor: 'pointer' }}>
+    <div
+      onClick={() => {
+        phaserScene.sound.setMute(!isMute);
+        setIsMute(!isMute);
+      }}
+      style={{ cursor: 'pointer' }}
+    >
       {isMute ? <FaVolumeMute size={30} /> : <FaMusic size={30} />}
     </div>
   );

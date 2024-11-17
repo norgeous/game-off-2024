@@ -2,7 +2,7 @@ import React, { createContext, useState, useContext } from 'react';
 
 const defaultMuteContext = {
   isMute: false,
-  toggleMute: () => {} 
+  toggleMute: () => {},
 };
 
 interface IMuteProvider {

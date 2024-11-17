@@ -40,7 +40,7 @@ const Menu = ({ phaserScene }: IMenu) => {
           <>
             <FullscreenToggle />
             <MuteProvider>
-                <MuteMusicToggle />
+              <MuteMusicToggle phaserScene={phaserScene} />
             </MuteProvider>
 
             <MenuButton
@@ -72,7 +72,7 @@ const Menu = ({ phaserScene }: IMenu) => {
       <CornerMenu $corner={Corner.BR}>
         <MiniMap />
       </CornerMenu>
-        
+
       {isSceneSelectorOpen && (
         <SceneSelectorModal
           phaserScene={phaserScene}
