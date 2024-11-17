@@ -33,13 +33,7 @@ const entityConfig: EntityConfigType = {
     attackRate: 1,
   },
   sensorConfig: [{ label: 'inner', shape: 'circle', radius: 75 }],
-  collideCallback: (scene, data) => {
-    const names = [
-      data.bodyA.gameObject?.name || data.bodyA.label,
-      data.bodyB.gameObject?.name || data.bodyB.label,
-    ];
-    const otherBodyName = names.filter((name) => name !== 'player')[0];
-
+  collideCallback: (scene, otherBodyName) => {
     console.log('Player collided with', otherBodyName);
 
     if (otherBodyName === 'door-north') {
