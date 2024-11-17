@@ -26,6 +26,7 @@ const createSensor = (
       data: Phaser.Types.Physics.Matter.MatterCollisionData,
     ) => {
       const other = findOtherBody(body.id, data);
+      console.log('sensor', other);
       if (!other) return;
       if (
         (other?.collisionFilter.category & collisionSubMask) ===
