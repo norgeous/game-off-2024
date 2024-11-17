@@ -38,6 +38,8 @@ export type EntityConfigType = {
     label: 'inner';
     shape: 'circle';
     radius: number;
+    collisionCategory: CC;
+    collisionSubMask: CM;
   }[];
 };
 
@@ -58,13 +60,21 @@ const defaultConfig: EntityConfigType = {
     x: 0,
     y: 0,
   },
-  collisionCategory: CC.sensor,
+  collisionCategory: CC.enemySensor,
   collisionMask: CM.playerDetector,
   physicsConfig: {
     width: 100,
     height: 100,
   },
-  sensorConfig: [{ label: 'inner', shape: 'circle', radius: 100 }],
+  sensorConfig: [
+    {
+      label: 'inner',
+      shape: 'circle',
+      radius: 100,
+      collisionCategory: CC.enemy,
+      collisionSubMask: CM.playerDetector,
+    },
+  ],
   stats: {
     hp: 0,
     maxHp: 0,
@@ -169,7 +179,8 @@ class Entity extends Phaser.GameObjects.Container {
       label: 'inner',
       shape: 'circle',
       radius: sensorConfig?.[0].radius || 100,
-      collisionSubMask: CM.playerDetector,
+      collisionCategory: sensorConfig?.[0].collisionCategory || CC.enemySensor,
+      collisionSubMask: sensorConfig?.[0].collisionSubMask || CM.playerDetector,
     });
     this.sensorData.inner = sensorData;
 
@@ -223,7 +234,7 @@ class Entity extends Phaser.GameObjects.Container {
 
   update(time?: number, delta?: number) {
     this.debugText.text = [...this.sensorData.inner].join(',');
-    this.movementStrategy?.move(this, time, delta);
+    // this.movementStrategy?.move(this, time, delta);
     super.update(time, delta);
     this.flipXSprite(this.facing === -1);
     this.keepUpRight();

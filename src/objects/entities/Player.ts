@@ -24,6 +24,12 @@ const entityConfig: EntityConfigType = {
     width: 30,
     height: 100,
     chamfer: { radius: 15 },
+    label: KEY,
+    collisionFilter: {
+      category: CC.player,
+      mask: CM.player,
+      group: 0,
+    },
   },
   animations: [],
   stats: {
@@ -32,7 +38,15 @@ const entityConfig: EntityConfigType = {
     speed: 0.1,
     attackRate: 1,
   },
-  sensorConfig: [{ label: 'inner', shape: 'circle', radius: 75 }],
+  sensorConfig: [
+    {
+      label: 'inner',
+      shape: 'circle',
+      radius: 75,
+      collisionCategory: CC.playerSensor,
+      collisionSubMask: CM.enemyDetector,
+    },
+  ],
   collideCallback: (scene, otherBodyName) => {
     console.log('Player collided with', otherBodyName);
 

@@ -1,4 +1,4 @@
-import { CM } from '../enums/CollisionCategories';
+import { CC, CM } from '../enums/CollisionCategories';
 import findOtherBody from './findOtherBody';
 
 interface ISensorOptions {
@@ -7,12 +7,13 @@ interface ISensorOptions {
   radius: number;
   width?: number;
   height?: number;
+  collisionCategory: CC;
   collisionSubMask: CM;
 }
 
 const createSensor = (
   scene: Phaser.Scene,
-  { label, shape, radius, collisionSubMask }: ISensorOptions,
+  { label, shape, radius, collisionCategory, collisionSubMask }: ISensorOptions,
 ) => {
   const sensorData = new Set<number>();
 
@@ -22,12 +23,25 @@ const createSensor = (
     isSensor: true,
     label,
     density: 0,
+    collisionFilter: {
+      category: collisionCategory,
+      mask: collisionSubMask,
+      group: 0,
+    },
     onCollideCallback: (
       data: Phaser.Types.Physics.Matter.MatterCollisionData,
     ) => {
       const other = findOtherBody(body.id, data);
-      console.log('sensor', other);
       if (!other) return;
+      console.log(
+        'sensor',
+        label,
+        other.label,
+        other.collisionFilter,
+        collisionSubMask,
+        other?.collisionFilter.category & collisionSubMask,
+        other,
+      );
       if (
         (other?.collisionFilter.category & collisionSubMask) ===
         other?.collisionFilter.category
@@ -46,6 +60,8 @@ const createSensor = (
   };
 
   const body = bodies[shape]();
+
+  // body.setCollison;
 
   return {
     body,
