@@ -40,7 +40,7 @@ class Player extends Entity {
   constructor(scene: TiledMapTest2, playerEnterFrom: Direction) {
     const { px, py } = getPlayerStartPosition(scene, playerEnterFrom);
     super(scene, px, py, entityConfig);
-    this.movementStrategy = new OscillatingMovement(0.2, 1, scene);
+    // this.movementStrategy = new OscillatingMovement(0.2, 1, scene);
   }
 }
 

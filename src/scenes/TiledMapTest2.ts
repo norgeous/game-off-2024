@@ -71,7 +71,8 @@ export class TiledMapTest2 extends Scene {
     EventBus.emit(EventNames.READY, this);
   }
 
-  update(_time: number, delta: number) {
+  update(time: number, delta: number) {
+    this.player.update(time, delta);
     if (this.keys) {
       const forceVector = keysToVector(this.keys, 0.001 * delta);
       this.player.gameObject.applyForce(forceVector);

@@ -199,7 +199,7 @@ class Entity extends Phaser.GameObjects.Container {
 
   update(time?: number, delta?: number) {
     this.debugText.text = [...this.sensorData.inner].join(',');
-    this.movementStrategy.move(this, time, delta);
+    this.movementStrategy?.move(this, time, delta);
     super.update(time, delta);
     this.flipXSprite(this.facing === -1);
     this.keepUpRight();
