@@ -5,7 +5,6 @@ import TiledMapBuilder, {
   LevelConfigType,
 } from '../objects/map/TiledMapBuilder';
 import { getRandomEnemy } from '../helpers/getRandomEnemy';
-import { createControls, keysToVector, keysType } from '../helpers/controls';
 import createDoors from '../helpers/doors';
 import { CC, CM } from '../enums/CollisionCategories';
 import Player from '../objects/entities/Player';
@@ -23,7 +22,6 @@ export class TiledMapTest2 extends Scene {
   public sceneInitParams: SceneInitParamsType;
   public map: TiledMapBuilder | undefined;
   public player: Player;
-  public keys: keysType | undefined;
 
   constructor() {
     super('TiledMapTest2');
@@ -66,27 +64,21 @@ export class TiledMapTest2 extends Scene {
     this.cameras.main.startFollow(this.player);
 
     createDoors(this); // must be called after player is created
-    this.keys = createControls(this); // must be called after player is created
 
     EventBus.emit(EventNames.READY, this);
   }
 
   update(time: number, delta: number) {
     this.player.update(time, delta);
-    if (this.keys) {
-      const forceVector = keysToVector(this.keys, 0.001 * delta);
-      this.player.gameObject.applyForce(forceVector);
-
-      if (this.keys.SPACE.isDown) {
-        this.matter.add
-          .sprite(this.player.x, this.player.y, 'star', undefined, {
-            collisionFilter: {
-              category: CC.playerBullet,
-              mask: CM.playerBullet,
-            },
-          })
-          .setAngularVelocity(100);
-      }
+    if (this.player.keys?.SPACE.isDown) {
+      this.matter.add
+        .sprite(this.player.x, this.player.y, 'star', undefined, {
+          collisionFilter: {
+            category: CC.playerBullet,
+            mask: CM.playerBullet,
+          },
+        })
+        .setAngularVelocity(100);
     }
   }
 }

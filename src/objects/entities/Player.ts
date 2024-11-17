@@ -2,9 +2,9 @@ import * as Phaser from 'phaser';
 import Entity, { EntityConfigType } from './Entity';
 import { CC, CM } from '../../enums/CollisionCategories';
 import { TiledMapTest2 } from '../../scenes/TiledMapTest2';
-import { OscillatingMovement } from '../../helpers/movement/OscillatingMovement';
 import getPlayerStartPosition from '../../helpers/getPlayerStartPosition';
 import { Direction } from '../../helpers/dungeonConfigParser';
+import { createControls, keysToVector, keysType } from '../../helpers/controls';
 
 const KEY = 'player';
 
@@ -34,13 +34,23 @@ const entityConfig: EntityConfigType = {
 };
 
 class Player extends Entity {
+  public keys: keysType | undefined;
+
   static preload(scene: Phaser.Scene) {
     scene.load.image('player', 'assets/jones.png');
   }
   constructor(scene: TiledMapTest2, playerEnterFrom: Direction) {
     const { px, py } = getPlayerStartPosition(scene, playerEnterFrom);
     super(scene, px, py, entityConfig);
-    // this.movementStrategy = new OscillatingMovement(0.2, 1, scene);
+
+    this.keys = createControls(scene); // must be called after player is created
+  }
+  update(time: number, delta: number) {
+    super.update(time, delta);
+    if (this.keys) {
+      const forceVector = keysToVector(this.keys, 0.001 * delta);
+      this.gameObject.applyForce(forceVector);
+    }
   }
 }
 
