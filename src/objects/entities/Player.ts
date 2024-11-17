@@ -32,7 +32,7 @@ const entityConfig: EntityConfigType = {
     speed: 0.1,
     attackRate: 1,
   },
-  sensorConfig: [{ label: 'inner', shape: 'circle', radius: 150 * 2 }],
+  sensorConfig: [{ label: 'inner', shape: 'circle', radius: 75 }],
   collideCallback: (scene, data) => {
     const names = [
       data.bodyA.gameObject?.name || data.bodyA.label,
