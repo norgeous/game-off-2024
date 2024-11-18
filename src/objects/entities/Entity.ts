@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import { PhaserMatterImage } from '../../types';
 import { CC, CM } from '../../enums/CollisionCategories';
 import { MovementStrategy } from '../../helpers/movement/MovementStrategy';
-import createSensor from '../../helpers/createSensor';
+import createSensors from '../../helpers/createSensors';
 
 type AnimationsConfigType = {
   animationKey: string;
@@ -181,19 +181,15 @@ class Entity extends Phaser.GameObjects.Container {
       },
     });
 
-    // sensors
-    const { body: inner, sensorData } = createSensor(this.scene, {
-      label: 'inner',
-      shape: 'circle',
-      radius: sensorConfig?.[0].radius || 100,
-      collisionCategory: sensorConfig?.[0].collisionCategory || CC.enemySensor,
-      collisionSubMask: sensorConfig?.[0].collisionSubMask || CM.playerDetector,
-    });
-    this.sensorData.inner = sensorData;
+    const { sensorBodies, sensorData } = createSensors(
+      this.scene,
+      sensorConfig,
+    );
+    this.sensorData = sensorData;
 
     // compound body
     const compoundBody = Body.create({
-      parts: [this.hitbox, inner],
+      parts: [this.hitbox, ...sensorBodies],
     });
     this.hitbox.onCollideCallback = (
       data: Phaser.Types.Physics.Matter.MatterCollisionData,
@@ -240,7 +236,7 @@ class Entity extends Phaser.GameObjects.Container {
   }
 
   update(time?: number, delta?: number) {
-    this.debugText.text = [...this.sensorData.inner].join(',');
+    this.debugText.text = [...(this.sensorData.inner || [])].join(',');
     this.movementStrategy?.move(this, time, delta);
     super.update(time, delta);
     this.flipXSprite(this.facing === -1);

@@ -59,4 +59,34 @@ const createSensor = (
   };
 };
 
-export default createSensor;
+const createSensors = (
+  scene: Phaser.Scene,
+  sensorConfig?: ISensorOptions[],
+) => {
+  if (!sensorConfig) {
+    return {
+      sensorBodies: [],
+      sensorData: {},
+    };
+  }
+  return sensorConfig.reduce(
+    ({ sensorBodies, sensorData }, config) => {
+      const { body, sensorData: d } = createSensor(scene, config);
+      return {
+        sensorBodies: [...sensorBodies, body],
+        sensorData: { ...sensorData, [config.label]: d },
+      };
+    },
+    {
+      sensorBodies: [],
+      sensorData: {},
+    } as {
+      sensorBodies: MatterJS.BodyType[];
+      sensorData: {
+        [key: string]: Set<number>;
+      };
+    },
+  );
+};
+
+export default createSensors;
