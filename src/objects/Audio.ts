@@ -1,23 +1,24 @@
 import Phaser from 'phaser';
 
-type AudioConfigType = {
+export type AudioConfigType = {
   key: string;
   filePath: string;
   loop: boolean;
+  roomType: string
   volume?: number;
   soundConfig?: Phaser.Types.Sound.SoundConfig;
   isMusic?: boolean;
 };
 
-class Audio {
+let currentMusic: string;
+
+class Something {
   private audio: Record<
     string,
     | Phaser.Sound.NoAudioSound
     | Phaser.Sound.HTML5AudioSound
     | Phaser.Sound.WebAudioSound
   > = {};
-
-  static instance: Audio;
 
   private audioConfig: Record<string, AudioConfigType> = {};
 
@@ -26,13 +27,6 @@ class Audio {
       const config: AudioConfigType = configs[i];
       scene.load.audio(config.key, config.filePath);
     }
-  }
-
-  static getInstance(scene: Phaser.Scene, configs: AudioConfigType[] = []) {
-    if (!Audio.instance) {
-      Audio.instance = new Audio(scene, configs);
-    }
-    return Audio.instance;
   }
 
   constructor(scene: Phaser.Scene, configs: AudioConfigType[]) {
@@ -65,12 +59,28 @@ class Audio {
       }
     });
   }
-
+  
+  stopMusic() {
+    Object.entries(this.audioConfig).forEach(([key, config]) => {
+      if (config.isMusic) {
+        this.audio[key].stop();
+      }
+    });
+  }
+  
   playAudio(key: string) {
-    if (!!this.audio[key] && !!this.audioConfig[key]) {
+    if (this.audio[key] && this.audioConfig[key]) {
       this.audio[key].loop = this.audioConfig[key].loop;
       this.audio[key].play();
     }
+  }
+
+  playRoomMusic(key: string, reload:boolean = false) {
+    if (currentMusic != key || reload) {
+      currentMusic = key;
+      this.stopMusic();
+      this.playAudio(key);
+    } 
   }
 
   playOneShot(scene: Phaser.Scene, config: AudioConfigType) {
@@ -83,4 +93,4 @@ class Audio {
   }
 }
 
-export default Audio;
+export default Something;
