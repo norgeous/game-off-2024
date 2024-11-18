@@ -1,7 +1,7 @@
 import { Scene } from 'phaser';
 import { loadRandomMapData } from '../objects/map/Map';
 import Audio from '../objects/Audio';
-import { musicConfig } from '../helpers/getSoundConfig';
+import { musicConfig } from '../helpers/getMusicConfig';
 
 export class Preloader extends Scene {
   constructor() {
@@ -10,7 +10,7 @@ export class Preloader extends Scene {
   
   init() {
     const { width, height } = this.sys.game.canvas;
-
+    
     //  We loaded this image in our Boot Scene, so we can display it here
     this.add.image(width * 0.5, height * 0.5, 'background');
 
@@ -38,13 +38,11 @@ export class Preloader extends Scene {
   preload() {
     //  Load the assets for the game - Replace with your own assets
     this.load.setPath('assets');
-
     // this.load.image('player', 'jones.png');
     this.load.image('logo', 'logo.png');
     this.load.image('star', 'star.png');
     this.load.json('mapData', 'map-data.json');
-
-    Audio.preload(this, [musicConfig]);
+    Audio.preload(this, musicConfig);
   }
 
   create() {
@@ -52,8 +50,5 @@ export class Preloader extends Scene {
     //  For example, you can define global animations here, so we can use them in other scenes.
     loadRandomMapData(this);
     this.scene.start('MainMenu');
-
-    Audio.getInstance(this, [musicConfig]);
-    Audio.instance.playAudio(musicConfig.key);
   }
 }
