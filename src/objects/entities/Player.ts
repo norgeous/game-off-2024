@@ -65,6 +65,7 @@ const entityConfig: EntityConfigType = {
 
 class Player extends Entity {
   public keys: keysType | undefined;
+  public weapons: string;
 
   static preload(scene: Phaser.Scene) {
     scene.load.image('player', 'assets/jones.png');
@@ -73,7 +74,8 @@ class Player extends Entity {
     const { px, py } = getPlayerStartPosition(scene, playerEnterFrom);
     super(scene, px, py, entityConfig);
 
-    this.keys = createControls(scene); // must be called after player is created
+    this.keys = createControls(scene);
+    this.weapons = 'test';
   }
   update(time: number, delta: number) {
     super.update(time, delta);
