@@ -1,5 +1,4 @@
 import { AudioConfigType } from '../objects/Audio';
-import Audio from '../objects/Audio';
 
 const musicArray: AudioConfigType[] = [
   {
