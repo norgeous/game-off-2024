@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import PlayerContext from './PlayerContext';
 import { EventBus, EventNames } from '../helpers/EventBus';
+import { useLocalStorage } from '../helpers/localstorage';
 
 const usePlayer = () => {
   const [health, setHealth] = useState(3);
@@ -9,10 +10,10 @@ const usePlayer = () => {
     [health],
   );
 
-  const [coins, setCoins] = useState(0);
+  const [coins, setCoins] = useLocalStorage('coins', 0);
   const adjustCoins = useCallback(
     (amount: number) => setCoins(coins + amount),
-    [coins],
+    [coins, setCoins],
   );
   const [inventory, setInventory] = useState([]);
 
