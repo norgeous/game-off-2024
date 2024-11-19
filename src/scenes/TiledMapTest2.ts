@@ -52,9 +52,9 @@ export class TiledMapTest2 extends Scene {
 
   create() {
     console.log('TiledMapTest2 scene got', this.sceneInitParams, this);
+
     audio.playRoomMusic(getCurrentRoomMusic(this.sceneInitParams.roomType).key);
 
-    console.log('TiledMapTest2 scene got', this.sceneInitParams);
     const { playerEnterFrom } = this.sceneInitParams;
     this.map = new TiledMapBuilder(this, levelConfig);
     this.player = new Player(this, playerEnterFrom);
