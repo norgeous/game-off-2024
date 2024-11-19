@@ -66,7 +66,7 @@ const entityConfig: EntityConfigType = {
 
 class Player extends Entity {
   public keys: keysType | undefined;
-  public weapons: (x: number, y: number) => void;
+  public weapons: (x: number, y: number, time: number) => void;
 
   static preload(scene: Phaser.Scene) {
     scene.load.image('player', 'assets/jones.png');
@@ -86,15 +86,7 @@ class Player extends Entity {
     }
 
     if (this.keys?.SPACE.isDown) {
-      // this.scene.matter.add
-      //   .sprite(this.x, this.y, 'star', undefined, {
-      //     collisionFilter: {
-      //       category: CC.playerBullet,
-      //       mask: CM.playerBullet,
-      //     },
-      //   })
-      //   .setAngularVelocity(100);
-      this.weapons(this.x, this.y);
+      this.weapons(this.x, this.y, time);
     }
   }
 }
