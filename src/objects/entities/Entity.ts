@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import { PhaserMatterImage } from '../../types';
 import { CC, CM } from '../../enums/CollisionCategories';
 import { MovementStrategy } from '../../helpers/movement/MovementStrategy';
-import createSensor from '../../helpers/createSensor';
+import createSensors from '../../helpers/createSensors';
 
 type AnimationsConfigType = {
   animationKey: string;
@@ -22,15 +22,25 @@ export type EntityConfigType = {
   };
   facing: number;
   scale: number;
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-  collideCallback?: Function;
-  collisionCategory?: CC;
-  collisionMask?: CM;
+  collideCallback?: (
+    scene: Phaser.Scene,
+    otherBodyName: string,
+    data: Phaser.Types.Physics.Matter.MatterCollisionData,
+  ) => void;
+  collisionCategory: CC;
+  collisionMask: CM;
   craftpixOffset: {
     x: number;
     y: number;
   };
   stats: EntityStatsType;
+  sensorConfig?: {
+    label: 'inner';
+    shape: 'circle';
+    radius: number;
+    collisionCategory: CC;
+    collisionSubMask: CM;
+  }[];
 };
 
 export type EntityStatsType = {
@@ -40,7 +50,7 @@ export type EntityStatsType = {
   attackRate: number;
 };
 
-const defaultConfig = {
+const defaultConfig: EntityConfigType = {
   name: 'entity',
   spriteSheetKey: 'player',
   animations: [],
@@ -50,9 +60,27 @@ const defaultConfig = {
     x: 0,
     y: 0,
   },
-  collisionCategory: CC.sensor,
-  collisionMask: CM.playerDetector,
-  sensorConfig: [{ label: 'inner', shape: 'circle', radius: 100 }],
+  collisionCategory: CC.enemy,
+  collisionMask: CM.enemy,
+  physicsConfig: {
+    width: 100,
+    height: 100,
+  },
+  sensorConfig: [
+    {
+      label: 'inner',
+      shape: 'circle',
+      radius: 100,
+      collisionCategory: CC.enemySensor,
+      collisionSubMask: CM.playerDetector,
+    },
+  ],
+  stats: {
+    hp: 0,
+    maxHp: 0,
+    speed: 0,
+    attackRate: 0,
+  },
 };
 
 class Entity extends Phaser.GameObjects.Container {
@@ -62,7 +90,7 @@ class Entity extends Phaser.GameObjects.Container {
   public debugText: Phaser.GameObjects.Text;
   public sprite: Phaser.GameObjects.Sprite;
   public gameObject: PhaserMatterImage;
-  protected hitbox;
+  public hitbox;
   protected movementStrategy: MovementStrategy;
   public stats: EntityStatsType;
   protected keepUpright: boolean;
@@ -90,6 +118,7 @@ class Entity extends Phaser.GameObjects.Container {
       collisionCategory,
       collisionMask,
       collideCallback,
+      sensorConfig,
       craftpixOffset,
       stats,
     } = { ...defaultConfig, ...config };
@@ -143,25 +172,34 @@ class Entity extends Phaser.GameObjects.Container {
 
     const { bodies: Bodies, body: Body } = scene.matter;
     const { width, height, ...otherPhysics } = physicsConfig;
-    this.hitbox = Bodies.rectangle(0, 0, width, height, otherPhysics);
-
-    // sensors
-    const { body: inner, sensorData } = createSensor(this.scene, {
-      label: 'inner',
-      shape: 'circle',
-      radius: 200,
-      collisionSubMask: CM.playerDetector,
+    this.hitbox = Bodies.rectangle(0, 0, width, height, {
+      ...otherPhysics,
+      collisionFilter: {
+        category: collisionCategory,
+        mask: collisionMask,
+        group: 0,
+      },
     });
-    this.sensorData.inner = sensorData;
+
+    const { sensorBodies, sensorData } = createSensors(
+      this.scene,
+      sensorConfig,
+    );
+    this.sensorData = sensorData;
 
     // compound body
     const compoundBody = Body.create({
-      parts: [this.hitbox, inner],
+      parts: [this.hitbox, ...sensorBodies],
     });
     this.hitbox.onCollideCallback = (
       data: Phaser.Types.Physics.Matter.MatterCollisionData,
     ) => {
-      collideCallback?.(data, this);
+      const names = [
+        data.bodyA.gameObject?.name || data.bodyA.label,
+        data.bodyB.gameObject?.name || data.bodyB.label,
+      ];
+      const otherBodyName = names.filter((name) => name !== this.name)[0];
+      collideCallback?.(this.scene, otherBodyName, data);
     };
     this.gameObject.setExistingBody(compoundBody);
     this.gameObject.setCollisionCategory(collisionCategory);
@@ -198,8 +236,8 @@ class Entity extends Phaser.GameObjects.Container {
   }
 
   update(time?: number, delta?: number) {
-    this.debugText.text = [...this.sensorData.inner].join(',');
-    this.movementStrategy.move(this, time, delta);
+    this.debugText.text = [...(this.sensorData.inner || [])].join(',');
+    this.movementStrategy?.move(this, time, delta);
     super.update(time, delta);
     this.flipXSprite(this.facing === -1);
     this.keepUpRight();

@@ -146,6 +146,10 @@ class TiledMapBuilder {
 
     // set the world boundry same size as Tiled map
     scene.matter.world.setBounds(0, 0, width, height, 2 ** 10);
+    scene.matter.world.walls.top.label = 'boundry-wall-north';
+    scene.matter.world.walls.bottom.label = 'boundry-wall-south';
+    scene.matter.world.walls.left.label = 'boundry-wall-west';
+    scene.matter.world.walls.right.label = 'boundry-wall-east';
   }
 
   // update(time: number, delta: number) {}

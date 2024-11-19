@@ -1,8 +1,13 @@
 import { CC, CM } from '../enums/CollisionCategories';
-import { EventBus, EventNames } from './EventBus';
 import { TiledMapTest2 } from '../scenes/TiledMapTest2';
 
-const createDoor = (scene: Phaser.Scene, x: number, y: number, a = 0) =>
+const createDoor = (
+  scene: Phaser.Scene,
+  name: string,
+  x: number,
+  y: number,
+  a = 0,
+) =>
   scene.matter.add
     .sprite(x, y, 'door', undefined, {
       isStatic: true,
@@ -11,7 +16,8 @@ const createDoor = (scene: Phaser.Scene, x: number, y: number, a = 0) =>
         mask: CM.door,
       },
     })
-    .setAngle(a);
+    .setAngle(a)
+    .setName(name);
 
 const createDoors = (scene: TiledMapTest2) => {
   if (!scene.map) return;
@@ -19,31 +25,19 @@ const createDoors = (scene: TiledMapTest2) => {
   const { width: w, height: h } = scene.map;
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.north)) {
-    const doorNorth = createDoor(scene, w * 0.5, 70, 0);
-    scene.player.setOnCollideWith(doorNorth, () =>
-      EventBus.emit(EventNames.USE_DOOR, scene, 'north'),
-    );
+    createDoor(scene, 'door-north', w * 0.5, 70, 0);
   }
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.south)) {
-    const doorSouth = createDoor(scene, w * 0.5, h - 70, 180);
-    scene.player.setOnCollideWith(doorSouth, () =>
-      EventBus.emit(EventNames.USE_DOOR, scene, 'south'),
-    );
+    createDoor(scene, 'door-south', w * 0.5, h - 70, 180);
   }
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.east)) {
-    const doorEast = createDoor(scene, w - 80, h * 0.5, 90);
-    scene.player.setOnCollideWith(doorEast, () =>
-      EventBus.emit(EventNames.USE_DOOR, scene, 'east'),
-    );
+    createDoor(scene, 'door-east', w - 80, h * 0.5, 90);
   }
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.west)) {
-    const doorWest = createDoor(scene, 80, h * 0.5, 270);
-    scene.player.setOnCollideWith(doorWest, () =>
-      EventBus.emit(EventNames.USE_DOOR, scene, 'west'),
-    );
+    createDoor(scene, 'door-west', 80, h * 0.5, 270);
   }
 };
 
