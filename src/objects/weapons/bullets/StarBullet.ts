@@ -1,6 +1,6 @@
 import { CC, CM } from '../../../enums/CollisionCategories';
 
-class StarBullet {
+class StarBullet extends Phaser.GameObjects.Container {
   static preload(scene: Phaser.Scene) {
     scene.load.image('star', 'assets/star.png');
   }
@@ -9,6 +9,7 @@ class StarBullet {
   private gameObject: Phaser.Physics.Matter.Sprite;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
+    super(scene, x, y);
     this.gameObject = scene.matter.add
       .sprite(x, y, 'star', undefined, {
         collisionFilter: {
