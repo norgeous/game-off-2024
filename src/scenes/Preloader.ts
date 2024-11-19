@@ -1,7 +1,7 @@
 import { Scene } from 'phaser';
 import { loadRandomMapData } from '../objects/map/Map';
-import Audio from '../objects/Audio';
 import { musicConfig } from '../helpers/getMusicConfig';
+import audio, {Audio} from '../objects/Audio';
 
 export class Preloader extends Scene {
   constructor() {
@@ -50,5 +50,6 @@ export class Preloader extends Scene {
     //  For example, you can define global animations here, so we can use them in other scenes.
     loadRandomMapData(this);
     this.scene.start('MainMenu');
+    audio.addToConfig(this, musicConfig);
   }
 }

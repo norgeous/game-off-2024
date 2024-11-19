@@ -9,8 +9,8 @@ import { createControls, keysToVector, keysType } from '../helpers/controls';
 import createDoors from '../helpers/doors';
 import { CC, CM } from '../enums/CollisionCategories';
 import getPlayerStartPosition from '../helpers/getPlayerStartPosition';
-import Audio from '../objects/Audio';
 import { getCurrentRoomMusic, musicConfig } from '../helpers/getMusicConfig';
+import audio from '../objects/Audio';
 
 const levelConfig: LevelConfigType = {
   key: 'Room',
@@ -26,7 +26,6 @@ export class TiledMapTest2 extends Scene {
   public map: TiledMapBuilder | undefined;
   public player: Phaser.Physics.Matter.Sprite;
   public keys: keysType | undefined;
-  public audio: Audio; 
 
   constructor() {
     super('TiledMapTest2');
@@ -41,7 +40,7 @@ export class TiledMapTest2 extends Scene {
     this.load.image('jones', 'assets/jones.png');
     
     const { roomType } = this.sceneInitParams;
-    this.audio = new Audio(this, musicConfig);
+ 
     levelConfig.spawnerConfig = [
       {
         tiledObjectName: 'enemy',
@@ -57,7 +56,7 @@ export class TiledMapTest2 extends Scene {
   }
   
   create() {
-    this.audio.playRoomMusic(
+    audio.playRoomMusic(
       getCurrentRoomMusic(this.sceneInitParams.roomType).key
     );
 
