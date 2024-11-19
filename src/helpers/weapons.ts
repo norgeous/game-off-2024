@@ -4,7 +4,7 @@ const weapons = (scene: Phaser.Scene) => {
   const group = scene.add.group({
     maxSize: 10,
     classType: StarBullet,
-    runChildUpdate: false,
+    runChildUpdate: true,
   });
 
   return (x: number, y: number) => {
