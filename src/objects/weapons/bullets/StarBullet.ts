@@ -19,8 +19,18 @@ class StarBullet extends Phaser.GameObjects.Container {
           mask: CM.playerBullet,
         },
       })
-      .setAngularVelocity(100);
+      .setAngularVelocity(1);
     this.startTime = window.performance.now();
+    this.gameObject.setScale(0.5);
+
+    const enemies = scene.map.spawners.enemy.children.entries;
+
+    const forceVector = new Phaser.Math.Vector2({
+      x: (enemies[0].x - x) * 0.0005,
+      y: (enemies[0].y - y) * 0.0005,
+    });
+
+    this.gameObject.applyForce(forceVector);
   }
 
   update(time: number, delta: number) {
