@@ -19,6 +19,7 @@ class StarBullet extends Phaser.GameObjects.Container {
           category: CC.playerBullet,
           mask: CM.playerBullet,
         },
+        chamfer: { radius: 30 },
       })
       .setAngularVelocity(1);
     this.startTime = window.performance.now();
