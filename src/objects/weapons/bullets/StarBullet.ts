@@ -22,7 +22,6 @@ class StarBullet extends Phaser.GameObjects.Container {
       friction: 0,
       frictionAir: 0,
     });
-    // .setAngularVelocity(1);
     this.startTime = window.performance.now();
     this.gameObject.setScale(0.5);
 
