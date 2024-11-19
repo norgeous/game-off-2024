@@ -12,7 +12,7 @@ export type AudioConfigType = {
 
 let currentMusic: string;
 
-class Something {
+export class Audio {
   private audio: Record<
     string,
     | Phaser.Sound.NoAudioSound
@@ -29,18 +29,6 @@ class Something {
     }
   }
 
-  constructor(scene: Phaser.Scene, configs: AudioConfigType[]) {
-    this.addToConfig(scene, configs);
-  }
-
-  setSFXMute(mute: boolean) {
-    Object.entries(this.audioConfig).forEach(([key, config]) => {
-      if (!config.isMusic || config.isMusic === undefined) {
-        this.audio[key].setMute(mute);
-      }
-    });
-  }
-
   addToConfig(scene: Phaser.Scene, configs: AudioConfigType[]) {
     for (let i = 0; i < configs.length; i += 1) {
       const config: AudioConfigType = configs[i];
@@ -50,6 +38,14 @@ class Something {
         config.soundConfig ?? {},
       );
     }
+  }
+
+  setSFXMute(mute: boolean) {
+    Object.entries(this.audioConfig).forEach(([key, config]) => {
+      if (!config.isMusic || config.isMusic === undefined) {
+        this.audio[key].setMute(mute);
+      }
+    });
   }
 
   setMusicMute(mute: boolean) {
@@ -93,4 +89,5 @@ class Something {
   }
 }
 
-export default Something;
+const audio = new Audio();
+export default audio;
