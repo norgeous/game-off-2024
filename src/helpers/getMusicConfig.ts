@@ -1,5 +1,9 @@
 import { AudioConfigType } from '../objects/Audio';
 
+const defaultSoundConfig: Phaser.Types.Sound.SoundConfig = {
+    volume: 0.3,
+}
+
 const musicArray: AudioConfigType[] = [
   {
     key: 'music',
@@ -7,6 +11,7 @@ const musicArray: AudioConfigType[] = [
     loop: true,
     isMusic: true,
     roomType: '2',
+    soundConfig: defaultSoundConfig
   },
   {
     key: 'music',
@@ -14,6 +19,7 @@ const musicArray: AudioConfigType[] = [
     loop: true,
     isMusic: true,
     roomType: '2',
+    soundConfig: defaultSoundConfig
   },
   {
     key: 'music',
@@ -21,6 +27,7 @@ const musicArray: AudioConfigType[] = [
     loop: true,
     isMusic: true,
     roomType: '2',
+    soundConfig: defaultSoundConfig
   },
   {
     key: 'bossMusic',
@@ -28,6 +35,7 @@ const musicArray: AudioConfigType[] = [
     loop: true,
     isMusic: true,
     roomType: 'b',
+    soundConfig: defaultSoundConfig
   },
 ];
 
