@@ -9,7 +9,7 @@ import { createControls, keysToVector, keysType } from '../helpers/controls';
 import createDoors from '../helpers/doors';
 import { CC, CM } from '../enums/CollisionCategories';
 import getPlayerStartPosition from '../helpers/getPlayerStartPosition';
-import { getCurrentRoomMusic, musicConfig } from '../helpers/getMusicConfig';
+import { getCurrentRoomMusic } from '../helpers/getMusicConfig';
 import audio from '../objects/Audio';
 
 const levelConfig: LevelConfigType = {
@@ -34,13 +34,13 @@ export class TiledMapTest2 extends Scene {
   init(sceneInitParams: SceneInitParamsType) {
     this.sceneInitParams = sceneInitParams;
   }
-  
+
   preload() {
     this.load.image('door', 'assets/isaac-door.png');
     this.load.image('jones', 'assets/jones.png');
-    
+
     const { roomType } = this.sceneInitParams;
- 
+
     levelConfig.spawnerConfig = [
       {
         tiledObjectName: 'enemy',
@@ -54,11 +54,9 @@ export class TiledMapTest2 extends Scene {
     levelConfig.tiledMapJson = `./tiled/rooms/room-${roomType}.json`;
     TiledMapBuilder.preload(this, levelConfig);
   }
-  
+
   create() {
-    audio.playRoomMusic(
-      getCurrentRoomMusic(this.sceneInitParams.roomType).key
-    );
+    audio.playRoomMusic(getCurrentRoomMusic(this.sceneInitParams.roomType).key);
 
     console.log('TiledMapTest2 scene got', this.sceneInitParams);
     const { playerEnterFrom } = this.sceneInitParams;
