@@ -1,5 +1,7 @@
 import { CC, CM } from '../../../enums/CollisionCategories';
 
+const TTL = 1_000;
+
 class StarBullet extends Phaser.GameObjects.Container {
   static preload(scene: Phaser.Scene) {
     scene.load.image('star', 'assets/star.png');
@@ -22,7 +24,10 @@ class StarBullet extends Phaser.GameObjects.Container {
   }
 
   update(time: number, delta: number) {
-    console.log(this.gameObject, this.startTime, window.performance.now());
+    if (window.performance.now() - this.startTime > TTL) {
+      this.gameObject.destroy();
+      this.destroy();
+    }
   }
 }
 
