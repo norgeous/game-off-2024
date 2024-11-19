@@ -1,16 +1,16 @@
 import { Scene } from 'phaser';
 import { loadRandomMapData } from '../objects/map/Map';
 import { musicConfig } from '../helpers/getMusicConfig';
-import audio, {Audio} from '../objects/Audio';
+import audio, { Audio } from '../objects/Audio';
 
 export class Preloader extends Scene {
   constructor() {
     super('Preloader');
   }
-  
+
   init() {
     const { width, height } = this.sys.game.canvas;
-    
+
     //  We loaded this image in our Boot Scene, so we can display it here
     this.add.image(width * 0.5, height * 0.5, 'background');
 

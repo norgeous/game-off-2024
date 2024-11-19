@@ -1,8 +1,8 @@
 import { AudioConfigType } from '../objects/Audio';
 
 const defaultSoundConfig: Phaser.Types.Sound.SoundConfig = {
-    volume: 0.3,
-}
+  volume: 0.3,
+};
 
 const musicArray: AudioConfigType[] = [
   {
@@ -11,7 +11,7 @@ const musicArray: AudioConfigType[] = [
     loop: true,
     isMusic: true,
     roomType: '2',
-    soundConfig: defaultSoundConfig
+    soundConfig: defaultSoundConfig,
   },
   {
     key: 'music',
@@ -19,7 +19,7 @@ const musicArray: AudioConfigType[] = [
     loop: true,
     isMusic: true,
     roomType: '2',
-    soundConfig: defaultSoundConfig
+    soundConfig: defaultSoundConfig,
   },
   {
     key: 'music',
@@ -27,7 +27,7 @@ const musicArray: AudioConfigType[] = [
     loop: true,
     isMusic: true,
     roomType: '2',
-    soundConfig: defaultSoundConfig
+    soundConfig: defaultSoundConfig,
   },
   {
     key: 'bossMusic',
@@ -35,12 +35,12 @@ const musicArray: AudioConfigType[] = [
     loop: true,
     isMusic: true,
     roomType: 'b',
-    soundConfig: defaultSoundConfig
+    soundConfig: defaultSoundConfig,
   },
 ];
 
-const bossMusicArray = musicArray.filter(item => item.roomType === 'b');
-const roomMusicArray = musicArray.filter(item => item.roomType !== 'b');
+const bossMusicArray = musicArray.filter((item) => item.roomType === 'b');
+const roomMusicArray = musicArray.filter((item) => item.roomType !== 'b');
 
 const getRandomMusicConfig = (musicConfigs: AudioConfigType[]) => {
   return musicConfigs[Math.floor(Math.random() * musicConfigs.length)];
@@ -51,7 +51,6 @@ const bossMusic = getRandomMusicConfig(bossMusicArray);
 
 export const getCurrentRoomMusic = (roomType: string): AudioConfigType => {
   return roomType === 'b' ? bossMusic : roomMusic;
-}
+};
 
 export const musicConfig = [roomMusic, bossMusic];
-

@@ -4,7 +4,7 @@ export type AudioConfigType = {
   key: string;
   filePath: string;
   loop: boolean;
-  roomType: string
+  roomType: string;
   volume?: number;
   soundConfig?: Phaser.Types.Sound.SoundConfig;
   isMusic?: boolean;
@@ -55,7 +55,7 @@ export class Audio {
       }
     });
   }
-  
+
   stopMusic() {
     Object.entries(this.audioConfig).forEach(([key, config]) => {
       if (config.isMusic) {
@@ -63,7 +63,7 @@ export class Audio {
       }
     });
   }
-  
+
   playAudio(key: string) {
     if (this.audio[key] && this.audioConfig[key]) {
       this.audio[key].loop = this.audioConfig[key].loop;
@@ -71,12 +71,12 @@ export class Audio {
     }
   }
 
-  playRoomMusic(key: string, reload:boolean = false) {
+  playRoomMusic(key: string, reload: boolean = false) {
     if (currentMusic != key || reload) {
       currentMusic = key;
       this.stopMusic();
       this.playAudio(key);
-    } 
+    }
   }
 
   playOneShot(scene: Phaser.Scene, config: AudioConfigType) {
