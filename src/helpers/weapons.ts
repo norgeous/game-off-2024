@@ -1,6 +1,6 @@
 import StarBullet from '../objects/weapons/bullets/StarBullet';
 
-const COOLDOWN = 300;
+const COOLDOWN = 400; // milliseconds between shots
 
 const inventory = ['star-gun', 'star-gun'];
 
