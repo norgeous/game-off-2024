@@ -6,6 +6,7 @@ import getPlayerStartPosition from '../../helpers/getPlayerStartPosition';
 import { Direction } from '../../helpers/dungeonConfigParser';
 import { createControls, keysToVector, keysType } from '../../helpers/controls';
 import { EventBus, EventNames } from '../../helpers/EventBus';
+import weapons from '../../helpers/weapons';
 
 const KEY = 'player';
 
@@ -65,7 +66,7 @@ const entityConfig: EntityConfigType = {
 
 class Player extends Entity {
   public keys: keysType | undefined;
-  public weapons: string;
+  public weapons: (x: number, y: number) => void;
 
   static preload(scene: Phaser.Scene) {
     scene.load.image('player', 'assets/jones.png');
@@ -75,7 +76,7 @@ class Player extends Entity {
     super(scene, px, py, entityConfig);
 
     this.keys = createControls(scene);
-    this.weapons = 'test';
+    this.weapons = weapons(scene);
   }
   update(time: number, delta: number) {
     super.update(time, delta);
@@ -85,14 +86,15 @@ class Player extends Entity {
     }
 
     if (this.keys?.SPACE.isDown) {
-      this.scene.matter.add
-        .sprite(this.x, this.y, 'star', undefined, {
-          collisionFilter: {
-            category: CC.playerBullet,
-            mask: CM.playerBullet,
-          },
-        })
-        .setAngularVelocity(100);
+      // this.scene.matter.add
+      //   .sprite(this.x, this.y, 'star', undefined, {
+      //     collisionFilter: {
+      //       category: CC.playerBullet,
+      //       mask: CM.playerBullet,
+      //     },
+      //   })
+      //   .setAngularVelocity(100);
+      this.weapons(this.x, this.y);
     }
   }
 }

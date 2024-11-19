@@ -51,7 +51,7 @@ export class TiledMapTest2 extends Scene {
   }
 
   create() {
-    console.log('TiledMapTest2 scene got', this.sceneInitParams);
+    console.log('TiledMapTest2 scene got', this.sceneInitParams, this);
     const { playerEnterFrom } = this.sceneInitParams;
     this.map = new TiledMapBuilder(this, levelConfig);
     this.player = new Player(this, playerEnterFrom);
