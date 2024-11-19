@@ -24,3 +24,15 @@
 - [ ] carry velocity between room scenes
 - [ ] enemy sfx
 - [ ] main menu art (title card art)
+
+multiple weapons at once!
+auto firing!
+
+## weapon properties
+
+- fire rate
+- damage
+- bullet scale
+- bullet ttl
+- isbouncy
+- passthru target
