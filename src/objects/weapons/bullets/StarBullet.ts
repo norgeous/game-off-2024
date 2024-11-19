@@ -1,6 +1,7 @@
 import { CC, CM } from '../../../enums/CollisionCategories';
 
 const TTL = 1_000;
+const EJECTION_FORCE = 0.05;
 
 class StarBullet extends Phaser.GameObjects.Container {
   static preload(scene: Phaser.Scene) {
@@ -26,9 +27,9 @@ class StarBullet extends Phaser.GameObjects.Container {
     const enemies = scene.map.spawners.enemy.children.entries;
 
     const forceVector = new Phaser.Math.Vector2({
-      x: (enemies[0].x - x) * 0.0005,
-      y: (enemies[0].y - y) * 0.0005,
-    });
+      x: enemies[0].x - x,
+      y: enemies[0].y - y,
+    }).setLength(EJECTION_FORCE);
 
     this.gameObject.applyForce(forceVector);
   }
