@@ -2,7 +2,7 @@ import StarBullet from '../objects/weapons/bullets/StarBullet';
 
 const weapons = (scene: Phaser.Scene) => {
   const group = scene.add.group({
-    maxSize: 1,
+    maxSize: 100,
     classType: StarBullet,
     runChildUpdate: true,
   });
