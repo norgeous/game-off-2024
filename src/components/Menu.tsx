@@ -13,7 +13,6 @@ import Health from './Health';
 import Coins from './Coins';
 import PlayerDebug, { PlayerDebugToggleButton } from './PlayerDebug';
 import MuteMusicToggle from './MuteMusicToggle';
-import { MuteProvider } from '../contexts/MuteMusicContext';
 
 interface IMenu {
   phaserScene: Phaser.Scene;
@@ -39,9 +38,8 @@ const Menu = ({ phaserScene }: IMenu) => {
         {isSettingsOpen && (
           <>
             <FullscreenToggle />
-            <MuteProvider>
-              <MuteMusicToggle phaserScene={phaserScene} />
-            </MuteProvider>
+
+            <MuteMusicToggle phaserScene={phaserScene} />
 
             <MenuButton
               as="a"
