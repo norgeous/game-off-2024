@@ -11,6 +11,8 @@ export class Preloader extends Scene {
   init() {
     const { width, height } = this.sys.game.canvas;
 
+    this.cameras.main.setBackgroundColor(0x00ffff);
+
     //  We loaded this image in our Boot Scene, so we can display it here
     this.add.image(width * 0.5, height * 0.5, 'background');
 
