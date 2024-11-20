@@ -189,7 +189,7 @@ class Entity extends Phaser.GameObjects.Container {
 
     // compound body
     const compoundBody = Body.create({
-      parts: [this.hitbox, ...sensorBodies],
+      parts: [this.hitbox], //, ...sensorBodies],
     });
     this.hitbox.onCollideCallback = (
       data: Phaser.Types.Physics.Matter.MatterCollisionData,
