@@ -33,6 +33,7 @@ class StarBullet extends Phaser.GameObjects.Container {
     }).setLength(EJECTION_FORCE);
 
     this.gameObject.applyForce(forceVector);
+    this.gameObject.setOnCollide(() => this.gameObject.destroy());
   }
 
   update(time: number, delta: number) {
