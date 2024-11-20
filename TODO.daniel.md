@@ -16,9 +16,10 @@
 - [x] react health bar top left
 - [x] coin count top left
 - [x] setup "player" react context with eventbus
-- [ ] weapons system (folder for different weapons and integration to entity)
+- [x] weapons system (folder for different weapons and integration to entity)
+- [x] gun weapon
 - [ ] whip weapon
-- [ ] gun weapon
+- [ ] new settings modal
 - [ ] doors to lock until all enemy killed in room
 - [ ] add isRoomCleared flag to scene data
 - [ ] carry velocity between room scenes
