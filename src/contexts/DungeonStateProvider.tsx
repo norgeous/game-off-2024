@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import DungeonStateContext, {
   defaultDungeonState,
 } from './DungeonStateContext';
@@ -9,13 +9,17 @@ import dungeonConfigParser, {
   RoomConfig1D,
 } from '../helpers/dungeonConfigParser';
 import { EventBus, EventNames } from '../helpers/EventBus';
+import SettingsContext from './SettingsContext';
 
 import dungeon1 from '../dungeons/1';
 
 const useDungeonState = () => {
+  const { isMusicMuted } = useContext(SettingsContext);
   const [dungeon1D, setDungeon1D] = useState<RoomConfig1D[]>([]);
   const [current, setCurrent] = useState(defaultDungeonState.current);
   const [roomHistory, setRoomHistory] = useState<RoomConfig1D[]>([]);
+
+  const settings = { isMusicMuted };
 
   // on mount, generate the dungeon1D and save to react state
   useEffect(() => {
@@ -48,16 +52,17 @@ const useDungeonState = () => {
         { x: nextRoom.x, y: nextRoom.y, roomType: nextRoom.roomType },
       ]);
       setCurrent(nextRoom);
-      scene?.scene.start('TiledMapTest2', nextRoom);
+      scene?.scene.start('TiledMapTest2', { ...nextRoom, ...settings });
     },
     [current.x, current.y, dungeon1D, roomHistory],
   );
 
   // when START event received, start dungeon with current room config (the config of start room zero)
   useEffect(() => {
-    EventBus.on(EventNames.START, (scene: Phaser.Scene) =>
-      scene?.scene.start('TiledMapTest2', current),
-    );
+    EventBus.on(EventNames.START, (scene: Phaser.Scene) => {
+      console.log('START');
+      scene?.scene.start('TiledMapTest2', { ...current, ...settings });
+    });
     return () => {
       EventBus.removeListener(EventNames.START);
     };
