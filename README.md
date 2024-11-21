@@ -15,6 +15,7 @@ https://norgeous.github.io/game-off-2024/
 ### Art
 
 - Binding of Isaac tileset: https://www.deviantart.com/wanyo/art/Binding-of-Isaac-Rebirth-Tiles-610590075
+- https://jasontomlee.itch.io/slashfx
 
 ### Sound FX
 

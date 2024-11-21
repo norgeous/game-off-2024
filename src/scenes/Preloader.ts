@@ -2,6 +2,7 @@ import { Scene } from 'phaser';
 import { loadRandomMapData } from '../objects/map/Map';
 import { musicConfig } from '../helpers/getMusicConfig';
 import audio, { Audio } from '../objects/Audio';
+import WhipBullet from '../objects/weapons/bullets/WhipBullet';
 
 export class Preloader extends Scene {
   constructor() {
@@ -40,11 +41,11 @@ export class Preloader extends Scene {
   preload() {
     //  Load the assets for the game - Replace with your own assets
     this.load.setPath('assets');
-    // this.load.image('player', 'jones.png');
     this.load.image('logo', 'logo.png');
     this.load.image('star', 'star.png');
     this.load.json('mapData', 'map-data.json');
     Audio.preload(this, musicConfig);
+    WhipBullet.preload(this);
   }
 
   create() {

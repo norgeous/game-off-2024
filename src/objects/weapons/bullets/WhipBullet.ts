@@ -1,11 +1,11 @@
 import { CC, CM } from '../../../enums/CollisionCategories';
 
-const TTL = 5_000;
+const TTL = 200;
 const EJECTION_FORCE = 0.05;
 
-class StarBullet extends Phaser.GameObjects.Container {
+class WhipBullet extends Phaser.GameObjects.Container {
   static preload(scene: Phaser.Scene) {
-    scene.load.image('star', 'assets/star.png');
+    scene.load.image('whip', 'whip.png');
   }
 
   private startTime: number;
@@ -17,22 +17,25 @@ class StarBullet extends Phaser.GameObjects.Container {
 
     if (!enemies[0]) return;
 
-    this.gameObject = scene.matter.add.sprite(x, y, 'star', undefined, {
+    this.gameObject = scene.matter.add.sprite(x, y, 'whip', undefined, {
       collisionFilter: {
         category: CC.playerBullet,
         mask: CM.playerBullet,
       },
-      chamfer: { radius: 30 },
+      chamfer: { radius: 15 },
       friction: 0,
       frictionAir: 0,
     });
     this.startTime = window.performance.now();
-    this.gameObject.setScale(0.5);
+    this.gameObject.setScale(2);
 
     const forceVector = new Phaser.Math.Vector2({
       x: enemies[0].x - x,
       y: enemies[0].y - y,
     }).setLength(EJECTION_FORCE);
+
+    this.gameObject.setRotation(forceVector.angle());
+    // this.gameObject.setRotation(30);
 
     this.gameObject.applyForce(forceVector);
     this.gameObject.setOnCollide(() => this.gameObject.destroy());
@@ -46,4 +49,4 @@ class StarBullet extends Phaser.GameObjects.Container {
   }
 }
 
-export default StarBullet;
+export default WhipBullet;
