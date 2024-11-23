@@ -37,3 +37,4 @@ https://norgeous.github.io/game-off-2024/
 - https://react-icons.github.io/react-icons/
 - https://github.com/comfyanonymous/ComfyUI
 - https://www.mapeditor.org/
+- https://github.com/mikewesthad/navmesh/tree/master?tab=readme-ov-file
