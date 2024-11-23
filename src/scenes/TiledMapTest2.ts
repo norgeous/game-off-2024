@@ -9,6 +9,7 @@ import createDoors from '../helpers/doors';
 import Player from '../objects/entities/Player';
 import { getCurrentRoomMusic } from '../helpers/getMusicConfig';
 import audio from '../objects/Audio';
+import { PhaserNavMeshPlugin } from "phaser-navmesh/src";
 
 const levelConfig: LevelConfigType = {
   key: 'Room',
@@ -22,13 +23,14 @@ export class TiledMapTest2 extends Scene {
   public sceneInitParams: SceneInitParamsType;
   public map: TiledMapBuilder | undefined;
   public player: Player;
+  public navMesh: Object;
 
   constructor() {
     super('TiledMapTest2');
   }
 
   init(sceneInitParams: SceneInitParamsType) {
-    console.log(sceneInitParams);
+    //console.log(sceneInitParams);
     this.sceneInitParams = sceneInitParams;
   }
 
@@ -52,13 +54,19 @@ export class TiledMapTest2 extends Scene {
   }
 
   create() {
-    console.log('TiledMapTest2 scene got', this.sceneInitParams, this);
-
+   // console.log('TiledMapTest2 scene got', this.sceneInitParams, this);
     audio.playRoomMusic(getCurrentRoomMusic(this.sceneInitParams.roomType).key);
     audio.setMusicMute(this.sceneInitParams.isMusicMuted);
 
     const { playerEnterFrom } = this.sceneInitParams;
     this.map = new TiledMapBuilder(this, levelConfig);
+
+    const navMeshLayer = this.map.level?.getObjectLayer("navmesh");
+    const plugin = new PhaserNavMeshPlugin(this, this.plugins, 'navMeshPlugin');
+    if (navMeshLayer !== null) {
+      this.navMesh = plugin.buildMeshFromTiled('-navmesh',  this.map.level?.getObjectLayer("navmesh"), 50);
+    }
+
     this.player = new Player(this, playerEnterFrom);
     this.cameras.main
       .setBounds(0, 0, this.map.width, this.map.height)
