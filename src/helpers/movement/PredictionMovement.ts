@@ -13,8 +13,10 @@ export class PredictionMovement implements MovementStrategy {
   }
 
   move(entity: Entity, _time: number, _delta: number): void {
-    const predictedX = this.map.player.x + this.map.player.getVelocity().x * 100;
-    const predictedY = this.map.player.y + this.map.player.getVelocity().y * 100;
+    const predictedX =
+      this.map.player.x + this.map.player.getVelocity().x * 100;
+    const predictedY =
+      this.map.player.y + this.map.player.getVelocity().y * 100;
 
     this.pathFinding.createPath(
       { x: entity.x, y: entity.y },

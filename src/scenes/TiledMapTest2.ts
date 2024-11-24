@@ -9,6 +9,7 @@ import createDoors from '../helpers/doors';
 import Player from '../objects/entities/Player';
 import { getCurrentRoomMusic } from '../helpers/getMusicConfig';
 import audio from '../objects/Audio';
+import { createRoom, preloadRoom } from '../rooms';
 
 const levelConfig: LevelConfigType = {
   key: 'Room',
@@ -49,26 +50,35 @@ export class TiledMapTest2 extends Scene {
     levelConfig.tiledMapJson = `./tiled/rooms/room-${roomType}.json`;
     TiledMapBuilder.preload(this, levelConfig);
     Player.preload(this);
+
+    // new preloader
+    preloadRoom(this, roomType);
   }
 
   create() {
+    const { roomType } = this.sceneInitParams;
+
     console.log('TiledMapTest2 scene got', this.sceneInitParams, this);
+
+    console.log(createRoom(this, roomType));
+
     audio.playRoomMusic(getCurrentRoomMusic(this.sceneInitParams.roomType).key);
     audio.setMusicMute(this.sceneInitParams.isMusicMuted);
 
-    const { playerEnterFrom } = this.sceneInitParams;
-    this.map = new TiledMapBuilder(this, levelConfig);
-    this.player = new Player(this, playerEnterFrom);
-    this.cameras.main
-      .setBounds(0, 0, this.map.width, this.map.height)
-      .startFollow(this.player);
+    // this.map = new TiledMapBuilder(this, levelConfig);
 
-    createDoors(this); // must be called after player is created
+    // const { playerEnterFrom } = this.sceneInitParams;
+    // this.player = new Player(this, playerEnterFrom);
+    // this.cameras.main
+    //   .setBounds(0, 0, this.map.width, this.map.height)
+    //   .startFollow(this.player);
+
+    // createDoors(this); // must be called after player is created
 
     EventBus.emit(EventNames.READY, this);
   }
 
   update(time: number, delta: number) {
-    this.player.update(time, delta);
+    // this.player.update(time, delta);
   }
 }
