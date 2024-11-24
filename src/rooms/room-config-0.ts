@@ -17,14 +17,8 @@ export default {
         key: 'tiles1',
         file: './assets/levels/ai-egypt-1.png',
       },
-      {
-        key: 'extra',
-        file: './assets/levels/ai-egypt-2.png',
-      },
     ],
-    layerConfig: [
-      { tiledLayerName: 'tiledLayer', tileKeys: ['tiles1'], depth: 0 },
-    ],
+    layerConfig: [{ tiledLayerName: 'tiledLayer', depth: 0 }],
     spawnerConfig: [],
   },
 };

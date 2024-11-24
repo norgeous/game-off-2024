@@ -22,7 +22,8 @@ export default {
       },
     ],
     layerConfig: [
-      { tiledLayerName: 'tiledLayer', tileKeys: ['tiles2', 'items'], depth: 0 },
+      { tiledLayerName: 'tiledLayer', depth: 0 },
+      { tiledLayerName: 'obsticles', depth: 1 },
     ],
     spawnerConfig: [
       {

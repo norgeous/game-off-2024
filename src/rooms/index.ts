@@ -42,9 +42,14 @@ export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
   // add the tileset images into the level
   images.forEach(({ key }) => level.addTilesetImage(key, key));
 
-  // build layers
-  layerConfig.map(({ tiledLayerName, tileKeys, depth }) =>
-    level.createLayer(tiledLayerName, tileKeys)?.setDepth(depth),
+  // build layers from layerConfig
+  layerConfig.map(({ tiledLayerName, depth }) =>
+    level
+      .createLayer(
+        tiledLayerName,
+        images.map(({ key }) => key),
+      )
+      ?.setDepth(depth),
   );
 
   // set the world boundry same size as Tiled map
@@ -63,6 +68,8 @@ export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
     'boundry-wall-west';
   (scene.matter.world.walls.right as MatterJS.BodyType).label =
     'boundry-wall-east';
+
+  // setup polygons
 
   // setup spawners
 
