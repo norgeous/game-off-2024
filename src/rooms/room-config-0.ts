@@ -23,7 +23,7 @@ export default {
       },
     ],
     layerConfig: [
-      { tiledLayerName: 'tiledLayer', tileKey: 'tiles1', depth: 0 },
+      { tiledLayerName: 'tiledLayer', tileKeys: ['tiles1'], depth: 0 },
     ],
     spawnerConfig: [],
   },

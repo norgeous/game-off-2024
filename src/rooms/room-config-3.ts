@@ -17,12 +17,12 @@ export default {
         file: './assets/levels/ai-egypt-2.png',
       },
       {
-        key: 'extra',
-        file: './assets/levels/ai-egypt-1.png',
+        key: 'items',
+        file: './assets/items.png',
       },
     ],
     layerConfig: [
-      { tiledLayerName: 'tiledLayer', tileKey: 'tiles2', depth: 0 },
+      { tiledLayerName: 'tiledLayer', tileKeys: ['tiles2', 'items'], depth: 0 },
     ],
     spawnerConfig: [
       {

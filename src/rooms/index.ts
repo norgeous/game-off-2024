@@ -43,8 +43,8 @@ export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
   images.forEach(({ key }) => level.addTilesetImage(key, key));
 
   // build layers
-  layerConfig.map(({ tiledLayerName, tileKey, depth }) =>
-    level.createLayer(tiledLayerName, tileKey)?.setDepth(depth),
+  layerConfig.map(({ tiledLayerName, tileKeys, depth }) =>
+    level.createLayer(tiledLayerName, tileKeys)?.setDepth(depth),
   );
 
   // set the world boundry same size as Tiled map
