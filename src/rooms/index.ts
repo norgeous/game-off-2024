@@ -32,11 +32,12 @@ export const preloadRoom = (scene: Phaser.Scene, roomType: RoomType) => {
 
 export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
   const key = `room-${roomType}`;
-
-  const level = scene.make.tilemap({ key }); // load the tiles from the Tiled json
   const {
     tiled: { images, layerConfig },
   } = getRoomConfig(roomType);
+
+  // load the tiles from the Tiled json
+  const level = scene.make.tilemap({ key });
 
   // add the tileset images into the level
   images.forEach(({ key }) => level.addTilesetImage(key, key));
@@ -62,6 +63,8 @@ export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
     'boundry-wall-west';
   (scene.matter.world.walls.right as MatterJS.BodyType).label =
     'boundry-wall-east';
+
+  // setup spawners
 
   return { level };
 };
