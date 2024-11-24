@@ -18,7 +18,8 @@ export class PredictionMovement implements MovementStrategy {
 
     this.pathFinding.createPath({ x: entity.x, y: entity.y }, { x: predictedX, y: predictedY}, true)
     const currentTarget = this.pathFinding.getNearestPoint(entity.x, entity.y);
-
+    if (!currentTarget) return;
+    
     let angle = Phaser.Math.Angle.Between(entity.x, entity.y, currentTarget.x, currentTarget.y);
     entity.x += Math.cos(angle) / 0.9;
     entity.y += Math.sin(angle) / 0.9;
