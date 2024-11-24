@@ -21,7 +21,8 @@ const levelConfig: LevelConfigType = {
 
 export class TiledMapTest2 extends Scene {
   public sceneInitParams: SceneInitParamsType;
-  public map: TiledMapBuilder | undefined;
+  // public map: TiledMapBuilder | undefined;
+  public level: Phaser.Tilemaps.Tilemap | undefined;
   public player: Player;
 
   constructor() {
@@ -60,25 +61,27 @@ export class TiledMapTest2 extends Scene {
 
     console.log('TiledMapTest2 scene got', this.sceneInitParams, this);
 
-    console.log(createRoom(this, roomType));
+    const { level, spawners } = createRoom(this, roomType);
+    this.level = level;
 
     audio.playRoomMusic(getCurrentRoomMusic(this.sceneInitParams.roomType).key);
     audio.setMusicMute(this.sceneInitParams.isMusicMuted);
 
-    // this.map = new TiledMapBuilder(this, levelConfig);
+    const { playerEnterFrom } = this.sceneInitParams;
+    this.player = new Player(this, playerEnterFrom);
+    console.log(this.player.x);
 
-    // const { playerEnterFrom } = this.sceneInitParams;
-    // this.player = new Player(this, playerEnterFrom);
-    // this.cameras.main
-    //   .setBounds(0, 0, this.map.width, this.map.height)
-    //   .startFollow(this.player);
+    // camera constraint
+    this.cameras.main
+      .setBounds(0, 0, level.widthInPixels, level.heightInPixels)
+      .startFollow(this.player);
 
-    // createDoors(this); // must be called after player is created
+    createDoors(this); // must be called after player is created
 
     EventBus.emit(EventNames.READY, this);
   }
 
   update(time: number, delta: number) {
-    // this.player.update(time, delta);
+    this.player.update(time, delta);
   }
 }

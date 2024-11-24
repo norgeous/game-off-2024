@@ -34,7 +34,7 @@ export const preloadRoom = (scene: Phaser.Scene, roomType: RoomType) => {
 export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
   const key = `room-${roomType}`;
   const {
-    tiled: { images, layerConfig },
+    tiled: { images, layerConfig, spawnerConfig },
   } = getRoomConfig(roomType);
 
   // load the tiles from the Tiled json
@@ -86,6 +86,36 @@ export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
   }, [] as Phaser.GameObjects.GameObject[]);
 
   // setup spawners
+  const markers = level.getObjectLayer('markers')?.objects || [];
+  const spawners = spawnerConfig.reduce(
+    (
+      acc,
+      { tiledObjectName, classFactory, maxSize, runChildUpdate, autoSpawn },
+    ) => {
+      const group = scene.add.group({
+        maxSize,
+        classType: classFactory,
+        runChildUpdate,
+      });
 
-  return { level };
+      if (autoSpawn) {
+        const locations = markers.filter(
+          ({ name }) => name === tiledObjectName,
+        );
+
+        for (let i = 0; i < locations.length; i += 1) {
+          const { x, y } = locations[i];
+          group.get(x, y);
+        }
+      }
+
+      return {
+        ...acc,
+        [tiledObjectName]: group,
+      };
+    },
+    {},
+  );
+
+  return { level, spawners };
 };

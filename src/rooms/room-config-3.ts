@@ -23,7 +23,7 @@ export default {
     ],
     layerConfig: [
       { tiledLayerName: 'tiledLayer', depth: 0 },
-      { tiledLayerName: 'obsticles', depth: 1 },
+      { tiledLayerName: 'obsticles', depth: 0 },
     ],
     spawnerConfig: [
       {

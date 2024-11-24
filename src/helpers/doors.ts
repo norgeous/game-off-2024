@@ -20,9 +20,9 @@ const createDoor = (
     .setName(name);
 
 const createDoors = (scene: TiledMapTest2) => {
-  if (!scene.map) return;
+  if (!scene.level) return;
 
-  const { width: w, height: h } = scene.map;
+  const { widthInPixels: w, heightInPixels: h } = scene.level;
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.north)) {
     createDoor(scene, 'door-north', w * 0.5, 70, 0);
