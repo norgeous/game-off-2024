@@ -13,8 +13,8 @@ export default {
     tiledMapJson: './tiled/maps/rooms/room-3.json',
     images: [
       {
-        key: 'tiles2',
-        file: './assets/levels/ai-egypt-2.png',
+        key: 'tiles3',
+        file: './assets/levels/ai-egypt-3.png',
       },
       {
         key: 'items',
