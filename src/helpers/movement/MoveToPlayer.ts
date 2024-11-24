@@ -13,19 +13,25 @@ export class MoveToPlayer implements MovementStrategy {
     this.scene = scene;
     this.pathFinding = new PathFinding();
   }
-  
+
   move(entity: Entity, _time: number, delta: number): void {
-    this.pathFinding.createPath({ x: entity.x, y: entity.y }, { x: this.scene.player.x, y: this.scene.player.y}, true)
+    this.pathFinding.createPath(
+      { x: entity.x, y: entity.y },
+      { x: this.scene.player.x, y: this.scene.player.y },
+      true,
+    );
     const currentTarget = this.pathFinding.getNearestPoint(entity.x, entity.y);
-    
-    if (currentTarget) { 
+
+    if (currentTarget) {
       const dx = currentTarget.x - entity.x;
       const dy = currentTarget.y - entity.y;
 
       const angle = Math.atan2(dy, dx);
 
-      const moveX = Math.cos(angle) * entity.stats.speed * moveSpeedMultiplier * delta;
-      const moveY = Math.sin(angle) * entity.stats.speed * moveSpeedMultiplier * delta;
+      const moveX =
+        Math.cos(angle) * entity.stats.speed * moveSpeedMultiplier * delta;
+      const moveY =
+        Math.sin(angle) * entity.stats.speed * moveSpeedMultiplier * delta;
 
       entity.x += moveX;
       entity.y += moveY;

@@ -22,31 +22,26 @@ export class DiagonalBounceMovement implements MovementStrategy {
 
     enemy.hitbox.onCollideCallback = () => {
       this.currentVelocity = this.getRandomVelocity();
-    }
+    };
 
     this.currentVelocity = this.getRandomVelocity();
-  } 
-  
+  }
+
   private getRandomVelocity(): { x: number; y: number } {
     return this.possibleVelocities[
       Phaser.Math.Between(0, this.possibleVelocities.length - 1)
     ];
   }
 
-  move(
-    enemy: Entity,
-    _time: number,
-    delta: number,
-  ): void {
-
+  move(enemy: Entity, _time: number, delta: number): void {
     enemy.x += this.currentVelocity.x * delta;
     enemy.y += this.currentVelocity.y * delta;
 
     this.timeSinceLastChange += delta;
-    
+
     if (this.timeSinceLastChange >= this.changeInterval) {
       this.currentVelocity = this.getRandomVelocity();
-      this.timeSinceLastChange = 0; 
+      this.timeSinceLastChange = 0;
     }
   }
 }

@@ -1,7 +1,7 @@
 import Phaser, { Scene } from 'phaser';
 import getActualTiledDimensions from '../../helpers/getActualTiledDimensions';
 import convertTiledPolygonToGameObject from '../../helpers/convertTiledPolygonToGameObject';
-import { PhaserNavMeshPlugin } from "phaser-navmesh/src";
+import { PhaserNavMeshPlugin } from 'phaser-navmesh/src';
 
 type LayerConfigType = {
   tiledLayerName: string;
@@ -44,7 +44,7 @@ function createLevelConfig(config: LevelConfigType): LevelConfigType {
   };
 }
 
-export let navMesh: Object; 
+export let navMesh: object;
 
 class TiledMapBuilder {
   public width = 0;
@@ -52,7 +52,7 @@ class TiledMapBuilder {
   public level: Phaser.Tilemaps.Tilemap | undefined;
   public layers: LayersObjType = {};
   public spawners: SpawnersObjType = {};
-  public scene: Scene; 
+  public scene: Scene;
 
   static preload(scene: Scene, levelConfig: LevelConfigType) {
     const { key, tilesetPng, tiledMapJson, spawnerConfig } =
@@ -78,7 +78,7 @@ class TiledMapBuilder {
       spawnerConfig,
     } = levelConfig;
 
-    this.scene = scene; 
+    this.scene = scene;
     // load tiles
     this.level = scene.make.tilemap({ key });
     this.level.addTilesetImage(
@@ -99,10 +99,18 @@ class TiledMapBuilder {
     this.buildGeometryLayer();
     this.buildMarkerLayer(spawnerConfig);
 
-    const navMeshLayer = this.level.getObjectLayer("navmesh");
+    const navMeshLayer = this.level.getObjectLayer('navmesh');
     if (navMeshLayer !== null) {
-      const plugin = new PhaserNavMeshPlugin(scene, scene.plugins, 'navMeshPlugin');
-      navMesh = plugin.buildMeshFromTiled('navmesh',  this.level.getObjectLayer("navmesh"), 100);
+      const plugin = new PhaserNavMeshPlugin(
+        scene,
+        scene.plugins,
+        'navMeshPlugin',
+      );
+      navMesh = plugin.buildMeshFromTiled(
+        'navmesh',
+        this.level.getObjectLayer('navmesh'),
+        100,
+      );
     }
 
     // set the world boundry same size as Tiled map
@@ -112,15 +120,15 @@ class TiledMapBuilder {
     scene.matter.world.walls.left.label = 'boundry-wall-west';
     scene.matter.world.walls.right.label = 'boundry-wall-east';
   }
-  
+
   buildTiledLayer(layerConfig: LayerConfigType[]) {
-   // load image layers
-   this.layers = layerConfig.reduce((acc, { tiledLayerName, depth }) => {
-    const layer = this.level?.createLayer(tiledLayerName, 'tiles');
-    if (!layer) return acc;
-    layer.setDepth(depth);
-    return { ...acc, [tiledLayerName]: layer };
-  }, {});
+    // load image layers
+    this.layers = layerConfig.reduce((acc, { tiledLayerName, depth }) => {
+      const layer = this.level?.createLayer(tiledLayerName, 'tiles');
+      if (!layer) return acc;
+      layer.setDepth(depth);
+      return { ...acc, [tiledLayerName]: layer };
+    }, {});
   }
 
   buildGeometryLayer() {
@@ -138,8 +146,7 @@ class TiledMapBuilder {
     }, [] as Phaser.GameObjects.GameObject[]);
   }
 
-  buildMarkerLayer(spawnerConfig: SpawnerConfigType[]) 
-  {
+  buildMarkerLayer(spawnerConfig: SpawnerConfigType[]) {
     const spawnersT = this.level?.getObjectLayer('markers')?.objects || [];
     this.spawners = spawnerConfig.reduce(
       (

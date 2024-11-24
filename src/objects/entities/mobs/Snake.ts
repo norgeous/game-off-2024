@@ -29,7 +29,7 @@ const entityConfig: EntityConfigType = {
     attackRate: 1,
   },
 };
-  
+
 class Snake extends Entity {
   static preload(scene: Phaser.Scene) {
     scene.load.image(KEY, 'assets/mobs/snake.png');
