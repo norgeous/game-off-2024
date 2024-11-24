@@ -1,9 +1,8 @@
 import * as Phaser from 'phaser';
 import Entity, { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
-import { RandomLinearMovement } from '../../../helpers/movement/RandomLinearMovement';
-import { MoveToPlayer } from '../../../helpers/movement/MoveToPlayer';
 import { TiledMapTest2 } from '../../../scenes/TiledMapTest2';
+import { PredictionMovement } from '../../../helpers/movement/PredictionMovement';
 
 const KEY = 'scorpion';
 
@@ -37,8 +36,7 @@ class Scorpion extends Entity {
   }
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, entityConfig);
-    //this.movementStrategy = new RandomLinearMovement();
-    this.movementStrategy = new MoveToPlayer(scene as TiledMapTest2);
+    this.movementStrategy = new PredictionMovement(scene as TiledMapTest2);
   }
 }
 
