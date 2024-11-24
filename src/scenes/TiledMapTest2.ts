@@ -53,7 +53,6 @@ export class TiledMapTest2 extends Scene {
 
   create() {
     console.log('TiledMapTest2 scene got', this.sceneInitParams, this);
-
     audio.playRoomMusic(getCurrentRoomMusic(this.sceneInitParams.roomType).key);
     audio.setMusicMute(this.sceneInitParams.isMusicMuted);
 
