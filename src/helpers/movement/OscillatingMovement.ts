@@ -27,7 +27,8 @@ export class OscillatingMovement implements MovementStrategy {
 
     this.pathFinding.createPath({ x: entity.x, y: entity.y }, { x: this.scene.player.x, y: this.scene.player.y}, true)
     const currentTarget = this.pathFinding.getNearestPoint(entity.x, entity.y);
-    
+    if (!currentTarget) return;
+      
     const dx = currentTarget.x - entity.x;
     const dy = currentTarget.y - entity.y;
     const angle = Math.atan2(dy, dx);
