@@ -18,10 +18,25 @@
 - [x] setup "player" react context with eventbus
 - [x] weapons system (folder for different weapons and integration to entity)
 - [x] gun weapon
-- [ ] whip weapon
+- [x] whip weapon
+- [ ] multiple tileset / config per room
+- [ ] ai generate some game objects:
+  - sand texture
+  - rocks
+  - stone blocks
+  - breakable items; crates, pots
+  - spikes in the floor
+  - hole in the floor
+  - hole in the wall / wall cracking
+  - open and closed door, boss doors
+  - projectiles; bullet and whip slash
+  - in level items; health / heart, artifacts, gold, coins
+  - power up items; ank, orb, golden item / tablet, box, scrolls
+  - fragments of the message
+  - main menu art (title card art)
+- [ ] secret rooms
 - [ ] new settings modal
 - [ ] doors to lock until all enemy killed in room
 - [ ] add isRoomCleared flag to scene data
 - [ ] carry velocity between room scenes
 - [ ] enemy sfx
-- [ ] main menu art (title card art)
