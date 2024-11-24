@@ -1,7 +1,7 @@
 import Phaser, { Scene } from 'phaser';
 import getActualTiledDimensions from '../../helpers/getActualTiledDimensions';
 import convertTiledPolygonToGameObject from '../../helpers/convertTiledPolygonToGameObject';
-import { PhaserNavMeshPlugin } from 'phaser-navmesh/src';
+import { PhaserNavMesh, PhaserNavMeshPlugin } from 'phaser-navmesh/src';
 
 type LayerConfigType = {
   tiledLayerName: string;
@@ -44,7 +44,7 @@ function createLevelConfig(config: LevelConfigType): LevelConfigType {
   };
 }
 
-export let navMesh: object;
+export let navMesh: PhaserNavMesh;
 
 class TiledMapBuilder {
   public width = 0;
