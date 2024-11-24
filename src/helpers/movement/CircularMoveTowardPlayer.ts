@@ -29,12 +29,13 @@ export class CircularMoveTowardPlayer implements MovementStrategy {
   }
 
   move(entity: Entity, _time: number, delta: number): void {
+    // needs some work. need to check if we have a clear line of sight of player, if true dart towards player.
     if (this.moveTowards) {
       const dx = this.targetX - entity.x;
       const dy = this.targetY - entity.y;
-
+      
       const angle = Math.atan2(dy, dx);
-
+      
       const moveX =
         Math.cos(angle) * entity.stats.speed * moveSpeedMultiplier * delta;
       const moveY =

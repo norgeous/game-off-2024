@@ -1,4 +1,5 @@
 // DiamondPatternMovementStrategy.ts
+import Entity from '../../objects/entities/Entity';
 import { MovementStrategy } from './MovementStrategy';
 
 export class DiagonalBounceMovement implements MovementStrategy {
@@ -7,7 +8,8 @@ export class DiagonalBounceMovement implements MovementStrategy {
   private changeInterval: number;
   private timeSinceLastChange: number = 0;
 
-  constructor(velocity: number, changeInterval: number) {
+  // Change direction after x amount of time or when we collide with an object.
+  constructor(velocity: number, changeInterval: number, enemy: Entity) {
     this.changeInterval = changeInterval;
 
     // Define possible diagonal velocities
@@ -18,34 +20,33 @@ export class DiagonalBounceMovement implements MovementStrategy {
       { x: -velocity, y: -velocity }, // Up-left
     ];
 
-    // Pick an initial random velocity
-    this.currentVelocity = this.getRandomVelocity();
-  }
+    enemy.hitbox.onCollideCallback = () => {
+      this.currentVelocity = this.getRandomVelocity();
+    }
 
+    this.currentVelocity = this.getRandomVelocity();
+  } 
+  
   private getRandomVelocity(): { x: number; y: number } {
-    // Randomly select a new velocity from the possible velocities
     return this.possibleVelocities[
       Phaser.Math.Between(0, this.possibleVelocities.length - 1)
     ];
   }
 
   move(
-    enemy: Phaser.GameObjects.Container,
+    enemy: Entity,
     _time: number,
     delta: number,
   ): void {
-    // Update enemy position based on the current random velocity
+
     enemy.x += this.currentVelocity.x * delta;
     enemy.y += this.currentVelocity.y * delta;
 
-    // Update the timer for direction change
     this.timeSinceLastChange += delta;
-
-    // Check if it's time to change direction
+    
     if (this.timeSinceLastChange >= this.changeInterval) {
-      // Select a new random velocity
       this.currentVelocity = this.getRandomVelocity();
-      this.timeSinceLastChange = 0; // Reset timer
+      this.timeSinceLastChange = 0; 
     }
   }
 }
