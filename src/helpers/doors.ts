@@ -25,11 +25,11 @@ const createDoors = (scene: TiledMapTest2) => {
   const { widthInPixels: w, heightInPixels: h } = scene.level;
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.north)) {
-    createDoor(scene, 'door-north', w * 0.5, 70, 0);
+    createDoor(scene, 'door-north', w * 0.5, 80, 0);
   }
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.south)) {
-    createDoor(scene, 'door-south', w * 0.5, h - 70, 180);
+    createDoor(scene, 'door-south', w * 0.5, h - 80, 180);
   }
 
   if (!['%', '.'].includes(scene.sceneInitParams?.adjacentRooms?.east)) {
