@@ -1,3 +1,4 @@
+import convertTiledPolygonToGameObject from '../helpers/convertTiledPolygonToGameObject';
 import roomConfig0 from './room-config-0';
 import roomConfig3 from './room-config-3';
 
@@ -70,6 +71,19 @@ export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
     'boundry-wall-east';
 
   // setup polygons
+  const geometry = level?.getObjectLayer('geometry')?.objects || [];
+  geometry.reduce((acc, tiledObject) => {
+    const { x, y, polygon } = tiledObject;
+    console.log({ x, y, polygon });
+    if (!x || !y || !polygon) return acc;
+    const newGeometry = convertTiledPolygonToGameObject(scene, {
+      x,
+      y,
+      polygon,
+    });
+    if (!newGeometry) return acc;
+    return [...acc, newGeometry];
+  }, [] as Phaser.GameObjects.GameObject[]);
 
   // setup spawners
 
