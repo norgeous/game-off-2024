@@ -4,6 +4,7 @@ export type SceneInitParamsType = {
   roomType: string;
   adjacentRooms: { [direction in Direction]: string };
   playerEnterFrom: Direction;
+  isMusicMuted: boolean;
 };
 
 export type RoomConfig1D = {
