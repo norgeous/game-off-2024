@@ -19,7 +19,7 @@
 - [x] weapons system (folder for different weapons and integration to entity)
 - [x] gun weapon
 - [x] whip weapon
-- [ ] multiple tileset / config per room
+- [x] multiple tileset / config per room
 - [ ] ai generate some game objects:
   - sand texture
   - rocks

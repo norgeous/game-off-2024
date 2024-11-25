@@ -594,11 +594,11 @@
     {
       "columns": 80,
       "firstgid": 1,
-      "image": "../../assets/levels/ai-egypt-3.png",
+      "image": "../../assets/levels/ai-egypt-4.png",
       "imageheight": 720,
       "imagewidth": 1280,
       "margin": 0,
-      "name": "tiles3",
+      "name": "tiles4",
       "spacing": 0,
       "tilecount": 3600,
       "tileheight": 16,
