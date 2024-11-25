@@ -27,7 +27,7 @@ export default {
     ],
     layerConfig: [
       { tiledLayerName: 'floor', depth: 0 },
-      { tiledLayerName: 'tiledLayer', depth: 0 },
+      { tiledLayerName: 'walls', depth: 0 },
       { tiledLayerName: 'obsticles', depth: 0 },
     ],
     spawnerConfig: [
