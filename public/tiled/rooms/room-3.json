@@ -499,7 +499,19 @@
       "draworder": "topdown",
       "id": 5,
       "name": "navmesh",
-      "objects": [],
+      "objects": [
+        {
+          "height": 336,
+          "id": 29,
+          "name": "",
+          "rotation": 0,
+          "type": "",
+          "visible": true,
+          "width": 880,
+          "x": 192,
+          "y": 192
+        }
+      ],
       "opacity": 1,
       "type": "objectgroup",
       "visible": true,
@@ -573,7 +585,7 @@
     }
   ],
   "nextlayerid": 7,
-  "nextobjectid": 29,
+  "nextobjectid": 30,
   "orientation": "orthogonal",
   "renderorder": "right-down",
   "tiledversion": "1.11.0",
