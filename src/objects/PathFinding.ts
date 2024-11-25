@@ -1,4 +1,4 @@
-import { navMesh } from './map/TiledMapBuilder';
+import { navMesh } from '../scenes/TiledMapTest2';
 import { Point } from 'navmesh';
 
 export type DebugConfig = {

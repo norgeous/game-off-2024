@@ -6,6 +6,9 @@ import Player from '../objects/entities/Player';
 import { getCurrentRoomMusic } from '../helpers/getMusicConfig';
 import audio from '../objects/Audio';
 import { createRoom, preloadRoom } from '../rooms';
+import PhaserNavMeshPlugin, { PhaserNavMesh } from 'phaser-navmesh/src';
+
+export let navMesh: PhaserNavMesh;
 
 export class TiledMapTest2 extends Scene {
   public sceneInitParams: SceneInitParamsType;
@@ -42,6 +45,21 @@ export class TiledMapTest2 extends Scene {
     const { level, spawners } = createRoom(this, roomType);
     this.level = level;
     this.spawners = spawners;
+
+    // navmesh
+    const navMeshLayer = this.level.getObjectLayer('navmesh');
+    if (navMeshLayer !== null) {
+      const plugin = new PhaserNavMeshPlugin(
+        this,
+        this.plugins,
+        'navMeshPlugin',
+      );
+      navMesh = plugin.buildMeshFromTiled(
+        'navmesh',
+        this.level.getObjectLayer('navmesh'),
+        100,
+      );
+    }
 
     // setup audio
     audio.playRoomMusic(getCurrentRoomMusic(this.sceneInitParams.roomType).key);
