@@ -1,8 +1,9 @@
 import * as Phaser from 'phaser';
-import Entity, { EntityConfigType } from '../Entity';
+import { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
 import { TiledMapTest2 } from '../../../scenes/TiledMapTest2';
 import { OscillatingMovement } from '../../../helpers/movement/OscillatingMovement';
+import Enemy from '../Enemy';
 
 const KEY = 'bat';
 
@@ -23,14 +24,14 @@ const entityConfig: EntityConfigType = {
   },
   animations: [],
   stats: {
-    hp: 1,
+    hp: 10,
     maxHp: 10,
     speed: 0.1,
     attackRate: 1,
   },
 };
 
-class Bat extends Entity {
+class Bat extends Enemy {
   static preload(scene: Phaser.Scene) {
     scene.load.image(KEY, 'assets/mobs/bat.png');
   }

@@ -1,8 +1,9 @@
 import * as Phaser from 'phaser';
-import Entity, { EntityConfigType } from '../Entity';
+import { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
 import { TiledMapTest2 } from '../../../scenes/TiledMapTest2';
 import { PredictionMovement } from '../../../helpers/movement/PredictionMovement';
+import Enemy from '../Enemy';
 
 const KEY = 'scorpion';
 
@@ -30,7 +31,7 @@ const entityConfig: EntityConfigType = {
   },
 };
 
-class Scorpion extends Entity {
+class Scorpion extends Enemy {
   static preload(scene: Phaser.Scene) {
     scene.load.image(KEY, 'assets/mobs/scorpion.png');
   }
