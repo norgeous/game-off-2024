@@ -23,6 +23,7 @@ export class TiledMapTest2 extends Scene {
   public sceneInitParams: SceneInitParamsType;
   // public map: TiledMapBuilder | undefined;
   public level: Phaser.Tilemaps.Tilemap | undefined;
+  public spawners: { [k: string]: Phaser.GameObjects.Group };
   public player: Player;
 
   constructor() {
@@ -63,6 +64,7 @@ export class TiledMapTest2 extends Scene {
 
     const { level, spawners } = createRoom(this, roomType);
     this.level = level;
+    this.spawners = spawners;
 
     audio.playRoomMusic(getCurrentRoomMusic(this.sceneInitParams.roomType).key);
     audio.setMusicMute(this.sceneInitParams.isMusicMuted);
