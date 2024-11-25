@@ -11,7 +11,7 @@ export default {
     },
   ],
   tiled: {
-    tiledMapJson: './tiled/maps/rooms/room-0.json',
+    tiledMapJson: './tiled/rooms/room-0.json',
     images: [
       {
         key: 'tiles1',
