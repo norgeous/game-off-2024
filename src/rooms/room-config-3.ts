@@ -13,8 +13,12 @@ export default {
     tiledMapJson: './tiled/maps/rooms/room-3.json',
     images: [
       {
-        key: 'tiles4',
-        file: './assets/levels/ai-egypt-4.png',
+        key: 'floor1',
+        file: './assets/levels/floor1.png',
+      },
+      {
+        key: 'tiles5',
+        file: './assets/levels/ai-egypt-5.png',
       },
       {
         key: 'items',
@@ -22,6 +26,7 @@ export default {
       },
     ],
     layerConfig: [
+      { tiledLayerName: 'floor', depth: 0 },
       { tiledLayerName: 'tiledLayer', depth: 0 },
       { tiledLayerName: 'obsticles', depth: 0 },
     ],
