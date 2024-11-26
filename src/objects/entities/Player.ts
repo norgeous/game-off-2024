@@ -29,7 +29,7 @@ const entityConfig: EntityConfigType = {
   },
   animations: [],
   stats: {
-    hp: 1,
+    hp: 10,
     maxHp: 10,
     speed: 0.1,
     attackRate: 1,
@@ -79,6 +79,11 @@ class Player extends Entity {
 
     this.keys = createControls(scene);
     this.weapons = weapons(scene);
+  }
+
+  death(): void {
+    super.death();
+    this.scene.scene.start('GameOver');
   }
 
   update(time: number, delta: number) {

@@ -1,48 +1,36 @@
 import { CC, CM } from '../../../enums/CollisionCategories';
+import Projectile, { ProjectileConfigType } from '../Projectile';
 
-const TTL = 5_000;
-const EJECTION_FORCE = 0.05;
+const projectileConfig: ProjectileConfigType = {
+  key: 'star',
+  assetName: 'star.png',
+  scale: 0.5,
+  stats: {
+    damage: 1,
+  },
+  collisionCategory: CC.playerBullet,
+  collisionMask: CM.playerBullet,
+  chamferRadius: 15,
+  timeToLive: 5_000,
+  physicsConfig: {
+    ejectionForce: 0.05,
+  },
+  onEntityHitCallBack: (projectile, entity) => {
+    entity.takeDamage(projectile.stats.damage);
+  },
+};
 
-class StarBullet extends Phaser.GameObjects.Container {
+class StarBullet extends Projectile {
   static preload(scene: Phaser.Scene) {
-    scene.load.image('star', 'assets/star.png');
+    scene.load.image('star', 'star.png');
   }
-
-  private startTime: number;
-  private gameObject: Phaser.Physics.Matter.Sprite;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
-    super(scene, x, y);
-    const enemies = scene.spawners.enemy.children.entries;
-
-    if (!enemies[0]) return;
-
-    this.gameObject = scene.matter.add.sprite(x, y, 'star', undefined, {
-      collisionFilter: {
-        category: CC.playerBullet,
-        mask: CM.playerBullet,
-      },
-      chamfer: { radius: 30 },
-      friction: 0,
-      frictionAir: 0,
-    });
-    this.startTime = window.performance.now();
-    this.gameObject.setScale(0.5);
-
-    const forceVector = new Phaser.Math.Vector2({
-      x: enemies[0].x - x,
-      y: enemies[0].y - y,
-    }).setLength(EJECTION_FORCE);
-
-    this.gameObject.applyForce(forceVector);
-    this.gameObject.setOnCollide(() => this.gameObject.destroy());
+    super(scene, x, y, projectileConfig);
   }
 
-  update(time: number, delta: number) {
-    if (window.performance.now() - this.startTime > TTL) {
-      this.gameObject.destroy();
-      this.destroy();
-    }
+  update(_time: number, _delta: number) {
+    super.update(_time, _delta);
   }
 }
 

@@ -1,51 +1,36 @@
 import { CC, CM } from '../../../enums/CollisionCategories';
+import Projectile, { ProjectileConfigType } from '../Projectile';
 
-const TTL = 200;
-const EJECTION_FORCE = 0.05;
+const projectileConfig: ProjectileConfigType = {
+  key: 'whip',
+  assetName: 'whip.png',
+  scale: 2,
+  stats: {
+    damage: 1,
+  },
+  collisionCategory: CC.playerBullet,
+  collisionMask: CM.playerBullet,
+  chamferRadius: 15,
+  timeToLive: 200,
+  physicsConfig: {
+    ejectionForce: 0.05,
+  },
+  onEntityHitCallBack: (projectile, entity) => {
+    entity.takeDamage(projectile.stats.damage);
+  },
+};
 
-class WhipBullet extends Phaser.GameObjects.Container {
+class WhipBullet extends Projectile {
   static preload(scene: Phaser.Scene) {
     scene.load.image('whip', 'whip.png');
   }
 
-  private startTime: number;
-  private gameObject: Phaser.Physics.Matter.Sprite;
-
   constructor(scene: Phaser.Scene, x: number, y: number) {
-    super(scene, x, y);
-    const enemies = scene.spawners.enemy.children.entries;
-
-    if (!enemies[0]) return;
-
-    this.gameObject = scene.matter.add.sprite(x, y, 'whip', undefined, {
-      collisionFilter: {
-        category: CC.playerBullet,
-        mask: CM.playerBullet,
-      },
-      chamfer: { radius: 15 },
-      friction: 0,
-      frictionAir: 0,
-    });
-    this.startTime = window.performance.now();
-    this.gameObject.setScale(2);
-
-    const forceVector = new Phaser.Math.Vector2({
-      x: enemies[0].x - x,
-      y: enemies[0].y - y,
-    }).setLength(EJECTION_FORCE);
-
-    this.gameObject.setRotation(forceVector.angle());
-    // this.gameObject.setRotation(30);
-
-    this.gameObject.applyForce(forceVector);
-    this.gameObject.setOnCollide(() => this.gameObject.destroy());
+    super(scene, x, y, projectileConfig);
   }
 
-  update(time: number, delta: number) {
-    if (window.performance.now() - this.startTime > TTL) {
-      this.gameObject.destroy();
-      this.destroy();
-    }
+  update(_time: number, _delta: number) {
+    super.update(_time, _delta);
   }
 }
 
