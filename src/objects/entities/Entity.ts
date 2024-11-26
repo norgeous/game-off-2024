@@ -140,8 +140,9 @@ class Entity extends Phaser.GameObjects.Container {
       })
       .setOrigin(0.5);
     this.add(this.debugText);
-
-    this.healthText = this.scene.add
+    
+    if (isDev) {
+      this.healthText = this.scene.add
       .text(x, y - 120, 'HP: ' + this.stats.hp, {
         font: '32px Arial',
         align: 'center',
@@ -149,6 +150,7 @@ class Entity extends Phaser.GameObjects.Container {
       })
       .setOrigin(0.5);
     this.setDepth(100);
+    }
 
     // sprite
     this.sprite = this.scene.add
@@ -273,11 +275,12 @@ class Entity extends Phaser.GameObjects.Container {
   update(time?: number, delta?: number) {
     super.update(time, delta);
     this.debugText.text = [...(this.sensorData.inner || [])].join(',');
-    this.healthText.setPosition(this.x, this.y - 100);
+   
     this.flipXSprite(this.facing === -1);
     this.keepUpRight();
     this.remove(this);
     if (isDev) {
+      this.healthText.setPosition(this.x, this.y - 100);
       this.healthText.setText('hp:' + this.stats.hp);
     }
   }
