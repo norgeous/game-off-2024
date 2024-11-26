@@ -23,7 +23,7 @@ export type EntityConfigType = {
   };
   facing: number;
   scale: number;
-  isStatic: boolean,
+  isStatic: boolean;
   collideCallback?: (
     scene: Phaser.Scene,
     otherBodyName: string,
@@ -101,7 +101,7 @@ class Entity extends Phaser.GameObjects.Container {
     y: number;
   };
   healthText: Phaser.GameObjects.Text;
-  
+
   constructor(
     scene: Phaser.Scene,
     x: number,
@@ -124,7 +124,6 @@ class Entity extends Phaser.GameObjects.Container {
       craftpixOffset,
     } = { ...defaultConfig, ...config };
 
-    console.log(isStatic); 
     this.stats = { ...config.stats };
     this.scene = scene;
     this.name = name;
@@ -134,7 +133,7 @@ class Entity extends Phaser.GameObjects.Container {
     this.sensorData = {
       inner: new Set(),
     };
-    
+
     this.keepUpright = true;
     // debug text
     this.debugText = this.scene.add
@@ -181,7 +180,6 @@ class Entity extends Phaser.GameObjects.Container {
       this,
     ) as PhaserMatterImage;
     this.scene.add.existing(this);
-   
 
     const { bodies: Bodies, body: Body } = scene.matter;
     const { width, height, ...otherPhysics } = physicsConfig;
