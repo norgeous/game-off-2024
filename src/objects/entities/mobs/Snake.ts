@@ -28,7 +28,7 @@ const entityConfig: EntityConfigType = {
     maxHp: 10,
     speed: 0.1,
     attackRate: 1,
-  }
+  },
 };
 
 class Snake extends Enemy {

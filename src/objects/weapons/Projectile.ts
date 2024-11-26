@@ -2,36 +2,33 @@ import { CC, CM } from '../../enums/CollisionCategories';
 import Entity from '../entities/Entity';
 
 export type ProjectilePhysicsConfig = {
-  friction?: number,
-  frictionAir?: number,
-  ejectionForce: number,
-}
+  friction?: number;
+  frictionAir?: number;
+  ejectionForce: number;
+};
 
-export type ProjectileStats  = {
-  damage: number
-}
+export type ProjectileStats = {
+  damage: number;
+};
 
 export type ProjectileConfigType = {
-  key: string, 
-  assetName: string
-  scale: number,
+  key: string;
+  assetName: string;
+  scale: number;
   collisionCategory: CC;
   collisionMask: CM;
-  chamferRadius: number,
-  timeToLive: number,
-  physicsConfig: ProjectilePhysicsConfig
-  stats: ProjectileStats,
-  destroyOnHit?: boolean
-  onEntityHitCallBack?: (
-    projectile: Projectile,
-    entity: Entity
-  ) => void;
-}
+  chamferRadius: number;
+  timeToLive: number;
+  physicsConfig: ProjectilePhysicsConfig;
+  stats: ProjectileStats;
+  destroyOnHit?: boolean;
+  onEntityHitCallBack?: (projectile: Projectile, entity: Entity) => void;
+};
 
 const defaultConfig: ProjectileConfigType = {
   key: 'projectile',
   assetName: 'projectile-asset',
-  scale: 1, 
+  scale: 1,
   collisionCategory: CC.playerBullet,
   collisionMask: CM.playerBullet,
   chamferRadius: 1,
@@ -45,13 +42,13 @@ const defaultConfig: ProjectileConfigType = {
   destroyOnHit: true,
   onEntityHitCallBack: (projectile, entity) => {
     entity.takeDamage(projectile.stats.damage);
-  }
-}
+  },
+};
 
 class Projectile extends Phaser.GameObjects.Container {
   protected startTime: number;
   protected gameObject: Phaser.Physics.Matter.Sprite;
-  private timeToLive: number; 
+  private timeToLive: number;
   public stats: ProjectileStats;
 
   static preload(scene: Phaser.Scene) {
@@ -59,10 +56,10 @@ class Projectile extends Phaser.GameObjects.Container {
   }
 
   constructor(
-    scene: Phaser.Scene, 
-    x: number, 
-    y: number, 
-    config: ProjectileConfigType
+    scene: Phaser.Scene,
+    x: number,
+    y: number,
+    config: ProjectileConfigType,
   ) {
     super(scene, x, y);
     const {
@@ -71,37 +68,37 @@ class Projectile extends Phaser.GameObjects.Container {
       chamferRadius,
       timeToLive,
       destroyOnHit,
-      collisionCategory, 
+      collisionCategory,
       collisionMask,
       onEntityHitCallBack,
     } = { ...defaultConfig, ...config };
-    
+
     this.timeToLive = timeToLive;
     this.stats = stats;
-   
 
     const enemies = scene.map.spawners.enemy.children.entries;
     if (!enemies[0]) return;
 
     // Add sprite
-    this.gameObject = scene.matter.add.sprite(x, y, key, undefined, {
-      collisionFilter: {
-        category: collisionCategory,
-        mask: collisionMask,
-      },
-      chamfer: { radius: chamferRadius },
-      friction: config.physicsConfig.friction ?? 0,
-      frictionAir: config.physicsConfig.frictionAir ?? 0,
-    })
-    .setScale(config.scale);
+    this.gameObject = scene.matter.add
+      .sprite(x, y, key, undefined, {
+        collisionFilter: {
+          category: collisionCategory,
+          mask: collisionMask,
+        },
+        chamfer: { radius: chamferRadius },
+        friction: config.physicsConfig.friction ?? 0,
+        frictionAir: config.physicsConfig.frictionAir ?? 0,
+      })
+      .setScale(config.scale);
 
     this.startTime = window.performance.now();
-    
+
     const forceVector = new Phaser.Math.Vector2({
       x: enemies[0].x - x,
       y: enemies[0].y - y,
     }).setLength(config.physicsConfig.ejectionForce);
-    
+
     this.gameObject.setRotation(forceVector.angle());
     this.gameObject.applyForce(forceVector);
     this.gameObject.setOnCollide(
@@ -110,7 +107,7 @@ class Projectile extends Phaser.GameObjects.Container {
           onEntityHitCallBack?.(this, data.bodyA.gameObject as Entity);
         }
         destroyOnHit ? this.gameObject.destroy() : null;
-      }
+      },
     );
   }
 
