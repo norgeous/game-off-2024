@@ -42,7 +42,6 @@ export class Preloader extends Scene {
     this.load.setPath('assets');
     this.load.image('logo', 'logo.png');
     this.load.image('star', 'star.png');
-    this.load.json('mapData', 'map-data.json');
     Audio.preload(this, musicConfig);
     WhipBullet.preload(this);
   }
