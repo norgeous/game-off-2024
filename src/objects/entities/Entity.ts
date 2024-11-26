@@ -23,6 +23,7 @@ export type EntityConfigType = {
   };
   facing: number;
   scale: number;
+  isStatic: boolean,
   collideCallback?: (
     scene: Phaser.Scene,
     otherBodyName: string,
@@ -57,6 +58,7 @@ const defaultConfig: EntityConfigType = {
   animations: [],
   facing: -1,
   scale: 1,
+  isStatic: false,
   craftpixOffset: {
     x: 0,
     y: 0,
@@ -99,7 +101,7 @@ class Entity extends Phaser.GameObjects.Container {
     y: number;
   };
   healthText: Phaser.GameObjects.Text;
-
+  
   constructor(
     scene: Phaser.Scene,
     x: number,
@@ -114,6 +116,7 @@ class Entity extends Phaser.GameObjects.Container {
       physicsConfig,
       facing,
       scale,
+      isStatic,
       collisionCategory,
       collisionMask,
       collideCallback,
@@ -121,6 +124,7 @@ class Entity extends Phaser.GameObjects.Container {
       craftpixOffset,
     } = { ...defaultConfig, ...config };
 
+    console.log(isStatic); 
     this.stats = { ...config.stats };
     this.scene = scene;
     this.name = name;
@@ -130,6 +134,7 @@ class Entity extends Phaser.GameObjects.Container {
     this.sensorData = {
       inner: new Set(),
     };
+    
     this.keepUpright = true;
     // debug text
     this.debugText = this.scene.add
@@ -176,6 +181,7 @@ class Entity extends Phaser.GameObjects.Container {
       this,
     ) as PhaserMatterImage;
     this.scene.add.existing(this);
+   
 
     const { bodies: Bodies, body: Body } = scene.matter;
     const { width, height, ...otherPhysics } = physicsConfig;
@@ -214,6 +220,7 @@ class Entity extends Phaser.GameObjects.Container {
     this.gameObject.setCollidesWith(collisionMask);
     this.gameObject.setPosition(x, y);
     this.sprite.setScale(this.scale);
+    this.gameObject.setStatic(isStatic);
   }
 
   death() {

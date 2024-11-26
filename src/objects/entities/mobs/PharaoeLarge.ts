@@ -2,10 +2,10 @@ import * as Phaser from 'phaser';
 import { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
 import { TiledMapTest2 } from '../../../scenes/TiledMapTest2';
-import { PredictionMovement } from '../../../helpers/movement/PredictionMovement';
+import { OscillatingMovement } from '../../../helpers/movement/OscillatingMovement';
 import Enemy from '../Enemy';
 
-const KEY = 'scorpion';
+const KEY = 'pharaoe_large';
 
 const entityConfig: EntityConfigType = {
   name: KEY,
@@ -13,15 +13,15 @@ const entityConfig: EntityConfigType = {
   collisionMask: CM.enemy,
   spriteSheetKey: KEY,
   facing: -1,
-  scale: 0.5,
-  isStatic: false,
+  scale: 0.4,
+  isStatic: true,
   craftpixOffset: {
     x: 0,
     y: 0,
   },
   physicsConfig: {
     width: 100,
-    height: 100,
+    height: 150,
   },
   animations: [],
   stats: {
@@ -32,14 +32,14 @@ const entityConfig: EntityConfigType = {
   },
 };
 
-class Scorpion extends Enemy {
+class PharaoeLarge extends Enemy {
   static preload(scene: Phaser.Scene) {
-    scene.load.image(KEY, 'assets/mobs/scorpion.png');
+    scene.load.image(KEY, 'assets/mobs/pharaoe_large.png');
   }
-  constructor(scene: Phaser.Scene, x: number, y: number) {
+  constructor(scene: TiledMapTest2, x: number, y: number) {
     super(scene, x, y, entityConfig);
-    this.movementStrategy = new PredictionMovement(scene as TiledMapTest2);
+    this.movementStrategy = new OscillatingMovement(0.2, 1, scene);
   }
 }
 
-export default Scorpion;
+export default PharaoeLarge;

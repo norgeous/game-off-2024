@@ -2,10 +2,10 @@ import * as Phaser from 'phaser';
 import { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
 import { TiledMapTest2 } from '../../../scenes/TiledMapTest2';
-import { PredictionMovement } from '../../../helpers/movement/PredictionMovement';
 import Enemy from '../Enemy';
+import { MoveToPlayer } from '../../../helpers/movement/MoveToPlayer';
 
-const KEY = 'scorpion';
+const KEY = 'anubis';
 
 const entityConfig: EntityConfigType = {
   name: KEY,
@@ -13,33 +13,33 @@ const entityConfig: EntityConfigType = {
   collisionMask: CM.enemy,
   spriteSheetKey: KEY,
   facing: -1,
-  scale: 0.5,
+  scale: 0.6,
   isStatic: false,
   craftpixOffset: {
     x: 0,
     y: 0,
   },
   physicsConfig: {
-    width: 100,
-    height: 100,
+    width: 90,
+    height: 140,
   },
   animations: [],
   stats: {
-    hp: 10,
+    hp: 20,
     maxHp: 10,
-    speed: 0.1,
+    speed: 0.05,
     attackRate: 1,
   },
 };
 
-class Scorpion extends Enemy {
+class Anubis extends Enemy {
   static preload(scene: Phaser.Scene) {
-    scene.load.image(KEY, 'assets/mobs/scorpion.png');
+    scene.load.image(KEY, 'assets/mobs/anubis.png');
   }
-  constructor(scene: Phaser.Scene, x: number, y: number) {
+  constructor(scene: TiledMapTest2, x: number, y: number) {
     super(scene, x, y, entityConfig);
-    this.movementStrategy = new PredictionMovement(scene as TiledMapTest2);
+    this.movementStrategy = new MoveToPlayer(scene);
   }
 }
 
-export default Scorpion;
+export default Anubis;

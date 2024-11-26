@@ -17,6 +17,7 @@ const entityConfig: EntityConfigType = {
   spriteSheetKey: KEY,
   facing: -1,
   scale: 1,
+  isStatic: false,
   craftpixOffset: {
     x: 0,
     y: 0,
@@ -76,22 +77,23 @@ class Player extends Entity {
     const { px, py } = getPlayerStartPosition(scene, playerEnterFrom);
     console.log({ playerEnterFrom, px, py });
     super(scene, px, py, entityConfig);
-
+    
     this.keys = createControls(scene);
     this.weapons = weapons(scene);
+    this.gameObject.setFrictionAir(0.08);
   }
 
   death(): void {
     super.death();
     this.scene.scene.start('GameOver');
   }
-
+  
   update(time: number, delta: number) {
     super.update(time, delta);
     if (this.keys) {
-      const forceVector = keysToVector(this.keys, 0.0001 * delta);
+      const forceVector = keysToVector(this.keys, 0.0004 * delta);
       this.gameObject.applyForce(forceVector);
-    }
+    } 
 
     if (this.keys?.SPACE.isDown) {
       this.weapons(this.x, this.y, time);

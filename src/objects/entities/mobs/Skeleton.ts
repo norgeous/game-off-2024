@@ -5,7 +5,7 @@ import { TiledMapTest2 } from '../../../scenes/TiledMapTest2';
 import { PredictionMovement } from '../../../helpers/movement/PredictionMovement';
 import Enemy from '../Enemy';
 
-const KEY = 'scorpion';
+const KEY = 'skeleton';
 
 const entityConfig: EntityConfigType = {
   name: KEY,
@@ -20,21 +20,21 @@ const entityConfig: EntityConfigType = {
     y: 0,
   },
   physicsConfig: {
-    width: 100,
-    height: 100,
+    width: 60,
+    height: 110,
   },
   animations: [],
   stats: {
-    hp: 10,
-    maxHp: 10,
-    speed: 0.1,
+    hp: 20,
+    maxHp: 20,
+    speed: 0.08,
     attackRate: 1,
   },
 };
 
-class Scorpion extends Enemy {
+class Skeleton extends Enemy {
   static preload(scene: Phaser.Scene) {
-    scene.load.image(KEY, 'assets/mobs/scorpion.png');
+    scene.load.image(KEY, 'assets/mobs/skeleton.png');
   }
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, entityConfig);
@@ -42,4 +42,4 @@ class Scorpion extends Enemy {
   }
 }
 
-export default Scorpion;
+export default Skeleton;

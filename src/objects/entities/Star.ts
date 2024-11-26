@@ -11,6 +11,7 @@ const entityConfig: EntityConfigType = {
   spriteSheetKey: KEY,
   facing: -1,
   scale: 1,
+  isStatic: false,
   craftpixOffset: {
     x: 0,
     y: 0,
