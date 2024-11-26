@@ -77,7 +77,7 @@ class Player extends Entity {
     const { px, py } = getPlayerStartPosition(scene, playerEnterFrom);
     console.log({ playerEnterFrom, px, py });
     super(scene, px, py, entityConfig);
-    
+
     this.keys = createControls(scene);
     this.weapons = weapons(scene);
     this.gameObject.setFrictionAir(0.08);
@@ -87,13 +87,13 @@ class Player extends Entity {
     super.death();
     this.scene.scene.start('GameOver');
   }
-  
+
   update(time: number, delta: number) {
     super.update(time, delta);
     if (this.keys) {
       const forceVector = keysToVector(this.keys, 0.0004 * delta);
       this.gameObject.applyForce(forceVector);
-    } 
+    }
 
     if (this.keys?.SPACE.isDown) {
       this.weapons(this.x, this.y, time);
