@@ -10,6 +10,6 @@
 
 export default `
 ..b
-1w1
+1w3
 0.b
 `;

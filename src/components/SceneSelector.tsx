@@ -10,7 +10,6 @@ const sceneNames = [
   'GameOver',
   'Win',
   'TiledMapTest2',
-  'Rooms',
 ];
 
 interface ISceneSelectorToggleButton {

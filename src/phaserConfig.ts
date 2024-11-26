@@ -6,7 +6,6 @@ import { Game as MainGame } from './scenes/Game';
 import { GameOver } from './scenes/GameOver';
 import { Win } from './scenes/Win';
 import { TiledMapTest2 } from './scenes/TiledMapTest2';
-import { Rooms } from './scenes/Rooms';
 import isDev from './helpers/isDev';
 
 const VIEWPORT_SIZE = 80;
@@ -33,16 +32,7 @@ const config: Phaser.Types.Core.GameConfig = {
     },
   },
   input: { activePointers: 2 },
-  scene: [
-    Boot,
-    Preloader,
-    MainMenu,
-    MainGame,
-    GameOver,
-    Win,
-    TiledMapTest2,
-    Rooms,
-  ],
+  scene: [Boot, Preloader, MainMenu, MainGame, GameOver, Win, TiledMapTest2],
 };
 
 const startGame = (parent: string) => new Game({ ...config, parent });

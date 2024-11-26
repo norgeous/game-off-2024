@@ -1,7 +1,9 @@
+import { RoomType } from '../rooms';
+
 export type Direction = 'north' | 'south' | 'east' | 'west';
 
 export type SceneInitParamsType = {
-  roomType: string;
+  roomType: RoomType;
   adjacentRooms: { [direction in Direction]: string };
   playerEnterFrom: Direction;
   isMusicMuted: boolean;

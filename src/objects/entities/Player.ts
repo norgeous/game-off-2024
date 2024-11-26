@@ -74,6 +74,7 @@ class Player extends Entity {
 
   constructor(scene: TiledMapTest2, playerEnterFrom: Direction) {
     const { px, py } = getPlayerStartPosition(scene, playerEnterFrom);
+    console.log({ playerEnterFrom, px, py });
     super(scene, px, py, entityConfig);
 
     this.keys = createControls(scene);

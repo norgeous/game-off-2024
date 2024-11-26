@@ -1,5 +1,4 @@
 import { Scene } from 'phaser';
-import { loadRandomMapData } from '../objects/map/Map';
 import { musicConfig } from '../helpers/getMusicConfig';
 import audio, { Audio } from '../objects/Audio';
 import WhipBullet from '../objects/weapons/bullets/WhipBullet';
@@ -51,7 +50,6 @@ export class Preloader extends Scene {
   create() {
     //  When all the assets have loaded, it's often worth creating global objects here that the rest of the game can use.
     //  For example, you can define global animations here, so we can use them in other scenes.
-    loadRandomMapData(this);
     this.scene.start('MainMenu');
     audio.addToConfig(this, musicConfig);
   }

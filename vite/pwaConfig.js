@@ -8,9 +8,9 @@ export default {
   },
 
   manifest: {
-    name: '[SECRETS]',
-    short_name: '[SECRETS]',
-    description: 'Game Off 2024',
+    name: 'The Binding of Indie',
+    short_name: 'Indie',
+    description: 'Game Off 2024 game jam entry',
     theme_color: '#000000',
     background_color: '#000000',
     display: 'fullscreen',
