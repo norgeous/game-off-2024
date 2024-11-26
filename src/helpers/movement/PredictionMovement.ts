@@ -32,7 +32,7 @@ export class PredictionMovement implements MovementStrategy {
       currentTarget.x,
       currentTarget.y,
     );
-    entity.x += Math.cos(angle) / 0.9;
-    entity.y += Math.sin(angle) / 0.9;
+    entity.x += Math.cos(angle) * 10 * entity.stats.speed;
+    entity.y += Math.sin(angle) * 10 * entity.stats.speed;
   }
 }
