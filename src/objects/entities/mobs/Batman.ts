@@ -2,10 +2,11 @@ import * as Phaser from 'phaser';
 import { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
 import { TiledMapTest2 } from '../../../scenes/TiledMapTest2';
-import { PredictionMovement } from '../../../helpers/movement/PredictionMovement';
+import { OscillatingMovement } from '../../../helpers/movement/OscillatingMovement';
 import Enemy from '../Enemy';
+import { MoveToPlayer } from '../../../helpers/movement/MoveToPlayer';
 
-const KEY = 'scorpion';
+const KEY = 'batman';
 
 const entityConfig: EntityConfigType = {
   name: KEY,
@@ -25,21 +26,21 @@ const entityConfig: EntityConfigType = {
   },
   animations: [],
   stats: {
-    hp: 10,
+    hp: 20,
     maxHp: 10,
-    speed: 0.1,
+    speed: 0.08,
     attackRate: 1,
   },
 };
 
-class Scorpion extends Enemy {
+class Batman extends Enemy {
   static preload(scene: Phaser.Scene) {
-    scene.load.image(KEY, 'assets/mobs/scorpion.png');
+    scene.load.image(KEY, 'assets/mobs/batman.png');
   }
-  constructor(scene: Phaser.Scene, x: number, y: number) {
+  constructor(scene: TiledMapTest2, x: number, y: number) {
     super(scene, x, y, entityConfig);
-    this.movementStrategy = new PredictionMovement(scene as TiledMapTest2);
+    this.movementStrategy = new OscillatingMovement(0.2, 1, scene);
   }
 }
 
-export default Scorpion;
+export default Batman;

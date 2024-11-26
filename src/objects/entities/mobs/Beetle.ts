@@ -2,10 +2,12 @@ import * as Phaser from 'phaser';
 import { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
 import { TiledMapTest2 } from '../../../scenes/TiledMapTest2';
-import { PredictionMovement } from '../../../helpers/movement/PredictionMovement';
+import { OscillatingMovement } from '../../../helpers/movement/OscillatingMovement';
 import Enemy from '../Enemy';
+import { MoveToPlayer } from '../../../helpers/movement/MoveToPlayer';
+import { RandomLinearMovement } from '../../../helpers/movement/RandomLinearMovement';
 
-const KEY = 'scorpion';
+const KEY = 'beetle';
 
 const entityConfig: EntityConfigType = {
   name: KEY,
@@ -13,7 +15,7 @@ const entityConfig: EntityConfigType = {
   collisionMask: CM.enemy,
   spriteSheetKey: KEY,
   facing: -1,
-  scale: 0.5,
+  scale: 0.6,
   isStatic: false,
   craftpixOffset: {
     x: 0,
@@ -25,21 +27,21 @@ const entityConfig: EntityConfigType = {
   },
   animations: [],
   stats: {
-    hp: 10,
+    hp: 20,
     maxHp: 10,
-    speed: 0.1,
+    speed: 0.04,
     attackRate: 1,
   },
 };
 
-class Scorpion extends Enemy {
+class Beetle extends Enemy {
   static preload(scene: Phaser.Scene) {
-    scene.load.image(KEY, 'assets/mobs/scorpion.png');
+    scene.load.image(KEY, 'assets/mobs/beetle.png');
   }
-  constructor(scene: Phaser.Scene, x: number, y: number) {
+  constructor(scene: TiledMapTest2, x: number, y: number) {
     super(scene, x, y, entityConfig);
-    this.movementStrategy = new PredictionMovement(scene as TiledMapTest2);
+    this.movementStrategy = new MoveToPlayer(scene);
   }
 }
 
-export default Scorpion;
+export default Beetle;

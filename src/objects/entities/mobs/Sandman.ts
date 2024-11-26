@@ -2,10 +2,11 @@ import * as Phaser from 'phaser';
 import { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
 import { TiledMapTest2 } from '../../../scenes/TiledMapTest2';
-import { PredictionMovement } from '../../../helpers/movement/PredictionMovement';
+import { OscillatingMovement } from '../../../helpers/movement/OscillatingMovement';
 import Enemy from '../Enemy';
+import { MoveToPlayer } from '../../../helpers/movement/MoveToPlayer';
 
-const KEY = 'scorpion';
+const KEY = 'sandman';
 
 const entityConfig: EntityConfigType = {
   name: KEY,
@@ -14,14 +15,14 @@ const entityConfig: EntityConfigType = {
   spriteSheetKey: KEY,
   facing: -1,
   scale: 0.5,
-  isStatic: false,
+  isStatic: true,
   craftpixOffset: {
     x: 0,
     y: 0,
   },
   physicsConfig: {
-    width: 100,
-    height: 100,
+    width: 70,
+    height: 110,
   },
   animations: [],
   stats: {
@@ -32,14 +33,14 @@ const entityConfig: EntityConfigType = {
   },
 };
 
-class Scorpion extends Enemy {
+class Sandman extends Enemy {
   static preload(scene: Phaser.Scene) {
-    scene.load.image(KEY, 'assets/mobs/scorpion.png');
+    scene.load.image(KEY, 'assets/mobs/sandman.png');
   }
-  constructor(scene: Phaser.Scene, x: number, y: number) {
+  constructor(scene: TiledMapTest2, x: number, y: number) {
     super(scene, x, y, entityConfig);
-    this.movementStrategy = new PredictionMovement(scene as TiledMapTest2);
+    this.movementStrategy = new MoveToPlayer(scene);
   }
 }
 
-export default Scorpion;
+export default Sandman;
