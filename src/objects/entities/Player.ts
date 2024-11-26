@@ -29,7 +29,7 @@ const entityConfig: EntityConfigType = {
   },
   animations: [],
   stats: {
-    hp: 1,
+    hp: 10,
     maxHp: 10,
     speed: 0.1,
     attackRate: 1,
@@ -45,7 +45,7 @@ const entityConfig: EntityConfigType = {
   ],
   collideCallback: (scene, otherBodyName) => {
     console.log('Player collided with', otherBodyName, performance.now());
-
+    
     if (otherBodyName === 'door-north') {
       EventBus.emit(EventNames.USE_DOOR, scene, 'north');
     }
@@ -71,6 +71,7 @@ class Player extends Entity {
   static preload(scene: Phaser.Scene) {
     scene.load.image('player', 'assets/jones.png');
   }
+
   constructor(scene: TiledMapTest2, playerEnterFrom: Direction) {
     const { px, py } = getPlayerStartPosition(scene, playerEnterFrom);
     super(scene, px, py, entityConfig);
@@ -78,13 +79,18 @@ class Player extends Entity {
     this.keys = createControls(scene);
     this.weapons = weapons(scene);
   }
+
+  death(): void {
+    this.scene.scene.start('GameOver');
+  }
+
   update(time: number, delta: number) {
     super.update(time, delta);
     if (this.keys) {
       const forceVector = keysToVector(this.keys, 0.0001 * delta);
       this.gameObject.applyForce(forceVector);
     }
-
+    
     if (this.keys?.SPACE.isDown) {
       this.weapons(this.x, this.y, time);
     }

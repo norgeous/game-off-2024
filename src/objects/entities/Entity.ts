@@ -1,8 +1,9 @@
 import Phaser from 'phaser';
 import { PhaserMatterImage } from '../../types';
 import { CC, CM } from '../../enums/CollisionCategories';
-import { MovementStrategy } from '../../helpers/movement/MovementStrategy';
 import createSensors from '../../helpers/createSensors';
+import { createBloodEffect } from '../../helpers/bloodParticleEffect';
+import isDev from '../../helpers/isDev';
 
 type AnimationsConfigType = {
   animationKey: string;
@@ -76,7 +77,7 @@ const defaultConfig: EntityConfigType = {
     },
   ],
   stats: {
-    hp: 0,
+    hp: 1,
     maxHp: 0,
     speed: 0,
     attackRate: 0,
@@ -91,14 +92,13 @@ class Entity extends Phaser.GameObjects.Container {
   public sprite: Phaser.GameObjects.Sprite;
   public gameObject: PhaserMatterImage;
   public hitbox;
-  protected movementStrategy: MovementStrategy;
-  public stats: EntityStatsType;
+  protected stats: EntityStatsType;
   protected keepUpright: boolean;
-
   protected craftpixOffset: {
     x: number;
     y: number;
   };
+  healthText: Phaser.GameObjects.Text;
 
   constructor(
     scene: Phaser.Scene,
@@ -107,7 +107,6 @@ class Entity extends Phaser.GameObjects.Container {
     config: EntityConfigType,
   ) {
     super(scene, x, y);
-
     const {
       name,
       spriteSheetKey,
@@ -120,9 +119,9 @@ class Entity extends Phaser.GameObjects.Container {
       collideCallback,
       sensorConfig,
       craftpixOffset,
-      stats,
     } = { ...defaultConfig, ...config };
-
+    
+    this.stats = { ...config.stats };
     this.scene = scene;
     this.name = name;
     this.scale = scale;
@@ -131,9 +130,7 @@ class Entity extends Phaser.GameObjects.Container {
     this.sensorData = {
       inner: new Set(),
     };
-    this.stats = stats;
     this.keepUpright = true;
-
     // debug text
     this.debugText = this.scene.add
       .text(0, 0 - 120, '', {
@@ -143,6 +140,15 @@ class Entity extends Phaser.GameObjects.Container {
       })
       .setOrigin(0.5);
     this.add(this.debugText);
+
+    this.healthText = this.scene.add
+      .text(x, y - 120, 'HP: ' + this.stats.hp, {
+        font: '32px Arial',
+        align: 'center',
+        color: 'white',
+      })
+      .setOrigin(0.5)
+    this.setDepth(100);
 
     // sprite
     this.sprite = this.scene.add
@@ -186,7 +192,7 @@ class Entity extends Phaser.GameObjects.Container {
       sensorConfig,
     );
     this.sensorData = sensorData;
-
+    
     // compound body
     const compoundBody = Body.create({
       parts: [this.hitbox], //, ...sensorBodies],
@@ -201,11 +207,16 @@ class Entity extends Phaser.GameObjects.Container {
       const otherBodyName = names.filter((name) => name !== this.name)[0];
       collideCallback?.(this.scene, otherBodyName, data);
     };
+    
     this.gameObject.setExistingBody(compoundBody);
     this.gameObject.setCollisionCategory(collisionCategory);
     this.gameObject.setCollidesWith(collisionMask);
     this.gameObject.setPosition(x, y);
     this.sprite.setScale(this.scale);
+  }
+
+  death() {
+    this.destroy();
   }
 
   updateStats(newStats: Partial<EntityStatsType>) {
@@ -228,19 +239,45 @@ class Entity extends Phaser.GameObjects.Container {
       this.sprite.x = this.craftpixOffset.x;
     }
   }
-
+  
   keepUpRight() {
     if (this.keepUpright) {
       this.rotation = 0;
     }
   }
+  
+  flashSprite() {
+    if (this.scene.tweens.isTweening(this.sprite)) return;
+    this.scene.tweens.add({
+      targets: this.sprite,
+      alpha: 0,      
+      duration: 100, 
+      yoyo: true,    
+      repeat: 1,  
+      onCompleteHandler: () => {this.sprite.alpha = 1}   
+    });
+  }
+
+  takeDamage(amout: number) {
+    if (this.stats.hp <= 0) return;
+    this.stats.hp -= amout;
+    this.flashSprite();
+    if (this.stats.hp < 1) {
+      this.stats.hp = 0;
+      this.death();
+    }
+  }
 
   update(time?: number, delta?: number) {
-    this.debugText.text = [...(this.sensorData.inner || [])].join(',');
-    this.movementStrategy?.move(this, time, delta);
     super.update(time, delta);
+    this.debugText.text = [...(this.sensorData.inner || [])].join(',');
+    this.healthText.setPosition(this.x, this.y - 100);
     this.flipXSprite(this.facing === -1);
     this.keepUpRight();
+    this.remove(this); 
+    if (isDev) {
+      this.healthText.setText('hp:' + this.stats.hp);
+    }
   }
 }
 
