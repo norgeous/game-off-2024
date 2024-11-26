@@ -81,6 +81,7 @@ class Player extends Entity {
   }
 
   death(): void {
+    super.death();
     this.scene.scene.start('GameOver');
   }
 

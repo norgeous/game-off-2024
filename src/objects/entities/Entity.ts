@@ -149,9 +149,8 @@ class Entity extends Phaser.GameObjects.Container {
         color: 'white',
       })
       .setOrigin(0.5);
-    this.setDepth(100);
     }
-
+    this.setDepth(100);
     // sprite
     this.sprite = this.scene.add
       .sprite(this.craftpixOffset.x, this.craftpixOffset.y, this.name)
@@ -218,6 +217,9 @@ class Entity extends Phaser.GameObjects.Container {
   }
 
   death() {
+    if (isDev) {
+      this.healthText.destroy();
+    }
     this.destroy();
   }
 
@@ -275,7 +277,6 @@ class Entity extends Phaser.GameObjects.Container {
   update(time?: number, delta?: number) {
     super.update(time, delta);
     this.debugText.text = [...(this.sensorData.inner || [])].join(',');
-   
     this.flipXSprite(this.facing === -1);
     this.keepUpRight();
     this.remove(this);

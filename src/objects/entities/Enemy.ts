@@ -28,8 +28,7 @@ class Enemy extends Entity {
 
   death() {
     createBloodEffect(this.scene, this.x, this.y);
-    this.healthText.destroy();
-    this.destroy();
+    super.death();
   }
 
   update(time?: number, delta?: number) {
