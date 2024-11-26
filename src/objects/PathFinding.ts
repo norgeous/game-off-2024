@@ -1,3 +1,4 @@
+import isDev from '../helpers/isDev';
 import { navMesh } from './map/TiledMapBuilder';
 import { Point } from 'navmesh';
 
@@ -24,7 +25,7 @@ class PathFinding {
   ) {
     if (!navMesh) return;
     this.path = navMesh.findPath(from, to);
-    if (debug) this.debugPath(debugConfig);
+    if (debug && isDev) this.debugPath(debugConfig);
     this.setCurrentTarget();
     this.pathComplete = false;
     return this.currentTarget;
