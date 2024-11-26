@@ -32,7 +32,7 @@ export class GameOver extends Scene {
       .setDepth(100);
 
     this.input.on('pointerdown', () => EventBus.emit(EventNames.START, this));
-    
+
     EventBus.emit(EventNames.READY, this);
   }
 

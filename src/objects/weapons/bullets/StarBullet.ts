@@ -2,23 +2,23 @@ import { CC, CM } from '../../../enums/CollisionCategories';
 import Projectile, { ProjectileConfigType } from '../Projectile';
 
 const projectileConfig: ProjectileConfigType = {
-  key: 'star', 
+  key: 'star',
   assetName: 'star.png',
-  scale: 0.5, 
+  scale: 0.5,
   stats: {
     damage: 1,
   },
   collisionCategory: CC.playerBullet,
   collisionMask: CM.playerBullet,
-  chamferRadius: 15, 
+  chamferRadius: 15,
   timeToLive: 5_000,
   physicsConfig: {
-    ejectionForce: 0.05
+    ejectionForce: 0.05,
   },
   onEntityHitCallBack: (projectile, entity) => {
     entity.takeDamage(projectile.stats.damage);
-  }
-}
+  },
+};
 
 class StarBullet extends Projectile {
   static preload(scene: Phaser.Scene) {

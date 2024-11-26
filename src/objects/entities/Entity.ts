@@ -120,7 +120,7 @@ class Entity extends Phaser.GameObjects.Container {
       sensorConfig,
       craftpixOffset,
     } = { ...defaultConfig, ...config };
-    
+
     this.stats = { ...config.stats };
     this.scene = scene;
     this.name = name;
@@ -147,7 +147,7 @@ class Entity extends Phaser.GameObjects.Container {
         align: 'center',
         color: 'white',
       })
-      .setOrigin(0.5)
+      .setOrigin(0.5);
     this.setDepth(100);
 
     // sprite
@@ -192,7 +192,7 @@ class Entity extends Phaser.GameObjects.Container {
       sensorConfig,
     );
     this.sensorData = sensorData;
-    
+
     // compound body
     const compoundBody = Body.create({
       parts: [this.hitbox], //, ...sensorBodies],
@@ -207,7 +207,7 @@ class Entity extends Phaser.GameObjects.Container {
       const otherBodyName = names.filter((name) => name !== this.name)[0];
       collideCallback?.(this.scene, otherBodyName, data);
     };
-    
+
     this.gameObject.setExistingBody(compoundBody);
     this.gameObject.setCollisionCategory(collisionCategory);
     this.gameObject.setCollidesWith(collisionMask);
@@ -239,22 +239,24 @@ class Entity extends Phaser.GameObjects.Container {
       this.sprite.x = this.craftpixOffset.x;
     }
   }
-  
+
   keepUpRight() {
     if (this.keepUpright) {
       this.rotation = 0;
     }
   }
-  
+
   flashSprite() {
     if (this.scene.tweens.isTweening(this.sprite)) return;
     this.scene.tweens.add({
       targets: this.sprite,
-      alpha: 0,      
-      duration: 100, 
-      yoyo: true,    
-      repeat: 1,  
-      onCompleteHandler: () => {this.sprite.alpha = 1}   
+      alpha: 0,
+      duration: 100,
+      yoyo: true,
+      repeat: 1,
+      onCompleteHandler: () => {
+        this.sprite.alpha = 1;
+      },
     });
   }
 
@@ -274,7 +276,7 @@ class Entity extends Phaser.GameObjects.Container {
     this.healthText.setPosition(this.x, this.y - 100);
     this.flipXSprite(this.facing === -1);
     this.keepUpRight();
-    this.remove(this); 
+    this.remove(this);
     if (isDev) {
       this.healthText.setText('hp:' + this.stats.hp);
     }

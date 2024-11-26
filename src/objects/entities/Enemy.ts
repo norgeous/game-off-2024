@@ -1,12 +1,12 @@
-import { CC, CM } from "../../enums/CollisionCategories";
-import { createBloodEffect } from "../../helpers/bloodParticleEffect";
-import { MovementStrategy } from "../../helpers/movement/MovementStrategy";
-import Entity, { EntityConfigType } from "./Entity";
-import Player from "./Player";
+import { CC, CM } from '../../enums/CollisionCategories';
+import { createBloodEffect } from '../../helpers/bloodParticleEffect';
+import { MovementStrategy } from '../../helpers/movement/MovementStrategy';
+import Entity, { EntityConfigType } from './Entity';
+import Player from './Player';
 
 class Enemy extends Entity {
   protected movementStrategy: MovementStrategy;
-  
+
   constructor(
     scene: Phaser.Scene,
     x: number,
@@ -14,11 +14,10 @@ class Enemy extends Entity {
     config: EntityConfigType,
   ) {
     super(scene, x, y, config);
-    
+
     this.hitbox.onCollideCallback = (
       data: Phaser.Types.Physics.Matter.MatterCollisionData,
     ) => {
-
       if (data.bodyB.collisionFilter.category === CC.player) {
         console.log('asdasd');
         const player = data.bodyB.gameObject as Player;
@@ -26,7 +25,7 @@ class Enemy extends Entity {
       }
     };
   }
- 
+
   death() {
     createBloodEffect(this.scene, this.x, this.y);
     this.healthText.destroy();

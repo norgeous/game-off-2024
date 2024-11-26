@@ -45,7 +45,7 @@ const entityConfig: EntityConfigType = {
   ],
   collideCallback: (scene, otherBodyName) => {
     console.log('Player collided with', otherBodyName, performance.now());
-    
+
     if (otherBodyName === 'door-north') {
       EventBus.emit(EventNames.USE_DOOR, scene, 'north');
     }
@@ -90,7 +90,7 @@ class Player extends Entity {
       const forceVector = keysToVector(this.keys, 0.0001 * delta);
       this.gameObject.applyForce(forceVector);
     }
-    
+
     if (this.keys?.SPACE.isDown) {
       this.weapons(this.x, this.y, time);
     }
