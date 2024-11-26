@@ -1,10 +1,20 @@
 import convertTiledPolygonToGameObject from '../helpers/convertTiledPolygonToGameObject';
+// import roomConfigDOT from './room-config-.';
+// import roomConfigPC from './room-config-%';
 import roomConfig0 from './room-config-0';
+import roomConfig1 from './room-config-1';
 import roomConfig3 from './room-config-3';
+import roomConfigb from './room-config-b';
+import roomConfigw from './room-config-w';
 
 const roomConfigs = {
+  // '.': roomConfigDOT,
+  // '%': roomConfigPC,
   '0': roomConfig0,
+  '1': roomConfig1,
   '3': roomConfig3,
+  b: roomConfigb,
+  w: roomConfigw,
 };
 
 export type RoomType = keyof typeof roomConfigs;
