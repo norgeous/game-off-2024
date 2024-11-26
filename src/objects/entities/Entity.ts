@@ -140,15 +140,15 @@ class Entity extends Phaser.GameObjects.Container {
       })
       .setOrigin(0.5);
     this.add(this.debugText);
-    
+
     if (isDev) {
       this.healthText = this.scene.add
-      .text(x, y - 120, 'HP: ' + this.stats.hp, {
-        font: '32px Arial',
-        align: 'center',
-        color: 'white',
-      })
-      .setOrigin(0.5);
+        .text(x, y - 120, 'HP: ' + this.stats.hp, {
+          font: '32px Arial',
+          align: 'center',
+          color: 'white',
+        })
+        .setOrigin(0.5);
     }
     this.setDepth(100);
     // sprite
