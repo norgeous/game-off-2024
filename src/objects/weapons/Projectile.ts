@@ -76,8 +76,8 @@ class Projectile extends Phaser.GameObjects.Container {
     this.timeToLive = timeToLive;
     this.stats = stats;
 
-    const enemies = scene.map.spawners.enemy.children.entries;
-    if (!enemies[0]) return;
+    const enemies = scene.spawners.enemy?.children.entries;
+    if (!enemies?.[0]) return;
 
     // Add sprite
     this.gameObject = scene.matter.add
