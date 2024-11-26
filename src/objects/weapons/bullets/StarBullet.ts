@@ -1,5 +1,5 @@
 import { CC, CM } from '../../../enums/CollisionCategories';
-import Projectile, { ProjectileConfigType } from '../projectile';
+import Projectile, { ProjectileConfigType } from '../Projectile';
 
 const projectileConfig: ProjectileConfigType = {
   key: 'star', 
