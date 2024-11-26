@@ -5,6 +5,7 @@ import roomConfig0 from './room-config-0';
 import roomConfig1 from './room-config-1';
 import roomConfig3 from './room-config-3';
 import roomConfigb from './room-config-b';
+import roomConfigc from './room-config-c';
 import roomConfigw from './room-config-w';
 
 const roomConfigs = {
@@ -14,6 +15,7 @@ const roomConfigs = {
   '1': roomConfig1,
   '3': roomConfig3,
   b: roomConfigb,
+  c: roomConfigc,
   w: roomConfigw,
 };
 

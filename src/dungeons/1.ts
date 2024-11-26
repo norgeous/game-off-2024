@@ -9,7 +9,7 @@
 // `;
 
 export default `
-..b
+..c
 1w3
 0.b
 `;
