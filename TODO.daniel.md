@@ -20,7 +20,7 @@
 - [x] gun weapon
 - [x] whip weapon
 - [x] multiple tileset / config per room
-- [ ] ai generate some game objects:
+- [x] ai generate some game objects:
   - sand texture
   - rocks
   - stone blocks
@@ -34,8 +34,9 @@
   - power up items; ank, orb, golden item / tablet, box, scrolls
   - fragments of the message
   - main menu art (title card art)
+- [ ] preload all the rooms types
 - [ ] secret rooms
 - [ ] new settings modal
 - [ ] doors to lock until all enemy killed in room
 - [ ] add isRoomCleared flag to scene data
-- [ ] carry velocity between room scenes?
+- [ ] change favicon and pwa icon away from key
