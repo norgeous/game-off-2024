@@ -30,7 +30,7 @@ export class TiledMapTest2 extends Scene {
 
     Player.preload(this);
 
-    this.load.image('door', 'assets/isaac-door.png');
+    this.load.image('door', 'assets/door.png');
 
     // new preloader
     preloadRoom(this, roomType);
