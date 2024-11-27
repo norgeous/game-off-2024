@@ -1,11 +1,6 @@
-import { GameObjects, Scene } from 'phaser';
 import { EventBus, EventNames } from '../helpers/EventBus';
 
-export class MainMenu extends Scene {
-  logo: GameObjects.Image;
-  title: GameObjects.Text;
-  logoTween: Phaser.Tweens.Tween | null;
-
+export class MainMenu extends Phaser.Scene {
   constructor() {
     super('MainMenu');
   }
@@ -17,11 +12,11 @@ export class MainMenu extends Scene {
   create() {
     const { width, height } = this.sys.game.canvas;
 
-    this.cameras.main.setBackgroundColor(0x00ffff);
+    this.cameras.main.setBackgroundColor(0x000000);
 
     this.add.image(width * 0.5, height * 0.5, 'title');
 
-    this.title = this.add
+    this.add
       .text(width * 0.5, height * 0.8, 'Main Menu', {
         fontFamily: 'Arial Black',
         fontSize: 38,
@@ -33,7 +28,9 @@ export class MainMenu extends Scene {
       .setOrigin(0.5)
       .setDepth(100);
 
-    this.input.on('pointerdown', () => EventBus.emit(EventNames.START, this));
+    const startDungeon = () => EventBus.emit(EventNames.START, this);
+    this.input.on('pointerdown', startDungeon);
+    this.input.keyboard?.addKey('space').on('down', startDungeon);
 
     EventBus.emit(EventNames.READY, this);
   }

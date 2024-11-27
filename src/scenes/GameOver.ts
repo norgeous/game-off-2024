@@ -1,42 +1,25 @@
-import { Scene } from 'phaser';
 import { EventBus, EventNames } from '../helpers/EventBus';
 
-export class GameOver extends Scene {
-  camera: Phaser.Cameras.Scene2D.Camera;
-  background: Phaser.GameObjects.Image;
-  gameOverText: Phaser.GameObjects.Text;
-
+export class GameOver extends Phaser.Scene {
   constructor() {
     super('GameOver');
+  }
+
+  static preload(scene: Phaser.Scene) {
+    scene.load.image('gameover', 'assets/gameover.jpg');
   }
 
   create() {
     const { width, height } = this.sys.game.canvas;
 
-    this.camera = this.cameras.main;
-    this.camera.setBackgroundColor(0xff0000);
+    this.cameras.main.setBackgroundColor(0x000000);
 
-    this.background = this.add.image(width * 0.5, height * 0.5, 'background');
-    this.background.setAlpha(0.5);
+    this.add.image(width * 0.5, height * 0.5, 'gameover');
 
-    this.gameOverText = this.add
-      .text(width * 0.5, height * 0.5, 'Game Over', {
-        fontFamily: 'Arial Black',
-        fontSize: 64,
-        color: '#ffffff',
-        stroke: '#000000',
-        strokeThickness: 8,
-        align: 'center',
-      })
-      .setOrigin(0.5)
-      .setDepth(100);
-
-    this.input.on('pointerdown', () => EventBus.emit(EventNames.START, this));
+    const goMainMenu = () => this.scene.start('MainMenu');
+    this.input.on('pointerdown', goMainMenu);
+    this.input.keyboard?.addKey('space').on('down', goMainMenu);
 
     EventBus.emit(EventNames.READY, this);
-  }
-
-  changeScene() {
-    this.scene.start('MainMenu');
   }
 }
