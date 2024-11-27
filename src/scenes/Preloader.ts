@@ -3,6 +3,7 @@ import { musicConfig } from '../helpers/getMusicConfig';
 import audio, { Audio } from '../objects/Audio';
 import WhipBullet from '../objects/weapons/bullets/WhipBullet';
 import { GameOver } from './GameOver';
+import { Win } from './Win';
 
 export class Preloader extends Scene {
   constructor() {
@@ -42,6 +43,7 @@ export class Preloader extends Scene {
     //  Load the assets for the game - Replace with your own assets
     this.load.image('star', 'assets/star.png');
     GameOver.preload(this);
+    Win.preload(this);
     Audio.preload(this, musicConfig);
     WhipBullet.preload(this);
   }
