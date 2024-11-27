@@ -34,9 +34,9 @@
   - power up items; ank, orb, golden item / tablet, box, scrolls
   - fragments of the message
   - main menu art (title card art)
+- [x] change favicon and pwa icon away from key
 - [ ] preload all the rooms types
 - [ ] secret rooms
 - [ ] new settings modal
 - [ ] doors to lock until all enemy killed in room
 - [ ] add isRoomCleared flag to scene data
-- [ ] change favicon and pwa icon away from key
