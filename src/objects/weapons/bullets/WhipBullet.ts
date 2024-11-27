@@ -22,7 +22,7 @@ const projectileConfig: ProjectileConfigType = {
 
 class WhipBullet extends Projectile {
   static preload(scene: Phaser.Scene) {
-    scene.load.image('whip', 'whip.png');
+    scene.load.image('whip', 'assets/whip.png');
   }
 
   constructor(scene: Phaser.Scene, x: number, y: number) {

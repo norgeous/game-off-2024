@@ -7,7 +7,7 @@ const defaultSoundConfig: Phaser.Types.Sound.SoundConfig = {
 const musicArray: AudioConfigType[] = [
   {
     key: 'music',
-    filePath: './audio/music/arab-and-muslim-190765.mp3',
+    filePath: './assets/audio/music/arab-and-muslim-190765.mp3',
     loop: true,
     isMusic: true,
     roomType: '2',
@@ -15,7 +15,7 @@ const musicArray: AudioConfigType[] = [
   },
   {
     key: 'music',
-    filePath: './audio/music/gypsy-animated-music-252548.mp3',
+    filePath: './assets/audio/music/gypsy-animated-music-252548.mp3',
     loop: true,
     isMusic: true,
     roomType: '2',
@@ -23,7 +23,8 @@ const musicArray: AudioConfigType[] = [
   },
   {
     key: 'music',
-    filePath: './audio/music/punch-deck-brazilian-street-fight(chosic.com).mp3',
+    filePath:
+      './assets/audio/music/punch-deck-brazilian-street-fight(chosic.com).mp3',
     loop: true,
     isMusic: true,
     roomType: '2',
@@ -31,7 +32,7 @@ const musicArray: AudioConfigType[] = [
   },
   {
     key: 'bossMusic',
-    filePath: './audio/music/the-queen-of-dunes-169012.mp3',
+    filePath: './assets/audio/music/the-queen-of-dunes-169012.mp3',
     loop: true,
     isMusic: true,
     roomType: 'b',

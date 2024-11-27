@@ -2,6 +2,7 @@ import { Scene } from 'phaser';
 import { musicConfig } from '../helpers/getMusicConfig';
 import audio, { Audio } from '../objects/Audio';
 import WhipBullet from '../objects/weapons/bullets/WhipBullet';
+import { MainMenu } from './MainMenu';
 
 export class Preloader extends Scene {
   constructor() {
@@ -39,9 +40,8 @@ export class Preloader extends Scene {
 
   preload() {
     //  Load the assets for the game - Replace with your own assets
-    this.load.setPath('assets');
-    this.load.image('logo', 'logo.png');
-    this.load.image('star', 'star.png');
+    this.load.image('star', 'assets/star.png');
+    MainMenu.preload(this);
     Audio.preload(this, musicConfig);
     WhipBullet.preload(this);
   }

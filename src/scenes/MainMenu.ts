@@ -2,7 +2,6 @@ import { GameObjects, Scene } from 'phaser';
 import { EventBus, EventNames } from '../helpers/EventBus';
 
 export class MainMenu extends Scene {
-  background: GameObjects.Image;
   logo: GameObjects.Image;
   title: GameObjects.Text;
   logoTween: Phaser.Tweens.Tween | null;
@@ -11,19 +10,19 @@ export class MainMenu extends Scene {
     super('MainMenu');
   }
 
+  static preload(scene: Phaser.Scene) {
+    scene.load.image('title', 'assets/title.jpg');
+  }
+
   create() {
     const { width, height } = this.sys.game.canvas;
 
     this.cameras.main.setBackgroundColor(0x00ffff);
 
-    this.background = this.add.image(width * 0.5, height * 0.5, 'background');
-
-    this.logo = this.add
-      .image(width * 0.5, height * 0.33, 'logo')
-      .setDepth(100);
+    this.add.image(width * 0.5, height * 0.5, 'title');
 
     this.title = this.add
-      .text(width * 0.5, height * 0.66, 'Main Menu', {
+      .text(width * 0.5, height * 0.8, 'Main Menu', {
         fontFamily: 'Arial Black',
         fontSize: 38,
         color: '#ffffff',
