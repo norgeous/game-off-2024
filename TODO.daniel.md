@@ -38,5 +38,5 @@
 - [ ] new settings modal
 - [ ] doors to lock until all enemy killed in room
 - [ ] add isRoomCleared flag to scene data
-- [ ] carry velocity between room scenes
+- [ ] carry velocity between room scenes?
 - [ ] enemy sfx
