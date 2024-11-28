@@ -1,25 +1,25 @@
 import Entity from '../../objects/entities/Entity';
 import { MovementStrategy } from './MovementStrategy';
-import { TiledMapTest2 } from '../../scenes/TiledMapTest2';
+import { Room } from '../../scenes/Room';
 import PathFinding from '../../objects/PathFinding';
 
 export class OscillatingMovement implements MovementStrategy {
   private frequency: number;
   private amplitude: number;
-  private scene: TiledMapTest2;
+  private scene: Room;
   private ySpeedFactor: number;
   pathFinding: PathFinding;
 
   constructor(
     frequency: number,
     amplitude: number,
-    TiledMapTest2: TiledMapTest2,
+    Room: Room,
     ySpeedFactor: number = 2,
   ) {
     this.frequency = frequency;
     this.amplitude = amplitude;
     this.ySpeedFactor = ySpeedFactor;
-    this.scene = TiledMapTest2;
+    this.scene = Room;
     this.pathFinding = new PathFinding();
   }
 

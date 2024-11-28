@@ -1,7 +1,7 @@
 import * as Phaser from 'phaser';
 import { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
-import { TiledMapTest2 } from '../../../scenes/TiledMapTest2';
+import { Room } from '../../../scenes/Room';
 import { PredictionMovement } from '../../../helpers/movement/PredictionMovement';
 import Enemy from '../Enemy';
 
@@ -38,7 +38,7 @@ class Skeleton extends Enemy {
   }
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, entityConfig);
-    this.movementStrategy = new PredictionMovement(scene as TiledMapTest2);
+    this.movementStrategy = new PredictionMovement(scene as Room);
   }
 }
 

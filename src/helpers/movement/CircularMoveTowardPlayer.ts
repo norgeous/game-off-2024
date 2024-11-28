@@ -1,4 +1,4 @@
-import { TiledMapTest2 } from '../../scenes/TiledMapTest2';
+import { Room } from '../../scenes/Room';
 import Entity from '../../objects/entities/Entity';
 import { MovementStrategy } from './MovementStrategy';
 
@@ -15,9 +15,9 @@ export class CircularMoveTowardPlayer implements MovementStrategy {
   private moveTowards: boolean = false;
   private circleDuration: number;
   private elapsedTime: number = 0;
-  private map: TiledMapTest2;
+  private map: Room;
 
-  constructor(map: TiledMapTest2) {
+  constructor(map: Room) {
     this.map = map;
     this.setRandomCirclingDuration();
   }

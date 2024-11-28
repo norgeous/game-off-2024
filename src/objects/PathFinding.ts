@@ -1,4 +1,4 @@
-import { navMesh } from '../scenes/TiledMapTest2';
+import { navMesh } from '../scenes/Room';
 import isDev from '../helpers/isDev';
 import { Point } from 'navmesh';
 
