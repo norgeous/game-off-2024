@@ -45,7 +45,9 @@ const entityConfig: EntityConfigType = {
     },
   ],
   collideCallback: (scene, otherBodyName) => {
-    console.log('Player collided with', otherBodyName, performance.now());
+    const enemyCount = scene.spawners?.enemy?.getLength();
+
+    if (enemyCount) return;
 
     if (otherBodyName === 'door-north') {
       EventBus.emit(EventNames.USE_DOOR, scene, 'north');

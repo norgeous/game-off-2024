@@ -22,15 +22,10 @@ export class Room extends Scene {
   }
 
   init(sceneInitParams: SceneInitParamsType) {
-    console.log(sceneInitParams);
     this.sceneInitParams = sceneInitParams;
   }
 
-  preload() {
-    // const { roomType } = this.sceneInitParams;
-    // preloadRoom(this, roomType);
-    // Player.preload(this);
-  }
+  preload() {}
 
   create() {
     const { roomType } = this.sceneInitParams;
