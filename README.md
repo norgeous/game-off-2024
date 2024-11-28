@@ -24,6 +24,7 @@ https://norgeous.github.io/game-off-2024/
   - https://www.101soundboards.com/boards/26425-indiana-jones-raiders-of-the-lost-ark-soundboard
   - https://www.youtube.com/watch?v=QbIzkNNi3-U + https://podcast.adobe.com/
   - https://f5tts.org/ via ComfyUI plugin https://github.com/niknah/ComfyUI-F5-TTS
+- https://pixabay.com/sound-effects/door-close-79921/
 
 ### Music
 

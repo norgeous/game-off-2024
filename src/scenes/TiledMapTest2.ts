@@ -1,7 +1,7 @@
 import { EventBus, EventNames } from '../helpers/EventBus';
 import { Scene } from 'phaser';
 import { SceneInitParamsType } from '../helpers/dungeonConfigParser';
-import createDoors from '../helpers/doors';
+import createDoors, { preloadDoor } from '../helpers/doors';
 import Player from '../objects/entities/Player';
 import { getCurrentRoomMusic } from '../helpers/getMusicConfig';
 import audio from '../objects/Audio';
@@ -13,6 +13,7 @@ export let navMesh: PhaserNavMesh;
 export class TiledMapTest2 extends Scene {
   public sceneInitParams: SceneInitParamsType;
   public level: Phaser.Tilemaps.Tilemap | undefined;
+  public doors: ReturnType<typeof createDoors>;
   public spawners: { [k: string]: Phaser.GameObjects.Group };
   public player: Player;
 
@@ -28,16 +29,9 @@ export class TiledMapTest2 extends Scene {
   preload() {
     const { roomType } = this.sceneInitParams;
 
-    Player.preload(this);
-
-    // this.load.image('door', 'assets/door.png');
-    this.load.spritesheet('doors', 'assets/doors.png', {
-      frameWidth: 163,
-      frameHeight: 110,
-    });
-
-    // new preloader
+    preloadDoor(this);
     preloadRoom(this, roomType);
+    Player.preload(this);
   }
 
   create() {
@@ -78,7 +72,7 @@ export class TiledMapTest2 extends Scene {
       .setBounds(0, 0, level.widthInPixels, level.heightInPixels)
       .startFollow(this.player);
 
-    createDoors(this); // must be called after player is created
+    this.doors = createDoors(this); // must be called after player is created
 
     EventBus.emit(EventNames.READY, this);
   }
