@@ -65,7 +65,7 @@ const Menu = ({ phaserScene }: IMenu) => {
         )}
         <MenuButton
           onClick={() =>
-            [...(phaserScene.spawners.enemy?.getChildren() || [])].forEach(
+            [...(phaserScene.spawners?.enemy?.getChildren() || [])].forEach(
               (enemy) => {
                 enemy.death();
               },
