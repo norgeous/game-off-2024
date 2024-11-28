@@ -10,25 +10,27 @@ export default {
     },
   ],
   tiled: {
-    tiledMapJson: './tiled/rooms/room-3.json',
+    tiledMapJson: './tiled/rooms/room-5.json',
     images: [
       {
-        key: 'floor1',
-        file: './assets/levels/floor1.png',
+        key: 'floor',
+        file: './assets/levels/floor3.png',
       },
       {
         key: 'walls',
-        file: './assets/levels/walls7.png',
+        file: './assets/levels/walls1.png',
       },
       {
-        key: 'items',
-        file: './assets/items.png',
+        key: 'obsticles',
+        file: './assets/obsticles/pots-and-rocks.png',
       },
     ],
     layerConfig: [
       { tiledLayerName: 'floor', depth: 0 },
-      { tiledLayerName: 'walls', depth: 0 },
-      { tiledLayerName: 'obsticles', depth: 0 },
+      { tiledLayerName: 'walls', depth: 1 },
+      { tiledLayerName: 'obsticles-background', depth: 2 },
+      { tiledLayerName: 'obsticles-midground', depth: 3 },
+      { tiledLayerName: 'obsticles-foreground', depth: 4 },
     ],
     spawnerConfig: [
       {
@@ -37,7 +39,7 @@ export default {
         maxSize: 10,
         runChildUpdate: true,
         autoSpawn: true,
-      },
+      }
     ],
   },
 };

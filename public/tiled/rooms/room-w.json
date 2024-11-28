@@ -151,6 +151,28 @@
         }, 
         {
          "draworder":"topdown",
+         "id":6,
+         "name":"navmesh",
+         "objects":[
+                {
+                 "height":432,
+                 "id":11,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1616,
+                 "x":160,
+                 "y":144
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":3,
          "name":"geometry",
          "objects":[
@@ -212,8 +234,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":6,
- "nextobjectid":11,
+ "nextlayerid":7,
+ "nextobjectid":12,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",

@@ -13,12 +13,12 @@ export default {
     tiledMapJson: './tiled/rooms/room-c.json',
     images: [
       {
-        key: 'floor3',
+        key: 'floor',
         file: './assets/levels/floor3.png',
       },
       {
-        key: 'tiles11',
-        file: './assets/levels/ai-egypt-11.png',
+        key: 'walls',
+        file: './assets/levels/walls1.png',
       },
     ],
     layerConfig: [
