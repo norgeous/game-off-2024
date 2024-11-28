@@ -59,21 +59,19 @@ const Menu = ({ phaserScene }: IMenu) => {
                 <PlayerDebugToggleButton
                   onClick={() => setIsPlayerDebugOpen(true)}
                 />
-                <MenuButton
-                  onClick={() =>
-                    [...phaserScene.spawners.enemy.getChildren()].forEach(
-                      (enemy) => {
-                        enemy.death();
-                      },
-                    )
-                  }
-                >
-                  <FaBomb size={30} />
-                </MenuButton>
               </>
             )}
           </>
         )}
+        <MenuButton
+          onClick={() =>
+            [...phaserScene.spawners.enemy.getChildren()].forEach((enemy) => {
+              enemy.death();
+            })
+          }
+        >
+          <FaBomb size={30} />
+        </MenuButton>
       </CornerMenu>
 
       <CornerMenu $corner={Corner.BR}>
