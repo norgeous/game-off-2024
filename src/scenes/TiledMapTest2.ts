@@ -79,5 +79,9 @@ export class TiledMapTest2 extends Scene {
 
   update(time: number, delta: number) {
     this.player.update(time, delta);
+
+    const enemyCount = this.spawners.enemy?.getLength() || 0;
+    if (enemyCount === 0) this.doors?.open();
+    else this.doors?.close();
   }
 }

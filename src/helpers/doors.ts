@@ -6,7 +6,8 @@ export const preloadDoor = (scene: Phaser.Scene) => {
     frameWidth: 163,
     frameHeight: 110,
   });
-  scene.load.audio('door-close', 'assets/audio/door-close-79921.mp3');
+  scene.load.audio('sfx-door-open', 'assets/audio/whoosh-motion-243505.mp3');
+  scene.load.audio('sfx-door-close', 'assets/audio/door-close-79921.mp3');
 };
 
 const createDoor = (
@@ -17,7 +18,7 @@ const createDoor = (
   a = 0,
 ) =>
   scene.matter.add
-    .sprite(x, y, 'doors', 0, {
+    .sprite(x, y, 'doors', 1, {
       isStatic: true,
       collisionFilter: {
         category: CC.door,
@@ -45,17 +46,29 @@ const createDoors = (scene: TiledMapTest2) => {
     ...(hasW ? [createDoor(scene, 'door-west', 85, h * 0.5, 270)] : []),
   ];
 
-  const closeSfx = scene.sound.add('door-close', {
+  const openSfx = scene.sound.add('sfx-door-open', {
     detune: Math.floor(Math.random() * (600 - -600 + 1) + -600),
+    volume: 0.5,
   });
 
-  const close = () => {
-    sprites.forEach((sprite) => sprite.setFrame(0));
-    closeSfx.play();
-  };
-  const open = () => sprites.forEach((sprite) => sprite.setFrame(1));
+  const closeSfx = scene.sound.add('sfx-door-close', {
+    detune: Math.floor(Math.random() * (600 - -600 + 1) + -600),
+    volume: 0.5,
+  });
 
-  close();
+  const open = () => {
+    if (Number(sprites[0].frame.name) === 0) {
+      sprites.forEach((sprite) => sprite.setFrame(1));
+      openSfx.play();
+    }
+  };
+
+  const close = () => {
+    if (Number(sprites[0].frame.name) === 1) {
+      sprites.forEach((sprite) => sprite.setFrame(0));
+      closeSfx.play();
+    }
+  };
 
   return { sprites, open, close };
 };
