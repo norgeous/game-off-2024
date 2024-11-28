@@ -6,10 +6,9 @@ const sceneNames = [
   'Boot',
   'Preloader',
   'MainMenu',
-  'Game',
+  'TiledMapTest2',
   'GameOver',
   'Win',
-  'TiledMapTest2',
 ];
 
 interface ISceneSelectorToggleButton {
