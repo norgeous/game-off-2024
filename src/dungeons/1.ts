@@ -10,6 +10,7 @@
 
 export default `
 2.c
-4w3
+42c
+1w3
 0.b
 `;
