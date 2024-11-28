@@ -35,9 +35,10 @@
   - fragments of the message
   - main menu art (title card art)
 - [x] change favicon and pwa icon away from key
-- [ ] preload all the rooms types
-- [ ] secret rooms
-- [ ] new settings modal
+- [x] preload all the rooms types
 - [ ] doors to lock until all enemy killed in room
-- [ ] add isRoomCleared flag to scene data
+- [ ] add isRoomCleared flag to sceneInitData
 - [ ] shop
+- [ ] new settings modal
+- [ ] jones TTS lines?
+- [ ] secret rooms
