@@ -36,8 +36,8 @@
   - main menu art (title card art)
 - [x] change favicon and pwa icon away from key
 - [x] preload all the rooms types
-- [ ] doors to lock until all enemy killed in room
-- [ ] add isRoomCleared flag to sceneInitData
+- [x] doors to lock until all enemy killed in room
+- [x] add isRoomCleared flag to sceneInitData
 - [ ] shop
 - [ ] new settings modal
 - [ ] jones TTS lines?
