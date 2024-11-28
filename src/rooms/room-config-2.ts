@@ -1,5 +1,4 @@
 import { getRandomEnemy } from '../helpers/getRandomEnemy';
-import Box from '../objects/entities/obsticles/Box';
 
 export default {
   music: [
@@ -34,14 +33,7 @@ export default {
         maxSize: 10,
         runChildUpdate: true,
         autoSpawn: true,
-      },
-      {
-        tiledObjectName: 'box',
-        classFactory: Box,
-        maxSize: 10,
-        runChildUpdate: true,
-        autoSpawn: true,
-      },
+      }
     ],
   },
 };
