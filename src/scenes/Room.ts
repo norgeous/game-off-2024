@@ -1,7 +1,7 @@
 import { EventBus, EventNames } from '../helpers/EventBus';
 import { Scene } from 'phaser';
 import { SceneInitParamsType } from '../helpers/dungeonConfigParser';
-import createDoors, { preloadDoor } from '../helpers/doors';
+import createDoors from '../helpers/doors';
 import Player from '../objects/entities/Player';
 import { getCurrentRoomMusic } from '../helpers/getMusicConfig';
 import audio from '../objects/Audio';
@@ -27,11 +27,9 @@ export class Room extends Scene {
   }
 
   preload() {
-    const { roomType } = this.sceneInitParams;
-
-    preloadDoor(this);
-    preloadRoom(this, roomType);
-    Player.preload(this);
+    // const { roomType } = this.sceneInitParams;
+    // preloadRoom(this, roomType);
+    // Player.preload(this);
   }
 
   create() {

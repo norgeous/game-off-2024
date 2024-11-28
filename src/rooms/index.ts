@@ -19,6 +19,8 @@ const roomConfigs = {
   w: roomConfigw,
 };
 
+export const allRoomTypes = Object.keys(roomConfigs) as RoomType[];
+
 export type RoomType = keyof typeof roomConfigs;
 
 export const getRoomConfig = (roomType: RoomType) => roomConfigs[roomType];
