@@ -9,6 +9,7 @@ import roomConfig4 from './room-config-4';
 import roomConfigb from './room-config-b';
 import roomConfigc from './room-config-c';
 import roomConfigw from './room-config-w';
+import spawnEnemies from '../helpers/spawnEnemies';
 
 const roomConfigs = {
   '.': roomConfigDOT,
@@ -106,7 +107,6 @@ export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
 
   // setup spawners
   const markers = level.getObjectLayer('markers')?.objects || [];
-  console.log(markers);
   const spawners = spawnerConfig.reduce(
     (
       acc,
@@ -118,13 +118,17 @@ export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
         runChildUpdate,
       });
 
+     
       if (autoSpawn) {
         const locations = markers.filter(
           ({ name }) => name === tiledObjectName,
         );
-
         for (let i = 0; i < locations.length; i += 1) {
           const { x, y } = locations[i];
+            // DEBUG - allow no enemy spawns
+            if (tiledObjectName === 'enemy' && !spawnEnemies) {
+              continue;
+            }
           group.get(x, y);
         }
       }
