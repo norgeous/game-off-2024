@@ -4,6 +4,8 @@ import { CC, CM } from '../../enums/CollisionCategories';
 import createSensors from '../../helpers/createSensors';
 import isDev from '../../helpers/isDev';
 import { spawnItemFromDropPool } from '../../helpers/itemFactory';
+import Gold from '../items/Gold';
+import Heart from '../items/Heart';
 
 type AnimationsConfigType = {
   animationKey: string;
@@ -90,7 +92,20 @@ const defaultConfig: EntityConfigType = {
     speed: 0,
     attackRate: 0,
   },
-  itemDropPool: []
+  itemDropPool: [
+    {
+      classFactory: null,
+      chance: 70
+    },
+    {
+      classFactory: Gold,
+      chance: 15
+    },
+    {
+      classFactory: Heart,
+      chance: 15
+    },
+  ]
 };
 
 class Entity extends Phaser.GameObjects.Container {
