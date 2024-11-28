@@ -40,3 +40,4 @@
 - [ ] new settings modal
 - [ ] doors to lock until all enemy killed in room
 - [ ] add isRoomCleared flag to scene data
+- [ ] shop

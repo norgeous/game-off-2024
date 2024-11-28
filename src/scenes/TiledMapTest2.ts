@@ -30,7 +30,11 @@ export class TiledMapTest2 extends Scene {
 
     Player.preload(this);
 
-    this.load.image('door', 'assets/door.png');
+    // this.load.image('door', 'assets/door.png');
+    this.load.spritesheet('doors', 'assets/doors.png', {
+      frameWidth: 163,
+      frameHeight: 110,
+    });
 
     // new preloader
     preloadRoom(this, roomType);

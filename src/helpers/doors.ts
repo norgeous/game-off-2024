@@ -9,7 +9,7 @@ const createDoor = (
   a = 0,
 ) =>
   scene.matter.add
-    .sprite(x, y, 'door', undefined, {
+    .sprite(x, y, 'doors', Math.random() > 0.5 ? 1 : 0, {
       isStatic: true,
       collisionFilter: {
         category: CC.door,
