@@ -37,7 +37,7 @@
 - [x] change favicon and pwa icon away from key
 - [x] preload all the rooms types
 - [x] doors to lock until all enemy killed in room
-- [x] add isRoomCleared flag to sceneInitData
+- [ ] add isRoomCleared flag to sceneInitData
 - [ ] fix the fps to 30 for mobile?
 - [ ] shop
 - [ ] new settings modal
