@@ -5,7 +5,7 @@ import WhipBullet from '../objects/weapons/bullets/WhipBullet';
 import { GameOver } from './GameOver';
 import { Win } from './Win';
 import { preloadDoor } from '../helpers/doors';
-import { allRoomTypes, preloadRoom, RoomType } from '../rooms';
+import { allRoomTypes, preloadRoom } from '../rooms';
 import Player from '../objects/entities/Player';
 
 export class Preloader extends Scene {

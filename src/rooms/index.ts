@@ -88,7 +88,7 @@ export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
   const geometry = level?.getObjectLayer('geometry')?.objects || [];
   geometry.reduce((acc, tiledObject) => {
     const { x, y, polygon } = tiledObject;
-    console.log({ x, y, polygon });
+    // console.log({ x, y, polygon });
     if (!x || !y || !polygon) return acc;
     const newGeometry = convertTiledPolygonToGameObject(scene, {
       x,
