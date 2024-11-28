@@ -38,6 +38,7 @@
 - [x] preload all the rooms types
 - [x] doors to lock until all enemy killed in room
 - [ ] add isRoomCleared flag to sceneInitData
+- [ ] weapons target closest enemy
 - [ ] fix the fps to 30 for mobile?
 - [ ] shop
 - [ ] new settings modal
