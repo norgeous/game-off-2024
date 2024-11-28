@@ -6,7 +6,7 @@ export class Win extends Scene {
     super('Win');
   }
   static preload(scene: Phaser.Scene) {
-    scene.load.image('win', 'assets/win.jpg');
+    scene.load.image('win', 'assets/title-cards/win.jpg');
   }
 
   create() {
