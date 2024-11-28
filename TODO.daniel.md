@@ -36,8 +36,9 @@
   - main menu art (title card art)
 - [x] change favicon and pwa icon away from key
 - [x] preload all the rooms types
-- [ ] doors to lock until all enemy killed in room
+- [x] doors to lock until all enemy killed in room
 - [ ] add isRoomCleared flag to sceneInitData
+- [ ] fix the fps to 30 for mobile?
 - [ ] shop
 - [ ] new settings modal
 - [ ] jones TTS lines?
