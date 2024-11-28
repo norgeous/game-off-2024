@@ -2,8 +2,8 @@ import { Scene } from 'phaser';
 import { musicConfig } from '../helpers/getMusicConfig';
 import audio, { Audio } from '../objects/Audio';
 import WhipBullet from '../objects/weapons/bullets/WhipBullet';
-import { MainMenu } from './MainMenu';
 import { GameOver } from './GameOver';
+import { Win } from './Win';
 
 export class Preloader extends Scene {
   constructor() {
@@ -13,20 +13,20 @@ export class Preloader extends Scene {
   init() {
     const { width, height } = this.sys.game.canvas;
 
-    this.cameras.main.setBackgroundColor(0x00ffff);
+    this.cameras.main.setBackgroundColor(0x000000);
 
     //  We loaded this image in our Boot Scene, so we can display it here
-    this.add.image(width * 0.5, height * 0.5, 'background');
+    this.add.image(width * 0.5, height * 0.5, 'title');
 
     //  A simple progress bar. This is the outline of the bar.
     this.add
-      .rectangle(width * 0.5, height * 0.5, 468, 32)
+      .rectangle(width * 0.5, height * 0.8, 468, 32)
       .setStrokeStyle(1, 0xffffff);
 
     //  This is the progress bar itself. It will increase in size from the left based on the % of progress.
     const bar = this.add.rectangle(
       width * 0.5 - 230,
-      height * 0.5,
+      height * 0.8,
       4,
       28,
       0xffffff,
@@ -42,8 +42,8 @@ export class Preloader extends Scene {
   preload() {
     //  Load the assets for the game - Replace with your own assets
     this.load.image('star', 'assets/star.png');
-    MainMenu.preload(this);
     GameOver.preload(this);
+    Win.preload(this);
     Audio.preload(this, musicConfig);
     WhipBullet.preload(this);
   }

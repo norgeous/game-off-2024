@@ -5,10 +5,6 @@ export class MainMenu extends Phaser.Scene {
     super('MainMenu');
   }
 
-  static preload(scene: Phaser.Scene) {
-    scene.load.image('title', 'assets/title.jpg');
-  }
-
   create() {
     const { width, height } = this.sys.game.canvas;
 
