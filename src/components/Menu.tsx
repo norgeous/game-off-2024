@@ -65,9 +65,11 @@ const Menu = ({ phaserScene }: IMenu) => {
         )}
         <MenuButton
           onClick={() =>
-            [...phaserScene.spawners.enemy.getChildren()].forEach((enemy) => {
-              enemy.death();
-            })
+            [...(phaserScene.spawners.enemy?.getChildren() || [])].forEach(
+              (enemy) => {
+                enemy.death();
+              },
+            )
           }
         >
           <FaBomb size={30} />
