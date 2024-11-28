@@ -1,4 +1,4 @@
-import { TiledMapTest2 } from '../../scenes/TiledMapTest2';
+import { Room } from '../../scenes/Room';
 import Entity from '../../objects/entities/Entity';
 import { MovementStrategy } from './MovementStrategy';
 import PathFinding from '../../objects/PathFinding';
@@ -6,10 +6,10 @@ import PathFinding from '../../objects/PathFinding';
 const moveSpeedMultiplier: number = 2;
 
 export class MoveToPlayer implements MovementStrategy {
-  private scene: TiledMapTest2;
+  private scene: Room;
   pathFinding: PathFinding;
 
-  constructor(scene: TiledMapTest2) {
+  constructor(scene: Room) {
     this.scene = scene;
     this.pathFinding = new PathFinding();
   }

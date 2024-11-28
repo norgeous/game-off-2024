@@ -1,13 +1,13 @@
-import { TiledMapTest2 } from '../../scenes/TiledMapTest2';
+import { Room } from '../../scenes/Room';
 import Entity from '../../objects/entities/Entity';
 import { MovementStrategy } from './MovementStrategy';
 import PathFinding from '../../objects/PathFinding';
 
 export class PredictionMovement implements MovementStrategy {
-  private map: TiledMapTest2;
+  private map: Room;
   pathFinding: PathFinding;
 
-  constructor(map: TiledMapTest2) {
+  constructor(map: Room) {
     this.map = map;
     this.pathFinding = new PathFinding();
   }

@@ -52,7 +52,7 @@ const useDungeonState = () => {
         { x: nextRoom.x, y: nextRoom.y, roomType: nextRoom.roomType },
       ]);
       setCurrent(nextRoom);
-      scene?.scene.start('TiledMapTest2', { ...nextRoom, ...settings });
+      scene?.scene.start('Room', { ...nextRoom, ...settings });
     },
     [current.x, current.y, dungeon1D, roomHistory],
   );
@@ -61,7 +61,7 @@ const useDungeonState = () => {
   useEffect(() => {
     EventBus.on(EventNames.START, (scene: Phaser.Scene) => {
       console.log('START');
-      scene?.scene.start('TiledMapTest2', { ...current, ...settings });
+      scene?.scene.start('Room', { ...current, ...settings });
     });
     return () => {
       EventBus.removeListener(EventNames.START);

@@ -1,7 +1,7 @@
 import * as Phaser from 'phaser';
 import { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
-import { TiledMapTest2 } from '../../../scenes/TiledMapTest2';
+import { Room } from '../../../scenes/Room';
 import Enemy from '../Enemy';
 import { MoveToPlayer } from '../../../helpers/movement/MoveToPlayer';
 
@@ -38,7 +38,7 @@ class Rat extends Enemy {
   }
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, entityConfig);
-    this.movementStrategy = new MoveToPlayer(scene as TiledMapTest2);
+    this.movementStrategy = new MoveToPlayer(scene as Room);
   }
 }
 

@@ -1,7 +1,7 @@
 import * as Phaser from 'phaser';
 import { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
-import { TiledMapTest2 } from '../../../scenes/TiledMapTest2';
+import { Room } from '../../../scenes/Room';
 import { OscillatingMovement } from '../../../helpers/movement/OscillatingMovement';
 import Enemy from '../Enemy';
 import { MoveToPlayer } from '../../../helpers/movement/MoveToPlayer';
@@ -38,7 +38,7 @@ class Pharaoe extends Enemy {
   static preload(scene: Phaser.Scene) {
     scene.load.image(KEY, 'assets/mobs/pharaoe.png');
   }
-  constructor(scene: TiledMapTest2, x: number, y: number) {
+  constructor(scene: Room, x: number, y: number) {
     super(scene, x, y, entityConfig);
     this.movementStrategy = new MoveToPlayer(scene);
   }
