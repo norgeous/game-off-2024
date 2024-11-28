@@ -29,14 +29,16 @@ export default {
         file: './assets/obsticles/hole.png',
       },
       {
-        key: 'pots',
-        file: './assets/obsticles/pots-sheet.png',
+        key: 'obsticles',
+        file: './assets/obsticles/pots-and-rocks.png',
       },
     ],
     layerConfig: [
       { tiledLayerName: 'floor', depth: 0 },
-      { tiledLayerName: 'walls', depth: 0 },
-      { tiledLayerName: 'obsticles', depth: 0 },
+      { tiledLayerName: 'walls', depth: 1 },
+      { tiledLayerName: 'obsticles-background', depth: 2 },
+      { tiledLayerName: 'obsticles-midground', depth: 3 },
+      { tiledLayerName: 'obsticles-foreground', depth: 4 },
     ],
     spawnerConfig: [
       {

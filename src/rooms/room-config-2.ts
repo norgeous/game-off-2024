@@ -18,13 +18,19 @@ export default {
       },
       {
         key: 'walls',
-        file: './assets/levels/ai-egypt-7.png',
+        file: './assets/levels/walls2.png',
+      },
+      {
+        key: 'obsticles',
+        file: './assets/levels/pots-and-rocks.png',
       },
     ],
     layerConfig: [
       { tiledLayerName: 'floor', depth: 0 },
-      { tiledLayerName: 'walls', depth: 0 },
-      { tiledLayerName: 'obsticles', depth: 0 },
+      { tiledLayerName: 'walls', depth: 1 },
+      { tiledLayerName: 'obsticles-background', depth: 2 },
+      { tiledLayerName: 'obsticles-midground', depth: 3 },
+      { tiledLayerName: 'obsticles-foreground', depth: 4 },
     ],
     spawnerConfig: [
       {
