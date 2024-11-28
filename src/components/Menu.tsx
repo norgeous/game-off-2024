@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaGear, FaGithub, FaXmark } from 'react-icons/fa6';
+import { FaGear, FaGithub, FaBomb, FaXmark } from 'react-icons/fa6';
 import CornerMenu, { Corner } from './CornerMenu';
 import FullscreenToggle from './FullscreenToggle';
 import MenuButton from './MenuButton';
@@ -59,6 +59,17 @@ const Menu = ({ phaserScene }: IMenu) => {
                 <PlayerDebugToggleButton
                   onClick={() => setIsPlayerDebugOpen(true)}
                 />
+                <MenuButton
+                  onClick={() =>
+                    [...phaserScene.spawners.enemy.getChildren()].forEach(
+                      (enemy) => {
+                        enemy.death();
+                      },
+                    )
+                  }
+                >
+                  <FaBomb size={30} />
+                </MenuButton>
               </>
             )}
           </>
