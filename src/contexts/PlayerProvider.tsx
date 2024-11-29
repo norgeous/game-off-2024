@@ -3,6 +3,8 @@ import PlayerContext from './PlayerContext';
 import { EventBus, EventNames } from '../helpers/EventBus';
 import { useLocalStorage } from '../helpers/localstorage';
 
+type ItemKeysType = 'gold' | 'heart';
+
 const usePlayer = () => {
   const [health, setHealth] = useState(3);
   const adjustHealth = useCallback(
@@ -29,7 +31,7 @@ const usePlayer = () => {
   useEffect(() => {
     EventBus.on(
       EventNames.COLLECT_ITEM,
-      (_scene: Phaser.Scene, itemKey: 'gold' | 'heart') => {
+      (_scene: Phaser.Scene, itemKey: ItemKeysType) => {
         console.log('COLLECT', itemKey);
         ({
           gold: () => adjustCoins(+1),
