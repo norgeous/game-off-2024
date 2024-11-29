@@ -34,7 +34,7 @@ https://norgeous.github.io/game-off-2024/
 - Arrab and Muslim: https://pixabay.com/music/world-arab-and-muslim-190765/
 - folk-gypsy-animated-music: https://pixabay.com/music/folk-gypsy-animated-music-252548/
 - music/rock-the-queen-of-dunes: https://pixabay.com/music/rock-the-queen-of-dunes-169012/
-
+- end music: https://suno.com/song/442219b3-516b-4e72-b13f-f07d3b89f8ee (Machinska & Exo Spectra)
 ### Tech
 
 - https://github.com/phaserjs/template-react-ts
