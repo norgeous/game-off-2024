@@ -149,7 +149,10 @@ class Player extends Entity {
   }
 
   death() {
-    this.scene.scene.start('GameOver');
+    this.scene.matter.pause();
+    setTimeout(() => {
+      this.scene.scene.start('GameOver');
+    }, 2_000);
   }
 
   update(time: number, delta: number) {
