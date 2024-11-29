@@ -26,7 +26,8 @@ const createDoor = (
       },
     })
     .setAngle(a)
-    .setName(name);
+    .setName(name)
+    .setDepth(100);
 
 const createDoors = (scene: Room) => {
   if (!scene.level) return;
