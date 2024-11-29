@@ -30,6 +30,10 @@ const config: Phaser.Types.Core.GameConfig = {
       gravity: { x: 0, y: 0 },
     },
   },
+  fps: {
+    min: 60,
+    limit: 60,
+  },
   input: { activePointers: 2 },
   scene: [Boot, Preloader, MainMenu, Room, GameOver, Win],
 };
