@@ -24,6 +24,9 @@ const createDoor = (
         category: CC.door,
         mask: CM.door,
       },
+      chamfer: {
+        radius: 30,
+      },
     })
     .setAngle(a)
     .setName(name);
