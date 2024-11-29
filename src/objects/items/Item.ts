@@ -1,4 +1,5 @@
 import { CC, CM } from '../../enums/CollisionCategories';
+import { EventBus, EventNames } from '../../helpers/EventBus';
 import Player from '../entities/Player';
 
 export type ItemConfigType = {
@@ -70,11 +71,13 @@ class Item extends Phaser.GameObjects.Container {
           onPickUpCallBack?.(this, data.bodyB.gameObject as Player);
           scene.matter.world.remove(this.gameObject);
           onPickUpAnimation?.(this);
+          EventBus.emit(EventNames.COLLECT_ITEM, scene, key);
         }
         if (data.bodyA?.collisionFilter.category === CC.player) {
           onPickUpCallBack?.(this, data.bodyA.gameObject as Player);
           scene.matter.world.remove(this.gameObject);
           onPickUpAnimation?.(this);
+          EventBus.emit(EventNames.COLLECT_ITEM, scene, key);
         }
       },
     );

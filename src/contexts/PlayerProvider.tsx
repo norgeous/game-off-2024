@@ -25,6 +25,23 @@ const usePlayer = () => {
     };
   }, [adjustHealth]);
 
+  // when item collected
+  useEffect(() => {
+    EventBus.on(
+      EventNames.COLLECT_ITEM,
+      (_scene: Phaser.Scene, itemKey: 'gold' | 'heart') => {
+        console.log('COLLECT', itemKey);
+        ({
+          gold: () => adjustCoins(+1),
+          heart: () => adjustHealth(+1),
+        })[itemKey]();
+      },
+    );
+    return () => {
+      EventBus.removeListener(EventNames.COLLECT_ITEM);
+    };
+  }, [adjustCoins, adjustHealth]);
+
   return {
     health,
     adjustHealth,
