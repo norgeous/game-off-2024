@@ -51,10 +51,6 @@ class Projectile extends Phaser.GameObjects.Container {
   private timeToLive: number;
   public stats: ProjectileStats;
 
-  static preload(scene: Phaser.Scene) {
-    scene.load.image('whip', 'whip.png');
-  }
-
   constructor(
     scene: Phaser.Scene,
     x: number,
@@ -75,7 +71,7 @@ class Projectile extends Phaser.GameObjects.Container {
 
     this.timeToLive = timeToLive;
     this.stats = stats;
-
+    
     const enemies = scene.spawners.enemy?.children.entries;
     if (!enemies?.[0]) return;
 
@@ -91,12 +87,12 @@ class Projectile extends Phaser.GameObjects.Container {
         frictionAir: config.physicsConfig.frictionAir ?? 0,
       })
       .setScale(config.scale);
-
+    
     this.startTime = window.performance.now();
 
     const forceVector = new Phaser.Math.Vector2({
-      x: enemies[0].x - x,
-      y: enemies[0].y - y,
+      x: this.getClosestEnemy().x - x,
+      y: this.getClosestEnemy().y - y,
     }).setLength(config.physicsConfig.ejectionForce);
 
     this.gameObject.setRotation(forceVector.angle());
@@ -109,6 +105,26 @@ class Projectile extends Phaser.GameObjects.Container {
         destroyOnHit ? this.gameObject.destroy() : null;
       },
     );
+  }
+
+  getClosestEnemy() 
+  {
+    const enemies = this.scene.spawners.enemy?.children.entries;
+    const closestEnemy = enemies.reduce(
+      (closest: { distance: number; }, enemy: Entity) => {
+        const distance = Phaser.Math.Distance.Between(
+          this.x, this.y,
+          enemy.x, enemy.y
+        );
+        
+        return distance < closest.distance
+          ? { enemy, distance }
+          : closest;
+      },
+      { enemy: Entity, distance: Infinity }
+    );
+
+    return closestEnemy.enemy;
   }
 
   update(_time: number, _delta: number) {

@@ -10,19 +10,19 @@ export default {
     },
   ],
   tiled: {
-    tiledMapJson: './tiled/rooms/room-1.json',
+    tiledMapJson: './tiled/rooms/room-2.json',
     images: [
       {
         key: 'floor2',
         file: './assets/levels/floor2.png',
       },
       {
-        key: 'walls4',
-        file: './assets/levels/walls4.png',
+        key: 'walls2',
+        file: './assets/levels/walls2.png',
       },
       {
         key: 'obsticles',
-        file: './assets/obsticles/pots-and-rocks.png',
+        file: './assets/levels/pots-and-rocks.png',
       },
     ],
     layerConfig: [
@@ -39,7 +39,7 @@ export default {
         maxSize: 10,
         runChildUpdate: true,
         autoSpawn: true,
-      },
+      }
     ],
   },
 };

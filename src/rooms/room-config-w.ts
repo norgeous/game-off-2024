@@ -13,12 +13,16 @@ export default {
     tiledMapJson: './tiled/rooms/room-w.json',
     images: [
       {
-        key: 'tiles',
-        file: './assets/levels/ai-egypt-1.png',
+        key: 'walls',
+        file: './assets/levels/walls1.png',
+      },
+      {
+        key: 'floor',
+        file: './assets/levels/floor1.png',
       },
     ],
     layerConfig: [
-      // { tiledLayerName: 'floor', depth: 0 },
+      { tiledLayerName: 'floor', depth: 0 },
       { tiledLayerName: 'walls', depth: 0 },
       // { tiledLayerName: 'obsticles', depth: 0 },
     ],

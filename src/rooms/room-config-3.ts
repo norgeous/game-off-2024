@@ -17,8 +17,8 @@ export default {
         file: './assets/levels/floor1.png',
       },
       {
-        key: 'tiles5',
-        file: './assets/levels/ai-egypt-5.png',
+        key: 'walls7',
+        file: './assets/levels/walls7.png',
       },
       {
         key: 'items',

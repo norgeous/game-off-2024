@@ -2,8 +2,8 @@ import Phaser from 'phaser';
 import { PhaserMatterImage } from '../../types';
 import { CC, CM } from '../../enums/CollisionCategories';
 import createSensors from '../../helpers/createSensors';
-import { createBloodEffect } from '../../helpers/bloodParticleEffect';
 import isDev from '../../helpers/isDev';
+import { spawnItemFromDropPool } from '../../helpers/itemFactory';
 
 type AnimationsConfigType = {
   animationKey: string;
@@ -12,6 +12,11 @@ type AnimationsConfigType = {
   fps: number;
   repeat?: number | undefined;
 };
+
+export type ItemDropPoolType = {
+  classFactory: Function | null
+  chance: number
+}
 
 export type EntityConfigType = {
   name: string;
@@ -43,6 +48,7 @@ export type EntityConfigType = {
     collisionCategory: CC;
     collisionSubMask: CM;
   }[];
+  itemDropPool?: ItemDropPoolType[]
 };
 
 export type EntityStatsType = {
@@ -84,6 +90,7 @@ const defaultConfig: EntityConfigType = {
     speed: 0,
     attackRate: 0,
   },
+  itemDropPool: []
 };
 
 class Entity extends Phaser.GameObjects.Container {
@@ -101,6 +108,7 @@ class Entity extends Phaser.GameObjects.Container {
     y: number;
   };
   healthText: Phaser.GameObjects.Text;
+  protected itemDropPool: ItemDropPoolType[] | undefined;
 
   constructor(
     scene: Phaser.Scene,
@@ -117,6 +125,7 @@ class Entity extends Phaser.GameObjects.Container {
       facing,
       scale,
       isStatic,
+      itemDropPool,
       collisionCategory,
       collisionMask,
       collideCallback,
@@ -133,7 +142,7 @@ class Entity extends Phaser.GameObjects.Container {
     this.sensorData = {
       inner: new Set(),
     };
-
+    this.itemDropPool = itemDropPool;
     this.keepUpright = true;
     // debug text
     this.debugText = this.scene.add
@@ -191,7 +200,7 @@ class Entity extends Phaser.GameObjects.Container {
         group: 0,
       },
     });
-
+    
     const { sensorBodies, sensorData } = createSensors(
       this.scene,
       sensorConfig,
@@ -220,10 +229,13 @@ class Entity extends Phaser.GameObjects.Container {
     this.sprite.setScale(this.scale);
     this.gameObject.setStatic(isStatic);
   }
-
+  
   death() {
     if (isDev) {
       this.healthText.destroy();
+    }
+    if (this.itemDropPool) {
+      spawnItemFromDropPool(this.itemDropPool, this.scene, this.x, this.y)
     }
     this.destroy();
   }
@@ -231,7 +243,7 @@ class Entity extends Phaser.GameObjects.Container {
   updateStats(newStats: Partial<EntityStatsType>) {
     this.stats = { ...this.stats, ...newStats };
   }
-
+  
   getKey(key: string) {
     return `${this.name}_${key}`;
   }

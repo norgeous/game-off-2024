@@ -17,8 +17,8 @@ export default {
         file: './assets/levels/floor3.png',
       },
       {
-        key: 'tiles11',
-        file: './assets/levels/ai-egypt-11.png',
+        key: 'walls1',
+        file: './assets/levels/walls1.png',
       },
     ],
     layerConfig: [

@@ -3,17 +3,27 @@ import roomConfigDOT from './room-config-.';
 import roomConfigPERCENT from './room-config-PERCENT';
 import roomConfig0 from './room-config-0';
 import roomConfig1 from './room-config-1';
+import roomConfig2 from './room-config-2';
 import roomConfig3 from './room-config-3';
+import roomConfig4 from './room-config-4';
+import roomConfig5 from './room-config-5';
+import roomConfig6 from './room-config-6';
 import roomConfigb from './room-config-b';
 import roomConfigc from './room-config-c';
 import roomConfigw from './room-config-w';
+import spawnEnemies from '../helpers/spawnEnemies';
+
 
 const roomConfigs = {
   '.': roomConfigDOT,
   '%': roomConfigPERCENT,
   '0': roomConfig0,
   '1': roomConfig1,
+  '2': roomConfig2,
   '3': roomConfig3,
+  '4': roomConfig4,
+  '5': roomConfig5,
+  '6': roomConfig6,
   b: roomConfigb,
   c: roomConfigc,
   w: roomConfigw,
@@ -87,14 +97,17 @@ export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
   // setup polygons
   const geometry = level?.getObjectLayer('geometry')?.objects || [];
   geometry.reduce((acc, tiledObject) => {
-    const { x, y, polygon } = tiledObject;
-    // console.log({ x, y, polygon });
+    const { x, y, polygon, name } = tiledObject;
+    console.log({ x, y, polygon });
     if (!x || !y || !polygon) return acc;
     const newGeometry = convertTiledPolygonToGameObject(scene, {
       x,
       y,
       polygon,
     });
+    if (name) {
+      newGeometry?.setName(name);
+    }
     if (!newGeometry) return acc;
     return [...acc, newGeometry];
   }, [] as Phaser.GameObjects.GameObject[]);
@@ -112,13 +125,17 @@ export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
         runChildUpdate,
       });
 
+     
       if (autoSpawn) {
         const locations = markers.filter(
           ({ name }) => name === tiledObjectName,
         );
-
         for (let i = 0; i < locations.length; i += 1) {
           const { x, y } = locations[i];
+            // DEBUG - allow no enemy spawns
+            if (tiledObjectName === 'enemy' && !spawnEnemies) {
+              continue;
+            }
           group.get(x, y);
         }
       }

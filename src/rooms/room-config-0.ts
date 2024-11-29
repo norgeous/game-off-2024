@@ -14,11 +14,23 @@ export default {
     tiledMapJson: './tiled/rooms/room-0.json',
     images: [
       {
-        key: 'tiles1',
-        file: './assets/levels/ai-egypt-1.png',
+        key: 'floor2',
+        file: './assets/levels/floor2.png',
+      },
+      {
+        key: 'walls2',
+        file: './assets/levels/walls2.png',
+      },
+      {
+        key: 'obsticles',
+        file: './assets/obsticles/pots-and-rocks.png',
       },
     ],
-    layerConfig: [{ tiledLayerName: 'tiledLayer', depth: 0 }],
+    layerConfig: [
+      { tiledLayerName: 'floor', depth: 0 },
+      { tiledLayerName: 'walls', depth: 1 },
+      //{ tiledLayerName: 'obsticles', depth: 2 },
+    ],
     spawnerConfig: [],
   },
 };
