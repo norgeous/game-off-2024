@@ -27,7 +27,7 @@ export default {
     ],
     layerConfig: [
       { tiledLayerName: 'floor', depth: 0 },
-      { tiledLayerName: 'walls', depth: 1 },
+      { tiledLayerName: 'walls', depth: 0  },
       { tiledLayerName: 'obsticles-background', depth: 2 },
       { tiledLayerName: 'obsticles-midground', depth: 3 },
       { tiledLayerName: 'obsticles-foreground', depth: 4 },
