@@ -7,6 +7,7 @@ import { getCurrentRoomMusic } from '../helpers/getMusicConfig';
 import audio from '../objects/Audio';
 import { createRoom, preloadRoom } from '../rooms';
 import PhaserNavMeshPlugin, { PhaserNavMesh } from 'phaser-navmesh/src';
+import getPlayerStartPosition from '../helpers/getPlayerStartPosition';
 
 export let navMesh: PhaserNavMesh;
 
@@ -36,7 +37,7 @@ export class Room extends Scene {
     const { level, spawners } = createRoom(this, roomType);
     this.level = level;
     this.spawners = spawners;
-
+    
     // navmesh
     const navMeshLayer = this.level.getObjectLayer('navmesh');
     if (navMeshLayer !== null) {
@@ -59,6 +60,11 @@ export class Room extends Scene {
     // create player
     const { playerEnterFrom } = this.sceneInitParams;
     this.player = new Player(this, playerEnterFrom);
+
+    EventBus.on(EventNames.RESPAWN_PLAYER, () => {
+      const { px, py } = getPlayerStartPosition(this, playerEnterFrom);
+      this.player.setPosition(px, py);
+    });
 
     // camera constraint
     this.cameras.main
