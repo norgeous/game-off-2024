@@ -17,8 +17,8 @@ export class Win extends Scene {
     this.add.image(width * 0.5, height * 0.5, 'win');
 
     const goMainMenu = () => this.scene.start('MainMenu');
-    this.input.on('pointerdown', goMainMenu);
-    this.input.keyboard?.addKey('space').on('down', goMainMenu);
+    this.input.on('pointerup', goMainMenu);
+    this.input.keyboard?.addKey('space').on('up', goMainMenu);
 
     EventBus.emit(EventNames.READY, this);
   }
