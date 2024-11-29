@@ -4,6 +4,7 @@ import { CC, CM } from '../../enums/CollisionCategories';
 import createSensors from '../../helpers/createSensors';
 import isDev from '../../helpers/isDev';
 import { spawnItemFromDropPool } from '../../helpers/itemFactory';
+import { classFactoryType } from '../items';
 
 type AnimationsConfigType = {
   animationKey: string;
@@ -14,7 +15,7 @@ type AnimationsConfigType = {
 };
 
 export type ItemDropPoolType = {
-  classFactory: Function | null;
+  classFactory: classFactoryType | null;
   chance: number;
 };
 
@@ -144,6 +145,7 @@ class Entity extends Phaser.GameObjects.Container {
     };
     this.itemDropPool = itemDropPool;
     this.keepUpright = true;
+
     // debug text
     this.debugText = this.scene.add
       .text(0, 0 - 120, '', {
@@ -164,6 +166,7 @@ class Entity extends Phaser.GameObjects.Container {
         .setOrigin(0.5);
     }
     this.setDepth(100);
+
     // sprite
     this.sprite = this.scene.add
       .sprite(this.craftpixOffset.x, this.craftpixOffset.y, this.name)
@@ -201,10 +204,7 @@ class Entity extends Phaser.GameObjects.Container {
       },
     });
 
-    const { sensorBodies, sensorData } = createSensors(
-      this.scene,
-      sensorConfig,
-    );
+    const { sensorData } = createSensors(this.scene, sensorConfig);
     this.sensorData = sensorData;
 
     // compound body
