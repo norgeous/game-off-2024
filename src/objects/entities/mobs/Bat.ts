@@ -35,17 +35,17 @@ const entityConfig: EntityConfigType = {
   itemDropPool: [
     {
       classFactory: null,
-      chance: 70
+      chance: 70,
     },
     {
       classFactory: Gold,
-      chance: 15
+      chance: 15,
     },
     {
       classFactory: Heart,
-      chance: 15
+      chance: 15,
     },
-  ]
+  ],
 };
 
 class Bat extends Enemy {
@@ -54,7 +54,7 @@ class Bat extends Enemy {
     // Loading all items from the item pool as Preload is called once per class and I want each instance of bat to spawn a random item.
     entityConfig.itemDropPool?.forEach((item) => {
       item.classFactory?.preload(scene);
-    }) 
+    });
   }
   constructor(scene: Room, x: number, y: number) {
     super(scene, x, y, entityConfig);

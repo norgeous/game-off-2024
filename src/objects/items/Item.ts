@@ -1,5 +1,5 @@
-import { CC, CM } from "../../enums/CollisionCategories";
-import Player from "../entities/Player";
+import { CC, CM } from '../../enums/CollisionCategories';
+import Player from '../entities/Player';
 
 export type ItemConfigType = {
   key: string;
@@ -15,33 +15,33 @@ const defaultConfig: ItemConfigType = {
   scale: 1,
   collisionCategory: CC.playerBullet,
   collisionMask: CM.playerBullet,
-  onPickUpAnimation (item) {
+  onPickUpAnimation(item) {
     item.scene.tweens.add({
       targets: item.gameObject,
       x: item.x,
       y: item.y,
-      scaleX: 0.5, 
-      scaleY: 0.5,  
-      alpha: 0,    
-      duration: 500, 
+      scaleX: 0.5,
+      scaleY: 0.5,
+      alpha: 0,
+      duration: 500,
       ease: 'Power2',
       onComplete: () => {
         item.gameObject.destroy();
-      }
+      },
     });
-  }
+  },
 };
 
 class Item extends Phaser.GameObjects.Container {
   gameObject: Phaser.Physics.Matter.Sprite;
   destroyOnPickUp: boolean;
   sprite: Phaser.GameObjects.Sprite;
-  
+
   constructor(
     scene: Phaser.Scene,
     x: number,
     y: number,
-    config: ItemConfigType
+    config: ItemConfigType,
   ) {
     super(scene, x, y);
     const {
@@ -52,18 +52,18 @@ class Item extends Phaser.GameObjects.Container {
       onPickUpAnimation,
       onPickUpCallBack,
     } = { ...defaultConfig, ...config };
-    
+
     // Add sprite
     this.gameObject = scene.matter.add
-       .sprite(x, y, key, undefined, {
-         collisionFilter: {
-           category: collisionCategory,
-           mask: collisionMask,
-         },
-       })
-       .setScale(scale)
-       .setStatic(true);
-      
+      .sprite(x, y, key, undefined, {
+        collisionFilter: {
+          category: collisionCategory,
+          mask: collisionMask,
+        },
+      })
+      .setScale(scale)
+      .setStatic(true);
+
     this.gameObject.setOnCollide(
       (data: Phaser.Types.Physics.Matter.MatterCollisionData) => {
         if (data.bodyB?.collisionFilter.category === CC.player) {
@@ -80,9 +80,7 @@ class Item extends Phaser.GameObjects.Container {
     );
   }
 
-  update(_time: number, _delta: number) {
-    
-  }
+  update(_time: number, _delta: number) {}
 }
 
 export default Item;

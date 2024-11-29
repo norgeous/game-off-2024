@@ -39,7 +39,7 @@ export default {
         maxSize: 10,
         runChildUpdate: true,
         autoSpawn: true,
-      }
+      },
     ],
   },
 };
