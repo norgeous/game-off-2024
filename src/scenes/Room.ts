@@ -37,7 +37,7 @@ export class Room extends Scene {
     const { level, spawners } = createRoom(this, roomType, isRoomCleared);
     this.level = level;
     this.spawners = spawners;
-    
+
     // navmesh
     const navMeshLayer = this.level.getObjectLayer('navmesh');
     if (navMeshLayer !== null) {
