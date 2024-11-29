@@ -26,6 +26,7 @@ https://norgeous.github.io/game-off-2024/
   - https://f5tts.org/ via ComfyUI plugin https://github.com/niknah/ComfyUI-F5-TTS
 - door close https://pixabay.com/sound-effects/door-close-79921/
 - door open https://pixabay.com/sound-effects/whoosh-motion-243505/
+- success sound FX https://pixabay.com/sound-effects/success-83493/
 
 ### Music
 

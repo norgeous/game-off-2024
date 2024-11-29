@@ -4,7 +4,7 @@ export type AudioConfigType = {
   key: string;
   filePath: string;
   loop: boolean;
-  roomType: string;
+  roomType?: string;
   volume?: number;
   soundConfig?: Phaser.Types.Sound.SoundConfig;
   isMusic?: boolean;

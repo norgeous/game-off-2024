@@ -1,4 +1,5 @@
 import { getRandomEnemy } from '../helpers/getRandomEnemy';
+import Scroll from '../objects/items/Scroll';
 
 export default {
   music: [
@@ -36,6 +37,13 @@ export default {
       {
         tiledObjectName: 'enemy',
         classFactory: getRandomEnemy(),
+        maxSize: 10,
+        runChildUpdate: true,
+        autoSpawn: true,
+      },
+      {
+        tiledObjectName: 'scroll',
+        classFactory: Scroll,
         maxSize: 10,
         runChildUpdate: true,
         autoSpawn: true,
