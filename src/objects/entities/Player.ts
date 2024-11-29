@@ -11,6 +11,13 @@ import { entityFalling } from '../../helpers/tweens/Entityfalling';
 
 const KEY = 'player';
 
+export const defaultPlayerStats = {
+  hp: 10,
+  maxHp: 10,
+  speed: 0.1,
+  attackRate: 1,
+};
+
 const entityConfig: EntityConfigType = {
   name: KEY,
   collisionCategory: CC.player,
@@ -30,12 +37,7 @@ const entityConfig: EntityConfigType = {
     label: KEY,
   },
   animations: [],
-  stats: {
-    hp: 10,
-    maxHp: 10,
-    speed: 0.1,
-    attackRate: 1,
-  },
+  stats: defaultPlayerStats,
   sensorConfig: [
     {
       label: 'inner',
