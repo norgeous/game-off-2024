@@ -5,7 +5,7 @@ import createDoors from '../helpers/doors';
 import Player from '../objects/entities/Player';
 import { getCurrentRoomMusic } from '../helpers/getMusicConfig';
 import audio from '../objects/Audio';
-import { createRoom, preloadRoom } from '../rooms';
+import { createRoom } from '../rooms';
 import PhaserNavMeshPlugin, { PhaserNavMesh } from 'phaser-navmesh/src';
 
 export let navMesh: PhaserNavMesh;
@@ -28,12 +28,12 @@ export class Room extends Scene {
   preload() {}
 
   create() {
-    const { roomType } = this.sceneInitParams;
+    const { roomType, isRoomCleared } = this.sceneInitParams;
 
-    console.log('Room scene got', this.sceneInitParams, this);
+    console.log('Room scene got', this.sceneInitParams);
 
     // load tiled level
-    const { level, spawners } = createRoom(this, roomType);
+    const { level, spawners } = createRoom(this, roomType, isRoomCleared);
     this.level = level;
     this.spawners = spawners;
 

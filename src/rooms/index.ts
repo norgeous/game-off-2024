@@ -54,7 +54,11 @@ export const preloadRoom = (scene: Phaser.Scene, roomType: RoomType) => {
   spawnerConfig.forEach(({ classFactory }) => classFactory.preload(scene));
 };
 
-export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
+export const createRoom = (
+  scene: Phaser.Scene,
+  roomType: RoomType,
+  isRoomCleared: boolean,
+) => {
   const key = `room-${roomType}`;
   const {
     tiled: { images, layerConfig, spawnerConfig },
@@ -97,7 +101,7 @@ export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
   const geometry = level?.getObjectLayer('geometry')?.objects || [];
   geometry.reduce((acc, tiledObject) => {
     const { x, y, polygon, name } = tiledObject;
-    console.log({ x, y, polygon });
+    // console.log({ x, y, polygon });
     if (!x || !y || !polygon) return acc;
     const newGeometry = convertTiledPolygonToGameObject(scene, {
       x,
@@ -112,12 +116,15 @@ export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
   }, [] as Phaser.GameObjects.GameObject[]);
 
   // setup spawners
+
   const markers = level.getObjectLayer('markers')?.objects || [];
   const spawners = spawnerConfig.reduce(
     (
       acc,
       { tiledObjectName, classFactory, maxSize, runChildUpdate, autoSpawn },
     ) => {
+      if (isRoomCleared) return acc; // bypass when already cleared
+
       const group = scene.add.group({
         maxSize,
         classType: classFactory,
