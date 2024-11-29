@@ -17,7 +17,7 @@ export default {
         file: './assets/levels/floor1.png',
       },
       {
-        key: 'walls',
+        key: 'walls7',
         file: './assets/levels/walls7.png',
       },
       {
