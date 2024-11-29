@@ -27,7 +27,7 @@ const defaultConfig: ItemConfigType = {
       duration: 500,
       ease: 'Power2',
       onComplete: () => {
-        item.tween.stop();
+        if (item.tween !== undefined) item.tween.stop();
         item.gameObject.destroy();
       },
     });
