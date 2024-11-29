@@ -1,3 +1,3 @@
-const spawnEnemies = false;
+const spawnEnemies = true;
 
 export default spawnEnemies;
