@@ -82,11 +82,6 @@ const entityConfig: EntityConfigType = {
     ) {
       const amount = 1;
 
-      // update react player stats state
-      EventBus.emit(EventNames.UPDATE_PLAYER_STATS, {
-        hp: player.stats.hp - amount,
-      });
-
       // update player.stats
       player.takeDamage(amount);
     }
@@ -116,6 +111,7 @@ const entityConfig: EntityConfigType = {
 };
 
 class Player extends Entity {
+  public invulnerableUntil = 0;
   public keys: keysType | undefined;
   public weapons: (x: number, y: number, time: number) => void;
 
@@ -133,6 +129,23 @@ class Player extends Entity {
     this.weapons = weapons(scene);
     this.gameObject.setFriction(0);
     this.gameObject.setFrictionAir(0.08);
+
+    console.log({ scene });
+  }
+
+  takeDamage(amount: number) {
+    // if invulnerable, then do nothing
+    if (this.invulnerableUntil > this.scene.time.now) return;
+
+    // set invulnerability until future time
+    this.invulnerableUntil = this.scene.time.now + 1000;
+
+    // update react player stats state
+    EventBus.emit(EventNames.UPDATE_PLAYER_STATS, {
+      hp: this.stats.hp - amount,
+    });
+
+    super.takeDamage(amount);
   }
 
   death() {

@@ -157,7 +157,7 @@ class Entity extends Phaser.GameObjects.Container {
       .text(0, 0, '', {
         font: '32px Arial',
         align: 'center',
-        color: 'red',
+        color: 'aqua',
       })
       .setOrigin(0.5);
     this.add(this.debugText);
@@ -272,9 +272,9 @@ class Entity extends Phaser.GameObjects.Container {
     });
   }
 
-  takeDamage(amout: number) {
+  takeDamage(amount: number) {
     if (this.stats.hp <= 0) return;
-    this.stats.hp -= amout;
+    this.stats.hp -= amount;
     this.flashSprite();
     if (this.stats.hp < 1) {
       this.stats.hp = 0;
@@ -294,7 +294,7 @@ class Entity extends Phaser.GameObjects.Container {
 
   update(time?: number, delta?: number) {
     super.update(time, delta);
-    this.debugText.text = String(this.stats.hp);
+    // this.debugText.text = String(this.stats.hp);
     this.flipXSprite(this.facing === -1);
     this.keepUpRight();
     this.remove(this);
