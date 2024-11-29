@@ -2,15 +2,9 @@ import { useState, useEffect, useCallback } from 'react';
 import PlayerContext from './PlayerContext';
 import { EventBus, EventNames } from '../helpers/EventBus';
 import { useLocalStorage } from '../helpers/localstorage';
+import { defaultPlayerStats } from '../objects/entities/Player';
 
 type ItemKeysType = 'gold' | 'heart';
-
-const defaultPlayerStats = {
-  hp: 10,
-  maxHp: 10,
-  speed: 0.1,
-  attackRate: 1,
-};
 
 const usePlayer = () => {
   const [playerStats, setPlayerStats] = useState(defaultPlayerStats);
