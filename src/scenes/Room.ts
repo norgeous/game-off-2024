@@ -1,7 +1,7 @@
 import { EventBus, EventNames } from '../helpers/EventBus';
 import { Scene } from 'phaser';
 import { SceneInitParamsType } from '../helpers/dungeonConfigParser';
-import createDoors, { preloadDoor } from '../helpers/doors';
+import createDoors from '../helpers/doors';
 import Player from '../objects/entities/Player';
 import { getCurrentRoomMusic } from '../helpers/getMusicConfig';
 import audio from '../objects/Audio';
@@ -10,7 +10,7 @@ import PhaserNavMeshPlugin, { PhaserNavMesh } from 'phaser-navmesh/src';
 
 export let navMesh: PhaserNavMesh;
 
-export class TiledMapTest2 extends Scene {
+export class Room extends Scene {
   public sceneInitParams: SceneInitParamsType;
   public level: Phaser.Tilemaps.Tilemap | undefined;
   public doors: ReturnType<typeof createDoors>;
@@ -18,26 +18,19 @@ export class TiledMapTest2 extends Scene {
   public player: Player;
 
   constructor() {
-    super('TiledMapTest2');
+    super('Room');
   }
 
   init(sceneInitParams: SceneInitParamsType) {
-    console.log(sceneInitParams);
     this.sceneInitParams = sceneInitParams;
   }
 
-  preload() {
-    const { roomType } = this.sceneInitParams;
-
-    preloadDoor(this);
-    preloadRoom(this, roomType);
-    Player.preload(this);
-  }
+  preload() {}
 
   create() {
     const { roomType } = this.sceneInitParams;
 
-    console.log('TiledMapTest2 scene got', this.sceneInitParams, this);
+    console.log('Room scene got', this.sceneInitParams, this);
 
     // load tiled level
     const { level, spawners } = createRoom(this, roomType);

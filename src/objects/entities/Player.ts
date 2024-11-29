@@ -1,7 +1,7 @@
 import * as Phaser from 'phaser';
 import Entity, { EntityConfigType } from './Entity';
 import { CC, CM } from '../../enums/CollisionCategories';
-import { TiledMapTest2 } from '../../scenes/TiledMapTest2';
+import { Room } from '../../scenes/Room';
 import getPlayerStartPosition from '../../helpers/getPlayerStartPosition';
 import { Direction } from '../../helpers/dungeonConfigParser';
 import { createControls, keysToVector, keysType } from '../../helpers/controls';
@@ -45,7 +45,9 @@ const entityConfig: EntityConfigType = {
     },
   ],
   collideCallback: (scene, otherBodyName) => {
-    console.log('Player collided with', otherBodyName, performance.now());
+    const enemyCount = scene.spawners?.enemy?.getLength();
+
+    if (enemyCount) return;
 
     if (otherBodyName === 'door-north') {
       EventBus.emit(EventNames.USE_DOOR, scene, 'north');
@@ -73,7 +75,7 @@ class Player extends Entity {
     scene.load.image('player', 'assets/jones.png');
   }
 
-  constructor(scene: TiledMapTest2, playerEnterFrom: Direction) {
+  constructor(scene: Room, playerEnterFrom: Direction) {
     const { px, py } = getPlayerStartPosition(scene, playerEnterFrom);
     super(scene, px, py, entityConfig);
 

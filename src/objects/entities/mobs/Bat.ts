@@ -1,7 +1,7 @@
 import * as Phaser from 'phaser';
 import { EntityConfigType, ItemDropPoolType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
-import { TiledMapTest2 } from '../../../scenes/TiledMapTest2';
+import { Room } from '../../../scenes/Room';
 import { OscillatingMovement } from '../../../helpers/movement/OscillatingMovement';
 import Enemy from '../Enemy';
 import Heart from '../../items/Heart';
@@ -56,8 +56,7 @@ class Bat extends Enemy {
       item.classFactory?.preload(scene);
     }) 
   }
-  
-  constructor(scene: TiledMapTest2, x: number, y: number) {
+  constructor(scene: Room, x: number, y: number) {
     super(scene, x, y, entityConfig);
     this.movementStrategy = new OscillatingMovement(0.2, 1, scene);
   }

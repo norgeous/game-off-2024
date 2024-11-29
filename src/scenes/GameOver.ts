@@ -6,7 +6,7 @@ export class GameOver extends Phaser.Scene {
   }
 
   static preload(scene: Phaser.Scene) {
-    scene.load.image('gameover', 'assets/gameover.jpg');
+    scene.load.image('gameover', 'assets/title-cards/gameover.jpg');
   }
 
   create() {

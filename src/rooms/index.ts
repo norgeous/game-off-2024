@@ -6,10 +6,13 @@ import roomConfig1 from './room-config-1';
 import roomConfig2 from './room-config-2';
 import roomConfig3 from './room-config-3';
 import roomConfig4 from './room-config-4';
+import roomConfig5 from './room-config-5';
+import roomConfig6 from './room-config-6';
 import roomConfigb from './room-config-b';
 import roomConfigc from './room-config-c';
 import roomConfigw from './room-config-w';
 import spawnEnemies from '../helpers/spawnEnemies';
+
 
 const roomConfigs = {
   '.': roomConfigDOT,
@@ -19,10 +22,14 @@ const roomConfigs = {
   '2': roomConfig2,
   '3': roomConfig3,
   '4': roomConfig4,
+  '5': roomConfig5,
+  '6': roomConfig6,
   b: roomConfigb,
   c: roomConfigc,
   w: roomConfigw,
 };
+
+export const allRoomTypes = Object.keys(roomConfigs) as RoomType[];
 
 export type RoomType = keyof typeof roomConfigs;
 

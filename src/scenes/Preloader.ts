@@ -4,6 +4,9 @@ import audio, { Audio } from '../objects/Audio';
 import WhipBullet from '../objects/weapons/bullets/WhipBullet';
 import { GameOver } from './GameOver';
 import { Win } from './Win';
+import { preloadDoor } from '../helpers/doors';
+import { allRoomTypes, preloadRoom } from '../rooms';
+import Player from '../objects/entities/Player';
 
 export class Preloader extends Scene {
   constructor() {
@@ -42,6 +45,12 @@ export class Preloader extends Scene {
   preload() {
     //  Load the assets for the game - Replace with your own assets
     this.load.image('star', 'assets/star.png');
+
+    preloadDoor(this);
+    allRoomTypes.forEach((roomType) => preloadRoom(this, roomType));
+
+    Player.preload(this);
+
     GameOver.preload(this);
     Win.preload(this);
     Audio.preload(this, musicConfig);

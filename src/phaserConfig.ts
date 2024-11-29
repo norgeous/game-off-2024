@@ -2,10 +2,9 @@ import { AUTO, Game } from 'phaser';
 import { Boot } from './scenes/Boot';
 import { Preloader } from './scenes/Preloader';
 import { MainMenu } from './scenes/MainMenu';
-import { Game as MainGame } from './scenes/Game';
+import { Room } from './scenes/Room';
 import { GameOver } from './scenes/GameOver';
 import { Win } from './scenes/Win';
-import { TiledMapTest2 } from './scenes/TiledMapTest2';
 import isDev from './helpers/isDev';
 
 const VIEWPORT_SIZE = 80;
@@ -32,7 +31,7 @@ const config: Phaser.Types.Core.GameConfig = {
     },
   },
   input: { activePointers: 2 },
-  scene: [Boot, Preloader, MainMenu, MainGame, GameOver, Win, TiledMapTest2],
+  scene: [Boot, Preloader, MainMenu, Room, GameOver, Win],
 };
 
 const startGame = (parent: string) => new Game({ ...config, parent });

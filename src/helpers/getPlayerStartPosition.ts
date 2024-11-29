@@ -1,10 +1,7 @@
-import { TiledMapTest2 } from '../scenes/TiledMapTest2';
+import { Room } from '../scenes/Room';
 import { Direction } from './dungeonConfigParser';
 
-const getPlayerStartPosition = (
-  scene: TiledMapTest2,
-  playerEnterFrom: Direction,
-) => {
+const getPlayerStartPosition = (scene: Room, playerEnterFrom: Direction) => {
   if (!scene.level) return { px: 0, py: 0 };
 
   const { widthInPixels: w, heightInPixels: h } = scene.level;

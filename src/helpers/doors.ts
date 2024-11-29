@@ -1,5 +1,5 @@
 import { CC, CM } from '../enums/CollisionCategories';
-import { TiledMapTest2 } from '../scenes/TiledMapTest2';
+import { Room } from '../scenes/Room';
 
 export const preloadDoor = (scene: Phaser.Scene) => {
   scene.load.spritesheet('doors', 'assets/doors.png', {
@@ -28,7 +28,7 @@ const createDoor = (
     .setAngle(a)
     .setName(name);
 
-const createDoors = (scene: TiledMapTest2) => {
+const createDoors = (scene: Room) => {
   if (!scene.level) return;
 
   const { widthInPixels: w, heightInPixels: h } = scene.level;
