@@ -12,7 +12,7 @@ import { entityFalling } from '../../helpers/tweens/Entityfalling';
 const KEY = 'player';
 
 export const defaultPlayerStats = {
-  hp: 10,
+  hp: 5,
   maxHp: 10,
   speed: 0.1,
   attackRate: 1,

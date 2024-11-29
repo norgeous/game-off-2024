@@ -9,15 +9,9 @@ type ItemKeysType = 'gold' | 'heart';
 const usePlayer = () => {
   const [playerStats, setPlayerStats] = useState(defaultPlayerStats);
   const updatePlayerStats = useCallback(
-    (statsFragment: typeof defaultPlayerStats) =>
+    (statsFragment: Partial<typeof defaultPlayerStats>) =>
       setPlayerStats({ ...playerStats, ...statsFragment }),
     [playerStats],
-  );
-
-  const [health, setHealth] = useState(3);
-  const adjustHealth = useCallback(
-    (amount: number) => setHealth(health + amount),
-    [health],
   );
 
   const [coins, setCoins] = useLocalStorage('coins', 0);
@@ -43,21 +37,18 @@ const usePlayer = () => {
       (_scene: Phaser.Scene, itemKey: ItemKeysType) => {
         ({
           gold: () => adjustCoins(+1),
-          heart: () => adjustHealth(+1),
+          heart: () => updatePlayerStats({ hp: playerStats.hp + 1 }),
         })[itemKey]();
       },
     );
     return () => {
       EventBus.removeListener(EventNames.COLLECT_ITEM);
     };
-  }, [adjustCoins, adjustHealth]);
+  }, [adjustCoins, playerStats, updatePlayerStats]);
 
   return {
     playerStats,
     updatePlayerStats,
-
-    health,
-    adjustHealth,
 
     coins,
     adjustCoins,
