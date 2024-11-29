@@ -46,11 +46,7 @@ export class Room extends Scene {
         this.plugins,
         'navMeshPlugin',
       );
-      navMesh = plugin.buildMeshFromTiled(
-        'navmesh',
-        this.level.getObjectLayer('navmesh'),
-        100,
-      );
+      navMesh = plugin.buildMeshFromTiled('navmesh', navMeshLayer, 100);
     }
 
     // setup audio
