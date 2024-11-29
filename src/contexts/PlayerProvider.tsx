@@ -38,7 +38,7 @@ const usePlayer = () => {
         ({
           gold: () => adjustCoins(+1),
           heart: () => updatePlayerStats({ hp: playerStats.hp + 1 }),
-        })[itemKey]();
+        })[itemKey]?.();
       },
     );
     return () => {
