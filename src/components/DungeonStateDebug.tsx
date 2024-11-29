@@ -80,7 +80,7 @@ const DungeonStateDebug = ({ phaserScene, onClose }: IDungeonStateDebug) => {
       </ArrowsContainer>
       <div>roomHistory length: {roomHistory.length}</div>
       <div>visited room count: {visitedRoomCount}</div>
-      <pre>roomHistory: {JSON.stringify(roomHistory, null, 2)}</pre>
+      {/* <pre>roomHistory: {JSON.stringify(roomHistory, null, 2)}</pre> */}
     </Modal>
   );
 };
