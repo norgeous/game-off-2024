@@ -14,9 +14,9 @@ type AnimationsConfigType = {
 };
 
 export type ItemDropPoolType = {
-  classFactory: Function | null
-  chance: number
-}
+  classFactory: Function | null;
+  chance: number;
+};
 
 export type EntityConfigType = {
   name: string;
@@ -48,7 +48,7 @@ export type EntityConfigType = {
     collisionCategory: CC;
     collisionSubMask: CM;
   }[];
-  itemDropPool?: ItemDropPoolType[]
+  itemDropPool?: ItemDropPoolType[];
 };
 
 export type EntityStatsType = {
@@ -90,7 +90,7 @@ const defaultConfig: EntityConfigType = {
     speed: 0,
     attackRate: 0,
   },
-  itemDropPool: []
+  itemDropPool: [],
 };
 
 class Entity extends Phaser.GameObjects.Container {
@@ -200,7 +200,7 @@ class Entity extends Phaser.GameObjects.Container {
         group: 0,
       },
     });
-    
+
     const { sensorBodies, sensorData } = createSensors(
       this.scene,
       sensorConfig,
@@ -229,13 +229,13 @@ class Entity extends Phaser.GameObjects.Container {
     this.sprite.setScale(this.scale);
     this.gameObject.setStatic(isStatic);
   }
-  
+
   death() {
     if (isDev) {
       this.healthText.destroy();
     }
     if (this.itemDropPool) {
-      spawnItemFromDropPool(this.itemDropPool, this.scene, this.x, this.y)
+      spawnItemFromDropPool(this.itemDropPool, this.scene, this.x, this.y);
     }
     this.destroy();
   }
@@ -243,7 +243,7 @@ class Entity extends Phaser.GameObjects.Container {
   updateStats(newStats: Partial<EntityStatsType>) {
     this.stats = { ...this.stats, ...newStats };
   }
-  
+
   getKey(key: string) {
     return `${this.name}_${key}`;
   }
