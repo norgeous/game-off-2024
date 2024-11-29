@@ -7,6 +7,7 @@ import { Direction } from '../../helpers/dungeonConfigParser';
 import { createControls, keysToVector, keysType } from '../../helpers/controls';
 import { EventBus, EventNames } from '../../helpers/EventBus';
 import weapons from '../../helpers/weapons';
+import { entityFalling } from '../../helpers/tweens/Entityfalling';
 
 const KEY = 'player';
 
@@ -44,7 +45,20 @@ const entityConfig: EntityConfigType = {
       collisionSubMask: CM.enemyDetector,
     },
   ],
-  collideCallback: (scene, otherBodyName) => {
+  collideCallback: (scene, otherBodyName, data) => {
+
+    const bodies = [
+      data.bodyA,
+      data.bodyB 
+    ];
+    const player = bodies.filter((bodies) => bodies?.collisionFilter.category === CC.player)[0].gameObject as Player;
+    
+    if (otherBodyName === 'hole') {
+      entityFalling(scene, player, () => {
+        EventBus.emit(EventNames.RESPAWN_PLAYER);
+      })
+    }
+
     const enemyCount = scene.spawners?.enemy?.getLength();
 
     if (enemyCount) return;
@@ -70,7 +84,7 @@ const entityConfig: EntityConfigType = {
 class Player extends Entity {
   public keys: keysType | undefined;
   public weapons: (x: number, y: number, time: number) => void;
-
+  
   static preload(scene: Phaser.Scene) {
     scene.load.image('player', 'assets/jones.png');
   }
@@ -84,7 +98,7 @@ class Player extends Entity {
     this.gameObject.setFriction(0);
     this.gameObject.setFrictionAir(0.08);
   }
-
+  
   death(): void {
     super.death();
     this.scene.scene.start('GameOver');
@@ -96,7 +110,7 @@ class Player extends Entity {
       const forceVector = keysToVector(this.keys, 0.0004 * delta);
       this.gameObject.applyForce(forceVector);
     }
-
+    
     if (this.keys?.SPACE.isDown) {
       this.weapons(this.x, this.y, time);
     }

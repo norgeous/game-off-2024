@@ -8,6 +8,8 @@ import roomConfig3 from './room-config-3';
 import roomConfig4 from './room-config-4';
 import roomConfig5 from './room-config-5';
 import roomConfig6 from './room-config-6';
+import roomConfig7 from './room-config-7';
+import roomConfig8 from './room-config-8';
 import roomConfigb from './room-config-b';
 import roomConfigc from './room-config-c';
 import roomConfigw from './room-config-w';
@@ -23,6 +25,8 @@ const roomConfigs = {
   '4': roomConfig4,
   '5': roomConfig5,
   '6': roomConfig6,
+  '7': roomConfig7,
+  '8': roomConfig8,
   b: roomConfigb,
   c: roomConfigc,
   w: roomConfigw,
@@ -101,7 +105,6 @@ export const createRoom = (
   const geometry = level?.getObjectLayer('geometry')?.objects || [];
   geometry.reduce((acc, tiledObject) => {
     const { x, y, polygon, name } = tiledObject;
-    // console.log({ x, y, polygon });
     if (!x || !y || !polygon) return acc;
     const newGeometry = convertTiledPolygonToGameObject(scene, {
       x,
