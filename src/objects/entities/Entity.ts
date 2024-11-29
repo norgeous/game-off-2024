@@ -230,16 +230,6 @@ class Entity extends Phaser.GameObjects.Container {
     this.gameObject.setStatic(isStatic);
   }
 
-  death() {
-    if (isDev) {
-      this.healthText.destroy();
-    }
-    if (this.itemDropPool) {
-      spawnItemFromDropPool(this.itemDropPool, this.scene, this.x, this.y);
-    }
-    this.destroy();
-  }
-
   updateStats(newStats: Partial<EntityStatsType>) {
     this.stats = { ...this.stats, ...newStats };
   }
@@ -289,6 +279,16 @@ class Entity extends Phaser.GameObjects.Container {
       this.stats.hp = 0;
       this.death();
     }
+  }
+
+  death() {
+    if (isDev) {
+      this.healthText.destroy();
+    }
+    if (this.itemDropPool) {
+      spawnItemFromDropPool(this.itemDropPool, this.scene, this.x, this.y);
+    }
+    this.destroy();
   }
 
   update(time?: number, delta?: number) {

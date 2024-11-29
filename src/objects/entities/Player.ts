@@ -79,9 +79,10 @@ const entityConfig: EntityConfigType = {
       ].includes(otherBodyName)
     ) {
       EventBus.emit(EventNames.ADJUST_PLAYER_HEALTH, -1);
+      player.takeDamage(1);
     }
 
-    console.log('player collide with', otherBodyName, data);
+    // console.log('player collide with', otherBodyName, data);
 
     const enemyCount = scene.spawners?.enemy?.getLength();
 
@@ -123,8 +124,7 @@ class Player extends Entity {
     this.gameObject.setFrictionAir(0.08);
   }
 
-  death(): void {
-    super.death();
+  death() {
     this.scene.scene.start('GameOver');
   }
 
