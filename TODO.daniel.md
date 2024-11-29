@@ -41,6 +41,6 @@
 - [x] add isRoomCleared flag to sceneInitData
 - [x] fix the fps to 60
 - [ ] shop
-- [ ] new settings modal
 - [ ] jones TTS lines?
 - [ ] secret rooms
+- [ ] new settings modal
