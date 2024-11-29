@@ -71,7 +71,7 @@ class Projectile extends Phaser.GameObjects.Container {
 
     this.timeToLive = timeToLive;
     this.stats = stats;
-    
+
     const enemies = scene.spawners.enemy?.children.entries;
     if (!enemies?.[0]) return;
 
@@ -87,7 +87,7 @@ class Projectile extends Phaser.GameObjects.Container {
         frictionAir: config.physicsConfig.frictionAir ?? 0,
       })
       .setScale(config.scale);
-    
+
     this.startTime = window.performance.now();
 
     const forceVector = new Phaser.Math.Vector2({
@@ -107,21 +107,20 @@ class Projectile extends Phaser.GameObjects.Container {
     );
   }
 
-  getClosestEnemy() 
-  {
+  getClosestEnemy() {
     const enemies = this.scene.spawners.enemy?.children.entries;
     const closestEnemy = enemies.reduce(
-      (closest: { distance: number; }, enemy: Entity) => {
+      (closest: { distance: number }, enemy: Entity) => {
         const distance = Phaser.Math.Distance.Between(
-          this.x, this.y,
-          enemy.x, enemy.y
+          this.x,
+          this.y,
+          enemy.x,
+          enemy.y,
         );
-        
-        return distance < closest.distance
-          ? { enemy, distance }
-          : closest;
+
+        return distance < closest.distance ? { enemy, distance } : closest;
       },
-      { enemy: Entity, distance: Infinity }
+      { enemy: Entity, distance: Infinity },
     );
 
     return closestEnemy.enemy;

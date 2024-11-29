@@ -15,7 +15,6 @@ import roomConfigc from './room-config-c';
 import roomConfigw from './room-config-w';
 import spawnEnemies from '../helpers/spawnEnemies';
 
-
 const roomConfigs = {
   '.': roomConfigDOT,
   '%': roomConfigPERCENT,
@@ -59,7 +58,11 @@ export const preloadRoom = (scene: Phaser.Scene, roomType: RoomType) => {
   spawnerConfig.forEach(({ classFactory }) => classFactory.preload(scene));
 };
 
-export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
+export const createRoom = (
+  scene: Phaser.Scene,
+  roomType: RoomType,
+  isRoomCleared: boolean,
+) => {
   const key = `room-${roomType}`;
   const {
     tiled: { images, layerConfig, spawnerConfig },
@@ -116,29 +119,31 @@ export const createRoom = (scene: Phaser.Scene, roomType: RoomType) => {
   }, [] as Phaser.GameObjects.GameObject[]);
 
   // setup spawners
+
   const markers = level.getObjectLayer('markers')?.objects || [];
   const spawners = spawnerConfig.reduce(
     (
       acc,
       { tiledObjectName, classFactory, maxSize, runChildUpdate, autoSpawn },
     ) => {
+      if (isRoomCleared) return acc; // bypass when already cleared
+
       const group = scene.add.group({
         maxSize,
         classType: classFactory,
         runChildUpdate,
       });
 
-     
       if (autoSpawn) {
         const locations = markers.filter(
           ({ name }) => name === tiledObjectName,
         );
         for (let i = 0; i < locations.length; i += 1) {
           const { x, y } = locations[i];
-            // DEBUG - allow no enemy spawns
-            if (tiledObjectName === 'enemy' && !spawnEnemies) {
-              continue;
-            }
+          // DEBUG - allow no enemy spawns
+          if (tiledObjectName === 'enemy' && !spawnEnemies) {
+            continue;
+          }
           group.get(x, y);
         }
       }

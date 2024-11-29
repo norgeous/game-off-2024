@@ -1,5 +1,5 @@
-import { CC, CM } from "../../enums/CollisionCategories";
-import Item, { ItemConfigType } from "./Item";
+import { CC, CM } from '../../enums/CollisionCategories';
+import Item, { ItemConfigType } from './Item';
 
 const KEY = 'heart';
 
@@ -9,21 +9,17 @@ const config: ItemConfigType = {
   collisionCategory: CC.item,
   collisionMask: CM.item,
   onPickUpCallBack: (_item, player) => {
-    player.updateStats({hp:1});
+    player.updateStats({ hp: 1 });
   },
 };
 
 class Heart extends Item {
-  constructor(
-    scene: Phaser.Scene,
-    x: number,
-    y: number,
-  ) {
+  constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, config);
   }
-  
+
   static preload(scene: Phaser.Scene) {
-    scene.load.image(KEY, 'assets/items/'+KEY+'.png');
+    scene.load.image(KEY, 'assets/items/' + KEY + '.png');
   }
 }
 
