@@ -102,7 +102,7 @@ class Entity extends Phaser.GameObjects.Container {
   public sprite: Phaser.GameObjects.Sprite;
   public gameObject: PhaserMatterImage;
   public hitbox;
-  protected stats: EntityStatsType;
+  public stats: EntityStatsType;
   protected keepUpright: boolean;
   protected craftpixOffset: {
     x: number;
@@ -146,12 +146,18 @@ class Entity extends Phaser.GameObjects.Container {
     this.itemDropPool = itemDropPool;
     this.keepUpright = true;
 
+    // sprite
+    this.sprite = this.scene.add
+      .sprite(this.craftpixOffset.x, this.craftpixOffset.y, this.name)
+      .setScale(scale);
+    this.add(this.sprite);
+
     // debug text
     this.debugText = this.scene.add
-      .text(0, 0 - 120, '', {
+      .text(0, 0, '', {
         font: '32px Arial',
         align: 'center',
-        color: 'white',
+        color: 'red',
       })
       .setOrigin(0.5);
     this.add(this.debugText);
@@ -165,13 +171,8 @@ class Entity extends Phaser.GameObjects.Container {
         })
         .setOrigin(0.5);
     }
-    this.setDepth(100);
 
-    // sprite
-    this.sprite = this.scene.add
-      .sprite(this.craftpixOffset.x, this.craftpixOffset.y, this.name)
-      .setScale(scale);
-    this.add(this.sprite);
+    this.setDepth(100); // ??
 
     // animations
     animations.forEach(({ animationKey, start, end, fps, repeat = -1 }) => {
@@ -293,7 +294,7 @@ class Entity extends Phaser.GameObjects.Container {
 
   update(time?: number, delta?: number) {
     super.update(time, delta);
-    this.debugText.text = [...(this.sensorData.inner || [])].join(',');
+    this.debugText.text = String(this.stats.hp);
     this.flipXSprite(this.facing === -1);
     this.keepUpRight();
     this.remove(this);

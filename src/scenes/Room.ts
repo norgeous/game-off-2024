@@ -29,7 +29,7 @@ export class Room extends Scene {
   preload() {}
 
   create() {
-    const { roomType, isRoomCleared } = this.sceneInitParams;
+    const { roomType, isRoomCleared, playerEnterFrom } = this.sceneInitParams;
 
     console.log('Room scene got', this.sceneInitParams);
 
@@ -54,8 +54,7 @@ export class Room extends Scene {
     audio.setMusicMute(this.sceneInitParams.isMusicMuted);
 
     // create player
-    const { playerEnterFrom } = this.sceneInitParams;
-    this.player = new Player(this, playerEnterFrom);
+    this.player = new Player(this, this.sceneInitParams);
 
     EventBus.on(EventNames.RESPAWN_PLAYER, () => {
       const { px, py } = getPlayerStartPosition(this, playerEnterFrom);

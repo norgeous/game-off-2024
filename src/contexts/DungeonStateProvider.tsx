@@ -24,7 +24,7 @@ const getIsRoomCleared = (
 
 const useDungeonState = () => {
   const { isMusicMuted } = useContext(SettingsContext);
-  const { health } = useContext(PlayerContext);
+  const { playerStats } = useContext(PlayerContext);
 
   const [dungeon1D, setDungeon1D] = useState<RoomConfig1D[]>([]);
   const [current, setCurrent] = useState(defaultDungeonState.current);
@@ -50,7 +50,7 @@ const useDungeonState = () => {
         ...nextRoom,
         ...settings,
         isRoomCleared: getIsRoomCleared(nextRoom, roomHistory),
-        health,
+        playerStats,
       });
     },
     [current, dungeon1D, roomHistory], // eslint-disable-line react-hooks/exhaustive-deps
@@ -84,7 +84,7 @@ const useDungeonState = () => {
         ...startState,
         ...settings,
         isRoomCleared: false,
-        health,
+        playerStats,
       });
     });
     return () => {

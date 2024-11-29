@@ -3,7 +3,7 @@ import Entity, { EntityConfigType } from './Entity';
 import { CC, CM } from '../../enums/CollisionCategories';
 import { Room } from '../../scenes/Room';
 import getPlayerStartPosition from '../../helpers/getPlayerStartPosition';
-import { Direction } from '../../helpers/dungeonConfigParser';
+import { SceneInitParamsType } from '../../helpers/dungeonConfigParser';
 import { createControls, keysToVector, keysType } from '../../helpers/controls';
 import { EventBus, EventNames } from '../../helpers/EventBus';
 import weapons from '../../helpers/weapons';
@@ -78,8 +78,15 @@ const entityConfig: EntityConfigType = {
         'statue',
       ].includes(otherBodyName)
     ) {
-      EventBus.emit(EventNames.ADJUST_PLAYER_HEALTH, -1);
-      player.takeDamage(1);
+      const amount = 1;
+
+      // update react player stats state
+      EventBus.emit(EventNames.UPDATE_PLAYER_STATS, {
+        hp: player.stats.hp - amount,
+      });
+
+      // update player.stats
+      player.takeDamage(amount);
     }
 
     // console.log('player collide with', otherBodyName, data);
@@ -114,8 +121,10 @@ class Player extends Entity {
     scene.load.image('player', 'assets/jones.png');
   }
 
-  constructor(scene: Room, playerEnterFrom: Direction) {
+  constructor(scene: Room, sceneInitParams: SceneInitParamsType) {
+    const { playerEnterFrom, playerStats } = sceneInitParams;
     const { px, py } = getPlayerStartPosition(scene, playerEnterFrom);
+    entityConfig.stats = playerStats;
     super(scene, px, py, entityConfig);
 
     this.keys = createControls(scene);

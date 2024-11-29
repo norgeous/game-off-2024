@@ -5,7 +5,21 @@ import { useLocalStorage } from '../helpers/localstorage';
 
 type ItemKeysType = 'gold' | 'heart';
 
+const defaultPlayerStats = {
+  hp: 10,
+  maxHp: 10,
+  speed: 0.1,
+  attackRate: 1,
+};
+
 const usePlayer = () => {
+  const [playerStats, setPlayerStats] = useState(defaultPlayerStats);
+  const updatePlayerStats = useCallback(
+    (statsFragment: typeof defaultPlayerStats) =>
+      setPlayerStats({ ...playerStats, ...statsFragment }),
+    [playerStats],
+  );
+
   const [health, setHealth] = useState(3);
   const adjustHealth = useCallback(
     (amount: number) => setHealth(health + amount),
@@ -20,13 +34,13 @@ const usePlayer = () => {
 
   const [inventory, setInventory] = useState([]);
 
-  // when the player takes damage
+  // when scene sends the UPDATE_PLAYER_STATS event
   useEffect(() => {
-    EventBus.on(EventNames.ADJUST_PLAYER_HEALTH, adjustHealth);
+    EventBus.on(EventNames.UPDATE_PLAYER_STATS, updatePlayerStats);
     return () => {
-      EventBus.removeListener(EventNames.ADJUST_PLAYER_HEALTH);
+      EventBus.removeListener(EventNames.UPDATE_PLAYER_STATS);
     };
-  }, [adjustHealth]);
+  }, [updatePlayerStats]);
 
   // when item collected
   useEffect(() => {
@@ -45,6 +59,9 @@ const usePlayer = () => {
   }, [adjustCoins, adjustHealth]);
 
   return {
+    playerStats,
+    updatePlayerStats,
+
     health,
     adjustHealth,
 
