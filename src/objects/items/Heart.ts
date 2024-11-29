@@ -9,7 +9,7 @@ const config: ItemConfigType = {
   collisionCategory: CC.item,
   collisionMask: CM.item,
   onPickUpCallBack: (_item, player) => {
-    player.updateStats({ hp: 1 });
+    player.updateStats({ hp: player.stats.hp + 1 });
   },
 };
 
