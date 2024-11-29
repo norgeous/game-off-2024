@@ -57,6 +57,32 @@ const entityConfig: EntityConfigType = {
       });
     }
 
+    // when colliding with something that damages the player
+    if (
+      [
+        'hole',
+        'anubis',
+        'bat',
+        'batman',
+        'beetle',
+        'mummy',
+        'pharaoe',
+        'pharaoe_large',
+        'rat',
+        'sandman',
+        'sarcophagus',
+        'scorpion',
+        'skeleton',
+        'snake',
+        'sphinx',
+        'statue',
+      ].includes(otherBodyName)
+    ) {
+      EventBus.emit(EventNames.ADJUST_PLAYER_HEALTH, -1);
+    }
+
+    console.log('player collide with', otherBodyName, data);
+
     const enemyCount = scene.spawners?.enemy?.getLength();
 
     if (enemyCount) return;

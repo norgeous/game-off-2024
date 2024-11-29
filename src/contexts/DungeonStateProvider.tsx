@@ -12,6 +12,7 @@ import { EventBus, EventNames } from '../helpers/EventBus';
 import SettingsContext from './SettingsContext';
 
 import dungeon1 from '../dungeons/1';
+import PlayerContext from './PlayerContext';
 
 const getIsRoomCleared = (
   current: typeof defaultDungeonState.current,
@@ -23,6 +24,8 @@ const getIsRoomCleared = (
 
 const useDungeonState = () => {
   const { isMusicMuted } = useContext(SettingsContext);
+  const { health } = useContext(PlayerContext);
+
   const [dungeon1D, setDungeon1D] = useState<RoomConfig1D[]>([]);
   const [current, setCurrent] = useState(defaultDungeonState.current);
   const [roomHistory, setRoomHistory] = useState<RoomConfig1D[]>([]);
@@ -47,6 +50,7 @@ const useDungeonState = () => {
         ...nextRoom,
         ...settings,
         isRoomCleared: getIsRoomCleared(nextRoom, roomHistory),
+        health,
       });
     },
     [current, dungeon1D, roomHistory], // eslint-disable-line react-hooks/exhaustive-deps
@@ -80,6 +84,7 @@ const useDungeonState = () => {
         ...startState,
         ...settings,
         isRoomCleared: false,
+        health,
       });
     });
     return () => {
