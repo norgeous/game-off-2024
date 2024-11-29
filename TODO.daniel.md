@@ -21,19 +21,20 @@
 - [x] whip weapon
 - [x] multiple tileset / config per room
 - [x] ai generate some game objects:
-  - sand texture
-  - rocks
-  - stone blocks
-  - breakable items; crates, pots
-  - spikes in the floor
-  - hole in the floor
-  - hole in the wall / wall cracking
-  - open and closed door, boss doors
-  - projectiles; bullet and whip slash
-  - in level items; health / heart, artifacts, gold, coins
-  - power up items; ank, orb, golden item / tablet, box, scrolls
-  - fragments of the message
-  - main menu art (title card art)
+  - [x] sand texture
+  - [x] rocks
+  - [x] stone blocks
+  - [x] breakable items; crates, pots
+  - [x] hole in the floor
+  - [x] open and closed door
+  - [x] in level items; health / heart, artifacts, gold, coins
+  - [x] power up items; ank, orb, golden item / tablet, box, scrolls
+  - [x] fragments of the message
+  - [x] main menu art (title card art)
+  - [ ] projectiles; bullet and whip slash
+  - [ ] spikes in the floor
+  - [ ] boss doors
+  - [ ] hole in the wall / wall cracking
 - [x] change favicon and pwa icon away from key
 - [x] preload all the rooms types
 - [x] doors to lock until all enemy killed in room
