@@ -40,6 +40,7 @@
 - [x] doors to lock until all enemy killed in room
 - [x] add isRoomCleared flag to sceneInitData
 - [x] fix the fps to 60
+- [ ] autofire!
 - [ ] shop
 - [ ] jones TTS lines?
 - [ ] secret rooms
