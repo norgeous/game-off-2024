@@ -105,7 +105,7 @@ class Player extends Entity {
   update(time: number, delta: number) {
     super.update(time, delta);
     if (this.keys) {
-      const forceVector = keysToVector(this.keys, 0.0004 * delta);
+      const forceVector = keysToVector(this.keys, 0.0002 * delta);
       this.gameObject.applyForce(forceVector);
     }
 
