@@ -17,6 +17,7 @@ const usePlayer = () => {
     (amount: number) => setCoins(coins + amount),
     [coins, setCoins],
   );
+
   const [inventory, setInventory] = useState([]);
 
   // when the player takes damage
@@ -32,7 +33,6 @@ const usePlayer = () => {
     EventBus.on(
       EventNames.COLLECT_ITEM,
       (_scene: Phaser.Scene, itemKey: ItemKeysType) => {
-        console.log('COLLECT', itemKey);
         ({
           gold: () => adjustCoins(+1),
           heart: () => adjustHealth(+1),
