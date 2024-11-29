@@ -5,7 +5,7 @@ export enum EventNames {
   RESPAWN_PLAYER = 'respawn-player',
   START = 'start-dungeon',
   USE_DOOR = 'use-door',
-  ADJUST_PLAYER_HEALTH = 'adjust-player-health',
+  UPDATE_PLAYER_STATS = 'update-player-stats',
   COLLECT_ITEM = 'collect-item',
 }
 

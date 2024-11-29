@@ -1,8 +1,9 @@
 import { createContext } from 'react';
+import { defaultPlayerStats } from '../objects/entities/Player';
 
 export const defaultPlayer = {
-  health: 3,
-  adjustHealth: (_: number) => {}, // eslint-disable-line @typescript-eslint/no-unused-vars
+  playerStats: defaultPlayerStats,
+  updatePlayerStats: (_: typeof defaultPlayerStats) => {}, // eslint-disable-line @typescript-eslint/no-unused-vars
 
   coins: 0,
   adjustCoins: (_: number) => {}, // eslint-disable-line @typescript-eslint/no-unused-vars

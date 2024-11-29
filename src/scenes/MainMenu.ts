@@ -25,8 +25,8 @@ export class MainMenu extends Phaser.Scene {
       .setDepth(100);
 
     const startDungeon = () => EventBus.emit(EventNames.START, this);
-    this.input.on('pointerdown', startDungeon);
-    this.input.keyboard?.addKey('space').on('down', startDungeon);
+    this.input.on('pointerup', startDungeon);
+    this.input.keyboard?.addKey('space').on('up', startDungeon);
 
     EventBus.emit(EventNames.READY, this);
   }

@@ -21,10 +21,10 @@ export default {
         key: 'walls2',
         file: './assets/levels/walls2.png',
       },
-      {
-        key: 'obsticles',
-        file: './assets/obsticles/pots-and-rocks.png',
-      },
+      // {
+      //   key: 'obsticles',
+      //   file: './assets/obsticles/pots-and-rocks.png',
+      // },
     ],
     layerConfig: [
       { tiledLayerName: 'floor', depth: 0 },

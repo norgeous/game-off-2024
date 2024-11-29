@@ -40,8 +40,8 @@ const defaultConfig: ProjectileConfigType = {
     damage: 1,
   },
   destroyOnHit: true,
-  onEntityHitCallBack: (projectile, entity) => {
-    entity.takeDamage(projectile.stats.damage);
+  onEntityHitCallBack: (projectile, enemy) => {
+    enemy.takeDamage(projectile.stats.damage);
   },
 };
 

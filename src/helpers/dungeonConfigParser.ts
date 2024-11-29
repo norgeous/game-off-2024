@@ -1,3 +1,4 @@
+import { EntityConfigType } from '../objects/entities/Entity';
 import { RoomType } from '../rooms';
 
 export type Direction = 'north' | 'south' | 'east' | 'west';
@@ -5,6 +6,7 @@ export type Direction = 'north' | 'south' | 'east' | 'west';
 export type SceneInitParamsType = {
   roomType: RoomType;
   adjacentRooms: { [direction in Direction]: string };
+  playerStats: EntityConfigType['stats'];
   playerEnterFrom: Direction;
   isMusicMuted: boolean;
   isRoomCleared: boolean;

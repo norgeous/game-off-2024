@@ -12,6 +12,8 @@ import { EventBus, EventNames } from '../helpers/EventBus';
 import SettingsContext from './SettingsContext';
 
 import dungeon1 from '../dungeons/1';
+import PlayerContext from './PlayerContext';
+import { defaultPlayerStats } from '../objects/entities/Player';
 
 const getIsRoomCleared = (
   current: typeof defaultDungeonState.current,
@@ -23,6 +25,8 @@ const getIsRoomCleared = (
 
 const useDungeonState = () => {
   const { isMusicMuted } = useContext(SettingsContext);
+  const { playerStats, updatePlayerStats } = useContext(PlayerContext);
+
   const [dungeon1D, setDungeon1D] = useState<RoomConfig1D[]>([]);
   const [current, setCurrent] = useState(defaultDungeonState.current);
   const [roomHistory, setRoomHistory] = useState<RoomConfig1D[]>([]);
@@ -47,9 +51,10 @@ const useDungeonState = () => {
         ...nextRoom,
         ...settings,
         isRoomCleared: getIsRoomCleared(nextRoom, roomHistory),
+        playerStats,
       });
     },
-    [current, dungeon1D, roomHistory], // eslint-disable-line react-hooks/exhaustive-deps
+    [current, dungeon1D, roomHistory, playerStats], // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   // when START event received, start dungeon with current room config (the config of start room zero)
@@ -73,13 +78,15 @@ const useDungeonState = () => {
         adjacentRooms,
       };
 
-      setCurrent(startState);
+      setCurrent(startState); // reset current
       setRoomHistory([startRoom]); // reset history
+      updatePlayerStats(defaultPlayerStats); // reset stats
 
       scene?.scene.start('Room', {
         ...startState,
         ...settings,
         isRoomCleared: false,
+        playerStats: defaultPlayerStats,
       });
     });
     return () => {

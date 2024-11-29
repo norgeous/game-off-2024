@@ -4,6 +4,7 @@ import { CC, CM } from '../../enums/CollisionCategories';
 import createSensors from '../../helpers/createSensors';
 import isDev from '../../helpers/isDev';
 import { spawnItemFromDropPool } from '../../helpers/itemFactory';
+import { classFactoryType } from '../items';
 
 type AnimationsConfigType = {
   animationKey: string;
@@ -14,7 +15,7 @@ type AnimationsConfigType = {
 };
 
 export type ItemDropPoolType = {
-  classFactory: Function | null;
+  classFactory: classFactoryType | null;
   chance: number;
 };
 
@@ -101,7 +102,7 @@ class Entity extends Phaser.GameObjects.Container {
   public sprite: Phaser.GameObjects.Sprite;
   public gameObject: PhaserMatterImage;
   public hitbox;
-  protected stats: EntityStatsType;
+  public stats: EntityStatsType;
   protected keepUpright: boolean;
   protected craftpixOffset: {
     x: number;
@@ -144,12 +145,19 @@ class Entity extends Phaser.GameObjects.Container {
     };
     this.itemDropPool = itemDropPool;
     this.keepUpright = true;
+
+    // sprite
+    this.sprite = this.scene.add
+      .sprite(this.craftpixOffset.x, this.craftpixOffset.y, this.name)
+      .setScale(scale);
+    this.add(this.sprite);
+
     // debug text
     this.debugText = this.scene.add
-      .text(0, 0 - 120, '', {
+      .text(0, 0, '', {
         font: '32px Arial',
         align: 'center',
-        color: 'white',
+        color: 'red',
       })
       .setOrigin(0.5);
     this.add(this.debugText);
@@ -163,12 +171,8 @@ class Entity extends Phaser.GameObjects.Container {
         })
         .setOrigin(0.5);
     }
-    this.setDepth(100);
-    // sprite
-    this.sprite = this.scene.add
-      .sprite(this.craftpixOffset.x, this.craftpixOffset.y, this.name)
-      .setScale(scale);
-    this.add(this.sprite);
+
+    this.setDepth(100); // ??
 
     // animations
     animations.forEach(({ animationKey, start, end, fps, repeat = -1 }) => {
@@ -201,10 +205,7 @@ class Entity extends Phaser.GameObjects.Container {
       },
     });
 
-    const { sensorBodies, sensorData } = createSensors(
-      this.scene,
-      sensorConfig,
-    );
+    const { sensorData } = createSensors(this.scene, sensorConfig);
     this.sensorData = sensorData;
 
     // compound body
@@ -228,16 +229,6 @@ class Entity extends Phaser.GameObjects.Container {
     this.gameObject.setPosition(x, y);
     this.sprite.setScale(this.scale);
     this.gameObject.setStatic(isStatic);
-  }
-
-  death() {
-    if (isDev) {
-      this.healthText.destroy();
-    }
-    if (this.itemDropPool) {
-      spawnItemFromDropPool(this.itemDropPool, this.scene, this.x, this.y);
-    }
-    this.destroy();
   }
 
   updateStats(newStats: Partial<EntityStatsType>) {
@@ -291,9 +282,19 @@ class Entity extends Phaser.GameObjects.Container {
     }
   }
 
+  death() {
+    if (isDev) {
+      this.healthText.destroy();
+    }
+    if (this.itemDropPool) {
+      spawnItemFromDropPool(this.itemDropPool, this.scene, this.x, this.y);
+    }
+    this.destroy();
+  }
+
   update(time?: number, delta?: number) {
     super.update(time, delta);
-    this.debugText.text = [...(this.sensorData.inner || [])].join(',');
+    this.debugText.text = String(this.stats.hp);
     this.flipXSprite(this.facing === -1);
     this.keepUpRight();
     this.remove(this);
