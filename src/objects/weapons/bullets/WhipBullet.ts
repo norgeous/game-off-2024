@@ -1,12 +1,14 @@
 import { CC, CM } from '../../../enums/CollisionCategories';
 import Projectile, { ProjectileConfigType } from '../Projectile';
 
+const KEY = 'whip-bullet';
+
 const projectileConfig: ProjectileConfigType = {
-  key: 'whip',
-  assetName: 'whip.png',
+  key: KEY,
+  assetName: 'whip-bullet.png',
   scale: 2,
   stats: {
-    damage: 1,
+    damage: 0.5,
   },
   collisionCategory: CC.playerBullet,
   collisionMask: CM.playerBullet,
@@ -22,7 +24,7 @@ const projectileConfig: ProjectileConfigType = {
 
 class WhipBullet extends Projectile {
   static preload(scene: Phaser.Scene) {
-    scene.load.image('whip', 'assets/whip.png');
+    scene.load.image(KEY, 'assets/items/weapons/bullets/whip-bullet.png');
   }
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
