@@ -44,5 +44,6 @@
 - [ ] scale up enemies stats based on room count
 - [ ] shop
 - [ ] jones TTS lines
+- [ ] design some rooms
 - [ ] maybe help Scotty with: enemy fire projectiles
 - [ ] max hp?
