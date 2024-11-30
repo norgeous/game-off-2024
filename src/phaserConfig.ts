@@ -34,7 +34,7 @@ const config: Phaser.Types.Core.GameConfig = {
     min: 60,
     limit: 60,
   },
-  input: { activePointers: 2 },
+  // input: { activePointers: 2 },
   scene: [Boot, Preloader, MainMenu, Room, GameOver, Win],
 };
 

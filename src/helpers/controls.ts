@@ -50,7 +50,7 @@ export const createControls = (scene: Phaser.Scene) => {
 
   if (scene.sys.game.device.os.desktop)
     return scene.input.keyboard?.addKeys(
-      'W,A,S,D,UP,DOWN,LEFT,RIGHT,SPACE',
+      'W,A,S,D,UP,DOWN,LEFT,RIGHT',
     ) as keysType;
   else return mouseKeys;
 };

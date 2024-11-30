@@ -162,9 +162,7 @@ class Player extends Entity {
       this.gameObject.applyForce(forceVector);
     }
 
-    if (this.keys?.SPACE.isDown) {
-      this.weapons(this.x, this.y, time);
-    }
+    this.weapons(this.x, this.y, time);
   }
 }
 
