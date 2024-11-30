@@ -33,10 +33,12 @@ const PlayerDebug = ({ onClose }: IDungeonStateDebug) => {
         <button onClick={() => adjustCoins(+1_000_000)}>+1M</button>{' '}
         <button onClick={() => adjustCoins(-coins)}>reset</button>
       </div>
+
       <pre style={{ textAlign: 'left' }}>
         {JSON.stringify(playerStats, null, 2)}
       </pre>
-      <div>
+
+      <div style={{ textAlign: 'right' }}>
         hp:{' '}
         <button onClick={() => updatePlayerStats({ hp: playerStats.hp - 1 })}>
           -
@@ -47,7 +49,7 @@ const PlayerDebug = ({ onClose }: IDungeonStateDebug) => {
         </button>
       </div>
 
-      <div>
+      <div style={{ textAlign: 'right' }}>
         maxHp:{' '}
         <button
           onClick={() => updatePlayerStats({ maxHp: playerStats.maxHp - 1 })}
@@ -62,7 +64,7 @@ const PlayerDebug = ({ onClose }: IDungeonStateDebug) => {
         </button>
       </div>
 
-      <div>
+      <div style={{ textAlign: 'right' }}>
         speed:{' '}
         <button
           onClick={() =>
@@ -85,7 +87,7 @@ const PlayerDebug = ({ onClose }: IDungeonStateDebug) => {
         </button>
       </div>
 
-      <div>
+      <div style={{ textAlign: 'right' }}>
         attackRate:{' '}
         <button
           onClick={() =>
