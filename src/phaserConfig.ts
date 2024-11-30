@@ -5,6 +5,8 @@ import { MainMenu } from './scenes/MainMenu';
 import { Room } from './scenes/Room';
 import { GameOver } from './scenes/GameOver';
 import { Win } from './scenes/Win';
+import { Shop } from './scenes/Shop';
+
 import isDev from './helpers/isDev';
 
 const VIEWPORT_SIZE = 80;
@@ -35,7 +37,7 @@ const config: Phaser.Types.Core.GameConfig = {
     limit: 60,
   },
   // input: { activePointers: 2 },
-  scene: [Boot, Preloader, MainMenu, Room, GameOver, Win],
+  scene: [Boot, Preloader, MainMenu, Room, GameOver, Win, Shop],
 };
 
 const startGame = (parent: string) => new Game({ ...config, parent });

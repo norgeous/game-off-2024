@@ -2,7 +2,15 @@ import { FaImages } from 'react-icons/fa6';
 import Modal from './Modal';
 import MenuButton from './MenuButton';
 
-const sceneNames = ['Boot', 'Preloader', 'MainMenu', 'Room', 'GameOver', 'Win'];
+const sceneNames = [
+  'Boot',
+  'Preloader',
+  'MainMenu',
+  'Room',
+  'GameOver',
+  'Win',
+  'Shop',
+];
 
 interface ISceneSelectorToggleButton {
   onClick: () => void;
