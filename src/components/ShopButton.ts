@@ -5,8 +5,8 @@ const ShopButton = styled.button`
   flex-direction: column;
   gap: 8px;
   padding: 8px;
-  font-size: 30px;
-  width: 250px;
+  font-size: 24px;
+  width: 200px;
 `;
 
 export default ShopButton;
