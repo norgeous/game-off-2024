@@ -1,11 +1,11 @@
-import StarBullet from '../objects/weapons/bullets/StarBullet';
+import Bullet from '../objects/weapons/bullets/Bullet';
 import WhipBullet from '../objects/weapons/bullets/WhipBullet';
 
 const inventory = ['star-gun', 'whip'];
 
 const itemName2Bullet = {
   'star-gun': {
-    Bullet: StarBullet,
+    Bullet: Bullet,
     cooldownLength: 1000, // milliseconds between shots
   },
   whip: {
