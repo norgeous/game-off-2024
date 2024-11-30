@@ -8,7 +8,7 @@ const Health = () => {
   return (
     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
       {Array.from({ length: hp }, (_, i) => (
-        <img key={i} src="/assets/items/heart.png" />
+        <img key={i} src="./assets/items/heart.png" />
       ))}
     </div>
   );
