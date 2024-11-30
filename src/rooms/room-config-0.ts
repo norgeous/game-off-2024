@@ -1,3 +1,6 @@
+import Handgun from "../objects/weapons/Handgun";
+import MachineGun from "../objects/weapons/MachineGun";
+
 export default {
   music: [
     { key: 'arab', file: './assets/audio/music/arab-and-muslim-190765.mp3' },
@@ -31,6 +34,21 @@ export default {
       { tiledLayerName: 'walls', depth: 0 },
       //{ tiledLayerName: 'obsticles', depth: 2 },
     ],
-    spawnerConfig: [],
+    spawnerConfig: [
+      {
+        tiledObjectName: 'machine-gun',
+        classFactory: MachineGun,
+        maxSize: 1,
+        runChildUpdate: true,
+        autoSpawn: true,
+      },
+      {
+        tiledObjectName: 'hand-gun',
+        classFactory: Handgun,
+        maxSize: 1,
+        runChildUpdate: true,
+        autoSpawn: true,
+      },
+    ],
   },
 };
