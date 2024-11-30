@@ -46,9 +46,8 @@ const defaultConfig: ProjectileConfigType = {
 };
 
 class Projectile extends Phaser.GameObjects.Container {
-  protected startTime: number;
   protected gameObject: Phaser.Physics.Matter.Sprite;
-  private timeToLive: number;
+  private destroyAt: number;
   public stats: ProjectileStats;
 
   constructor(
@@ -69,7 +68,7 @@ class Projectile extends Phaser.GameObjects.Container {
       onEntityHitCallBack,
     } = { ...defaultConfig, ...config };
 
-    this.timeToLive = timeToLive;
+    this.destroyAt = scene.time.now + timeToLive;
     this.stats = stats;
 
     const enemies = scene.spawners.enemy?.children.entries;
@@ -87,8 +86,6 @@ class Projectile extends Phaser.GameObjects.Container {
         frictionAir: config.physicsConfig.frictionAir ?? 0,
       })
       .setScale(config.scale);
-
-    this.startTime = window.performance.now();
 
     const forceVector = new Phaser.Math.Vector2({
       x: this.getClosestEnemy().x - x,
@@ -126,9 +123,9 @@ class Projectile extends Phaser.GameObjects.Container {
     return closestEnemy.enemy;
   }
 
-  update(_time: number, _delta: number) {
-    if (window.performance.now() - this.startTime > this.timeToLive) {
-      this.gameObject.destroy();
+  update(time: number) {
+    if (time > this.destroyAt) {
+      this.gameObject?.destroy();
       this.destroy();
     }
   }

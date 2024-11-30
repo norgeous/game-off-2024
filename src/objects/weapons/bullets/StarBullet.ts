@@ -11,7 +11,7 @@ const projectileConfig: ProjectileConfigType = {
   collisionCategory: CC.playerBullet,
   collisionMask: CM.playerBullet,
   chamferRadius: 15,
-  timeToLive: 5_000,
+  timeToLive: 400,
   physicsConfig: {
     ejectionForce: 0.05,
   },
@@ -29,8 +29,8 @@ class StarBullet extends Projectile {
     super(scene, x, y, projectileConfig);
   }
 
-  update(_time: number, _delta: number) {
-    super.update(_time, _delta);
+  update(time: number) {
+    super.update(time);
   }
 }
 

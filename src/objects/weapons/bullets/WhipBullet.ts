@@ -29,8 +29,8 @@ class WhipBullet extends Projectile {
     super(scene, x, y, projectileConfig);
   }
 
-  update(_time: number, _delta: number) {
-    super.update(_time, _delta);
+  update(time: number) {
+    super.update(time);
   }
 }
 
