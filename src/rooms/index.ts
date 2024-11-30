@@ -18,6 +18,9 @@ import roomConfigd from './room-config-d';
 import roomConfige from './room-config-e';
 import roomConfigw from './room-config-w';
 import spawnEnemies from '../helpers/spawnEnemies';
+import Player from '../objects/entities/Player';
+import { inventory } from '../helpers/weapons';
+import { Weapons } from '../enums/Weapons';
 
 const roomConfigs = {
   '.': roomConfigDOT,
@@ -135,22 +138,19 @@ export const createRoom = (
       acc,
       { tiledObjectName, classFactory, maxSize, runChildUpdate, autoSpawn },
     ) => {
-      if (isRoomCleared) return acc; // bypass when already cleared
-
       const group = scene.add.group({
         maxSize,
         classType: classFactory,
         runChildUpdate,
       });
-
       if (autoSpawn) {
         const locations = markers.filter(
           ({ name }) => name === tiledObjectName,
         );
         for (let i = 0; i < locations.length; i += 1) {
           const { x, y } = locations[i];
-          // DEBUG - allow no enemy spawns
-          if (tiledObjectName === 'enemy' && !spawnEnemies) {
+          if (tiledObjectName === 'enemy' && isRoomCleared || inventory.includes(tiledObjectName as Weapons)) {
+            if (inventory)
             continue;
           }
           group.get(x, y);

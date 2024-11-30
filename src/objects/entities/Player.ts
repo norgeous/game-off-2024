@@ -6,8 +6,9 @@ import getPlayerStartPosition from '../../helpers/getPlayerStartPosition';
 import { SceneInitParamsType } from '../../helpers/dungeonConfigParser';
 import { createControls, keysToVector, keysType } from '../../helpers/controls';
 import { EventBus, EventNames } from '../../helpers/EventBus';
-import weapons from '../../helpers/weapons';
+import weapons, { addWeapon, inventory } from '../../helpers/weapons';
 import { entityFalling } from '../../helpers/tweens/Entityfalling';
+import { Weapons } from '../../enums/Weapons';
 
 const KEY = 'player';
 
@@ -124,7 +125,7 @@ class Player extends Entity {
     const { px, py } = getPlayerStartPosition(scene, playerEnterFrom);
     entityConfig.stats = playerStats;
     super(scene, px, py, entityConfig);
-
+    
     this.keys = createControls(scene);
     this.weapons = weapons(scene);
     this.gameObject.setFriction(0);
@@ -144,6 +145,11 @@ class Player extends Entity {
     });
 
     super.takeDamage(amount);
+  }
+
+  public addWeapon(weapon: Weapons) {
+    addWeapon(weapon);
+    this.weapons = weapons(this.scene);
   }
 
   death() {
