@@ -1,3 +1,4 @@
+import Handgun from "../objects/weapons/Handgun";
 import MachineGun from "../objects/weapons/MachineGun";
 
 export default {
@@ -35,9 +36,16 @@ export default {
     ],
     spawnerConfig: [
       {
-        tiledObjectName: 'gun',
+        tiledObjectName: 'machine-gun',
         classFactory: MachineGun,
-        maxSize: 10,
+        maxSize: 1,
+        runChildUpdate: true,
+        autoSpawn: true,
+      },
+      {
+        tiledObjectName: 'hand-gun',
+        classFactory: Handgun,
+        maxSize: 1,
         runChildUpdate: true,
         autoSpawn: true,
       },
