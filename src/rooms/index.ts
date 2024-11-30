@@ -70,6 +70,7 @@ export const createRoom = (
   scene: Phaser.Scene,
   roomType: RoomType,
   isRoomCleared: boolean,
+  roomClearedCount: number,
 ) => {
   const key = `room-${roomType}`;
   const {
@@ -157,7 +158,9 @@ export const createRoom = (
       }
 
       // scale the entity's stats based on clearedRoomCount
-      group.getChildren().forEach((enemy) => enemy.updateStats({ hp: 1.5 }));
+      group
+        .getChildren()
+        .forEach((item) => item.updateStats?.({ hp: roomClearedCount }));
 
       return {
         ...acc,

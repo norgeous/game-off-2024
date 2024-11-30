@@ -10,6 +10,7 @@ export type SceneInitParamsType = {
   playerEnterFrom: Direction;
   isMusicMuted: boolean;
   isRoomCleared: boolean;
+  roomClearedCount: number;
 };
 
 export type RoomConfig1D = {

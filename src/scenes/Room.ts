@@ -29,12 +29,18 @@ export class Room extends Scene {
   preload() {}
 
   create() {
-    const { roomType, isRoomCleared, playerEnterFrom } = this.sceneInitParams;
+    const { roomType, isRoomCleared, roomClearedCount, playerEnterFrom } =
+      this.sceneInitParams;
 
     console.log('Room scene got', this.sceneInitParams);
 
     // load tiled level
-    const { level, spawners } = createRoom(this, roomType, isRoomCleared);
+    const { level, spawners } = createRoom(
+      this,
+      roomType,
+      isRoomCleared,
+      roomClearedCount,
+    );
     this.level = level;
     this.spawners = spawners;
 
