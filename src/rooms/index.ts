@@ -160,7 +160,7 @@ export const createRoom = (
       // scale the entity's stats based on clearedRoomCount
       group
         .getChildren()
-        .forEach((item) => item.updateStats?.({ hp: roomClearedCount }));
+        .forEach((item) => item.updateStats?.({ hp: roomClearedCount * 0.5 }));
 
       return {
         ...acc,
