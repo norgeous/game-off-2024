@@ -1,12 +1,21 @@
+import { Weapons } from '../enums/Weapons';
 import Bullet from '../objects/weapons/bullets/Bullet';
 import WhipBullet from '../objects/weapons/bullets/WhipBullet';
 
-const inventory = ['star-gun', 'whip'];
+const inventory = [Weapons.StarGun, Weapons.Whip];
+
+export const addWeapon = (weapon: Weapons) => {
+  inventory.push(weapon);
+}; 
 
 const itemName2Bullet = {
   'star-gun': {
     Bullet: Bullet,
     cooldownLength: 1000, // milliseconds between shots
+  },
+  'machine-gun': {
+    Bullet: Bullet,
+    cooldownLength: 200, // milliseconds between shots
   },
   whip: {
     Bullet: WhipBullet,
