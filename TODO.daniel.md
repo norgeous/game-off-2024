@@ -46,4 +46,4 @@
 - [ ] jones TTS lines
 - [ ] design some rooms
 - [ ] maybe help Scotty with: enemy fire projectiles
-- [ ] max hp?
+- [ ] enforce max hp?
