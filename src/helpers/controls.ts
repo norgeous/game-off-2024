@@ -14,22 +14,13 @@ export const createControls = (scene: Phaser.Scene) => {
     DOWN: { isDown: false },
     LEFT: { isDown: false },
     RIGHT: { isDown: false },
-    SPACE: { isDown: false },
   };
-
-  scene.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
-    // if the primary button on the second pointer is down
-    if (pointer.manager.pointers[2].buttons === 1) {
-      mouseKeys.SPACE.isDown = true;
-    }
-  });
 
   scene.input.on('pointerup', () => {
     mouseKeys.W.isDown = false;
     mouseKeys.A.isDown = false;
     mouseKeys.S.isDown = false;
     mouseKeys.D.isDown = false;
-    mouseKeys.SPACE.isDown = false;
   });
 
   scene.input.on('pointermove', (pointer: Phaser.Input.Pointer) => {
