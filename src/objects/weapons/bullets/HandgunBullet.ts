@@ -22,7 +22,7 @@ const projectileConfig: ProjectileConfigType = {
   },
 };
 
-class HandgunBullet extends Projectile {
+class HandGunBullet extends Projectile {
   static preload(scene: Phaser.Scene) {
     scene.load.image('handgun-bullet', 'assets/items/weapons/bullets/handgun-bullet.png');
   }
@@ -36,4 +36,4 @@ class HandgunBullet extends Projectile {
   }
 }
 
-export default HandgunBullet;
+export default HandGunBullet;
