@@ -156,6 +156,9 @@ export const createRoom = (
         }
       }
 
+      // scale the entity's stats based on clearedRoomCount
+      group.getChildren().forEach((enemy) => enemy.updateStats({ hp: 1.5 }));
+
       return {
         ...acc,
         [tiledObjectName]: group,
