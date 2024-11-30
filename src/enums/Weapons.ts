@@ -1,5 +1,5 @@
 export enum Weapons {
-  StarGun = 'star-gun',
+  Handgun = 'hand-gun',
   Whip = 'whip', 
   MachineGun = 'machine-gun'
 }

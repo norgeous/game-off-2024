@@ -3,14 +3,14 @@ import HandgunBullet from '../objects/weapons/bullets/HandgunBullet';
 import MachineGunBullet from '../objects/weapons/bullets/MachinegunBullet';
 import WhipBullet from '../objects/weapons/bullets/WhipBullet';
 
-const inventory = [Weapons.StarGun, Weapons.Whip];
+export const inventory = [Weapons.Whip];
 
 export const addWeapon = (weapon: Weapons) => {
   inventory.push(weapon);
 }; 
 
 const itemName2Bullet = {
-  'star-gun': {
+  'hand-gun': {
     Bullet: HandgunBullet,
     cooldownLength: 1000, // milliseconds between shots
   },
