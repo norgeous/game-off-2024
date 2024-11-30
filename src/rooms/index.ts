@@ -134,22 +134,18 @@ export const createRoom = (
       acc,
       { tiledObjectName, classFactory, maxSize, runChildUpdate, autoSpawn },
     ) => {
-      if (isRoomCleared) return acc; // bypass when already cleared
-
       const group = scene.add.group({
         maxSize,
         classType: classFactory,
         runChildUpdate,
       });
-
       if (autoSpawn) {
         const locations = markers.filter(
           ({ name }) => name === tiledObjectName,
         );
         for (let i = 0; i < locations.length; i += 1) {
           const { x, y } = locations[i];
-          // DEBUG - allow no enemy spawns
-          if (tiledObjectName === 'enemy' && !spawnEnemies) {
+          if (tiledObjectName === 'enemy' && isRoomCleared) {
             continue;
           }
           group.get(x, y);
