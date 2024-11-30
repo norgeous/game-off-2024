@@ -41,6 +41,7 @@
 - [x] add isRoomCleared flag to sceneInitData
 - [x] fix the fps to 60
 - [ ] autofire!
+- [ ] max hp?
 - [ ] shop
 - [ ] jones TTS lines?
 - [ ] secret rooms
