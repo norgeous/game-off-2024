@@ -28,6 +28,11 @@ const Menu = ({ phaserScene }: IMenu) => {
     <>
       <CornerMenu $corner={Corner.TL}>
         <Coins />
+        {phaserScene.scene.key === 'MainMenu' && (
+          <button onClick={() => phaserScene.scene.start('Shop')}>
+            Power Up!
+          </button>
+        )}
         <Health />
       </CornerMenu>
       <CornerMenu $corner={Corner.TR}>
