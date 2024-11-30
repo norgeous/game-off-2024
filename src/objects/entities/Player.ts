@@ -129,8 +129,6 @@ class Player extends Entity {
     this.weapons = weapons(scene);
     this.gameObject.setFriction(0);
     this.gameObject.setFrictionAir(0.08);
-
-    console.log({ scene });
   }
 
   takeDamage(amount: number) {
@@ -152,11 +150,12 @@ class Player extends Entity {
     this.scene.matter.pause();
     setTimeout(() => {
       this.scene.scene.start('GameOver');
-    }, 2_000);
+    }, 1_000);
   }
 
   update(time: number, delta: number) {
     super.update(time, delta);
+
     if (this.keys) {
       const forceVector = keysToVector(this.keys, 0.0002 * delta);
       this.gameObject.applyForce(forceVector);
