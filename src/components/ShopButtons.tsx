@@ -12,7 +12,7 @@ const ShopButtons = ({ onClose }: IShopButtons) => {
   const { playerStats, updatePlayerStats } = useContext(PlayerContext);
 
   const cashSfx = () => {
-    const el = document.getElementById('audio_tag');
+    const el = document.getElementById('audio_tag') as HTMLAudioElement;
     el.currentTime = 0;
     el?.play();
   };
@@ -69,9 +69,11 @@ const ShopButtons = ({ onClose }: IShopButtons) => {
           <center>current: {playerStats.attackRate}</center>
         </div>
       </div>
+      <CornerMenu $corner={Corner.BL}>
+        <button onClick={() => alert('WIP')}>Refund All Past Purchases</button>
+      </CornerMenu>
       <CornerMenu $corner={Corner.BR}>
-        <button onClick={() => onClose()}>Refund All</button>
-        <button onClick={() => onClose()}>Back</button>
+        <button onClick={() => onClose()}>Back to Main Menu</button>
       </CornerMenu>
     </>
   );
