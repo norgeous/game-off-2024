@@ -9,6 +9,8 @@ import { allRoomTypes, preloadRoom } from '../rooms';
 import Player from '../objects/entities/Player';
 import HandgunBullet from '../objects/weapons/bullets/HandgunBullet';
 import MachinegunBullet from '../objects/weapons/bullets/MachinegunBullet';
+import Heart from '../objects/items/Heart';
+import Gold from '../objects/items/Gold';
 
 export class Preloader extends Scene {
   constructor() {
@@ -52,7 +54,8 @@ export class Preloader extends Scene {
     allRoomTypes.forEach((roomType) => preloadRoom(this, roomType));
 
     Player.preload(this);
-
+    Gold.preload(this);
+    Heart.preload(this); 
     GameOver.preload(this);
     Win.preload(this);
     Audio.preload(this, musicConfig);
