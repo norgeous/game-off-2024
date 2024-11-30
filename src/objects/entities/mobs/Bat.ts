@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser';
-import { EntityConfigType, ItemDropPoolType } from '../Entity';
+import { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
 import { Room } from '../../../scenes/Room';
 import { OscillatingMovement } from '../../../helpers/movement/OscillatingMovement';

@@ -2,10 +2,8 @@ import * as Phaser from 'phaser';
 import { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
 import { Room } from '../../../scenes/Room';
-import { OscillatingMovement } from '../../../helpers/movement/OscillatingMovement';
 import Enemy from '../Enemy';
 import { MoveToPlayer } from '../../../helpers/movement/MoveToPlayer';
-import { RandomLinearMovement } from '../../../helpers/movement/RandomLinearMovement';
 
 const KEY = 'beetle';
 

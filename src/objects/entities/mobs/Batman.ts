@@ -4,7 +4,6 @@ import { CC, CM } from '../../../enums/CollisionCategories';
 import { Room } from '../../../scenes/Room';
 import { OscillatingMovement } from '../../../helpers/movement/OscillatingMovement';
 import Enemy from '../Enemy';
-import { MoveToPlayer } from '../../../helpers/movement/MoveToPlayer';
 
 const KEY = 'batman';
 
