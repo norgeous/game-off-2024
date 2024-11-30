@@ -22,23 +22,29 @@ interface IDungeonStateDebug {
 }
 
 const PlayerDebug = ({ onClose }: IDungeonStateDebug) => {
-  const { playerStats, health, adjustHealth, coins, adjustCoins, inventory } =
+  const { playerStats, updatePlayerStats, coins, adjustCoins, inventory } =
     useContext(PlayerContext);
 
   return (
     <Modal onClose={onClose}>
-      <pre style={{ textAlign: 'left' }}>
-        {JSON.stringify(playerStats, null, 2)}
-      </pre>
-      <div>
-        health: <button onClick={() => adjustHealth(-1)}>-</button> {health}{' '}
-        <button onClick={() => adjustHealth(+1)}>+</button>
-      </div>
       <div>
         coins: <button onClick={() => adjustCoins(-1)}>-</button> {coins}{' '}
         <button onClick={() => adjustCoins(+1)}>+</button>{' '}
         <button onClick={() => adjustCoins(+1_000_000)}>+1M</button>{' '}
         <button onClick={() => adjustCoins(-coins)}>reset</button>
+      </div>
+      <pre style={{ textAlign: 'left' }}>
+        {JSON.stringify(playerStats, null, 2)}
+      </pre>
+      <div>
+        hp:{' '}
+        <button onClick={() => updatePlayerStats({ hp: playerStats.hp - 1 })}>
+          -
+        </button>{' '}
+        {playerStats.hp}{' '}
+        <button onClick={() => updatePlayerStats({ hp: playerStats.hp + 1 })}>
+          +
+        </button>
       </div>
       <pre style={{ textAlign: 'left' }}>
         inventory: {JSON.stringify(inventory, null, 2)}
