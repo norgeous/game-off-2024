@@ -7,8 +7,8 @@ import { Win } from './Win';
 import { preloadDoor } from '../helpers/doors';
 import { allRoomTypes, preloadRoom } from '../rooms';
 import Player from '../objects/entities/Player';
-import HandGunBullet from '../objects/weapons/bullets/HandGunBullet';
-import MachineGunBullet from '../objects/weapons/bullets/MachinegunBullet';
+import HandgunBullet from '../objects/weapons/bullets/HandgunBullet';
+import MachinegunBullet from '../objects/weapons/bullets/MachinegunBullet';
 
 export class Preloader extends Scene {
   constructor() {
@@ -57,8 +57,8 @@ export class Preloader extends Scene {
     Win.preload(this);
     Audio.preload(this, musicConfig);
     WhipBullet.preload(this);
-    HandGunBullet.preload(this);
-    MachineGunBullet.preload(this);
+    HandgunBullet.preload(this);
+    MachinegunBullet.preload(this);
   }
 
   create() {
