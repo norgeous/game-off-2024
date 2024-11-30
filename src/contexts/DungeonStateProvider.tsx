@@ -23,6 +23,9 @@ const getIsRoomCleared = (
     (prevRoom) => prevRoom.x === current.x && prevRoom.y === current.y,
   );
 
+const getRoomClearedCount = (roomHistory: RoomConfig1D[]) =>
+  new Set(roomHistory.map((room) => JSON.stringify(room))).size;
+
 const useDungeonState = () => {
   const { isMusicMuted } = useContext(SettingsContext);
   const { playerStats, updatePlayerStats } = useContext(PlayerContext);
@@ -51,6 +54,7 @@ const useDungeonState = () => {
         ...nextRoom,
         ...settings,
         isRoomCleared: getIsRoomCleared(nextRoom, roomHistory),
+        roomClearedCount: getRoomClearedCount(roomHistory),
         playerStats,
       });
     },
@@ -86,6 +90,7 @@ const useDungeonState = () => {
         ...startState,
         ...settings,
         isRoomCleared: false,
+        roomClearedCount: 0,
         playerStats: defaultPlayerStats,
       });
     });

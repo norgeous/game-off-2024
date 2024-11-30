@@ -41,7 +41,7 @@
 - [x] add isRoomCleared flag to sceneInitData
 - [x] fix the fps to 60
 - [x] autofire!
-- [ ] scale up enemies stats based on room count
+- [x] scale up enemies stats based on room count
 - [ ] shop
 - [ ] jones TTS lines
 - [ ] design some rooms
