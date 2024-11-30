@@ -27,8 +27,8 @@ const Menu = ({ phaserScene }: IMenu) => {
   return (
     <>
       <CornerMenu $corner={Corner.TL}>
-        <Health />
         <Coins />
+        <Health />
       </CornerMenu>
 
       <CornerMenu $corner={Corner.TR}>

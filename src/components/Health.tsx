@@ -6,7 +6,7 @@ const Health = () => {
     playerStats: { hp },
   } = useContext(PlayerContext);
   return (
-    <div style={{ display: 'flex', gap: 8, color: 'firebrick' }}>
+    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
       {Array.from({ length: hp }, (_, i) => (
         <img key={i} src="/assets/items/heart.png" />
       ))}

@@ -17,6 +17,7 @@ const CornerMenu = styled.div<ICornerMenu>`
   gap: 8px;
   padding: 8px;
   position: absolute;
+  max-width: 50%;
   ${({ $corner }) =>
     ({
       [Corner.TL]: css`
