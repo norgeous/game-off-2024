@@ -28,7 +28,7 @@ export enum CM {
   nothing = 0,
 
   player = CC.default | CC.player | CC.enemy | CC.item | CC.door,
-  playerBullet = CC.default | CC.enemy | CC.enemyBullet, // player bullets can only hit walls and enemies
+  playerBullet = CC.enemy | CC.enemyBullet, // player bullets can only hit enemies
   enemyDetector = CC.enemy,
 
   enemy = CC.default | CC.player | CC.playerBullet, // enemies collide with ground, player and player bullets, but not each other or items
