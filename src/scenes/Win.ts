@@ -18,12 +18,12 @@ export class Win extends Scene {
     this.add.image(width * 0.5, height * 0.5, 'win');
     this.sound.play('end-music');
     const goMainMenu = () => {
-      this.scene.start('MainMenu')
+      this.scene.start('MainMenu');
       this.sound.stopAll();
     };
     this.input.on('pointerup', goMainMenu);
     this.input.keyboard?.addKey('space').on('up', goMainMenu);
-    
+
     EventBus.emit(EventNames.READY, this);
   }
 }

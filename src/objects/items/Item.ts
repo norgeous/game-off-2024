@@ -38,8 +38,8 @@ class Item extends Phaser.GameObjects.Container {
   gameObject: Phaser.Physics.Matter.Sprite;
   destroyOnPickUp: boolean;
   sprite: Phaser.GameObjects.Sprite;
-  public tween: Phaser.Tweens.Tween; 
-  
+  public tween: Phaser.Tweens.Tween;
+
   constructor(
     scene: Phaser.Scene,
     x: number,
@@ -55,7 +55,7 @@ class Item extends Phaser.GameObjects.Container {
       onPickUpAnimation,
       onPickUpCallBack,
     } = { ...defaultConfig, ...config };
-    
+
     // Add sprite
     this.gameObject = scene.matter.add
       .sprite(x, y, key, undefined, {

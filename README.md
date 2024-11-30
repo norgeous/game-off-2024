@@ -2,11 +2,9 @@
 
 Submission for [Game Off 2024](https://itch.io/jam/game-off-2024) "SECRETS"
 
-🚧 WORK IN PROGRESS 🚧
+[![Play](public/assets/title-cards/mainmenu.jpg)](https://norgeous.github.io/game-off-2024/)
 
-[insert screenshot of game title card or gif here]
-
-https://norgeous.github.io/game-off-2024/
+[Play the game](https://norgeous.github.io/game-off-2024/)
 
 ---
 
@@ -27,6 +25,7 @@ https://norgeous.github.io/game-off-2024/
 - door close https://pixabay.com/sound-effects/door-close-79921/
 - door open https://pixabay.com/sound-effects/whoosh-motion-243505/
 - success sound FX https://pixabay.com/sound-effects/success-83493/
+- game over https://pixabay.com/sound-effects/game-over-arcade-6435/
 
 ### Music
 
@@ -35,6 +34,7 @@ https://norgeous.github.io/game-off-2024/
 - folk-gypsy-animated-music: https://pixabay.com/music/folk-gypsy-animated-music-252548/
 - music/rock-the-queen-of-dunes: https://pixabay.com/music/rock-the-queen-of-dunes-169012/
 - end music: https://suno.com/song/442219b3-516b-4e72-b13f-f07d3b89f8ee (Machinska & Exo Spectra)
+
 ### Tech
 
 - https://github.com/phaserjs/template-react-ts
