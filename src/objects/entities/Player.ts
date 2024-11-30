@@ -125,14 +125,11 @@ class Player extends Entity {
     const { px, py } = getPlayerStartPosition(scene, playerEnterFrom);
     entityConfig.stats = playerStats;
     super(scene, px, py, entityConfig);
-
+    
     this.keys = createControls(scene);
     this.weapons = weapons(scene);
     this.gameObject.setFriction(0);
     this.gameObject.setFrictionAir(0.08);
-
-    // test adding another weapon 
-    this.addWeapon(Weapons.MachineGun);
   }
 
   takeDamage(amount: number) {
@@ -150,7 +147,7 @@ class Player extends Entity {
     super.takeDamage(amount);
   }
 
-  addWeapon(weapon: Weapons) {
+  public addWeapon(weapon: Weapons) {
     addWeapon(weapon);
     this.weapons = weapons(this.scene);
   }

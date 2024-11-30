@@ -1,3 +1,5 @@
+import MachineGun from "../objects/weapons/MachineGun";
+
 export default {
   music: [
     { key: 'arab', file: './assets/audio/music/arab-and-muslim-190765.mp3' },
@@ -31,6 +33,14 @@ export default {
       { tiledLayerName: 'walls', depth: 0 },
       //{ tiledLayerName: 'obsticles', depth: 2 },
     ],
-    spawnerConfig: [],
+    spawnerConfig: [
+      {
+        tiledObjectName: 'gun',
+        classFactory: MachineGun,
+        maxSize: 10,
+        runChildUpdate: true,
+        autoSpawn: true,
+      },
+    ],
   },
 };
