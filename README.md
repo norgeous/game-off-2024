@@ -4,6 +4,8 @@ Submission for [Game Off 2024](https://itch.io/jam/game-off-2024) "SECRETS"
 
 [![Play](public/assets/title-cards/mainmenu.jpg)](https://norgeous.github.io/game-off-2024/)
 
+[Play the game](https://norgeous.github.io/game-off-2024/)
+
 ---
 
 ## Sources
