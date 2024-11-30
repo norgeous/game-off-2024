@@ -30,7 +30,6 @@ const Menu = ({ phaserScene }: IMenu) => {
         <Coins />
         <Health />
       </CornerMenu>
-
       <CornerMenu $corner={Corner.TR}>
         <MenuButton onClick={() => setSettingsIsOpen(!isSettingsOpen)}>
           {isSettingsOpen ? <FaXmark size={30} /> : <FaGear size={30} />}
@@ -75,29 +74,31 @@ const Menu = ({ phaserScene }: IMenu) => {
           </>
         )}
       </CornerMenu>
-
       <CornerMenu $corner={Corner.BR}>
         <MiniMap />
       </CornerMenu>
-
       {isSceneSelectorOpen && (
         <SceneSelectorModal
           phaserScene={phaserScene}
           onClose={() => setIsSceneSelectorOpen(false)}
         />
       )}
-
       {isMiniMapOpen && (
         <DungeonStateDebug
           phaserScene={phaserScene}
           onClose={() => setIsMiniMapOpen(false)}
         />
       )}
-
       {isPlayerDebugOpen && (
         <PlayerDebug
           phaserScene={phaserScene}
           onClose={() => setIsPlayerDebugOpen(false)}
+        />
+      )}
+      {phaserScene.scene.key === 'Shop' && (
+        <PlayerDebug
+          phaserScene={phaserScene}
+          onClose={() => phaserScene.scene.start('MainMenu')}
         />
       )}
     </>
