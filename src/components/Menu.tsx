@@ -13,6 +13,7 @@ import Health from './Health';
 import Coins from './Coins';
 import PlayerDebug, { PlayerDebugToggleButton } from './PlayerDebug';
 import MuteMusicToggle from './MuteMusicToggle';
+import ShopButtons from './ShopButtons';
 
 interface IMenu {
   phaserScene: Phaser.Scene;
@@ -98,7 +99,7 @@ const Menu = ({ phaserScene }: IMenu) => {
         />
       )}
       {phaserScene.scene.key === 'Shop' && (
-        <PlayerDebug
+        <ShopButtons
           phaserScene={phaserScene}
           onClose={() => phaserScene.scene.start('MainMenu')}
         />
