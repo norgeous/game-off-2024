@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import Modal from './Modal';
 import PlayerContext from '../contexts/PlayerContext';
 
 interface IShopButtons {
@@ -20,7 +19,7 @@ const ShopButtons = ({ onClose }: IShopButtons) => {
   } = useContext(PlayerContext);
 
   return (
-    <Modal onClose={onClose}>
+    <div style={{ position: 'absolute' }}>
       SHOP
       <div>
         coins: <button onClick={() => adjustCoins(-1)}>-</button> {coins}{' '}
@@ -108,7 +107,8 @@ const ShopButtons = ({ onClose }: IShopButtons) => {
       <pre style={{ textAlign: 'left' }}>
         inventory: {JSON.stringify(inventory, null, 2)}
       </pre>
-    </Modal>
+      <button onClick={() => onClose()}>Back</button>
+    </div>
   );
 };
 

@@ -19,10 +19,6 @@ export class Shop extends Phaser.Scene {
 
     this.sound.play('sfx-shop');
 
-    const goMainMenu = () => this.scene.start('MainMenu');
-    this.input.on('pointerup', goMainMenu);
-    this.input.keyboard?.addKey('space').on('up', goMainMenu);
-
     EventBus.emit(EventNames.READY, this);
   }
 }
