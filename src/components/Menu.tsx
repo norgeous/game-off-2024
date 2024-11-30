@@ -13,6 +13,7 @@ import Health from './Health';
 import Coins from './Coins';
 import PlayerDebug, { PlayerDebugToggleButton } from './PlayerDebug';
 import MuteMusicToggle from './MuteMusicToggle';
+import ShopButtons from './ShopButtons';
 
 interface IMenu {
   phaserScene: Phaser.Scene;
@@ -27,10 +28,9 @@ const Menu = ({ phaserScene }: IMenu) => {
   return (
     <>
       <CornerMenu $corner={Corner.TL}>
-        <Coins />
+        <Coins phaserScene={phaserScene} />
         <Health />
       </CornerMenu>
-
       <CornerMenu $corner={Corner.TR}>
         <MenuButton onClick={() => setSettingsIsOpen(!isSettingsOpen)}>
           {isSettingsOpen ? <FaXmark size={30} /> : <FaGear size={30} />}
@@ -75,29 +75,33 @@ const Menu = ({ phaserScene }: IMenu) => {
           </>
         )}
       </CornerMenu>
-
-      <CornerMenu $corner={Corner.BR}>
-        <MiniMap />
-      </CornerMenu>
-
+      {phaserScene.scene.key === 'Room' && (
+        <CornerMenu $corner={Corner.BR}>
+          <MiniMap />
+        </CornerMenu>
+      )}
       {isSceneSelectorOpen && (
         <SceneSelectorModal
           phaserScene={phaserScene}
           onClose={() => setIsSceneSelectorOpen(false)}
         />
       )}
-
       {isMiniMapOpen && (
         <DungeonStateDebug
           phaserScene={phaserScene}
           onClose={() => setIsMiniMapOpen(false)}
         />
       )}
-
       {isPlayerDebugOpen && (
         <PlayerDebug
           phaserScene={phaserScene}
           onClose={() => setIsPlayerDebugOpen(false)}
+        />
+      )}
+      {phaserScene.scene.key === 'Shop' && (
+        <ShopButtons
+          phaserScene={phaserScene}
+          onClose={() => phaserScene.scene.start('MainMenu')}
         />
       )}
     </>

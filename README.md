@@ -25,7 +25,9 @@ Submission for [Game Off 2024](https://itch.io/jam/game-off-2024) "SECRETS"
 - door close https://pixabay.com/sound-effects/door-close-79921/
 - door open https://pixabay.com/sound-effects/whoosh-motion-243505/
 - success sound FX https://pixabay.com/sound-effects/success-83493/
-- game over https://pixabay.com/sound-effects/game-over-arcade-6435/
+- game over https://pixabay.com/sound-effects/bell-222490/
+- shop door https://pixabay.com/sound-effects/shop-door-bell-6405/
+- buy item https://pixabay.com/sound-effects/cash-register-fake-88639/
 
 ### Music
 

@@ -4,26 +4,34 @@ import MenuButton from './MenuButton';
 import Modal from './Modal';
 import PlayerContext from '../contexts/PlayerContext';
 
-interface IDungeonStateDebugToggleButton {
+interface IPlayerDebugToggleButton {
   onClick: () => void;
 }
 
 export const PlayerDebugToggleButton = ({
   onClick,
-}: IDungeonStateDebugToggleButton) => (
+}: IPlayerDebugToggleButton) => (
   <MenuButton onClick={onClick}>
     <FaUser size={30} />
   </MenuButton>
 );
 
-interface IDungeonStateDebug {
+interface IPlayerDebug {
   phaserScene: Phaser.Scene;
   onClose: () => void;
 }
 
-const PlayerDebug = ({ onClose }: IDungeonStateDebug) => {
-  const { playerStats, updatePlayerStats, coins, adjustCoins, inventory } =
-    useContext(PlayerContext);
+const PlayerDebug = ({ onClose }: IPlayerDebug) => {
+  const {
+    playerStats,
+    updatePlayerStats,
+    coins,
+    adjustCoins,
+    coinsSpent,
+    adjustCoinsSpent,
+    coinsAvailable,
+    inventory,
+  } = useContext(PlayerContext);
 
   return (
     <Modal onClose={onClose}>
@@ -34,8 +42,15 @@ const PlayerDebug = ({ onClose }: IDungeonStateDebug) => {
         <button onClick={() => adjustCoins(-coins)}>reset</button>
       </div>
 
+      <div>
+        coinsSpent: <button onClick={() => adjustCoinsSpent(-1)}>-</button>{' '}
+        {coinsSpent} <button onClick={() => adjustCoinsSpent(+1)}>+</button>{' '}
+        <button onClick={() => adjustCoinsSpent(-coins)}>reset</button>
+      </div>
+
       <pre style={{ textAlign: 'left' }}>
         {JSON.stringify(playerStats, null, 2)}
+        {JSON.stringify({ coinsAvailable }, null, 2)}
       </pre>
 
       <div style={{ textAlign: 'right' }}>

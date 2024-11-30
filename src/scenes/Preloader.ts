@@ -4,6 +4,7 @@ import audio, { Audio } from '../objects/Audio';
 import WhipBullet from '../objects/weapons/bullets/WhipBullet';
 import { GameOver } from './GameOver';
 import { Win } from './Win';
+import { Shop } from './Shop';
 import { preloadDoor } from '../helpers/doors';
 import { allRoomTypes, preloadRoom } from '../rooms';
 import Player from '../objects/entities/Player';
@@ -55,6 +56,7 @@ export class Preloader extends Scene {
 
     GameOver.preload(this);
     Win.preload(this);
+    Shop.preload(this);
     Audio.preload(this, musicConfig);
     WhipBullet.preload(this);
     HandgunBullet.preload(this);
