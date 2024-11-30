@@ -18,6 +18,9 @@ import roomConfigd from './room-config-d';
 import roomConfige from './room-config-e';
 import roomConfigw from './room-config-w';
 import spawnEnemies from '../helpers/spawnEnemies';
+import Player from '../objects/entities/Player';
+import { inventory } from '../helpers/weapons';
+import { Weapons } from '../enums/Weapons';
 
 const roomConfigs = {
   '.': roomConfigDOT,
@@ -145,7 +148,8 @@ export const createRoom = (
         );
         for (let i = 0; i < locations.length; i += 1) {
           const { x, y } = locations[i];
-          if (tiledObjectName === 'enemy' && isRoomCleared) {
+          if (tiledObjectName === 'enemy' && isRoomCleared || inventory.includes(tiledObjectName as Weapons)) {
+            if (inventory)
             continue;
           }
           group.get(x, y);
