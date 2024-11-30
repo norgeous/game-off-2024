@@ -6,7 +6,7 @@ export class GameOver extends Phaser.Scene {
   }
 
   static preload(scene: Phaser.Scene) {
-    scene.load.audio('sfx-game-over', 'assets/audio/game-over-arcade-6435.mp3');
+    scene.load.audio('sfx-game-over', 'assets/audio/bell-222490.mp3');
     scene.load.image('gameover', 'assets/title-cards/gameover.jpg');
   }
 
@@ -20,8 +20,11 @@ export class GameOver extends Phaser.Scene {
     this.sound.play('sfx-game-over');
 
     const goMainMenu = () => this.scene.start('MainMenu');
-    this.input.on('pointerup', goMainMenu);
-    this.input.keyboard?.addKey('space').on('up', goMainMenu);
+
+    setTimeout(() => {
+      this.input.on('pointerup', goMainMenu);
+      this.input.keyboard?.addKey('space').on('up', goMainMenu);
+    }, 4_000);
 
     EventBus.emit(EventNames.READY, this);
   }
