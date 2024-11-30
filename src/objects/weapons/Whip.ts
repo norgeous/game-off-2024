@@ -7,7 +7,7 @@ const KEY = 'whip';
 // dps = 0.5/0.6 = 0.83
 const config: ItemConfigType = {
   key: KEY,
-  scale: 0.2,
+  scale: 0.25,
   collisionCategory: CC.item,
   collisionMask: CM.item,
   onPickUpCallBack: (_item, player) => {
