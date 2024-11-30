@@ -27,12 +27,7 @@ const Menu = ({ phaserScene }: IMenu) => {
   return (
     <>
       <CornerMenu $corner={Corner.TL}>
-        <Coins />
-        {phaserScene.scene.key === 'MainMenu' && (
-          <button onClick={() => phaserScene.scene.start('Shop')}>
-            Power Up!
-          </button>
-        )}
+        <Coins phaserScene={phaserScene} />
         <Health />
       </CornerMenu>
       <CornerMenu $corner={Corner.TR}>
@@ -79,9 +74,11 @@ const Menu = ({ phaserScene }: IMenu) => {
           </>
         )}
       </CornerMenu>
-      <CornerMenu $corner={Corner.BR}>
-        <MiniMap />
-      </CornerMenu>
+      {phaserScene.scene.key === 'Room' && (
+        <CornerMenu $corner={Corner.BR}>
+          <MiniMap />
+        </CornerMenu>
+      )}
       {isSceneSelectorOpen && (
         <SceneSelectorModal
           phaserScene={phaserScene}
