@@ -46,6 +46,68 @@ const PlayerDebug = ({ onClose }: IDungeonStateDebug) => {
           +
         </button>
       </div>
+
+      <div>
+        maxHp:{' '}
+        <button
+          onClick={() => updatePlayerStats({ maxHp: playerStats.maxHp - 1 })}
+        >
+          -
+        </button>{' '}
+        {playerStats.maxHp}{' '}
+        <button
+          onClick={() => updatePlayerStats({ maxHp: playerStats.maxHp + 1 })}
+        >
+          +
+        </button>
+      </div>
+
+      <div>
+        speed:{' '}
+        <button
+          onClick={() =>
+            updatePlayerStats({
+              speed: Number((playerStats.speed - 0.1).toFixed(1)),
+            })
+          }
+        >
+          -
+        </button>{' '}
+        {playerStats.speed.toFixed(1)}{' '}
+        <button
+          onClick={() =>
+            updatePlayerStats({
+              speed: Number((playerStats.speed + 0.1).toFixed(1)),
+            })
+          }
+        >
+          +
+        </button>
+      </div>
+
+      <div>
+        attackRate:{' '}
+        <button
+          onClick={() =>
+            updatePlayerStats({
+              attackRate: Number((playerStats.attackRate - 0.1).toFixed(1)),
+            })
+          }
+        >
+          -
+        </button>{' '}
+        {playerStats.attackRate.toFixed(1)}{' '}
+        <button
+          onClick={() =>
+            updatePlayerStats({
+              attackRate: Number((playerStats.attackRate + 0.1).toFixed(1)),
+            })
+          }
+        >
+          +
+        </button>
+      </div>
+
       <pre style={{ textAlign: 'left' }}>
         inventory: {JSON.stringify(inventory, null, 2)}
       </pre>
