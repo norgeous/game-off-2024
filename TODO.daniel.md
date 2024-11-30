@@ -41,8 +41,8 @@
 - [x] add isRoomCleared flag to sceneInitData
 - [x] fix the fps to 60
 - [x] autofire!
-- [ ] max hp?
+- [ ] scale up enemies stats based on room count
 - [ ] shop
-- [ ] jones TTS lines?
-- [ ] secret rooms
-- [ ] new settings modal
+- [ ] jones TTS lines
+- [ ] maybe help Scotty with: enemy fire projectiles
+- [ ] max hp?
