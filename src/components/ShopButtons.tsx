@@ -19,7 +19,7 @@ const ShopButtons = ({ onClose }: IShopButtons) => {
           bottom: 0,
           display: 'flex',
           gap: 20,
-          padding: 12,
+          padding: 60,
         }}
       >
         <div>
