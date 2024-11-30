@@ -1,5 +1,5 @@
 import { Weapons } from '../enums/Weapons';
-import HandgunBullet from '../objects/weapons/bullets/HandgunBullet';
+import HandGunBullet from '../objects/weapons/bullets/HandGunBullet';
 import MachineGunBullet from '../objects/weapons/bullets/MachinegunBullet';
 import WhipBullet from '../objects/weapons/bullets/WhipBullet';
 
@@ -11,7 +11,7 @@ export const addWeapon = (weapon: Weapons) => {
 
 const itemName2Bullet = {
   'hand-gun': {
-    Bullet: HandgunBullet,
+    Bullet: HandGunBullet,
     cooldownLength: 1000, // milliseconds between shots
   },
   'machine-gun': {
