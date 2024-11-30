@@ -5,6 +5,8 @@ import createSensors from '../../helpers/createSensors';
 import isDev from '../../helpers/isDev';
 import { spawnItemFromDropPool } from '../../helpers/itemFactory';
 import { classFactoryType } from '../items';
+import Gold from '../items/Gold';
+import Heart from '../items/Heart';
 
 type AnimationsConfigType = {
   animationKey: string;
@@ -91,7 +93,20 @@ const defaultConfig: EntityConfigType = {
     speed: 0,
     attackRate: 0,
   },
-  itemDropPool: [],
+  itemDropPool: [
+    {
+      classFactory: null,
+      chance: 60,
+    },
+    {
+      classFactory: Gold,
+      chance: 20,
+    },
+    {
+      classFactory: Heart,
+      chance: 20 ,
+    },
+  ],
 };
 
 class Entity extends Phaser.GameObjects.Container {
