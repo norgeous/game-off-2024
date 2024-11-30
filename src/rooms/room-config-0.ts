@@ -1,5 +1,5 @@
 import Handgun from "../objects/weapons/Handgun";
-import MachineGun from "../objects/weapons/MachineGun";
+import Whip from "../objects/weapons/Whip";
 
 export default {
   music: [
@@ -36,15 +36,15 @@ export default {
     ],
     spawnerConfig: [
       {
-        tiledObjectName: 'machine-gun',
-        classFactory: MachineGun,
+        tiledObjectName: 'hand-gun',
+        classFactory: Handgun,
         maxSize: 1,
         runChildUpdate: true,
         autoSpawn: true,
       },
       {
-        tiledObjectName: 'hand-gun',
-        classFactory: Handgun,
+        tiledObjectName: 'whip',
+        classFactory: Whip,
         maxSize: 1,
         runChildUpdate: true,
         autoSpawn: true,
