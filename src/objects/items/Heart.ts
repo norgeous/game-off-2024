@@ -5,7 +5,7 @@ const KEY = 'heart';
 
 const config: ItemConfigType = {
   key: KEY,
-  scale: 0.1,
+  scale: 1,
   collisionCategory: CC.item,
   collisionMask: CM.item,
   onPickUpCallBack: (_item, player) => {

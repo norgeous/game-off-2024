@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import { FaHeart } from 'react-icons/fa6';
 import PlayerContext from '../contexts/PlayerContext';
 
 const Health = () => {
@@ -9,7 +8,7 @@ const Health = () => {
   return (
     <div style={{ display: 'flex', gap: 8, color: 'firebrick' }}>
       {Array.from({ length: hp }, (_, i) => (
-        <FaHeart key={i} size={30} />
+        <img key={i} src="/assets/items/heart.png" />
       ))}
     </div>
   );
