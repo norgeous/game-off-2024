@@ -12,6 +12,6 @@ export default `
 34c
 28c
 b13
-e2b
+h2b
 0..
 `;
