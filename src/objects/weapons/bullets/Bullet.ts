@@ -2,9 +2,9 @@ import { CC, CM } from '../../../enums/CollisionCategories';
 import Projectile, { ProjectileConfigType } from '../Projectile';
 
 const projectileConfig: ProjectileConfigType = {
-  key: 'star',
-  assetName: 'star.png',
-  scale: 0.5,
+  key: 'bullet',
+  assetName: 'bullet.png',
+  scale: 0.2,
   stats: {
     damage: 1,
   },
@@ -13,18 +13,18 @@ const projectileConfig: ProjectileConfigType = {
   chamferRadius: 15,
   timeToLive: 5_000,
   physicsConfig: {
-    ejectionForce: 0.05,
+    ejectionForce: 0.01,
   },
   onEntityHitCallBack: (projectile, entity) => {
     entity.takeDamage(projectile.stats.damage);
   },
 };
 
-class StarBullet extends Projectile {
+class Bullet extends Projectile {
   static preload(scene: Phaser.Scene) {
-    scene.load.image('star', 'star.png');
+    scene.load.image('bullet', 'assets/bullet.png');
   }
-
+  
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, projectileConfig);
   }
@@ -34,4 +34,4 @@ class StarBullet extends Projectile {
   }
 }
 
-export default StarBullet;
+export default Bullet;
