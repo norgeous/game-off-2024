@@ -7,17 +7,26 @@ import { defaultPlayerStats } from '../objects/entities/Player';
 type ItemKeysType = 'gold' | 'heart';
 
 const usePlayer = () => {
-  const [playerStats, setPlayerStats] = useState(defaultPlayerStats);
+  const [playerStats, setPlayerStats] = useLocalStorage(
+    'player-stats',
+    defaultPlayerStats,
+  );
   const updatePlayerStats = useCallback(
     (statsFragment: Partial<typeof defaultPlayerStats>) =>
       setPlayerStats({ ...playerStats, ...statsFragment }),
-    [playerStats],
+    [playerStats, setPlayerStats],
   );
 
   const [coins, setCoins] = useLocalStorage('coins', 0);
   const adjustCoins = useCallback(
     (amount: number) => setCoins(coins + amount),
     [coins, setCoins],
+  );
+
+  const [coinsSpent, setCoinsSpent] = useLocalStorage('coins-spent', 0);
+  const adjustCoinsSpent = useCallback(
+    (amount: number) => setCoinsSpent(coinsSpent + amount),
+    [coinsSpent, setCoinsSpent],
   );
 
   const [inventory, setInventory] = useState([]);
@@ -52,6 +61,11 @@ const usePlayer = () => {
 
     coins,
     adjustCoins,
+
+    coinsSpent,
+    adjustCoinsSpent,
+
+    coinsAvailable: coins - coinsSpent,
 
     inventory,
     setInventory,

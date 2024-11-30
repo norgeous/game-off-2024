@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { encode, decode } from './safeBase64';
 import { stringify, parse } from './safeJSON';
 
-const keysToEncrypt = ['coins'];
+const keysToEncrypt = ['coins', 'coins-spent', 'player-stats'];
 
 const localstorage = (key: string, defaultValue: any) => {
   const encryptOn = keysToEncrypt.includes(key);
