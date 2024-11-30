@@ -2,8 +2,8 @@ import { CC, CM } from '../../../enums/CollisionCategories';
 import Projectile, { ProjectileConfigType } from '../Projectile';
 
 const projectileConfig: ProjectileConfigType = {
-  key: 'bullet',
-  assetName: 'bullet.png',
+  key: 'handgun-bullet',
+  assetName: 'handgun-bullet.png',
   scale: 0.2,
   stats: {
     damage: 1,
@@ -20,9 +20,9 @@ const projectileConfig: ProjectileConfigType = {
   },
 };
 
-class Bullet extends Projectile {
+class HandgunBullet extends Projectile {
   static preload(scene: Phaser.Scene) {
-    scene.load.image('bullet', 'assets/bullet.png');
+    scene.load.image('handgun-bullet', 'assets/items/weapons/bullets/handgun-bullet.png');
   }
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
@@ -34,4 +34,4 @@ class Bullet extends Projectile {
   }
 }
 
-export default Bullet;
+export default HandgunBullet;
