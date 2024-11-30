@@ -10,15 +10,15 @@ export default {
     },
   ],
   tiled: {
-    tiledMapJson: './tiled/rooms/room-b.json',
+    tiledMapJson: './tiled/rooms/room-e.json',
     images: [
       {
         key: 'floor1',
         file: './assets/levels/floor1.png',
       },
       {
-        key: 'walls6',
-        file: './assets/levels/walls6.png',
+        key: 'walls1',
+        file: './assets/levels/walls1.png',
       },
       {
         key: 'obsticles',
