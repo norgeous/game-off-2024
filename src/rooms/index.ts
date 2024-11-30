@@ -15,6 +15,7 @@ import roomConfiga from './room-config-a';
 import roomConfigb from './room-config-b';
 import roomConfigc from './room-config-c';
 import roomConfigd from './room-config-d';
+import roomConfige from './room-config-e';
 import roomConfigw from './room-config-w';
 import spawnEnemies from '../helpers/spawnEnemies';
 
@@ -35,6 +36,7 @@ const roomConfigs = {
   b: roomConfigb,
   c: roomConfigc,
   d: roomConfigd,
+  e: roomConfige,
   w: roomConfigw,
 };
 
