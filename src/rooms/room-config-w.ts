@@ -10,21 +10,30 @@ export default {
     },
   ],
   tiled: {
-    tiledMapJson: './tiled/rooms/room-w.json',
+    tiledMapJson: './tiled/rooms/room-w2.json',
     images: [
       {
-        key: 'walls',
-        file: './assets/levels/walls1.png',
+        key: 'floor2',
+        file: './assets/levels/floor2.png',
       },
       {
-        key: 'floor',
-        file: './assets/levels/floor1.png',
+        key: 'walls7',
+        file: './assets/levels/walls7.png',
+      },
+      {
+        key: 'obsticles',
+        file: './assets/obsticles/pots-and-rocks.png',
+      },
+      {
+        key: 'holes',
+        file: './assets/obsticles/holes.png',
       },
     ],
     layerConfig: [
       { tiledLayerName: 'floor', depth: 0 },
       { tiledLayerName: 'walls', depth: 0 },
-      // { tiledLayerName: 'obsticles', depth: 0 },
+      { tiledLayerName: 'obsticles-background', depth: 0 },
+      { tiledLayerName: 'obsticles-foreground', depth: 0 },
     ],
     spawnerConfig: [
       {
