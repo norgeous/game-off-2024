@@ -58,7 +58,7 @@ export class Room extends Scene {
 
     EventBus.on(EventNames.RESPAWN_PLAYER, () => {
       const { px, py } = getPlayerStartPosition(this, playerEnterFrom);
-      this.player.setPosition(px, py);
+      this.player?.setPosition(px, py);
     });
 
     // camera constraint
