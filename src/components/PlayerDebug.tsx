@@ -4,24 +4,24 @@ import MenuButton from './MenuButton';
 import Modal from './Modal';
 import PlayerContext from '../contexts/PlayerContext';
 
-interface IDungeonStateDebugToggleButton {
+interface IPlayerDebugToggleButton {
   onClick: () => void;
 }
 
 export const PlayerDebugToggleButton = ({
   onClick,
-}: IDungeonStateDebugToggleButton) => (
+}: IPlayerDebugToggleButton) => (
   <MenuButton onClick={onClick}>
     <FaUser size={30} />
   </MenuButton>
 );
 
-interface IDungeonStateDebug {
+interface IPlayerDebug {
   phaserScene: Phaser.Scene;
   onClose: () => void;
 }
 
-const PlayerDebug = ({ onClose }: IDungeonStateDebug) => {
+const PlayerDebug = ({ onClose }: IPlayerDebug) => {
   const {
     playerStats,
     updatePlayerStats,
