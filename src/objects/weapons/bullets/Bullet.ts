@@ -11,7 +11,7 @@ const projectileConfig: ProjectileConfigType = {
   collisionCategory: CC.playerBullet,
   collisionMask: CM.playerBullet,
   chamferRadius: 15,
-  timeToLive: 400,
+  timeToLive: 1400,
   physicsConfig: {
     ejectionForce: 0.01,
   },
@@ -24,7 +24,7 @@ class Bullet extends Projectile {
   static preload(scene: Phaser.Scene) {
     scene.load.image('bullet', 'assets/bullet.png');
   }
-  
+
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, projectileConfig);
   }
