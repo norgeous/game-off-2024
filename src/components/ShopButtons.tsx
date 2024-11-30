@@ -25,7 +25,7 @@ const ShopButtons = ({ onClose }: IShopButtons) => {
           position: 'absolute',
           bottom: 0,
           display: 'flex',
-          gap: 20,
+          gap: 12,
           padding: 60,
         }}
       >
