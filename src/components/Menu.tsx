@@ -29,7 +29,7 @@ const Menu = ({ phaserScene }: IMenu) => {
   return (
     <>
       <CornerMenu $corner={Corner.TL}>
-        <Health />
+        {phaserScene.scene.key === 'Room' && <Health />}
         <Coins />
       </CornerMenu>
       <CornerMenu $corner={Corner.TR}>
