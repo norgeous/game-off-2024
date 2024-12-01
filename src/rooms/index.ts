@@ -106,8 +106,6 @@ export const createRoom = (
       ?.setDepth(depth),
   );
 
-  console.log(level.widthInPixels);
-
   // set the world boundry same size as Tiled map
   scene.matter.world.setBounds(
     8 * 16,
