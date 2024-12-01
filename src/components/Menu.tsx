@@ -118,11 +118,11 @@ const Menu = ({ phaserScene }: IMenu) => {
             }}
             onClick={() => EventBus.emit(EventNames.START, phaserScene)}
           >
-            Start Game
+            Begin Adventure
           </button>
           <button
             style={{
-              fontSize: '5vh',
+              fontSize: '3vh',
               padding: '1vh',
             }}
             onClick={() => phaserScene.scene.start('Shop')}
