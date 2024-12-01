@@ -98,7 +98,7 @@ const useDungeonState = () => {
     return () => {
       EventBus.removeListener(EventNames.START);
     };
-  }, [dungeon1D]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [dungeon1D, playerStats]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // when a door is touched, exec go function
   useEffect(() => {
