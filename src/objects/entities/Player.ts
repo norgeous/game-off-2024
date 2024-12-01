@@ -14,6 +14,7 @@ const KEY = 'player';
 
 export const defaultPlayerStats = {
   hp: 5,
+  initialHp: 5,
   maxHp: 10,
   speed: 0.1,
   attackRate: 1,
@@ -125,7 +126,7 @@ class Player extends Entity {
     const { px, py } = getPlayerStartPosition(scene, playerEnterFrom);
     entityConfig.stats = playerStats;
     super(scene, px, py, entityConfig);
-    
+
     this.keys = createControls(scene);
     this.weapons = weapons(scene);
     this.gameObject.setFriction(0);

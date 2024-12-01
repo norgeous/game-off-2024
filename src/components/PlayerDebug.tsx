@@ -65,6 +65,25 @@ const PlayerDebug = ({ onClose }: IPlayerDebug) => {
       </div>
 
       <div style={{ textAlign: 'right' }}>
+        initialHp:{' '}
+        <button
+          onClick={() =>
+            updatePlayerStats({ initialHp: playerStats.initialHp - 1 })
+          }
+        >
+          -
+        </button>{' '}
+        {playerStats.initialHp}{' '}
+        <button
+          onClick={() =>
+            updatePlayerStats({ initialHp: playerStats.initialHp + 1 })
+          }
+        >
+          +
+        </button>
+      </div>
+
+      <div style={{ textAlign: 'right' }}>
         maxHp:{' '}
         <button
           onClick={() => updatePlayerStats({ maxHp: playerStats.maxHp - 1 })}

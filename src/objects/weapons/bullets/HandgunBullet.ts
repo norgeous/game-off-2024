@@ -24,7 +24,10 @@ const projectileConfig: ProjectileConfigType = {
 
 class HandgunBullet extends Projectile {
   static preload(scene: Phaser.Scene) {
-    scene.load.image('handgun-bullet', 'assets/items/weapons/bullets/handgun-bullet.png');
+    scene.load.image(
+      'handgun-bullet',
+      'assets/items/weapons/bullets/handgun-bullet.png',
+    );
   }
 
   constructor(scene: Phaser.Scene, x: number, y: number) {

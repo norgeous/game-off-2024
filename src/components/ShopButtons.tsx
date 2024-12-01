@@ -33,12 +33,12 @@ const ShopButtons = ({ onClose }: IShopButtons) => {
           <ShopButton
             onClick={() => {
               cashSfx();
-              updatePlayerStats({ hp: playerStats.hp + 1 });
+              updatePlayerStats({ initialHp: playerStats.initialHp + 1 });
             }}
           >
             Health +
           </ShopButton>
-          <center>current: {playerStats.hp}</center>
+          <center>current: {playerStats.initialHp}</center>
         </div>
 
         <div>
