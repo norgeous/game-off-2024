@@ -45,9 +45,9 @@
 - [x] jones TTS lines
 - [x] bring in the boundry walls
 - [x] choose from random dungeon at start
-- [ ] shop
-  - [ ] player speed item
-  - [ ] make items more expensive
+- [x] shop
+  - [x] player speed item
+  - [x] make items more expensive
 - [ ] add existing hp scaling to enemy's base hp stat
 - [ ] optimise enemies sprites in GIMP
 - [ ] call at 8 - 8:30pm for upload / deploy to itch

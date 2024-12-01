@@ -45,7 +45,7 @@ const PlayerDebug = ({ onClose }: IPlayerDebug) => {
       <div>
         coinsSpent: <button onClick={() => adjustCoinsSpent(-1)}>-</button>{' '}
         {coinsSpent} <button onClick={() => adjustCoinsSpent(+1)}>+</button>{' '}
-        <button onClick={() => adjustCoinsSpent(-coins)}>reset</button>
+        <button onClick={() => adjustCoinsSpent(-coinsSpent)}>reset</button>
       </div>
 
       <pre style={{ textAlign: 'left' }}>

@@ -33,12 +33,12 @@ const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
       >
         {/* Health */}
         <div>
-          <center>1 Gold</center>
+          <center>10 Gold</center>
           <ShopButton
             onClick={() => {
-              if (coinsAvailable > 0) {
+              if (coinsAvailable - 10 >= 0) {
                 phaserScene.sound.play('cash-reg');
-                adjustCoinsSpent(1);
+                adjustCoinsSpent(10);
                 updatePlayerStats({ initialHp: playerStats.initialHp + 1 });
               } else {
                 phaserScene.sound.play('no-gold');
@@ -52,12 +52,12 @@ const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
 
         {/* Speed */}
         <div>
-          <center>1 Gold</center>
+          <center>10 Gold</center>
           <ShopButton
             onClick={() => {
-              if (coinsAvailable > 0) {
+              if (coinsAvailable - 10 >= 0) {
                 phaserScene.sound.play('cash-reg');
-                adjustCoinsSpent(1);
+                adjustCoinsSpent(10);
                 updatePlayerStats({
                   speed: Number((playerStats.speed + 0.1).toFixed(1)),
                 });
@@ -73,16 +73,16 @@ const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
 
         {/* Attack Rate */}
         <div>
-          <center>1 Gold</center>
+          <center>10 Gold</center>
           <ShopButton
             onClick={() => {
               if (playerStats.attackRate >= MAX_ATTACK_RATE) {
                 phaserScene.sound.play('maxed');
                 return;
               }
-              if (coinsAvailable > 0) {
+              if (coinsAvailable - 10 >= 0) {
                 phaserScene.sound.play('cash-reg');
-                adjustCoinsSpent(1);
+                adjustCoinsSpent(10);
                 updatePlayerStats({
                   attackRate: Number((playerStats.attackRate + 0.1).toFixed(1)),
                 });
