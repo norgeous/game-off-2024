@@ -113,8 +113,8 @@ const Menu = ({ phaserScene }: IMenu) => {
         >
           <button
             style={{
-              fontSize: 30,
-              padding: 12,
+              fontSize: '5vh',
+              padding: '1vh',
             }}
             onClick={() => EventBus.emit(EventNames.START, phaserScene)}
           >
@@ -122,8 +122,8 @@ const Menu = ({ phaserScene }: IMenu) => {
           </button>
           <button
             style={{
-              fontSize: 30,
-              padding: 12,
+              fontSize: '5vh',
+              padding: '1vh',
             }}
             onClick={() => phaserScene.scene.start('Shop')}
           >
