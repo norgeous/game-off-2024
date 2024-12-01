@@ -1,4 +1,4 @@
-import { getRandomEnemy } from '../helpers/getRandomEnemy';
+import Bat from '../objects/entities/mobs/Bat';
 
 export default {
   music: [
@@ -38,8 +38,8 @@ export default {
     ],
     spawnerConfig: [
       {
-        tiledObjectName: 'enemy',
-        classFactory: getRandomEnemy(),
+        tiledObjectName: 'bat',
+        classFactory: Bat,
         maxSize: 10,
         runChildUpdate: true,
         autoSpawn: true,
