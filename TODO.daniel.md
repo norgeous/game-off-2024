@@ -43,7 +43,7 @@
 - [x] autofire!
 - [x] scale up enemies stats based on room count
 - [x] jones TTS lines
-- [ ] bring in the boundry walls, delete tiled walls geomerty
+- [x] bring in the boundry walls
 - [ ] choose from random dungeon at start
 - [ ] shop
   - [ ] player speed item
