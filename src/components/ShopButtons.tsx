@@ -10,7 +10,8 @@ interface IShopButtons {
 }
 
 const ShopButtons = ({ onClose }: IShopButtons) => {
-  const { playerStats, updatePlayerStats } = useContext(PlayerContext);
+  const { playerStats, updatePlayerStats, adjustCoinsSpent, setCoinsSpent } =
+    useContext(PlayerContext);
 
   const cashSfx = () => {
     const el = document.getElementById('audio_tag') as HTMLAudioElement;
@@ -34,6 +35,7 @@ const ShopButtons = ({ onClose }: IShopButtons) => {
           <ShopButton
             onClick={() => {
               cashSfx();
+              adjustCoinsSpent(1);
               updatePlayerStats({ initialHp: playerStats.initialHp + 1 });
             }}
           >
@@ -74,6 +76,7 @@ const ShopButtons = ({ onClose }: IShopButtons) => {
         <button
           onClick={() => {
             updatePlayerStats(defaultPlayerStats);
+            setCoinsSpent(0);
           }}
         >
           Refund All Past Purchases

@@ -16,12 +16,12 @@ const CoinCount = styled.div`
 `;
 
 const Coins = () => {
-  const { coins } = useContext(PlayerContext);
+  const { coinsAvailable } = useContext(PlayerContext);
   return (
     <>
       <Container>
         <FaCoins size={30} style={{ color: 'gold' }} />
-        <CoinCount>{new Intl.NumberFormat().format(coins)}</CoinCount>
+        <CoinCount>{new Intl.NumberFormat().format(coinsAvailable)}</CoinCount>
       </Container>
     </>
   );
