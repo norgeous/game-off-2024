@@ -4,7 +4,7 @@ import { EventBus, EventNames } from '../helpers/EventBus';
 import { useLocalStorage } from '../helpers/localstorage';
 import { defaultPlayerStats } from '../objects/entities/Player';
 
-type ItemKeysType = 'gold' | 'heart';
+type ItemKeysType = 'gold' | 'gold-medium' | 'gold-large' | 'heart';
 
 const usePlayer = () => {
   const [playerStats, setPlayerStats] = useLocalStorage(
@@ -46,6 +46,8 @@ const usePlayer = () => {
       (_scene: Phaser.Scene, itemKey: ItemKeysType) => {
         ({
           gold: () => adjustCoins(+1),
+          'gold-medium': () => adjustCoins(+3),
+          'gold-large': () => adjustCoins(+5),
           heart: () => updatePlayerStats({ hp: playerStats.hp + 1 }),
         })[itemKey]?.();
       },

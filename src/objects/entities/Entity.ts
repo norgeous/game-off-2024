@@ -7,6 +7,8 @@ import { spawnItemFromDropPool } from '../../helpers/itemFactory';
 import { classFactoryType } from '../items';
 import Gold from '../items/Gold';
 import Heart from '../items/Heart';
+import GoldLarge from '../items/GoldLarge';
+import GoldMedium from '../items/GoldMedium';
 
 type AnimationsConfigType = {
   animationKey: string;
@@ -99,12 +101,20 @@ const defaultConfig: EntityConfigType = {
       chance: 60,
     },
     {
-      classFactory: Gold,
+      classFactory: Heart,
       chance: 20,
     },
     {
-      classFactory: Heart,
-      chance: 20 ,
+      classFactory: Gold,
+      chance: 15,
+    },
+    {
+      classFactory: GoldMedium,
+      chance: 10,
+    },
+    {
+      classFactory: GoldLarge,
+      chance: 5,
     },
   ],
 };
