@@ -7,7 +7,7 @@ export const inventory: Weapons[] = [];
 
 export const addWeapon = (weapon: Weapons) => {
   inventory.push(weapon);
-}; 
+};
 
 const itemName2Bullet = {
   'hand-gun': {

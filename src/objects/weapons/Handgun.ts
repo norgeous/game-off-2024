@@ -4,7 +4,6 @@ import Item, { ItemConfigType } from '../items/Item';
 
 const KEY = 'handgun';
 
-
 // dps = 1/0.2 = 5
 const config: ItemConfigType = {
   key: KEY,
@@ -20,7 +19,7 @@ class Handgun extends Item {
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, config);
   }
-  
+
   static preload(scene: Phaser.Scene) {
     scene.load.image(KEY, 'assets/items/weapons/' + KEY + '.png');
   }

@@ -60,7 +60,7 @@ export class Preloader extends Scene {
     Gold.preload(this);
     GoldMedium.preload(this);
     GoldLarge.preload(this);
-    Heart.preload(this); 
+    Heart.preload(this);
     GameOver.preload(this);
     Win.preload(this);
     Shop.preload(this);
