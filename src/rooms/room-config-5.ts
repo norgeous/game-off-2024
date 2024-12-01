@@ -29,8 +29,8 @@ export default {
       { tiledLayerName: 'floor', depth: 0 },
       { tiledLayerName: 'walls', depth: 0 },
       { tiledLayerName: 'obsticles-background', depth: 0 },
-      { tiledLayerName: 'obsticles-midground', depth: 1 },
-      { tiledLayerName: 'obsticles-foreground', depth: 2 },
+      { tiledLayerName: 'obsticles-midground', depth: 0 },
+      { tiledLayerName: 'obsticles-foreground', depth: 0 },
     ],
     spawnerConfig: [
       {
