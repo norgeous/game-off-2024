@@ -71,12 +71,11 @@ export class Room extends Scene {
 
     EventBus.on(EventNames.COMPLETE_DUNGEON, () => {
       this.sound.stopAll();
+      this.matter.pause();
       this.sound.play('winning');
-      this.sound.get('winning').on('complete', () => {
-        setTimeout(() => {
-          this.scene.start('Win');
-        }, 1_000);
-      })
+      setTimeout(() => {
+        this.scene.start('Win');
+      }, 4_000);
     });
 
     // camera constraint

@@ -1,4 +1,5 @@
 import { getRandomEnemy } from '../helpers/getRandomEnemy';
+import PharaoeLarge from '../objects/entities/mobs/PharaoeLarge';
 
 export default {
   music: [
@@ -38,6 +39,13 @@ export default {
       {
         tiledObjectName: 'enemy',
         classFactory: getRandomEnemy(),
+        maxSize: 10,
+        runChildUpdate: true,
+        autoSpawn: true,
+      },
+      {
+        tiledObjectName: 'boss1',
+        classFactory: PharaoeLarge,
         maxSize: 10,
         runChildUpdate: true,
         autoSpawn: true,
