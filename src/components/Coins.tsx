@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import { FaCoins } from 'react-icons/fa6';
 import styled from 'styled-components';
 import PlayerContext from '../contexts/PlayerContext';
 
@@ -20,7 +19,7 @@ const Coins = () => {
   return (
     <>
       <Container>
-        <FaCoins size={30} style={{ color: 'gold' }} />
+        <img src="./assets/items/coin.png" />
         <CoinCount>{new Intl.NumberFormat().format(coinsAvailable)}</CoinCount>
       </Container>
     </>
