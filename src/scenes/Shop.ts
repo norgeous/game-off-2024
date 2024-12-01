@@ -7,6 +7,7 @@ export class Shop extends Phaser.Scene {
 
   static preload(scene: Phaser.Scene) {
     scene.load.audio('sfx-shop', 'assets/audio/shop-door.mp3');
+    scene.load.audio('what-ya-buying', 'assets/audio/what-are-you-buying.mp3');
     scene.load.image('shop', 'assets/title-cards/shop.jpg');
   }
 
@@ -17,7 +18,9 @@ export class Shop extends Phaser.Scene {
 
     this.add.image(width * 0.5, height * 0.5, 'shop');
 
+    this.sound.play('what-ya-buying');
     this.sound.play('sfx-shop');
+   
 
     EventBus.emit(EventNames.READY, this);
   }
