@@ -6,7 +6,11 @@ import getPlayerStartPosition from '../../helpers/getPlayerStartPosition';
 import { SceneInitParamsType } from '../../helpers/dungeonConfigParser';
 import { createControls, keysToVector, keysType } from '../../helpers/controls';
 import { EventBus, EventNames } from '../../helpers/EventBus';
-import weapons, { addWeapon, inventory } from '../../helpers/weapons';
+import weapons, {
+  addWeapon,
+  clearInventory,
+  inventory,
+} from '../../helpers/weapons';
 import { entityFalling } from '../../helpers/tweens/Entityfalling';
 import { Weapons } from '../../enums/Weapons';
 
@@ -156,7 +160,9 @@ class Player extends Entity {
   }
 
   death() {
+    clearInventory();
     this.scene.matter.pause();
+    this.scene.sound.stopAll();
     setTimeout(() => {
       this.scene.scene.start('GameOver');
     }, 999);

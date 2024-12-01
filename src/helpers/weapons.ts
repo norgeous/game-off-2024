@@ -4,10 +4,14 @@ import MachinegunBullet from '../objects/weapons/bullets/MachinegunBullet';
 import WhipBullet from '../objects/weapons/bullets/WhipBullet';
 import { SceneInitParamsType } from './dungeonConfigParser';
 
-export const inventory: Weapons[] = [];
+export let inventory: Weapons[] = [];
 
 export const addWeapon = (weapon: Weapons) => {
   inventory.push(weapon);
+};
+
+export const clearInventory = () => {
+  inventory = [];
 };
 
 const itemName2Bullet = {
