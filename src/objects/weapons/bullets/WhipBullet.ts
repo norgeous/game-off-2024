@@ -15,7 +15,7 @@ const projectileConfig: ProjectileConfigType = {
   chamferRadius: 15,
   timeToLive: 200,
   physicsConfig: {
-    ejectionForce: 0.05,
+    ejectionForce: 0.06,
   },
   onEntityHitCallBack: (projectile, entity) => {
     entity.takeDamage(projectile.stats.damage);

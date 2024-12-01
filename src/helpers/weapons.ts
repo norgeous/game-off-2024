@@ -2,6 +2,7 @@ import { Weapons } from '../enums/Weapons';
 import HandgunBullet from '../objects/weapons/bullets/HandgunBullet';
 import MachinegunBullet from '../objects/weapons/bullets/MachinegunBullet';
 import WhipBullet from '../objects/weapons/bullets/WhipBullet';
+import { SceneInitParamsType } from './dungeonConfigParser';
 
 export let inventory: Weapons[] = [];
 
@@ -16,23 +17,28 @@ export const clearInventory = () => {
 const itemName2Bullet = {
   'hand-gun': {
     Bullet: HandgunBullet,
-    cooldownLength: 1000, // milliseconds between shots
+    maxCooldownLength: 1000, // base rate of fire
+    minCooldownLength: 500, // max upgraded rate of fire
   },
   'machine-gun': {
     Bullet: MachinegunBullet,
-    cooldownLength: 200, // milliseconds between shots
+    maxCooldownLength: 200, // base rate of fire
+    minCooldownLength: 100, // max upgraded rate of fire
   },
   whip: {
     Bullet: WhipBullet,
-    cooldownLength: 600, // milliseconds between shots
+    maxCooldownLength: 600, // base rate of fire
+    minCooldownLength: 200, // max upgraded rate of fire
   },
 };
 
-const weapons = (scene: Phaser.Scene) => {
+const weapons = (scene: Phaser.Scene, sceneInitParams: SceneInitParamsType) => {
   const groups = inventory.map((itemName) => {
-    const { Bullet, cooldownLength } = itemName2Bullet[itemName];
+    const { Bullet, maxCooldownLength, minCooldownLength } =
+      itemName2Bullet[itemName];
     return {
-      cooldownLength,
+      maxCooldownLength,
+      minCooldownLength,
       cooldownFinishAt: 0,
       group: scene.add.group({
         maxSize: 100,
@@ -43,12 +49,22 @@ const weapons = (scene: Phaser.Scene) => {
   });
 
   return (x: number, y: number, time: number) => {
-    groups.forEach(({ cooldownLength, cooldownFinishAt, group }, index) => {
-      if (time > cooldownFinishAt) {
-        group.get(x, y);
-        groups[index].cooldownFinishAt = time + cooldownLength; // reset cooldownFinish to some time in future
-      }
-    });
+    groups.forEach(
+      (
+        { maxCooldownLength, minCooldownLength, cooldownFinishAt, group },
+        index,
+      ) => {
+        if (time > cooldownFinishAt) {
+          group.get(x, y);
+
+          // reset cooldownFinish to some time in future
+          const cooldownRange = maxCooldownLength - minCooldownLength;
+          const multiplier = sceneInitParams.playerStats.attackRate - 1; // number between 0 and 1
+          const cooldownLength = maxCooldownLength - cooldownRange * multiplier;
+          groups[index].cooldownFinishAt = time + cooldownLength;
+        }
+      },
+    );
   };
 };
 
