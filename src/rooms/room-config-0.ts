@@ -1,3 +1,4 @@
+import EndGameItem from '../objects/items/EndGameItem';
 import Handgun from '../objects/weapons/Handgun';
 import Whip from '../objects/weapons/Whip';
 
@@ -36,15 +37,15 @@ export default {
     ],
     spawnerConfig: [
       {
-        tiledObjectName: 'hand-gun',
-        classFactory: Handgun,
+        tiledObjectName: 'whip',
+        classFactory: Whip,
         maxSize: 1,
         runChildUpdate: true,
         autoSpawn: true,
       },
       {
-        tiledObjectName: 'whip',
-        classFactory: Whip,
+        tiledObjectName: 'end-game-item',
+        classFactory: EndGameItem,
         maxSize: 1,
         runChildUpdate: true,
         autoSpawn: true,

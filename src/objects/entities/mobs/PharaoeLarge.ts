@@ -4,6 +4,7 @@ import { CC, CM } from '../../../enums/CollisionCategories';
 import { Room } from '../../../scenes/Room';
 import { OscillatingMovement } from '../../../helpers/movement/OscillatingMovement';
 import Enemy from '../Enemy';
+import EndGameItem from '../../items/EndGameItem';
 
 const KEY = 'pharaoe_large';
 
@@ -31,6 +32,12 @@ const entityConfig: EntityConfigType = {
     speed: 0.1,
     attackRate: 1,
   },
+  itemDropPool: [
+    {
+      classFactory: EndGameItem,
+      chance: 100,
+    }
+  ],
 };
 
 class PharaoeLarge extends Enemy {
