@@ -17,10 +17,9 @@ import roomConfigc from './room-config-c';
 import roomConfigd from './room-config-d';
 import roomConfige from './room-config-e';
 import roomConfigf from './room-config-f';
+import roomConfigg from './room-config-g';
 import roomConfigh from './room-config-h';
 import roomConfigw from './room-config-w';
-import spawnEnemies from '../helpers/spawnEnemies';
-import Player from '../objects/entities/Player';
 import { inventory } from '../helpers/weapons';
 import { Weapons } from '../enums/Weapons';
 
@@ -43,6 +42,7 @@ const roomConfigs = {
   d: roomConfigd,
   e: roomConfige,
   f: roomConfigf,
+  g: roomConfigg,
   h: roomConfigh,
   w: roomConfigw,
 
