@@ -9,6 +9,7 @@ export type ItemConfigType = {
   collisionMask: CM;
   onPickUpCallBack?: (item: Item, entity: Player) => void;
   onPickUpAnimation?: (item: Item) => void;
+  matterConfig?: Phaser.Types.Physics.Matter.MatterBodyConfig;
 };
 
 const defaultConfig: ItemConfigType = {
@@ -54,11 +55,13 @@ class Item extends Phaser.GameObjects.Container {
       scale,
       onPickUpAnimation,
       onPickUpCallBack,
+      matterConfig,
     } = { ...defaultConfig, ...config };
 
     // Add sprite
     this.gameObject = scene.matter.add
       .sprite(x, y, key, undefined, {
+        ...matterConfig,
         collisionFilter: {
           category: collisionCategory,
           mask: collisionMask,
