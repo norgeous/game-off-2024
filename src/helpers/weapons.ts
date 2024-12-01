@@ -13,23 +13,26 @@ export const addWeapon = (weapon: Weapons) => {
 const itemName2Bullet = {
   'hand-gun': {
     Bullet: HandgunBullet,
-    cooldownLength: 1000, // milliseconds between shots
+    maxCooldownLength: 1000, // base rate of fire
+    minCooldownLength: 500, // max upgraded rate of fire
   },
   'machine-gun': {
     Bullet: MachinegunBullet,
-    cooldownLength: 200, // milliseconds between shots
+    maxCooldownLength: 200, // base rate of fire
+    minCooldownLength: 100, // max upgraded rate of fire
   },
   whip: {
     Bullet: WhipBullet,
-    cooldownLength: 600, // milliseconds between shots
+    maxCooldownLength: 600, // base rate of fire
+    minCooldownLength: 400, // max upgraded rate of fire
   },
 };
 
 const weapons = (scene: Phaser.Scene, sceneInitParams: SceneInitParamsType) => {
   const groups = inventory.map((itemName) => {
-    const { Bullet, cooldownLength } = itemName2Bullet[itemName];
+    const { Bullet, maxCooldownLength } = itemName2Bullet[itemName];
     return {
-      cooldownLength,
+      maxCooldownLength,
       cooldownFinishAt: 0,
       group: scene.add.group({
         maxSize: 100,
@@ -40,14 +43,14 @@ const weapons = (scene: Phaser.Scene, sceneInitParams: SceneInitParamsType) => {
   });
 
   return (x: number, y: number, time: number) => {
-    groups.forEach(({ cooldownLength, cooldownFinishAt, group }, index) => {
+    groups.forEach(({ maxCooldownLength, cooldownFinishAt, group }, index) => {
       if (time > cooldownFinishAt) {
         group.get(x, y);
 
         // reset cooldownFinish to some time in future
         groups[index].cooldownFinishAt =
           time +
-          (cooldownLength - sceneInitParams.playerStats.attackRate * 100);
+          (maxCooldownLength - sceneInitParams.playerStats.attackRate * 100);
       }
     });
   };
