@@ -15,23 +15,13 @@ const CoinCount = styled.div`
   text-shadow: 2px 2px #000;
 `;
 
-interface ICoins {
-  phaserScene: Phaser.Scene;
-}
-
-const Coins = ({ phaserScene }: ICoins) => {
+const Coins = () => {
   const { coins } = useContext(PlayerContext);
   return (
     <>
       <Container>
         <FaCoins size={30} style={{ color: 'gold' }} />
         <CoinCount>{new Intl.NumberFormat().format(coins)}</CoinCount>
-
-        {phaserScene.scene.key === 'MainMenu' && (
-          <button onClick={() => phaserScene.scene.start('Shop')}>
-            Power Up!
-          </button>
-        )}
       </Container>
     </>
   );

@@ -12,20 +12,7 @@ export class MainMenu extends Phaser.Scene {
 
     this.add.image(width * 0.5, height * 0.5, 'title');
 
-    this.add
-      .text(width * 0.5, height * 0.8, 'Main Menu', {
-        fontFamily: 'Arial Black',
-        fontSize: 38,
-        color: '#ffffff',
-        stroke: '#000000',
-        strokeThickness: 8,
-        align: 'center',
-      })
-      .setOrigin(0.5)
-      .setDepth(100);
-
     const startDungeon = () => EventBus.emit(EventNames.START, this);
-    this.input.on('pointerup', startDungeon);
     this.input.keyboard?.addKey('space').on('up', startDungeon);
 
     EventBus.emit(EventNames.READY, this);

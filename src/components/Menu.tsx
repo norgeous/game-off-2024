@@ -14,6 +14,7 @@ import Coins from './Coins';
 import PlayerDebug, { PlayerDebugToggleButton } from './PlayerDebug';
 import MuteMusicToggle from './MuteMusicToggle';
 import ShopButtons from './ShopButtons';
+import { EventBus, EventNames } from '../helpers/EventBus';
 
 interface IMenu {
   phaserScene: Phaser.Scene;
@@ -98,6 +99,39 @@ const Menu = ({ phaserScene }: IMenu) => {
           onClose={() => setIsPlayerDebugOpen(false)}
         />
       )}
+
+      {phaserScene.scene.key === 'MainMenu' && (
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 12,
+            paddingBottom: 160,
+          }}
+        >
+          <button
+            style={{
+              fontSize: 30,
+              padding: 12,
+            }}
+            onClick={() => EventBus.emit(EventNames.START, phaserScene)}
+          >
+            Start Game
+          </button>
+          <button
+            style={{
+              fontSize: 30,
+              padding: 12,
+            }}
+            onClick={() => phaserScene.scene.start('Shop')}
+          >
+            Power Up!
+          </button>
+        </div>
+      )}
+
       {phaserScene.scene.key === 'Shop' && (
         <ShopButtons
           phaserScene={phaserScene}
