@@ -30,9 +30,11 @@ const itemName2Bullet = {
 
 const weapons = (scene: Phaser.Scene, sceneInitParams: SceneInitParamsType) => {
   const groups = inventory.map((itemName) => {
-    const { Bullet, maxCooldownLength } = itemName2Bullet[itemName];
+    const { Bullet, maxCooldownLength, minCooldownLength } =
+      itemName2Bullet[itemName];
     return {
       maxCooldownLength,
+      minCooldownLength,
       cooldownFinishAt: 0,
       group: scene.add.group({
         maxSize: 100,
@@ -43,16 +45,22 @@ const weapons = (scene: Phaser.Scene, sceneInitParams: SceneInitParamsType) => {
   });
 
   return (x: number, y: number, time: number) => {
-    groups.forEach(({ maxCooldownLength, cooldownFinishAt, group }, index) => {
-      if (time > cooldownFinishAt) {
-        group.get(x, y);
+    groups.forEach(
+      (
+        { maxCooldownLength, minCooldownLength, cooldownFinishAt, group },
+        index,
+      ) => {
+        if (time > cooldownFinishAt) {
+          group.get(x, y);
 
-        // reset cooldownFinish to some time in future
-        groups[index].cooldownFinishAt =
-          time +
-          (maxCooldownLength - sceneInitParams.playerStats.attackRate * 100);
-      }
-    });
+          // reset cooldownFinish to some time in future
+          const cooldownRange = maxCooldownLength - minCooldownLength;
+          const multiplier = sceneInitParams.playerStats.attackRate - 1; // number between 0 and 1
+          const cooldownLength = maxCooldownLength - cooldownRange * multiplier;
+          groups[index].cooldownFinishAt = time + cooldownLength;
+        }
+      },
+    );
   };
 };
 
