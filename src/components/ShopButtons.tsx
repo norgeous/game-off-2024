@@ -99,7 +99,14 @@ const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
         </button>
       </CornerMenu>
       <CornerMenu $corner={Corner.BR}>
-        <button onClick={() => onClose()}>Back to Main Menu</button>
+        <button
+          onClick={() => {
+            phaserScene.sound.play('see-ya');
+            onClose();
+          }}
+        >
+          Back to Main Menu
+        </button>
       </CornerMenu>
     </>
   );

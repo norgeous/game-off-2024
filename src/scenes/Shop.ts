@@ -18,6 +18,7 @@ export class Shop extends Phaser.Scene {
       'assets/audio/shop/cash-register-fake-88639.mp3',
     );
     scene.load.audio('no-gold', 'assets/audio/shop/no-gold.mp3');
+    scene.load.audio('see-ya', 'assets/audio/shop/see-ya.mp3');
   }
 
   create() {
