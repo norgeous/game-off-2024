@@ -420,26 +420,26 @@
                 {
                  "height":0,
                  "id":5,
-                 "name":"enemy",
+                 "name":"bat",
                  "point":true,
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1112.10984043885,
-                 "y":576.086253137941
+                 "x":1728,
+                 "y":608
                 }, 
                 {
                  "height":0,
                  "id":9,
-                 "name":"enemy",
+                 "name":"bat",
                  "point":true,
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":800,
-                 "y":400
+                 "x":640,
+                 "y":240
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -498,7 +498,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -589,7 +589,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }],
