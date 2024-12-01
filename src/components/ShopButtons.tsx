@@ -9,19 +9,17 @@ interface IShopButtons {
   onClose: () => void;
 }
 
-const ShopButtons = ({ onClose }: IShopButtons) => {
-  const { playerStats, updatePlayerStats, adjustCoinsSpent, setCoinsSpent } =
-    useContext(PlayerContext);
-
-  const cashSfx = () => {
-    const el = document.getElementById('audio_tag') as HTMLAudioElement;
-    el.currentTime = 0;
-    el?.play();
-  };
+const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
+  const {
+    playerStats,
+    updatePlayerStats,
+    setCoinsSpent,
+    adjustCoinsSpent,
+    coinsAvailable,
+  } = useContext(PlayerContext);
 
   return (
     <>
-      <audio id="audio_tag" src="./assets/audio/cash-register-fake-88639.mp3" />
       <div
         style={{
           position: 'absolute',
@@ -34,9 +32,13 @@ const ShopButtons = ({ onClose }: IShopButtons) => {
         <div>
           <ShopButton
             onClick={() => {
-              cashSfx();
-              adjustCoinsSpent(1);
-              updatePlayerStats({ initialHp: playerStats.initialHp + 1 });
+              if (coinsAvailable > 0) {
+                phaserScene.sound.play('cash-reg');
+                adjustCoinsSpent(1);
+                updatePlayerStats({ initialHp: playerStats.initialHp + 1 });
+              } else {
+                alert('no funds');
+              }
             }}
           >
             Health +
@@ -47,7 +49,7 @@ const ShopButtons = ({ onClose }: IShopButtons) => {
         <div>
           <ShopButton
             onClick={() => {
-              cashSfx();
+              // cashSfx();
               updatePlayerStats({
                 speed: Number((playerStats.speed + 0.1).toFixed(1)),
               });
@@ -61,7 +63,7 @@ const ShopButtons = ({ onClose }: IShopButtons) => {
         <div>
           <ShopButton
             onClick={() => {
-              cashSfx();
+              // cashSfx();
               updatePlayerStats({
                 attackRate: Number((playerStats.attackRate + 0.1).toFixed(1)),
               });
