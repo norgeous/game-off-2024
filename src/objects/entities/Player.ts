@@ -170,7 +170,7 @@ class Player extends Entity {
     if (this.keys) {
       const forceVector = keysToVector(
         this.keys,
-        0.0001 * this.stats.speed * delta,
+        0.00015 * this.stats.speed * delta,
       );
       this.gameObject.applyForce(forceVector);
     }
