@@ -14,8 +14,8 @@ interface IRoom {
 }
 
 const Room = styled.div<IRoom>`
-  width: 15px;
-  height: 9px;
+  width: 6px;
+  height: 6px;
   position: relative;
   display: flex;
   justify-content: center;
