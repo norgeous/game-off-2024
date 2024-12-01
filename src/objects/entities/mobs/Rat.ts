@@ -25,7 +25,7 @@ const entityConfig: EntityConfigType = {
   },
   animations: [],
   stats: {
-    hp: 20,
+    hp: 5,
     initialHp: 20,
     maxHp: 20,
     speed: 0.08,
