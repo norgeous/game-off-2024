@@ -12,6 +12,8 @@ import HandgunBullet from '../objects/weapons/bullets/HandgunBullet';
 import MachinegunBullet from '../objects/weapons/bullets/MachinegunBullet';
 import Heart from '../objects/items/Heart';
 import Gold from '../objects/items/Gold';
+import GoldMedium from '../objects/items/GoldMedium';
+import GoldLarge from '../objects/items/GoldLarge';
 
 export class Preloader extends Scene {
   constructor() {
@@ -56,6 +58,8 @@ export class Preloader extends Scene {
 
     Player.preload(this);
     Gold.preload(this);
+    GoldMedium.preload(this);
+    GoldLarge.preload(this);
     Heart.preload(this); 
     GameOver.preload(this);
     Win.preload(this);
