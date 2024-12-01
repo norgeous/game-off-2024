@@ -24,7 +24,7 @@ const itemName2Bullet = {
   whip: {
     Bullet: WhipBullet,
     maxCooldownLength: 600, // base rate of fire
-    minCooldownLength: 400, // max upgraded rate of fire
+    minCooldownLength: 200, // max upgraded rate of fire
   },
 };
 
