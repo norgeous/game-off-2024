@@ -1,6 +1,4 @@
 import { getRandomEnemy } from '../helpers/getRandomEnemy';
-import Scroll from '../objects/items/Scroll';
-import Handgun from '../objects/weapons/Handgun';
 
 export default {
   music: [
@@ -12,39 +10,36 @@ export default {
     },
   ],
   tiled: {
-    tiledMapJson: './tiled/rooms/room-2.json',
+    tiledMapJson: './tiled/rooms/room-j.json',
     images: [
       {
-        key: 'floor2',
-        file: './assets/levels/floor2.png',
+        key: 'floor1',
+        file: './assets/levels/floor1.png',
       },
       {
-        key: 'walls2',
-        file: './assets/levels/walls2.png',
+        key: 'walls1',
+        file: './assets/levels/walls1.png',
       },
       {
         key: 'obsticles',
-        file: './assets/levels/pots-and-rocks.png',
+        file: './assets/obsticles/pots-and-rocks.png',
+      },
+      {
+        key: 'holes',
+        file: './assets/obsticles/holes.png',
       },
     ],
     layerConfig: [
       { tiledLayerName: 'floor', depth: 0 },
       { tiledLayerName: 'walls', depth: 0 },
       { tiledLayerName: 'obsticles-background', depth: 0 },
-      { tiledLayerName: 'obsticles-midground', depth: 1 },
-      { tiledLayerName: 'obsticles-foreground', depth: 2 },
+      { tiledLayerName: 'obsticles-midground', depth: 0 },
+      { tiledLayerName: 'obsticles-foreground', depth: 0 },
     ],
     spawnerConfig: [
       {
         tiledObjectName: 'enemy',
         classFactory: getRandomEnemy(),
-        maxSize: 10,
-        runChildUpdate: true,
-        autoSpawn: true,
-      },
-      {
-        tiledObjectName: 'hand-gun',
-        classFactory: Handgun,
         maxSize: 10,
         runChildUpdate: true,
         autoSpawn: true,

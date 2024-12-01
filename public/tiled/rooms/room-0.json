@@ -121,18 +121,6 @@
          "objects":[
                 {
                  "height":0,
-                 "id":12,
-                 "name":"hand-gun",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":1008,
-                 "y":336
-                }, 
-                {
-                 "height":0,
                  "id":14,
                  "name":"whip",
                  "point":true,
