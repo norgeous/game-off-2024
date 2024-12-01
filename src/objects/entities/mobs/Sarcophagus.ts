@@ -3,7 +3,6 @@ import { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
 import { Room } from '../../../scenes/Room';
 import Enemy from '../Enemy';
-import { MoveToPlayer } from '../../../helpers/movement/MoveToPlayer';
 
 const KEY = 'sarcophagus';
 
@@ -26,6 +25,7 @@ const entityConfig: EntityConfigType = {
   animations: [],
   stats: {
     hp: 50,
+    initialHp: 50,
     maxHp: 10,
     speed: 0.0,
     attackRate: 1,

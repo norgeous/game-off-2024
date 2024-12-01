@@ -58,6 +58,7 @@ export type EntityConfigType = {
 
 export type EntityStatsType = {
   hp: number;
+  initialHp: number;
   maxHp: number;
   speed: number;
   attackRate: number;
@@ -91,6 +92,7 @@ const defaultConfig: EntityConfigType = {
   ],
   stats: {
     hp: 1,
+    initialHp: 1,
     maxHp: 0,
     speed: 0,
     attackRate: 0,

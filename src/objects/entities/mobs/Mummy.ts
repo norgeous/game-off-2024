@@ -2,7 +2,6 @@ import * as Phaser from 'phaser';
 import { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
 import { Room } from '../../../scenes/Room';
-import { OscillatingMovement } from '../../../helpers/movement/OscillatingMovement';
 import Enemy from '../Enemy';
 import { MoveToPlayer } from '../../../helpers/movement/MoveToPlayer';
 
@@ -27,6 +26,7 @@ const entityConfig: EntityConfigType = {
   animations: [],
   stats: {
     hp: 10,
+    initialHp: 10,
     maxHp: 10,
     speed: 0.05,
     attackRate: 1,
