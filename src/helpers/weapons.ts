@@ -3,10 +3,14 @@ import HandgunBullet from '../objects/weapons/bullets/HandgunBullet';
 import MachinegunBullet from '../objects/weapons/bullets/MachinegunBullet';
 import WhipBullet from '../objects/weapons/bullets/WhipBullet';
 
-export const inventory: Weapons[] = [];
+export let inventory: Weapons[] = [];
 
 export const addWeapon = (weapon: Weapons) => {
   inventory.push(weapon);
+};
+
+export const clearInventory = () => {
+  inventory = [];
 };
 
 const itemName2Bullet = {
