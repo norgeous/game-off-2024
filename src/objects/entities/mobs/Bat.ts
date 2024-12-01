@@ -42,6 +42,10 @@ const entityConfig: EntityConfigType = {
       chance: 15,
     },
     {
+      classFactory: Gold,
+      chance: 15,
+    },
+    {
       classFactory: Heart,
       chance: 15,
     },
