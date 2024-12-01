@@ -48,7 +48,7 @@
 - [x] shop
   - [x] player speed item
   - [x] make items more expensive
-- [ ] add existing hp scaling to enemy's base hp stat
+- [x] add existing hp scaling to enemy's base hp stat
 - [ ] optimise enemies sprites in GIMP
 - [ ] call at 8 - 8:30pm for upload / deploy to itch
 - [ ] design some rooms
