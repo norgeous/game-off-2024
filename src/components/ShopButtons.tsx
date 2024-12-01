@@ -30,6 +30,7 @@ const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
         }}
       >
         <div>
+          <center>1 Gold</center>
           <ShopButton
             onClick={() => {
               if (coinsAvailable > 0) {
@@ -43,10 +44,11 @@ const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
           >
             Health +
           </ShopButton>
-          <center>current: {playerStats.initialHp}</center>
+          <center>Current: {playerStats.initialHp}</center>
         </div>
 
         <div>
+          <center>1 Gold</center>
           <ShopButton
             onClick={() => {
               // cashSfx();
@@ -57,10 +59,11 @@ const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
           >
             Speed +
           </ShopButton>
-          <center>current: {playerStats.speed}</center>
+          <center>Current: {playerStats.speed}</center>
         </div>
 
         <div>
+          <center>1 Gold</center>
           <ShopButton
             onClick={() => {
               // cashSfx();
@@ -71,7 +74,7 @@ const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
           >
             Attack Rate +
           </ShopButton>
-          <center>current: {playerStats.attackRate}</center>
+          <center>Current: {playerStats.attackRate}</center>
         </div>
       </div>
       <CornerMenu $corner={Corner.BL}>
@@ -81,7 +84,7 @@ const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
             setCoinsSpent(0);
           }}
         >
-          Refund All Past Purchases
+          Refund All Gold
         </button>
       </CornerMenu>
       <CornerMenu $corner={Corner.BR}>
