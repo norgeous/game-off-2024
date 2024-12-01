@@ -51,7 +51,6 @@ const roomConfigs = {
   j: roomConfigj,
   k: roomConfigk,
   w: roomConfigw,
-
 };
 
 export const allRoomTypes = Object.keys(roomConfigs) as RoomType[];
@@ -107,12 +106,14 @@ export const createRoom = (
       ?.setDepth(depth),
   );
 
+  console.log(level.widthInPixels);
+
   // set the world boundry same size as Tiled map
   scene.matter.world.setBounds(
-    0,
-    0,
-    level.widthInPixels,
-    level.heightInPixels,
+    8 * 16,
+    8 * 16,
+    level.widthInPixels - 8 * 16 * 2,
+    level.heightInPixels - 8 * 16 * 2,
     2 ** 10,
   );
   (scene.matter.world.walls.top as MatterJS.BodyType).label =
@@ -160,9 +161,11 @@ export const createRoom = (
         );
         for (let i = 0; i < locations.length; i += 1) {
           const { x, y } = locations[i];
-          if (tiledObjectName === 'enemy' && isRoomCleared || inventory.includes(tiledObjectName as Weapons)) {
-            if (inventory)
-            continue;
+          if (
+            (tiledObjectName === 'enemy' && isRoomCleared) ||
+            inventory.includes(tiledObjectName as Weapons)
+          ) {
+            if (inventory) continue;
           }
           group.get(x, y);
         }
