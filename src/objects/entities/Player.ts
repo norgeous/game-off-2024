@@ -6,11 +6,7 @@ import getPlayerStartPosition from '../../helpers/getPlayerStartPosition';
 import { SceneInitParamsType } from '../../helpers/dungeonConfigParser';
 import { createControls, keysToVector, keysType } from '../../helpers/controls';
 import { EventBus, EventNames } from '../../helpers/EventBus';
-import weapons, {
-  addWeapon,
-  clearInventory,
-  inventory,
-} from '../../helpers/weapons';
+import weapons, { addWeapon, clearInventory } from '../../helpers/weapons';
 import { entityFalling } from '../../helpers/tweens/Entityfalling';
 import { Weapons } from '../../enums/Weapons';
 
@@ -20,7 +16,7 @@ export const defaultPlayerStats = {
   hp: 5,
   initialHp: 5,
   maxHp: 10,
-  speed: 0.1,
+  speed: 1,
   attackRate: 1,
 };
 
@@ -172,7 +168,10 @@ class Player extends Entity {
     super.update(time, delta);
 
     if (this.keys) {
-      const forceVector = keysToVector(this.keys, 0.0002 * delta);
+      const forceVector = keysToVector(
+        this.keys,
+        0.0001 * this.stats.speed * delta,
+      );
       this.gameObject.applyForce(forceVector);
     }
 
