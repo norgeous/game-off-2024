@@ -10,13 +10,13 @@ import dungeonConfigParser, {
 } from '../helpers/dungeonConfigParser';
 import { EventBus, EventNames } from '../helpers/EventBus';
 import SettingsContext from './SettingsContext';
+import PlayerContext from './PlayerContext';
 
 import dungeon1 from '../dungeons/1';
 import dungeon2 from '../dungeons/2';
+import dungeon3 from '../dungeons/3';
 
-import PlayerContext from './PlayerContext';
-
-const dungeons = [dungeon1, dungeon2];
+const dungeons = [dungeon1, dungeon2, dungeon3];
 
 const getIsRoomCleared = (
   current: typeof defaultDungeonState.current,
