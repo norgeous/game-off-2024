@@ -9,6 +9,8 @@ interface IShopButtons {
   onClose: () => void;
 }
 
+const MAX_ATTACK_RATE = 2;
+
 const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
   const {
     playerStats,
@@ -29,6 +31,7 @@ const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
           padding: 60,
         }}
       >
+        {/* Health */}
         <div>
           <center>1 Gold</center>
           <ShopButton
@@ -47,6 +50,7 @@ const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
           <center>Current: {playerStats.initialHp}</center>
         </div>
 
+        {/* Speed */}
         <div>
           <center>1 Gold</center>
           <ShopButton
@@ -67,10 +71,15 @@ const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
           <center>Current: {playerStats.speed}</center>
         </div>
 
+        {/* Attack Rate */}
         <div>
           <center>1 Gold</center>
           <ShopButton
             onClick={() => {
+              if (playerStats.attackRate >= MAX_ATTACK_RATE) {
+                phaserScene.sound.play('maxed');
+                return;
+              }
               if (coinsAvailable > 0) {
                 phaserScene.sound.play('cash-reg');
                 adjustCoinsSpent(1);
