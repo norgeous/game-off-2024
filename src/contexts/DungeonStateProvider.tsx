@@ -13,7 +13,6 @@ import SettingsContext from './SettingsContext';
 
 import dungeon1 from '../dungeons/1';
 import PlayerContext from './PlayerContext';
-import { defaultPlayerStats } from '../objects/entities/Player';
 
 const getIsRoomCleared = (
   current: typeof defaultDungeonState.current,
@@ -84,14 +83,16 @@ const useDungeonState = () => {
 
       setCurrent(startState); // reset current
       setRoomHistory([startRoom]); // reset history
-      updatePlayerStats(defaultPlayerStats); // reset stats
+
+      const resetStats = { hp: playerStats.initialHp };
+      updatePlayerStats(resetStats); // reset current hp
 
       scene?.scene.start('Room', {
         ...startState,
         ...settings,
         isRoomCleared: false,
         roomClearedCount: 0,
-        playerStats: defaultPlayerStats,
+        playerStats: { ...playerStats, ...resetStats },
       });
     });
     return () => {
