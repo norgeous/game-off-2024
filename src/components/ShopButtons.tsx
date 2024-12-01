@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import PlayerContext from '../contexts/PlayerContext';
 import ShopButton from './ShopButton';
 import CornerMenu, { Corner } from './CornerMenu';
+import { defaultPlayerStats } from '../objects/entities/Player';
 
 interface IShopButtons {
   phaserScene: Phaser.Scene;
@@ -70,7 +71,13 @@ const ShopButtons = ({ onClose }: IShopButtons) => {
         </div>
       </div>
       <CornerMenu $corner={Corner.BL}>
-        <button onClick={() => alert('WIP')}>Refund All Past Purchases</button>
+        <button
+          onClick={() => {
+            updatePlayerStats(defaultPlayerStats);
+          }}
+        >
+          Refund All Past Purchases
+        </button>
       </CornerMenu>
       <CornerMenu $corner={Corner.BR}>
         <button onClick={() => onClose()}>Back to Main Menu</button>
