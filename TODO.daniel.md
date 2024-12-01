@@ -44,7 +44,7 @@
 - [x] scale up enemies stats based on room count
 - [x] jones TTS lines
 - [x] bring in the boundry walls
-- [ ] choose from random dungeon at start
+- [x] choose from random dungeon at start
 - [ ] shop
   - [ ] player speed item
 - [ ] add existing hp scaling to enemy's base hp stat

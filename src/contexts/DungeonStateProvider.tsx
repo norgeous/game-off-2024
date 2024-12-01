@@ -10,9 +10,13 @@ import dungeonConfigParser, {
 } from '../helpers/dungeonConfigParser';
 import { EventBus, EventNames } from '../helpers/EventBus';
 import SettingsContext from './SettingsContext';
+import PlayerContext from './PlayerContext';
 
 import dungeon1 from '../dungeons/1';
-import PlayerContext from './PlayerContext';
+import dungeon2 from '../dungeons/2';
+import dungeon3 from '../dungeons/3';
+
+const dungeons = [dungeon1, dungeon2, dungeon3];
 
 const getIsRoomCleared = (
   current: typeof defaultDungeonState.current,
@@ -36,10 +40,7 @@ const useDungeonState = () => {
   const settings = { isMusicMuted };
 
   // on mount, generate the dungeon1D and save to react state
-  useEffect(() => {
-    const newDungeon1D = dungeonConfigParser(dungeon1);
-    setDungeon1D(newDungeon1D);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const go = useCallback(
     (scene: Phaser.Scene, direction: Direction) => {
@@ -65,12 +66,16 @@ const useDungeonState = () => {
     EventBus.on(EventNames.START, (scene: Phaser.Scene) => {
       console.log('START THE MADNESS');
 
+      const dungeon = dungeons[Math.floor(Math.random() * dungeons.length)];
+      const newDungeon1D = dungeonConfigParser(dungeon);
+      setDungeon1D(newDungeon1D);
+
       // find the first roomType of 0
-      const startRoom = dungeon1D.find(({ roomType }) => roomType === '0');
+      const startRoom = newDungeon1D.find(({ roomType }) => roomType === '0');
       if (!startRoom) return;
 
       const { adjacentRooms } = getRoomInfo(
-        dungeon1D,
+        newDungeon1D,
         startRoom.x,
         startRoom.y,
       );
@@ -98,7 +103,7 @@ const useDungeonState = () => {
     return () => {
       EventBus.removeListener(EventNames.START);
     };
-  }, [dungeon1D, playerStats]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [playerStats]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // when a door is touched, exec go function
   useEffect(() => {
