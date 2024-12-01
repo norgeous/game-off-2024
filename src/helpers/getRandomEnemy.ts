@@ -21,21 +21,18 @@ const enemies = [
   Beetle,
   Mummy,
   Pharaoe,
-  PharaoeLarge,
   Rat,
   Sandman,
   Sarcophagus,
   Scorpion,
   Skeleton,
   Snake,
-  Sphinx,
   Statue,
 ];
 
 const bosses = [
   PharaoeLarge,
   Sphinx,
-
 ];
 
 export const getRandomEnemy = () => {
