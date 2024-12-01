@@ -8,7 +8,7 @@ type ItemKeysType = 'gold' | 'gold-medium' | 'gold-large' | 'heart';
 
 const usePlayer = () => {
   const [playerStats, setPlayerStats] = useLocalStorage(
-    'player-stats-new',
+    'playerstats',
     defaultPlayerStats,
   );
   const updatePlayerStats = useCallback(
@@ -65,6 +65,7 @@ const usePlayer = () => {
     adjustCoins,
 
     coinsSpent,
+    setCoinsSpent,
     adjustCoinsSpent,
 
     coinsAvailable: coins - coinsSpent,
