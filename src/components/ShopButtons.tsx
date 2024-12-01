@@ -51,10 +51,15 @@ const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
           <center>1 Gold</center>
           <ShopButton
             onClick={() => {
-              // cashSfx();
-              updatePlayerStats({
-                speed: Number((playerStats.speed + 0.1).toFixed(1)),
-              });
+              if (coinsAvailable > 0) {
+                phaserScene.sound.play('cash-reg');
+                adjustCoinsSpent(1);
+                updatePlayerStats({
+                  speed: Number((playerStats.speed + 0.1).toFixed(1)),
+                });
+              } else {
+                phaserScene.sound.play('no-gold');
+              }
             }}
           >
             Speed +
@@ -66,10 +71,15 @@ const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
           <center>1 Gold</center>
           <ShopButton
             onClick={() => {
-              // cashSfx();
-              updatePlayerStats({
-                attackRate: Number((playerStats.attackRate + 0.1).toFixed(1)),
-              });
+              if (coinsAvailable > 0) {
+                phaserScene.sound.play('cash-reg');
+                adjustCoinsSpent(1);
+                updatePlayerStats({
+                  attackRate: Number((playerStats.attackRate + 0.1).toFixed(1)),
+                });
+              } else {
+                phaserScene.sound.play('no-gold');
+              }
             }}
           >
             Attack Rate +
@@ -80,6 +90,7 @@ const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
       <CornerMenu $corner={Corner.BL}>
         <button
           onClick={() => {
+            phaserScene.sound.play('cash-reg');
             updatePlayerStats(defaultPlayerStats);
             setCoinsSpent(0);
           }}
