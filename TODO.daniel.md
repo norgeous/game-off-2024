@@ -42,8 +42,13 @@
 - [x] fix the fps to 60
 - [x] autofire!
 - [x] scale up enemies stats based on room count
+- [x] jones TTS lines
+- [ ] bring in the boundry walls, delete tiled walls geomerty
+- [ ] choose from random dungeon at start
 - [ ] shop
-- [ ] jones TTS lines
+  - [ ] player speed item
+- [ ] add existing hp scaling to enemy's base hp stat
+- [ ] optimise enemies sprites in GIMP
+- [ ] call at 8 - 8:30pm for upload / deploy to itch
 - [ ] design some rooms
-- [ ] maybe help Scotty with: enemy fire projectiles
 - [ ] enforce max hp?
