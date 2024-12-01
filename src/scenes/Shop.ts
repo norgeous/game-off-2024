@@ -8,9 +8,16 @@ export class Shop extends Phaser.Scene {
   static preload(scene: Phaser.Scene) {
     scene.load.image('shop', 'assets/title-cards/shop.jpg');
 
-    scene.load.audio('sfx-shop-door', 'assets/audio/shop-door.mp3');
-    scene.load.audio('what-ya-buying', 'assets/audio/what-are-you-buying.mp3');
-    scene.load.audio('cash-reg', 'assets/audio/cash-register-fake-88639.mp3');
+    scene.load.audio('sfx-shop-door', 'assets/audio/shop/shop-door.mp3');
+    scene.load.audio(
+      'what-ya-buying',
+      'assets/audio/shop/what-are-you-buying.mp3',
+    );
+    scene.load.audio(
+      'cash-reg',
+      'assets/audio/shop/cash-register-fake-88639.mp3',
+    );
+    scene.load.audio('no-gold', 'assets/audio/shop/no-gold.mp3');
   }
 
   create() {

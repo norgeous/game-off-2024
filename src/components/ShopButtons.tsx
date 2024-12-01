@@ -37,7 +37,7 @@ const ShopButtons = ({ phaserScene, onClose }: IShopButtons) => {
                 adjustCoinsSpent(1);
                 updatePlayerStats({ initialHp: playerStats.initialHp + 1 });
               } else {
-                alert('no funds');
+                phaserScene.sound.play('no-gold');
               }
             }}
           >
