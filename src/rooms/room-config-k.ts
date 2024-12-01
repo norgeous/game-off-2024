@@ -1,4 +1,6 @@
 import { getRandomEnemy } from '../helpers/getRandomEnemy';
+import Handgun from '../objects/weapons/Handgun';
+import MachineGun from '../objects/weapons/MachineGun';
 
 export default {
   music: [
@@ -40,6 +42,20 @@ export default {
       {
         tiledObjectName: 'enemy',
         classFactory: getRandomEnemy(),
+        maxSize: 10,
+        runChildUpdate: true,
+        autoSpawn: true,
+      },
+      {
+        tiledObjectName: 'machine-gun',
+        classFactory: MachineGun,
+        maxSize: 10,
+        runChildUpdate: true,
+        autoSpawn: true,
+      },
+      {
+        tiledObjectName: 'hand-gun',
+        classFactory: Handgun,
         maxSize: 10,
         runChildUpdate: true,
         autoSpawn: true,
