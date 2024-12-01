@@ -1,5 +1,5 @@
-import Handgun from "../objects/weapons/Handgun";
-import Whip from "../objects/weapons/Whip";
+import Handgun from '../objects/weapons/Handgun';
+import Whip from '../objects/weapons/Whip';
 
 export default {
   music: [

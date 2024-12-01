@@ -20,7 +20,6 @@ export class Shop extends Phaser.Scene {
 
     this.sound.play('what-ya-buying');
     this.sound.play('sfx-shop');
-   
 
     EventBus.emit(EventNames.READY, this);
   }
