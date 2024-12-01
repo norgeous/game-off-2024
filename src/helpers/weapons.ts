@@ -2,6 +2,7 @@ import { Weapons } from '../enums/Weapons';
 import HandgunBullet from '../objects/weapons/bullets/HandgunBullet';
 import MachinegunBullet from '../objects/weapons/bullets/MachinegunBullet';
 import WhipBullet from '../objects/weapons/bullets/WhipBullet';
+import { SceneInitParamsType } from './dungeonConfigParser';
 
 export const inventory: Weapons[] = [];
 
@@ -24,7 +25,7 @@ const itemName2Bullet = {
   },
 };
 
-const weapons = (scene: Phaser.Scene) => {
+const weapons = (scene: Phaser.Scene, sceneInitParams: SceneInitParamsType) => {
   const groups = inventory.map((itemName) => {
     const { Bullet, cooldownLength } = itemName2Bullet[itemName];
     return {
@@ -42,7 +43,11 @@ const weapons = (scene: Phaser.Scene) => {
     groups.forEach(({ cooldownLength, cooldownFinishAt, group }, index) => {
       if (time > cooldownFinishAt) {
         group.get(x, y);
-        groups[index].cooldownFinishAt = time + cooldownLength; // reset cooldownFinish to some time in future
+
+        // reset cooldownFinish to some time in future
+        groups[index].cooldownFinishAt =
+          time +
+          (cooldownLength - sceneInitParams.playerStats.attackRate * 100);
       }
     });
   };

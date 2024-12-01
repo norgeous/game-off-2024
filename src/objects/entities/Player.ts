@@ -113,6 +113,7 @@ const entityConfig: EntityConfigType = {
 };
 
 class Player extends Entity {
+  private sceneInitParams: SceneInitParamsType;
   public invulnerableUntil = 0;
   public keys: keysType | undefined;
   public weapons: (x: number, y: number, time: number) => void;
@@ -127,8 +128,9 @@ class Player extends Entity {
     entityConfig.stats = playerStats;
     super(scene, px, py, entityConfig);
 
+    this.sceneInitParams = sceneInitParams;
     this.keys = createControls(scene);
-    this.weapons = weapons(scene);
+    this.weapons = weapons(scene, sceneInitParams);
     this.gameObject.setFriction(0);
     this.gameObject.setFrictionAir(0.08);
   }
@@ -150,14 +152,14 @@ class Player extends Entity {
 
   public addWeapon(weapon: Weapons) {
     addWeapon(weapon);
-    this.weapons = weapons(this.scene);
+    this.weapons = weapons(this.scene, this.sceneInitParams);
   }
 
   death() {
     this.scene.matter.pause();
     setTimeout(() => {
       this.scene.scene.start('GameOver');
-    }, 1_000);
+    }, 999);
   }
 
   update(time: number, delta: number) {
