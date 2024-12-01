@@ -420,7 +420,7 @@
                 {
                  "height":0,
                  "id":21,
-                 "name":"machine-gun",
+                 "name":"hand-gun",
                  "point":true,
                  "rotation":0,
                  "type":"",
@@ -428,6 +428,18 @@
                  "width":0,
                  "x":896,
                  "y":304
+                }, 
+                {
+                 "height":0,
+                 "id":22,
+                 "name":"machine-gun",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":912,
+                 "y":320
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -866,7 +878,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":22,
+ "nextobjectid":23,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
