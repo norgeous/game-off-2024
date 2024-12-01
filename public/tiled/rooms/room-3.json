@@ -178,7 +178,7 @@
                 {
                  "height":0,
                  "id":28,
-                 "name":"bat",
+                 "name":"enemy",
                  "point":true,
                  "rotation":0,
                  "type":"",
@@ -190,7 +190,7 @@
                 {
                  "height":0,
                  "id":48,
-                 "name":"bat",
+                 "name":"enemy",
                  "point":true,
                  "rotation":0,
                  "type":"",

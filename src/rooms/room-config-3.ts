@@ -33,7 +33,7 @@ export default {
     ],
     spawnerConfig: [
       {
-        tiledObjectName: 'bat',
+        tiledObjectName: 'enemy',
         classFactory: Bat,
         maxSize: 10,
         runChildUpdate: true,

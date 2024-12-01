@@ -1,3 +1,4 @@
+import { getRandomEnemy } from '../helpers/getRandomEnemy';
 import Bat from '../objects/entities/mobs/Bat';
 
 export default {
@@ -38,7 +39,7 @@ export default {
     ],
     spawnerConfig: [
       {
-        tiledObjectName: 'bat',
+        tiledObjectName: 'enemy',
         classFactory: Bat,
         maxSize: 10,
         runChildUpdate: true,
