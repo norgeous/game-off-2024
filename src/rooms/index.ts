@@ -20,6 +20,7 @@ import roomConfigf from './room-config-f';
 import roomConfigg from './room-config-g';
 import roomConfigh from './room-config-h';
 import roomConfigi from './room-config-i';
+import roomConfigj from './room-config-j';
 import roomConfigw from './room-config-w';
 import { inventory } from '../helpers/weapons';
 import { Weapons } from '../enums/Weapons';
@@ -46,6 +47,7 @@ const roomConfigs = {
   g: roomConfigg,
   h: roomConfigh,
   i: roomConfigi,
+  j: roomConfigj,
   w: roomConfigw,
 
 };
