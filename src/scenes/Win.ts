@@ -21,8 +21,11 @@ export class Win extends Scene {
       this.scene.start('MainMenu');
       this.sound.stopAll();
     };
-    this.input.on('pointerup', goMainMenu);
-    this.input.keyboard?.addKey('space').on('up', goMainMenu);
+
+    setTimeout(() => {
+      this.input.on('pointerup', goMainMenu);
+      this.input.keyboard?.addKey('space').on('up', goMainMenu);
+    }, 4_000);
 
     EventBus.emit(EventNames.READY, this);
   }
