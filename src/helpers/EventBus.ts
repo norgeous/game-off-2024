@@ -7,6 +7,7 @@ export enum EventNames {
   USE_DOOR = 'use-door',
   UPDATE_PLAYER_STATS = 'update-player-stats',
   COLLECT_ITEM = 'collect-item',
+  COMPLETE_DUNGEON = 'complete-dungeon'
 }
 
 // Used to emit events between React components and Phaser scenes

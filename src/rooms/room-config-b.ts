@@ -1,4 +1,4 @@
-import { getRandomEnemy } from '../helpers/getRandomEnemy';
+import { getRandomBoss, getRandomEnemy } from '../helpers/getRandomEnemy';
 
 export default {
   music: [
@@ -38,6 +38,13 @@ export default {
       {
         tiledObjectName: 'enemy',
         classFactory: getRandomEnemy(),
+        maxSize: 10,
+        runChildUpdate: true,
+        autoSpawn: true,
+      },
+      {
+        tiledObjectName: 'boss1',
+        classFactory: getRandomBoss(),
         maxSize: 10,
         runChildUpdate: true,
         autoSpawn: true,

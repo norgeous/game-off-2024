@@ -3,6 +3,7 @@ import { EntityConfigType } from '../Entity';
 import { CC, CM } from '../../../enums/CollisionCategories';
 import { Room } from '../../../scenes/Room';
 import Enemy from '../Enemy';
+import EndGameItem from '../../items/EndGameItem';
 
 const KEY = 'sphinx';
 
@@ -30,6 +31,12 @@ const entityConfig: EntityConfigType = {
     speed: 0.0,
     attackRate: 1,
   },
+  itemDropPool: [
+    {
+      classFactory: EndGameItem,
+      chance: 100,
+    }
+  ],
 };
 
 class Sphinx extends Enemy {

@@ -26,12 +26,14 @@ export class Room extends Scene {
     this.sceneInitParams = sceneInitParams;
   }
 
-  preload() {}
+  preload() {
+    this.load.audio('winning', 'assets/audio/winning.mp3');
+  }
 
   create() {
     const { roomType, isRoomCleared, roomClearedCount, playerEnterFrom } =
       this.sceneInitParams;
-
+    
     console.log('Room scene got', this.sceneInitParams);
 
     // load tiled level
@@ -65,6 +67,15 @@ export class Room extends Scene {
     EventBus.on(EventNames.RESPAWN_PLAYER, () => {
       const { px, py } = getPlayerStartPosition(this, playerEnterFrom);
       this.player?.setPosition(px, py);
+    });
+
+    EventBus.on(EventNames.COMPLETE_DUNGEON, () => {
+      this.sound.stopAll();
+      this.matter.pause();
+      this.sound.play('winning');
+      setTimeout(() => {
+        this.scene.start('Win');
+      }, 4_000);
     });
 
     // camera constraint
