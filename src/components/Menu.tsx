@@ -107,14 +107,14 @@ const Menu = ({ phaserScene }: IMenu) => {
             bottom: 0,
             display: 'flex',
             flexDirection: 'column',
-            gap: 12,
-            paddingBottom: 160,
+            gap: '1vh',
+            paddingBottom: '10vh',
           }}
         >
           <button
             style={{
               fontSize: '5vh',
-              padding: '1vh',
+              padding: '3vh',
             }}
             onClick={() => EventBus.emit(EventNames.START, phaserScene)}
           >
