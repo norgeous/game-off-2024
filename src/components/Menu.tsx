@@ -29,8 +29,8 @@ const Menu = ({ phaserScene }: IMenu) => {
   return (
     <>
       <CornerMenu $corner={Corner.TL}>
-        <Coins phaserScene={phaserScene} />
         <Health />
+        <Coins />
       </CornerMenu>
       <CornerMenu $corner={Corner.TR}>
         <MenuButton onClick={() => setSettingsIsOpen(!isSettingsOpen)}>
