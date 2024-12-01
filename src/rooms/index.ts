@@ -16,6 +16,7 @@ import roomConfigb from './room-config-b';
 import roomConfigc from './room-config-c';
 import roomConfigd from './room-config-d';
 import roomConfige from './room-config-e';
+import roomConfigf from './room-config-f';
 import roomConfigh from './room-config-h';
 import roomConfigw from './room-config-w';
 import spawnEnemies from '../helpers/spawnEnemies';
@@ -41,8 +42,10 @@ const roomConfigs = {
   c: roomConfigc,
   d: roomConfigd,
   e: roomConfige,
+  f: roomConfigf,
   h: roomConfigh,
   w: roomConfigw,
+
 };
 
 export const allRoomTypes = Object.keys(roomConfigs) as RoomType[];

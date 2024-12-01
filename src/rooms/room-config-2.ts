@@ -1,5 +1,6 @@
 import { getRandomEnemy } from '../helpers/getRandomEnemy';
 import Scroll from '../objects/items/Scroll';
+import Handgun from '../objects/weapons/Handgun';
 
 export default {
   music: [
@@ -42,8 +43,8 @@ export default {
         autoSpawn: true,
       },
       {
-        tiledObjectName: 'scroll',
-        classFactory: Scroll,
+        tiledObjectName: 'hand-gun',
+        classFactory: Handgun,
         maxSize: 10,
         runChildUpdate: true,
         autoSpawn: true,

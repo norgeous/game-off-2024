@@ -841,6 +841,18 @@
                  "width":0,
                  "x":320,
                  "y":304
+                }, 
+                {
+                 "height":0,
+                 "id":114,
+                 "name":"hand-gun",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":736,
+                 "y":576
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2202,7 +2214,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":114,
+ "nextobjectid":115,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
