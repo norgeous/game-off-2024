@@ -32,6 +32,16 @@ const enemies = [
   Statue,
 ];
 
+const bosses = [
+  PharaoeLarge,
+  Sphinx,
+
+];
+
 export const getRandomEnemy = () => {
   return enemies[Math.floor(Math.random() * enemies.length)];
+};
+
+export const getRandomBoss = () => {
+  return bosses[Math.floor(Math.random() * bosses.length)];
 };

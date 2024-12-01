@@ -451,7 +451,51 @@
          "draworder":"topdown",
          "id":6,
          "name":"navmesh",
-         "objects":[],
+         "objects":[
+                {
+                 "height":880,
+                 "id":21,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":224,
+                 "x":128,
+                 "y":128
+                }, 
+                {
+                 "height":144,
+                 "id":22,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1440,
+                 "x":352,
+                 "y":864
+                }, 
+                {
+                 "height":736,
+                 "id":23,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":192,
+                 "x":1600,
+                 "y":128
+                }, 
+                {
+                 "height":144,
+                 "id":24,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1248,
+                 "x":352,
+                 "y":128
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -550,7 +594,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":21,
+ "nextobjectid":25,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
