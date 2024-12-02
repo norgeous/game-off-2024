@@ -255,30 +255,6 @@
          "objects":[
                 {
                  "height":0,
-                 "id":5,
-                 "name":"enemy",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":1440,
-                 "y":288
-                }, 
-                {
-                 "height":0,
-                 "id":9,
-                 "name":"enemy",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":336,
-                 "y":336
-                }, 
-                {
-                 "height":0,
                  "id":22,
                  "name":"enemy",
                  "point":true,
@@ -288,18 +264,6 @@
                  "width":0,
                  "x":656,
                  "y":784
-                }, 
-                {
-                 "height":0,
-                 "id":23,
-                 "name":"enemy",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":688,
-                 "y":368
                 }, 
                 {
                  "height":0,
@@ -316,14 +280,14 @@
                 {
                  "height":0,
                  "id":25,
-                 "name":"boss1",
+                 "name":"enemy",
                  "point":true,
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1456,
-                 "y":304
+                 "x":1344,
+                 "y":400
                 }],
          "opacity":1,
          "type":"objectgroup",

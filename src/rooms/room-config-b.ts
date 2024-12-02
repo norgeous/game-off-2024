@@ -37,18 +37,11 @@ export default {
     spawnerConfig: [
       {
         tiledObjectName: 'enemy',
-        classFactory: getRandomEnemy(),
-        maxSize: 10,
-        runChildUpdate: true,
-        autoSpawn: true,
-      },
-      {
-        tiledObjectName: 'boss1',
         classFactory: getRandomBoss(),
         maxSize: 10,
         runChildUpdate: true,
         autoSpawn: true,
-      },
+      }
     ],
   },
 };
