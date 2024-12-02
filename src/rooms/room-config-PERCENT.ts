@@ -8,7 +8,7 @@ export default {
     },
   ],
   tiled: {
-    tiledMapJson: './tiled/rooms/room-%.json',
+    tiledMapJson: './tiled/rooms/room-PERCENT.json',
     images: [
       {
         key: 'tiles',
