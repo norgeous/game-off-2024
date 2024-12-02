@@ -32,7 +32,6 @@ const enemies = [
 
 const bosses = [
   PharaoeLarge,
-  Sphinx,
 ];
 
 export const getRandomEnemy = () => {
